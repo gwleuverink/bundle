@@ -7,6 +7,11 @@
             "Leuverink\\Bundle\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Leuverink\\Bundle\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Willem Leuverink",

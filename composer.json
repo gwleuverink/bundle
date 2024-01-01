@@ -1,0 +1,29 @@
+{
+    "name": "leuverink/bundle",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Leuverink\\Bundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Willem Leuverink",
+            "email": "willem@leuver.ink"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "illuminate/contracts": "^9|^10"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.30"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

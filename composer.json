@@ -2,6 +2,18 @@
     "name": "leuverink/bundle",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Willem Leuverink",
+            "email": "willem@leuver.ink"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/gwleuverink"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Leuverink\\Bundle\\": "src/"
@@ -12,12 +24,6 @@
             "Leuverink\\Bundle\\Tests\\": "tests/"
         }
     },
-    "authors": [
-        {
-            "name": "Willem Leuverink",
-            "email": "willem@leuver.ink"
-        }
-    ],
     "minimum-stability": "stable",
     "require": {
         "php": "^8.0",

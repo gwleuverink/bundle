@@ -21,7 +21,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Leuverink\\Bundle\\Tests\\": "tests/"
+            "Leuverink\\Bundle\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "minimum-stability": "stable",
@@ -32,7 +35,8 @@
     },
     "require-dev": {
         "pestphp/pest": "^2.30",
-        "symfony/thanks": "^1.2"
+        "symfony/thanks": "^1.2",
+        "orchestra/testbench": "^8.19"
     },
     "config": {
         "allow-plugins": {
@@ -51,6 +55,23 @@
                 "name": "Bun",
                 "url": "https://github.com/oven-sh/bun"
             }
+        ]
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "test": [
+            "@php vendor/bin/pest"
         ]
     }
 }

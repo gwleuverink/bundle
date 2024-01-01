@@ -16,14 +16,30 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^9|^10"
+        "illuminate/contracts": "^9|^10",
+        "illuminate/support": "^9|^10"
     },
     "require-dev": {
-        "pestphp/pest": "^2.30"
+        "pestphp/pest": "^2.30",
+        "symfony/thanks": "^1.2"
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "symfony/thanks": true
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Leuverink\\Bundle\\ServiceProvider"
+            ]
+        },
+        "thanks": [
+            {
+                "name": "Bun",
+                "url": "https://github.com/oven-sh/bun"
+            }
+        ]
     }
 }

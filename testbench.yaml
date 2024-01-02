@@ -1,15 +1,9 @@
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
 
-migrations:
-  - workbench/database/migrations
-
-seeders:
-  - Workbench\Database\Seeders\DatabaseSeeder
-
 workbench:
   start: "/"
-  install: true
+  install: false
   discovers:
     web: true
     api: false
@@ -18,4 +12,6 @@ workbench:
     views: false
   build: []
   assets: []
-  sync: []
+  sync:
+    - from: ./workbench/node_modules/.bin
+      to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin

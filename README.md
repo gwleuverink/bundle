@@ -2,6 +2,18 @@
 
 Solve page specific JavaScript modules in SSR Laravel apps.
 
+## Instalation
+
+```bash
+composer require leuverink/bundle --dev
+```
+
+```bash
+npm install bun --save-dev
+```
+
+## Basic usage
+
 **NOTE**: Working document. Api is not final
 
 Use in inline scripts

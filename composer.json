@@ -30,8 +30,9 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^9|^10",
-        "illuminate/support": "^9|^10"
+        "illuminate/contracts": "^10",
+        "illuminate/support": "^10",
+        "spatie/laravel-ignition": "^2.3"
     },
     "require-dev": {
         "pestphp/pest": "^2.30",

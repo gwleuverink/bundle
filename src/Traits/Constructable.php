@@ -2,6 +2,8 @@
 
 namespace Leuverink\Bundle\Traits;
 
+use Throwable;
+
 trait Constructable
 {
     public static function new(): self
@@ -9,9 +11,11 @@ trait Constructable
         $interfaces = class_implements(static::class);
 
         if($interfaces) {
-            return resolve(head($interfaces), func_get_args());
+            try {
+                return resolve(head($interfaces), func_get_args());
+            } catch (Throwable $e) {}
         }
 
-        return resolve(static::class, func_get_args());
+        return new static(...func_get_args());
     }
 }

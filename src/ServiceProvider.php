@@ -3,6 +3,8 @@
 namespace Leuverink\Bundle;
 
 use Leuverink\Bundle\Bundlers\Bun;
+use Illuminate\Support\Facades\Blade;
+use Leuverink\Bundle\Directives\BundleDirective;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
@@ -10,11 +12,14 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function boot(): void
     {
-        $this->app->singleton(
-            BundleManagerContract::class,
-            fn () => new BundleManager(new Bun)
-        );
+        $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
 
+        $this->registerDirectives();
+    }
+
+    public function register()
+    {
+        $this->registerBundleManager();
 
 
         // Only when using locally
@@ -26,8 +31,16 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    public function register()
+    protected function registerBundleManager()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
+        $this->app->singleton(
+            BundleManagerContract::class,
+            fn () => new BundleManager(new Bun)
+        );
+    }
+
+    protected function registerDirectives()
+    {
+        Blade::directive('bundle', fn ($expression) => BundleDirective::new($expression)->render());
     }
 }

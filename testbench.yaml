@@ -9,9 +9,13 @@ workbench:
     api: false
     commands: false
     components: false
-    views: false
+    views: true
   build: []
   assets: []
   sync:
     - from: ./workbench/node_modules/.bin
       to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
+
+    # Syncing lodash, only for testing purpose
+    - from: ./workbench/node_modules/lodash
+      to: ./vendor/orchestra/testbench-core/laravel/node_modules/lodash

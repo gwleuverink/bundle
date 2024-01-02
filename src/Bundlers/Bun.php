@@ -16,14 +16,12 @@ class Bun implements Bundler
 
     public function build(string $inputPath, string $outputPath, string $fileName): SplFileInfo
     {
-        $result = Process::run(base_path('node_modules/.bin/bun build'))
+        $output = Process::run(base_path('node_modules/.bin/bun build'))
             ->throw(function ($res): void {
                 throw new BundlingFailedException($res);
             })->output();
 
-        dd($result);
-
-        return new SplFileInfo();
+        return new SplFileInfo($output);
     }
 
 }

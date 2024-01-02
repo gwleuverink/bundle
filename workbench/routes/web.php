@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Leuverink\Bundle\Bundlers\Bun;
+use Leuverink\Bundle\BundleManager;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,5 @@ use Leuverink\Bundle\Bundlers\Bun;
 */
 
 Route::get('/', function () {
-    Bun::construct()->build('', '', '');
+    BundleManager::new()->bundle('');
 });

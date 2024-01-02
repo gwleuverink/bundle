@@ -46,8 +46,7 @@ class BundleManager implements BundleManagerContract
             );
         } catch (Throwable $e) {
             $this->tempDisk()->delete($fileName);
-            // TODO: Consider raising a browser console error instead
-            throw $e;
+            throw $e; // TODO: Consider raising a browser console error instead
         } finally {
             $this->tempDisk()->delete($fileName);
         }
@@ -55,6 +54,10 @@ class BundleManager implements BundleManagerContract
         return $processed;
     }
 
+
+    //--------------------------------------------------------------------------
+    // Helper methods
+    //--------------------------------------------------------------------------
     private function tempDisk(): FilesystemContract
     {
         return Storage::build([

@@ -31,6 +31,9 @@ class Bun implements Bundler
         return new SplFileInfo($outputPath.$fileName);
     }
 
+    //--------------------------------------------------------------------------
+    // Helper methods
+    //--------------------------------------------------------------------------
     private function args(array $options): string
     {
         return collect($options)->reduce(function($carry, $option, $key) {
@@ -41,5 +44,4 @@ class Bun implements Bundler
                 ->toString();
         });
     }
-
 }

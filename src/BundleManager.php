@@ -29,7 +29,10 @@ class BundleManager implements BundleManagerContract
     {
         $fileName = "{$this->hash($script)}.min.js";
 
-        // TODO: Return cached file if available
+        // Return cached file if available
+        if (config('bundle.caching_enabled') && $cached = $this->fromDisk($fileName)) {
+            return $cached;
+        }
 
         // Create temporary input file
         $this->tempDisk()->put($fileName, $script);
@@ -74,5 +77,16 @@ class BundleManager implements BundleManagerContract
 
         // Truncate the hash to the specified length
         return substr($hash, 0, $length);
+    }
+
+    private function fromDisk(string $fileName): ?SplFileInfo
+    {
+        if ( ! $this->buildDisk()->exists($fileName)) {
+            return null;
+        }
+
+        return new SplFileInfo(
+            $this->buildDisk()->path($fileName)
+        );
     }
 }

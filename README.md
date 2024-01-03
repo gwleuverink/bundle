@@ -12,6 +12,18 @@ composer require leuverink/bundle --dev
 npm install bun --save-dev
 ```
 
+Finally, add a `jsconfig.json` file to your project root with all your path aliases. (**required**)
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./resources/js/*"]
+    }
+  }
+}
+```
+
 ## Basic usage
 
 **NOTE**: Working document. Api is not final

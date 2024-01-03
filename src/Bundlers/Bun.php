@@ -19,7 +19,7 @@ class Bun implements Bundler
         $path = base_path('node_modules/.bin/');
         $options = [
             // '--chunk-naming' => 'chunks/[name]-[hash]',
-            // '--tsconfig-override' => base_path('jsconfig.json'),
+            '--tsconfig-override' => base_path('jsconfig.json'),
             '--entrypoints' => $inputPath.$fileName,
             '--outdir' => $outputPath,
             '--format' => 'esm',

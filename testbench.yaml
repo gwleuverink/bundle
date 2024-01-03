@@ -1,6 +1,8 @@
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
 
+laravel: ./tests/skeleton
+
 workbench:
   start: "/"
   install: false

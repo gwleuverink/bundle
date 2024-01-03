@@ -18,14 +18,20 @@ class Bun implements Bundler
     {
         $path = base_path('node_modules/.bin/');
         $options = [
+            // '--chunk-naming' => 'chunks/[name]-[hash]',
+            // '--tsconfig-override' => base_path('jsconfig.json'),
             '--entrypoints' => $inputPath.$fileName,
             '--outdir' => $outputPath,
+            '--format' => 'esm',
+            // '--root' => '.',
+            '--splitting',
             '--minify'
         ];
 
         Process::run("{$path}bun build {$this->args($options)}")
-            ->throw(function ($res): void {
-                throw new BundlingFailedException($res);
+            ->throw(function ($res) use ($inputPath, $fileName): void {
+                $failed = file_get_contents($inputPath.$fileName);
+                throw new BundlingFailedException($res, $failed);
             });
 
         return new SplFileInfo($outputPath.$fileName);
@@ -38,7 +44,7 @@ class Bun implements Bundler
     {
         return collect($options)->reduce(function($carry, $option, $key) {
             return str($carry)
-                ->append($key == 0 ? '' : $key)->append(' ')
+                ->append(is_int($key) ? '' : $key)->append(' ')
                 ->append($option)->append(' ')
                 ->replace('  ', ' ')
                 ->toString();

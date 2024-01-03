@@ -8,8 +8,7 @@
 <body>
 
     <script>
-        let filter = @bundle('lodash/filter')
-
+        let alertProxy = @bundle('~/alert')
     </script>
 
     Hello World!

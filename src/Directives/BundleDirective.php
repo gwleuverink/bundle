@@ -15,20 +15,25 @@ class BundleDirective implements Directive
     protected string $import;
     protected string $module;
 
-    public function __construct(string $expression)
+    public function __construct(string $module)
     {
-        try {
-            [$this->import, $this->module] = $this->arguments($expression);
-        } catch(Throwable $e) {
-            throw new InvalidArgumentException('The @bundle directive expects exactly two arguments.');
-        }
+        $this->module = str($module)
+            ->replaceMatches('/[\'"`“”‘’]/u', '') // remove quotes
+            ->replace(' ', '') // remove spaces
+            ->toString();
     }
 
     public function render(): string
     {
         $js = <<< JS
-        import $this->import from '$this->module';
+        import filter from "$this->module";
         JS;
+
+        // $js = <<< JS
+        // (() => {
+        //     return import('$this->module')
+        // })()
+        // JS;
 
         dd(BundleManager::new()->bundle($js));
     }

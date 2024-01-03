@@ -13,9 +13,14 @@ workbench:
   build: []
   assets: []
   sync:
-    - from: ./workbench/node_modules/.bin
-      to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
+    # Copy installed version of bun to workbench core
+    # - from: ./workbench/node_modules/.bin
+    #   to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
 
-    # Syncing lodash, only for testing purpose
-    - from: ./workbench/node_modules/lodash
-      to: ./vendor/orchestra/testbench-core/laravel/node_modules/lodash
+    # Copy alias config to workbench core
+    # - from: ./workbench/tsconfig.json
+    #   to: ./vendor/orchestra/testbench-core/laravel/tsconfig.json
+
+    # Copy local javascript resource dir to workbench core
+    # - from: ./workbench/resources/js
+    #   to: ./vendor/orchestra/testbench-core/laravel/resources/js

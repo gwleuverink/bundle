@@ -1,5 +1,10 @@
 /vendor
+
 /storage
+/storage/logs/*
+/storage/frameworl/views/*
+
 /bootstrap
+
 /node_modules
 !/node_modules/.bin

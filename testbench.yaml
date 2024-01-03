@@ -1,8 +1,6 @@
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
 
-laravel: ./tests/skeleton
-
 workbench:
   start: "/"
   install: false
@@ -16,13 +14,13 @@ workbench:
   assets: []
   sync:
     # Copy installed version of bun to workbench core
-    # - from: ./workbench/node_modules/.bin
-    #   to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
+    - from: ./workbench/node_modules/.bin
+      to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
 
     # Copy alias config to workbench core
-    # - from: ./workbench/tsconfig.json
-    #   to: ./vendor/orchestra/testbench-core/laravel/tsconfig.json
+    - from: ./workbench/tsconfig.json
+      to: ./vendor/orchestra/testbench-core/laravel/tsconfig.json
 
     # Copy local javascript resource dir to workbench core
     # - from: ./workbench/resources/js
-    #   to: ./vendor/orchestra/testbench-core/laravel/resources/js
+    #   to: ./tests/skeleton/resources/js

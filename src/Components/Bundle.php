@@ -14,21 +14,27 @@ class Bundle extends Component
 
     public function render()
     {
+        // First make sure window._bundle_modules exists
+        // and assign the import to that object.
+        // ---------------------------------------------
+        // Then we expose a _bundle function that
+        // can retreive the module as a Promis
         $js = <<< JS
             if(!window._bundle_modules) window._bundle_modules = {}
+            window._bundle_modules.$this->as = import('$this->import')
 
             window._bundle = async function(alias, exportName = 'default') {
                 let module = await window._bundle_modules[alias]
                 return module[exportName]
             }
-
-            window._bundle_modules.$this->as = import('$this->import')
         JS;
 
+        // Bundle it up
         $bundle = file_get_contents(
             BundleManager::new()->bundle($js)
         );
 
+        // Render script tag with bundled code
         return view('bundle::bundle', [
             'bundle' => $bundle
         ]);

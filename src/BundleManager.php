@@ -46,7 +46,7 @@ class BundleManager implements BundleManagerContract
             );
         } catch (Throwable $e) {
             $this->tempDisk()->delete($fileName);
-            throw $e; // TODO: Consider raising a browser console error instead
+            throw $e; // TODO: Consider raising a browser console error or whoops in a dialog instead
         } finally {
             $this->tempDisk()->delete($fileName);
         }
@@ -74,14 +74,6 @@ class BundleManager implements BundleManagerContract
         ]);
     }
 
-    private function hash($input, $length = 12) {
-        // Create a SHA-256 hash of the input
-        $hash = hash('sha256', $input);
-
-        // Truncate the hash to the specified length
-        return substr($hash, 0, $length);
-    }
-
     private function fromDisk(string $fileName): ?SplFileInfo
     {
         if ( ! $this->buildDisk()->exists($fileName)) {
@@ -91,5 +83,10 @@ class BundleManager implements BundleManagerContract
         return new SplFileInfo(
             $this->buildDisk()->path($fileName)
         );
+    }
+
+    private function hash($input, $length = 12) {
+        $hash = hash('sha256', $input);
+        return substr($hash, 0, $length);
     }
 }

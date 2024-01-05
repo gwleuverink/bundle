@@ -68,7 +68,7 @@ In order to use this script directly in your blade views, you simply need to imp
 
 ## How it works
 
-The `<x-bundle />` component bundles your import on the fly and inlines it in place inside a script tag.
+The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and inlines it in place inside a script tag.
 
 ```html
 <x-bundle import="~/alert" as="alert" />

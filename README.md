@@ -2,6 +2,8 @@
 
 Solve page specific JavaScript modules in SSR Laravel apps.
 
+***In development - not production ready***
+
 ## Instalation
 
 ```bash
@@ -22,7 +24,7 @@ You may bundle any node module or local script from your resources/js directory 
 <!-- import your desired module -->
 <x-bundle import="apexcharts" as="ApexCharts" />
 
-<!-- a _bundle function will be exposed to retreive the module -->
+<!-- a _bundle function will be exposed to retrieve the module -->
 <script type="module">
   const ApexCharts = await _bundle("ApexCharts");
 
@@ -52,7 +54,7 @@ export default function alertProxy(message) {
 }
 ```
 
-In order to use this script directly in our blade views, you simply need to import it using the `<x-bundle />` component.
+In order to use this script directly in your blade views, you simply need to import it using the `<x-bundle />` component.
 
 ```html
 <x-bundle import="~/alert" as="alert" />

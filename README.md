@@ -135,9 +135,9 @@ A couple of things to be aware of;
 
 Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports. You may retreive those like explained above.
 
-Because of this you may end up with a bunch of unused code imlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
+Because of this you may end up with a bunch of unused code inlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
 
-This might be improved whem chunking dynamic imports support is added. 
+This might be improved when chunking dynamic imports support is added. So shared code is fetched by a additional request.
 
 **Chunking dynamic imports**
 

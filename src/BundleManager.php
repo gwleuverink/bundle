@@ -74,7 +74,7 @@ class BundleManager implements BundleManagerContract
         ]);
     }
 
-    private function hash($input, $length = 8) {
+    private function hash($input, $length = 12) {
         // Create a SHA-256 hash of the input
         $hash = hash('sha256', $input);
 

@@ -18,15 +18,20 @@ class Bun implements Bundler
     {
         $path = base_path('node_modules/.bin/');
         $options = [
-            // '--chunk-naming' => 'chunks/[name]-[hash]',
             '--tsconfig-override' => base_path('jsconfig.json'),
+            '--chunk-naming' => 'chunks/[name]-[hash].[ext]',
+            '--asset-naming' => 'assets/[name]-[hash].[ext]',
             '--entrypoints' => $inputPath.$fileName,
+            '--public-path' => $outputPath,
             '--outdir' => $outputPath,
+            '--target' => 'browser',
+            '--root' => $inputPath,
+            // '--sourcemap=inline',
             '--format' => 'esm',
-            // '--root' => '.',
-            '--splitting',
+            // '--splitting',
             '--minify'
         ];
+
 
         Process::run("{$path}bun build {$this->args($options)}")
             ->throw(function ($res) use ($inputPath, $fileName): void {

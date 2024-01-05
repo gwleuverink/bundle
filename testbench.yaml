@@ -21,6 +21,6 @@ workbench:
     - from: ./workbench/resources/js
       to: ./vendor/orchestra/testbench-core/laravel/resources/js
 
-    # Symlink config to workbench core
+    # Symlink config to workbench core - (problematic, swapped for cp in serve script)
     # - from: ./workbench/jsconfig.json
     #   to: ./vendor/orchestra/testbench-core/laravel

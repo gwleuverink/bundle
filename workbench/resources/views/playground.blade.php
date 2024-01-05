@@ -7,8 +7,12 @@
 </head>
 <body>
 
-    <script>
-        let alertProxy = @bundle('~/alert')
+    <x-bundle import="~/alert" as="alert" />
+
+    <script type="module">
+        var module = await _bundle('alert');
+
+        module('Hello World!')
     </script>
 
     Hello World!

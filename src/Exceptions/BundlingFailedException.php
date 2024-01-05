@@ -26,8 +26,6 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
 
     public function getSolution(): Solution
     {
-        // dd($this->result->errorOutput());
-
         return match (true) {
             str_contains($this->result->errorOutput(), 'bun: No such file or directory') => $this->bunNotInstalledSolution(),
             str_contains($this->result->errorOutput(), 'error: Could not resolve') => $this->moduleNotResolvableSolution(),

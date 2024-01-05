@@ -2,6 +2,8 @@
 
 Solve page specific JavaScript modules in SSR Laravel apps.
 
+***In development - not production ready***
+
 ## Instalation
 
 ```bash
@@ -109,7 +111,7 @@ Using Bundle in AlpineJS is as easy as using it in an inline script.
 
 _Note that this code serves as an example, you need more to actually integrate this library fully. See [Alpine UI Components](https://alpinejs.dev/component/choices)_
 
-## Prevent Bundle from loading the same bundle multiple times
+## Prevent importing the same module multiple times
 
 When you're not using `@script` or Livewire at all for that matter, it is reccomended to provide the optional `once` prop, so the script is not inlined multiple times when used in a loop, or otherwise in the same page.
 

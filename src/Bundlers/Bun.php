@@ -26,10 +26,10 @@ class Bun implements Bundler
             '--outdir' => $outputPath,
             '--target' => 'browser',
             '--root' => $inputPath,
-            // '--sourcemap=inline',
             '--format' => 'esm',
-            // '--splitting',
-            '--minify'
+            // '--sourcemap=inline', // Maybe only locally?
+            // '--splitting', // Breaks relative paths to imports from resources/js (TODO: Experiment more after writing tests)
+            '--minify' // Only in production?
         ];
 
 

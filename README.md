@@ -64,11 +64,27 @@ In order to use this script directly in our blade views, you simply need to impo
 </script>
 ```
 
+## How it works
+
 The `<x-bundle />` component bundles your import on the fly and inlines it in place inside a script tag.
+
+```html
+<x-bundle import="~/alert" as="alert" />
+```
+
+Renders the following:
+
+```html
+<!--[BUNDLE: alert from '~/alert']-->
+<script>
+    var c=Object.defineProperty;var f=(w,d)=>{for(var n in d)c(w,n,{get:d[n],enumerable:!0,configurable:!0,set:(b)=>d[n]=()=>b})};var h=(w,d)=>()=>(w&&(d=w(w=0)),d);var u={};f(u,{default:()=>{{return o}}});function o(w){alert(w)}var _=h(()=>{});if(!window._bundle_modules)window._bundle_modules={};window._bundle_modules.alert=Promise.resolve().then(() => (_(),u));window._bundle=async function(w,d="default"){return(await window._bundle_modules[w])[d]};
+</script>
+<!--[ENDBUNDLE]>-->
+```
 
 The rendered script tag exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
-If the module your'e exporting uses named exports, you may resolve it like this:
+If the module you're exporting uses named exports, you may resolve it like this:
 
 ```js
 var module = await _bundle("~/module", "someNamedExport");
@@ -109,9 +125,39 @@ Using Bundle in AlpineJS is as easy as using it in an inline script.
 
 _Note that this code serves as an example, you need more to actually integrate this library fully. See [Alpine UI Components](https://alpinejs.dev/component/choices)_
 
-## Prevent Bundle from loading the same bundle multiple times
+### Caveats
 
-When you're not using `@script` or Livewire at all for that matter, it is reccomended to provide the optional `once` prop, so the script is not inlined multiple times when used in a loop, or otherwise in the same page.
+A couple of things to be aware of;
+
+**Tree shaking**
+
+Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports. You may retreive those like explained above.
+
+Because of this you may end up with a bunch of unused code inlide in your blade template. But since the code is inlined with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the library.
+
+**Chunking**
+
+Chunking of dynamicly fetched pieces of shared code is currently not supported but definetly possible.
+
+Due to Bun's path remapping behaviour Bundle is not able to split chunks from modules and assets imported from your local `resources` directory. This could definetly work for shared imports from `node_modules` in the future.
+
+**Don't pass dynamic variables to `<x-bundle/>`**
+
+This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment. (feature pending, see next heading)
+
+```html
+<x-bundle :import="$foo" as="{{ $bar }}" />
+```
+
+**Running on a server**
+
+Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
+
+At this time there is no command to compile all the code at once. But there will be, soon. So stay tuned.
+
+**Prevent Bundle from loading the same import multiple times**
+
+It is reccomended to provide the optional `once` prop, so the script is not inlined multiple times when used in a loop, or otherwise on the same page.
 
 ```html
 <x-bundle import="apexcharts" as="ApexCharts" once />

@@ -68,7 +68,7 @@ The `<x-bundle />` component bundles your import on the fly and inlines it in pl
 
 The rendered script tag exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
-If the module your'e exporting uses named exports, you may resolve it like this:
+If the module you're exporting uses named exports, you may resolve it like this:
 
 ```js
 var module = await _bundle("~/module", "someNamedExport");

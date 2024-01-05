@@ -54,7 +54,7 @@ export default function alertProxy(message) {
 }
 ```
 
-In order to use this script directly in our blade views, you simply need to import it using the `<x-bundle />` component.
+In order to use this script directly in your blade views, you simply need to import it using the `<x-bundle />` component.
 
 ```html
 <x-bundle import="~/alert" as="alert" />

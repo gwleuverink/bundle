@@ -18,9 +18,9 @@ class Bun implements Bundler
     {
         $path = base_path('node_modules/.bin/');
         $options = [
-            '--tsconfig-override' => base_path('jsconfig.json'),
-            '--chunk-naming' => 'chunks/[name]-[hash].[ext]',
-            '--asset-naming' => 'assets/[name]-[hash].[ext]',
+            // '--tsconfig-override' => base_path('jsconfig.json'), // Disable enforcing this. custom config is optional.
+            '--chunk-naming' => 'chunks/[name]-[hash].[ext]', // Not in use without --splitting
+            '--asset-naming' => 'assets/[name]-[hash].[ext]', // Not in use without --splitting
             '--entrypoints' => $inputPath.$fileName,
             '--public-path' => $outputPath,
             '--outdir' => $outputPath,

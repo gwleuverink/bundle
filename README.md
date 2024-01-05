@@ -18,7 +18,7 @@ This is all you need to start using Bundle!
 
 ## Basic usage
 
-You may bundle any node module or local script from your resources/js directory directly on the page.
+You may bundle any `node_module` or local script from your `resources/js` directory directly on the page.
 
 ```html
 <!-- import your desired module -->

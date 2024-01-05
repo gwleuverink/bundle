@@ -157,8 +157,4 @@ At this time there is no command to compile all the code at once. But there will
 
 **Prevent Bundle from loading the same import multiple times**
 
-It is reccomended to provide the optional `once` prop, so the script is not inlined multiple times when used in a loop, or otherwise on the same page.
-
-```html
-<x-bundle import="apexcharts" as="ApexCharts" once />
-```
+Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.

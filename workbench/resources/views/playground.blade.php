@@ -7,7 +7,8 @@
 </head>
 <body>
 
-    <x-bundle import="~/alert" as="alert" />
+    <x-bundle import="~/alert" as="alert" /> {{-- Should be rendered --}}
+    <x-bundle import="~/alert" as="alert" /> {{-- Should be skipped --}}
 
     <script type="module">
         var module = await _bundle('alert');

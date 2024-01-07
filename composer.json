@@ -16,7 +16,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Leuverink\\Bundle\\": "src/"
+            "Leuverink\\Bundle\\": "src/",
+            "Leuverink\\Bundle\\Tests\\": "tests/"
+
         }
     },
     "autoload-dev": {
@@ -37,7 +39,8 @@
     "require-dev": {
         "pestphp/pest": "^2.30",
         "symfony/thanks": "^1.2",
-        "orchestra/testbench": "^8.19"
+        "orchestra/testbench": "^8.19",
+        "orchestra/testbench-dusk": "^8.19"
     },
     "config": {
         "allow-plugins": {

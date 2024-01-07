@@ -1,5 +1,8 @@
 <?php
 
+use Leuverink\Bundle\Tests\TestCase;
+use Leuverink\Bundle\Tests\DuskTestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +14,17 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+uses(TestCase::class)
+    ->group('unit')
+    ->in('Unit');
+
+uses(TestCase::class)
+    ->group('feature')
+    ->in('Feature');
+
+uses(DuskTestCase::class)
+    ->group('browser')
+    ->in('Browser');
 
 /*
 |--------------------------------------------------------------------------

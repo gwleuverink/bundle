@@ -3,9 +3,9 @@
 namespace Leuverink\Bundle\Tests;
 
 use Orchestra\Testbench\Concerns\WithWorkbench;
-use Orchestra\Testbench\TestCase  as BaseTestCase;
+use Orchestra\Testbench\Dusk\TestCase  as BaseTestCase;
 
-abstract class TestCase extends BaseTestCase
+class DuskTestCase extends BaseTestCase
 {
     use WithWorkbench;
 }

@@ -70,13 +70,13 @@
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "serve": [
+            "cd ./workbench && npm i",
             "cp ./workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
             "Composer\\Config::disableProcessTimeout",
             "@build",
             "@php vendor/bin/testbench serve"
         ],
-        "test": [
-            "@php vendor/bin/pest"
-        ]
+        "test": "@php vendor/bin/pest --exclude-group=browser",
+        "test-browser": "@php vendor/bin/pest --group=browser"
     }
 }

@@ -2,7 +2,7 @@
 
 Solve page specific JavaScript modules in SSR Laravel apps.
 
-***In development - not production ready***
+**_In development - not production ready_**
 
 ## Instalation
 
@@ -160,3 +160,14 @@ At this time there is no command to compile all the code at once. But there will
 **Prevent Bundle from loading the same import multiple times**
 
 Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.
+
+### Contributing
+
+Clone this repo locally & run `composer install`
+
+Run `composer serve` to start a local environment to tinker in.
+
+You can run the test suites with the following composer scripts:
+
+- `composer test` to run all tests except browser test
+- `composer test-browser` to run all browser test

@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "bun": "^1.0.21"
+    "bun": "^1.0.21",
+    "lodash": "^4.17.21"
   }
 }

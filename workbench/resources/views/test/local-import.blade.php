@@ -9,6 +9,12 @@
         module('Hello World!')
     </script>
 
-    Hello World!
+    <p>
+        Importing a simple local module by it's path alias as defined in jsconfig.json
+    </p>
+
+    <p>
+        Should alert 'Hello World!'
+    </p>
 
 </x-layout>

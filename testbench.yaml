@@ -8,19 +8,19 @@ workbench:
     web: true
     api: false
     commands: false
-    components: false
+    components: true
     views: true
   build: []
   assets: []
   sync:
-    # Copy installed version of bun to workbench core
-    - from: ./workbench/node_modules/.bin
-      to: ./vendor/orchestra/testbench-core/laravel/node_modules/.bin
+    # Link Bun binary & packages used in testing
+    - from: ./workbench/node_modules
+      to: ./vendor/orchestra/testbench-core/laravel/node_modules
 
-    # Copy local javascript resource dir to workbench core
+    # Link local javascript resource dir
     - from: ./workbench/resources/js
       to: ./vendor/orchestra/testbench-core/laravel/resources/js
 
-    # Symlink config to workbench core - (problematic, swapped for cp in serve script)
+    # Link config - (problematic, swapped for cp in serve script)
     # - from: ./workbench/jsconfig.json
     #   to: ./vendor/orchestra/testbench-core/laravel

@@ -81,7 +81,7 @@
         ],
 
         "test": "@php vendor/bin/pest --exclude-group=browser",
-        "test-browser": "@php vendor/bin/pest --group=browser",
+        "test-browser": "@php vendor/bin/pest --group=browser"
 
     }
 }

@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Tests;
 
 use Laravel\Dusk\Browser;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase  as BaseTestCase;
@@ -11,21 +12,34 @@ class DuskTestCase extends BaseTestCase
 {
     use WithWorkbench;
 
+    protected function getBasePath()
+    {
+        // testbench-core skeleton is leading, due to test setup in testbench.yaml
+        return __DIR__.'/../vendor/orchestra/testbench-core/laravel';
+    }
+
     /**
      * Renders a string into blade & navigates the Dusk browser to a temporary route
      * Then it returns the Browser object to continue chaining assertions.
      */
     public function blade(string $blade) {
 
-        // Wrap in basic HTML layout
-        $page = <<< BLADE
+        // Wrap in basic HTML layout (include required js & css in layout if needed)
+        $blade = <<< BLADE
         <x-layout>
             $blade
         </x-layout>
         BLADE;
 
-        Route::get('test-blade', fn() => $page);
+        // Render the blade
+        $page = Blade::render($blade);
 
+        // Create a temporary route
+        $this->beforeServingApplication(
+            fn ($app) => $app->make(Route::class)::get('test-blade', fn() => $page)
+        );
+
+        // Point Dusk to the temporary route & return the Browser for chaining
         $return = null;
         $this->browse(function (Browser $browser) use (&$return) {
             $return = $browser->visit('test-blade');

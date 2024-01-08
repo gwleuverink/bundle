@@ -1,6 +1,6 @@
-@once
+@once("bundle:$as")
 <!--[BUNDLE: {{ $as }} from '{{ $import }}']-->
-<script>
+<script data-bundle="{{ $as }}">
     {!! $bundle !!}
 </script>
 <!--[ENDBUNDLE]>-->

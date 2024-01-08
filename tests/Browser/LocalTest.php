@@ -1,33 +1,34 @@
 <?php
 
+namespace Leuverink\Bundle\Tests\Browser;
+
 use Laravel\Dusk\Browser;
+use Leuverink\Bundle\Tests\DuskTestCase;
 
-it('injects import & _bundle function on the window object new')
-    ->blade(<<< HTML
-        <x-bundle import="~/alert" as="alert" />
-    HTML)
-    ->assertScript('window._bundle')
-    ->assertScript('window._bundle_modules');
+// Pest & Workbench Dusk don't play nicely together
+// We need to fall back to PHPUnit syntax.
 
+class LocalTest extends DuskTestCase
+{
+    /** @test */
+    public function it_injects_import_and_bundle_function_on_the_window_object() {
+        $this->blade(<<< HTML
+                <x-bundle import="~/alert" as="alert" />
+            HTML)
+            ->assertScript("typeof window._bundle", 'function')
+            ->assertScript('typeof window._bundle_modules', 'object');
+    }
 
+    /** @test */
+    public function it_imports_from_local_resource_directory() {
+        $this->blade(<<< HTML
+            <x-bundle import="~/alert" as="alert" />
 
-it('imports from local resource directory')
-    ->blade(<<< HTML
-        <x-bundle import="~/alert" as="alert" />
-
-        <script type="module">
-            var module = await _bundle('alert');
-            module('Hello World!')
-        </script>
-    HTML)
-    ->assertDialogOpened('Hello World!');
-
-
-
-    it('renders blade & can make assertions on the browser output')
-        ->blade(<<<HTML
-            <script>
-                alert('Hello World!')
+            <script type="module">
+                var module = await _bundle('alert');
+                module('Hello World!')
             </script>
         HTML)
         ->assertDialogOpened('Hello World!');
+    }
+}

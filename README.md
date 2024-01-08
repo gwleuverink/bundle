@@ -161,7 +161,7 @@ This will work perfectly fine during development, but this can't be evaluated wh
 
 **Running on a server**
 
-Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
+Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this, and to catch bundling errors before users hit your page, it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
 
 At this time there is no command to compile all the code at once. But there will be, soonish. So stay tuned.
 

@@ -18,7 +18,6 @@
         "psr-4": {
             "Leuverink\\Bundle\\": "src/",
             "Leuverink\\Bundle\\Tests\\": "tests/"
-
         }
     },
     "autoload-dev": {
@@ -64,11 +63,15 @@
     "scripts": {
         "post-autoload-dump": [
             "@clear",
-            "@prepare"
+            "@prepare",
+            "@dusk:install-chromedriver"
         ],
+
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
+
         "serve": [
             "cd ./workbench && npm i",
             "cp ./workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
@@ -76,7 +79,9 @@
             "@build",
             "@php vendor/bin/testbench serve"
         ],
+
         "test": "@php vendor/bin/pest --exclude-group=browser",
-        "test-browser": "@php vendor/bin/pest --group=browser"
+        "test-browser": "@php vendor/bin/pest --group=browser",
+
     }
 }

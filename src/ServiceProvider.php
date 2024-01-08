@@ -5,7 +5,6 @@ namespace Leuverink\Bundle;
 use Leuverink\Bundle\Bundlers\Bun;
 use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Components\Bundle;
-use Leuverink\Bundle\Directives\BundleDirective;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 

@@ -18,7 +18,7 @@ This is all you need to start using Bundle!
 
 ## Basic usage
 
-You may bundle any node module or local script from your resources/js directory directly on the page.
+You may bundle any `node_module` or local script from your `resources/js` directory directly on the page.
 
 ```html
 <!-- import your desired module -->
@@ -68,7 +68,7 @@ In order to use this script directly in your blade views, you simply need to imp
 
 ## How it works
 
-The `<x-bundle />` component bundles your import on the fly and inlines it in place inside a script tag.
+The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and inlines it in place inside a script tag.
 
 ```html
 <x-bundle import="~/alert" as="alert" />
@@ -84,7 +84,7 @@ Renders the following:
 <!--[ENDBUNDLE]>-->
 ```
 
-The rendered script tag exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
+The script exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
 If the module you're exporting uses named exports, you may resolve it like this:
 
@@ -135,9 +135,11 @@ A couple of things to be aware of;
 
 Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports. You may retreive those like explained above.
 
-Because of this you may end up with a bunch of unused code inlide in your blade template. But since the code is inlined with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the library.
+Because of this you may end up with a bunch of unused code inlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
 
-**Chunking**
+This might be improved when chunking dynamic imports support is added. So shared code is fetched by a additional request.
+
+**Chunking dynamic imports**
 
 Chunking of dynamicly fetched pieces of shared code is currently not supported but definetly possible.
 
@@ -155,7 +157,7 @@ This will work perfectly fine during development, but this can't be evaluated wh
 
 Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
 
-At this time there is no command to compile all the code at once. But there will be, soon. So stay tuned.
+At this time there is no command to compile all the code at once. But there will be, soonish. So stay tuned.
 
 **Prevent Bundle from loading the same import multiple times**
 

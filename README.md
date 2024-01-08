@@ -92,6 +92,8 @@ If the module you're exporting uses named exports, you may resolve it like this:
 var module = await _bundle("~/module", "someNamedExport");
 ```
 
+The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`. 
+
 ## Usage in Livewire
 
 You may use Bundle in conjunction with Livewire's `@script` directive. Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-javascript-in-livewire-components) for more information on why you'd might need this.

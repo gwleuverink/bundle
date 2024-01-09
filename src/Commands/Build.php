@@ -10,37 +10,41 @@ use Symfony\Component\Finder\SplFileInfo;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\error;
+use function Laravel\Prompts\progress;
 
 class Build extends Command
 {
     protected $signature = 'bundle:build';
-    protected $description = 'Scan resource directory and bundle all imports for production';
+    protected $description = 'Scan build_patsh and bundle all imports for production';
 
     public function handle(Finder $finder): int
     {
+        $this->call('bundle:clear');
+
         $errors = 0;
 
-        // Find all usages of x-bundle
+        // Find and bundle all components
         collect(config('bundle.build_paths'))
             // Find all files matching given glob pattern
             ->map(fn($glob) => $finder->files()->in($glob)->depth(0))
             // Map them to an array
             ->flatMap(fn(Finder $iterator) => iterator_to_array($iterator))
-            // pregmatch each file for x-bundle components
+            // Pregmatch each file for x-bundle components
             ->flatMap(fn(SplFileInfo $file) => preg_grep('/^<x-bundle.*?>$/', file($file)))
-            // filter uniques
+            // Filter uniques
             ->unique()
-            // Then render the blade! The component does the rest
-            ->each(function($component) use (&$errors) {
+            // Start progress bar
+            ->pipe(fn($components) => progress('Building Bundle imports', $components, function($component) use (&$file, $errors) {
                 try {
-                    Blade::render($component);
-                    $this->components->task($component);
+                    // Render the blade. The component does the rest
+                    $this->components->task(
+                        "$component from: $file",
+                        fn() => Blade::render($component)
+                    );
                 } catch(Throwable $e) {
-                    $this->components->error($component);
                     $errors++;
                 }
-            });
-
+            }));
 
         if($errors) {
             error('Bundle compiled with errors');

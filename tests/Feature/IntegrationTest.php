@@ -14,7 +14,7 @@ it('transpiles JavaScript')->bundle(
 it('strips unnessary whitespace')->bundle(
     <<< JS
 
-
+    const foo = 'baz'
     console.log(foo)
 
 

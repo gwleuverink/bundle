@@ -4,7 +4,7 @@ Effortless page specific JavaScript modules in Laravel/Livewire apps.
 
 **_In development - not production ready_**
 
-## Instalation
+## Installation
 
 ```bash
 composer require leuverink/bundle --dev

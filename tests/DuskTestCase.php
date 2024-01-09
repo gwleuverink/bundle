@@ -5,12 +5,19 @@ namespace Leuverink\Bundle\Tests;
 use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase  as BaseTestCase;
 
 class DuskTestCase extends BaseTestCase
 {
     use WithWorkbench;
+
+    public static function setUpBeforeClass(): void
+    {
+        Options::withoutUI();
+        parent::setUpBeforeClass();
+    }
 
     protected function getBasePath()
     {

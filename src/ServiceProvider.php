@@ -3,10 +3,11 @@
 namespace Leuverink\Bundle;
 
 use Leuverink\Bundle\Bundlers\Bun;
+use Leuverink\Bundle\Commands\Build;
+use Leuverink\Bundle\Commands\Clear;
 use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Components\Bundle;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Leuverink\Bundle\Commands\Clear;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 class ServiceProvider extends BaseServiceProvider
@@ -49,6 +50,7 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerCommands()
     {
+        $this->commands(Build::class);
         $this->commands(Clear::class);
     }
 }

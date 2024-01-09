@@ -6,8 +6,8 @@ it('can find and build scripts', function() {
     $manager = BundleManager::new();
 
     // Scan the fixtures dir as build path
-    config('bundle.build_paths', [
-        __DIR__.'/../fixtures'
+    config()->set('bundle.build_paths', [
+        realpath(getcwd().'/tests/Fixtures')
     ]);
 
     // Make sure all cached scripts are cleared

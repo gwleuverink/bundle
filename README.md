@@ -70,20 +70,6 @@ In order to use this script directly in your blade views, you simply need to imp
 
 The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and inlines it in place inside a script tag.
 
-```html
-<x-bundle import="~/alert" as="alert" />
-```
-
-Renders the following:
-
-```html
-<!--[BUNDLE: alert from '~/alert']-->
-<script>
-    var c=Object.defineProperty;var f=(w,d)=>{for(var n in d)c(w,n,{get:d[n],enumerable:!0,configurable:!0,set:(b)=>d[n]=()=>b})};var h=(w,d)=>()=>(w&&(d=w(w=0)),d);var u={};f(u,{default:()=>{{return o}}});function o(w){alert(w)}var _=h(()=>{});if(!window._bundle_modules)window._bundle_modules={};window._bundle_modules.alert=Promise.resolve().then(() => (_(),u));window._bundle=async function(w,d="default"){return(await window._bundle_modules[w])[d]};
-</script>
-<!--[ENDBUNDLE]>-->
-```
-
 The script exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
 If the module you're exporting uses named exports, you may resolve it like this:
@@ -92,7 +78,15 @@ If the module you're exporting uses named exports, you may resolve it like this:
 var module = await _bundle("~/module", "someNamedExport");
 ```
 
-The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`. 
+The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
+
+If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
+
+```html
+<x-bundle import="lodash/filter" as="filter" />
+<!-- as opposed to -->
+<x-bundle import="lodash" as="lodash" />
+```
 
 ## Usage in Livewire
 
@@ -108,7 +102,7 @@ You may use Bundle in conjunction with Livewire's `@script` directive. Refer to 
 
 Using Bundle in AlpineJS is as easy as using it in an inline script.
 
-Remember that the `_bundle()` function is async, so in order to use it inside your x-data init method you should make the init method async. 
+Remember that the `_bundle()` function is async, so in order to use it inside your x-data init method you should make the init method async.
 
 You may also use the x-init directive, but that is evaluate async already, so you can just use `_bundle()` in there. No extra work required.
 
@@ -153,7 +147,7 @@ Due to Bun's path remapping behaviour Bundle is not able to split chunks from mo
 
 **Don't pass dynamic variables to `<x-bundle/>`**
 
-This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment. (feature pending, see next heading)
+This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment.
 
 ```html
 <x-bundle :import="$foo" as="{{ $bar }}" />
@@ -163,11 +157,22 @@ This will work perfectly fine during development, but this can't be evaluated wh
 
 Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this, and to catch bundling errors before users hit your page, it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
 
-At this time there is no command to compile all the code at once. But there will be, soonish. So stay tuned.
+You may run `php artisan bundle:build` to bundle all your imports beforehand. These will be added to your `storage/app/bundle` directory, make sure to add those to vsc or otherwise build them in CI before deployment.
 
 **Prevent Bundle from loading the same import multiple times**
 
 Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.
+
+**Run `view:clear` after npm updates**
+
+The title said it all. Not doing this _may_ result into issues where `<x-bundle>` serves old code.
+
+### Artisan commands
+
+There are a couple of commands at your disposal:
+
+- `artisan bundle:build` to scan all your build_paths configured in `config/bundle.php` & compile all your imports.
+- `artisan bundle:clear` to clear all bundled scripts
 
 ### Contributing
 

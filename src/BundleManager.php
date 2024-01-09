@@ -27,28 +27,28 @@ class BundleManager implements BundleManagerContract
 
     public function bundle(string $script): SplFileInfo
     {
-        $fileName = "{$this->hash($script)}.min.js";
+        $file = "{$this->hash($script)}.min.js";
 
         // Return cached file if available
-        if (config('bundle.caching_enabled') && $cached = $this->fromDisk($fileName)) {
+        if (config('bundle.caching_enabled') && $cached = $this->fromDisk($file)) {
             return $cached;
         }
 
         // Create temporary input file
-        $this->tempDisk()->put($fileName, $script);
+        $this->tempDisk()->put($file, $script);
 
         // Attempt bundling & cleanup
         try {
             $processed = $this->bundler->build(
                 inputPath: $this->tempDisk()->path(''),
                 outputPath: $this->buildDisk()->path(''),
-                fileName: $fileName
+                fileName: $file
             );
         } catch (Throwable $e) {
-            $this->tempDisk()->delete($fileName);
+            $this->cleanup($file);
             throw $e; // TODO: Consider raising a browser console error or whoops in a dialog instead
         } finally {
-            $this->tempDisk()->delete($fileName);
+            $this->cleanup($file);
         }
 
         return $processed;
@@ -88,5 +88,14 @@ class BundleManager implements BundleManagerContract
     private function hash($input, $length = 12) {
         $hash = hash('sha256', $input);
         return substr($hash, 0, $length);
+    }
+
+    private function cleanup($file)
+    {
+        $this->tempDisk()->delete($file);
+
+        if(! $this->tempDisk()->files()) {
+            rmdir($this->tempDisk()->path(''));
+        }
     }
 }

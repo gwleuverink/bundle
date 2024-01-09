@@ -14,7 +14,6 @@ it('transpiles JavaScript')->bundle(
 it('strips unnessary whitespace')->bundle(
     <<< JS
 
-    const foo = 'baz'
 
     console.log(foo)
 
@@ -40,20 +39,23 @@ it('supports tree shaking for variables')->bundle(
 );
 
 
-it('supports inline synchronous imports')->todo()
+it('supports inline synchronous imports')
+    ->todo()
     ->bundle("import filter from 'lodash/filter'")
     ->toContain('node_modules/lodash/filter.js');
 
 
-it('supports code splitting for dynamic imports')->todo()->bundle(
-    <<< JS
-    const filter = await import('lodash/filter')
-    JS
-)->transpilesTo(
-    <<< JS
-    var filter = await import("./x-script/chunks/filter-GWHK62RL.js");
-    JS
-);
+it('supports code splitting for dynamic imports')
+    ->todo()
+    ->bundle(
+        <<< JS
+        const filter = await import('lodash/filter')
+        JS
+    )->transpilesTo(
+        <<< JS
+        var filter = await import("./x-script/chunks/filter-GWHK62RL.js");
+        JS
+    );
 
 
 it('imports from node_modules are chunked')->todo();

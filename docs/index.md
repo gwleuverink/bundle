@@ -165,6 +165,8 @@ Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on t
 
 You may run `php artisan bundle:build` to bundle all your imports beforehand. These will be added to your `storage/app/bundle` directory, make sure to add those to vsc or otherwise build them in CI before deployment.
 
+Furthermore it is reccomended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
+
 **Prevent Bundle from loading the same import multiple times**
 
 Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.

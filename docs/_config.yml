@@ -1,0 +1,16 @@
+title: Bundle
+description: Effortless page specific JavaScript modules in Laravel/Livewire apps
+remote_theme: just-the-docs/just-the-docs
+
+url: https://gwleuverink.github.io/bundle
+
+aux_links: # remove if you don't want this link to appear on your pages
+  Github: https://github.com/gwleuverink/bundle
+
+callouts:
+  note:
+    title: note
+    color: purple
+  warning:
+    title: warning
+    color: red

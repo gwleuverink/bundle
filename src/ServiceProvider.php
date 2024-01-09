@@ -6,6 +6,7 @@ use Leuverink\Bundle\Bundlers\Bun;
 use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Components\Bundle;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Leuverink\Bundle\Commands\Clear;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 class ServiceProvider extends BaseServiceProvider
@@ -15,6 +16,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
 
         $this->registerComponents();
+        $this->registerCommands();
     }
 
     public function register()
@@ -43,5 +45,10 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/components', 'bundle');
         Blade::component('bundle', Bundle::class);
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands(Clear::class);
     }
 }

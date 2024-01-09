@@ -58,7 +58,7 @@ class BundleManager implements BundleManagerContract
     //--------------------------------------------------------------------------
     // Helper methods
     //--------------------------------------------------------------------------
-    private function tempDisk(): FilesystemContract
+    public function tempDisk(): FilesystemContract
     {
         return Storage::build([
             'driver' => 'local',
@@ -66,7 +66,7 @@ class BundleManager implements BundleManagerContract
         ]);
     }
 
-    private function buildDisk(): FilesystemContract
+    public function buildDisk(): FilesystemContract
     {
         return Storage::build([
             'driver' => 'local',

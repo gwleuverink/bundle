@@ -1,5 +1,6 @@
 <?php
 
+use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Tests\TestCase;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
@@ -37,8 +38,11 @@ uses(DuskTestCase::class)
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('transpilesTo', function (string $expected = '') {
+    // Add newline to passed expectation, this isn't present when passing HEREDOC
+    $expected = $expected . PHP_EOL;
+
+    return expect($this->value)->toBe($expected);
 });
 
 /*
@@ -52,7 +56,11 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function bundle(string $code = '')
 {
-    // ..
+    $file = BundleManager::new()->bundle($code);
+
+    $output = file_get_contents($file->getPathname());
+
+    return expect($output);
 }

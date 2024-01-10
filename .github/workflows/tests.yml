@@ -32,12 +32,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: shivammathur/setup-php@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
-          extensions: ext-zip
+          extensions: zip
           coverage: xdebug
 
       - name: Cache Composer dependencies
@@ -46,10 +48,8 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
-      - uses: php-actions/composer@v6
-        with:
-          php_version: "8.2"
-          php_extensions: zip
+      - name: Install Composer dependecies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Directory Permissions
         run: sudo chown -R $(whoami) workbench vendor/pestphp/pest/.temp

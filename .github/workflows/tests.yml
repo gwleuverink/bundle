@@ -54,6 +54,9 @@ jobs:
       - name: Directory Permissions
         run: sudo chown -R $(whoami) workbench vendor/pestphp/pest/.temp
 
+      - name: Install Workbench NPM dependencies
+        run: cd workbench && npm ci
+
       - name: Run Unit & Feature tests
         run: composer test
 

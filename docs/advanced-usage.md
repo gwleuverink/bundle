@@ -19,7 +19,7 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 
 > You may pass any attributes a script source accepts, like `defer` or `async`.
 
-Furthermore, you can render the bundle inline by using the `inline` prop. This saves an additional request and makes the import available immediately after the tag has rendered.
+Furthermore, you can render the bundle inline by using the `inline` option. This saves an additional request and makes the import available immediately after the script has rendered.
 
 You should apply this with consideration. You will save up on requests, but doing so will increase the initial page load response size.
 

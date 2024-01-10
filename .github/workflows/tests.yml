@@ -52,7 +52,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Directory Permissions
-        run: sudo chown -R $(whoami) workbench vendor/pestphp/pest/.temp
+        run: sudo chown -R $(whoami) workbench vendor/pestphp/pest/.temp vendor/orchestra
 
       - name: Install Workbench NPM dependencies
         run: composer setup-bun

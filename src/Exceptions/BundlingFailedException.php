@@ -16,9 +16,10 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
     {
         $this->result = $result;
 
-        dump(['error output', $result->errorOutput()]);
-
         $failed = $script ?? $result->command();
+
+        // TODO: Consider different approach for providing contextural debug info
+        dump(['error output', $result->errorOutput()]);
 
         parent::__construct(
             "Bundling failed: {$failed}",

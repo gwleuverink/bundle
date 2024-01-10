@@ -9,6 +9,10 @@ When using Bundle in your SSR Blade views, you may push/prepend `<x-bundle />` t
 
 ```html
 @stack('scripts')
+
+<!--  -->
+
+@push('scripts')
 <x-bundle import="apexcharts" as="ApexCharts" />
 @endstack
 ```

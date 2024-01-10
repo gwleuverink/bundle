@@ -8,7 +8,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 // Pest & Workbench Dusk don't play nicely together
 // We need to fall back to PHPUnit syntax.
 
-class LocalTest extends DuskTestCase
+class LocalModuleTest extends DuskTestCase
 {
     /** @test */
     public function it_injects_import_and_bundle_function_on_the_window_object() {

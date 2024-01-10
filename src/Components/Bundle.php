@@ -9,7 +9,8 @@ class Bundle extends Component
 {
     public function __construct(
         public string $import,
-        public string $as
+        public string $as,
+        public bool $inline = false // TODO: Implement this
     ){ }
 
     public function render()
@@ -30,9 +31,7 @@ class Bundle extends Component
         JS;
 
         // Bundle it up
-        $bundle = file_get_contents(
-            BundleManager::new()->bundle($js)
-        );
+        $bundle = BundleManager::new()->bundle($js);
 
         // Render script tag with bundled code
         return view('bundle::bundle', [

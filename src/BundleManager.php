@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Leuverink\Bundle\Traits\Constructable;
 use Leuverink\Bundle\Contracts\Bundler as BundlerContract;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
+use Illuminate\Http\Response;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 
@@ -83,6 +84,19 @@ class BundleManager implements BundleManagerContract
         return new SplFileInfo(
             $this->buildDisk()->path($fileName)
         );
+    }
+
+    public function bundleContents($fileName): Response
+    {
+        $file = $this->fromDisk($fileName);
+
+        abort_unless($file, 404, 'Bundle not found');
+
+        $contents = file_get_contents($file);
+
+        return response($contents)
+            ->header('Content-Type', 'application/javascript; charset=utf-8');
+            // ->header('Last-Modified', 'TODO');
     }
 
     private function hash($input, $length = 12) {

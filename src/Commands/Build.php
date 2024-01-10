@@ -15,7 +15,7 @@ use function Laravel\Prompts\progress;
 class Build extends Command
 {
     protected $signature = 'bundle:build';
-    protected $description = 'Scan build_patsh and bundle all imports for production';
+    protected $description = 'Scan build_paths and bundle all imports for production';
 
     public function handle(Finder $finder): int
     {
@@ -31,14 +31,14 @@ class Build extends Command
             ->flatMap(fn(Finder $iterator) => iterator_to_array($iterator))
             // Pregmatch each file for x-bundle components
             ->flatMap(fn(SplFileInfo $file) => preg_grep('/^<x-bundle.*?>$/', file($file)))
-            // Filter uniques
+            // We have a list Filter uniques
             ->unique()
             // Start progress bar
-            ->pipe(fn($components) => progress('Building Bundle imports', $components, function($component) use (&$file, $errors) {
+            ->pipe(fn($components) => progress('Building Bundle imports', $components, function($component) use ($errors) {
                 try {
                     // Render the blade. The component does the rest
                     $this->components->task(
-                        "$component from: $file",
+                        $component,
                         fn() => Blade::render($component)
                     );
                 } catch(Throwable $e) {
@@ -53,6 +53,5 @@ class Build extends Command
             info('Bundle compiled successfully!');
             return static::SUCCESS;
         }
-
     }
 }

@@ -13,6 +13,14 @@ class DuskTestCase extends BaseTestCase
 {
     use WithWorkbench;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->artisan('view:clear');
+        $this->artisan('bundle:clear');
+    }
+
     public static function setUpBeforeClass(): void
     {
         Options::withoutUI();
@@ -40,6 +48,8 @@ class DuskTestCase extends BaseTestCase
 
         // Render the blade
         $page = Blade::render($blade);
+
+        // dump($page);
 
         // Create a temporary route
         $this->beforeServingApplication(

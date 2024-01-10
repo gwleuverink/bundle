@@ -80,8 +80,7 @@
             "@php vendor/bin/testbench serve"
         ],
 
-        "test": "@php vendor/bin/pest --exclude-group=browser",
-        "test-browser": "@php vendor/bin/pest --group=browser"
-
+        "test": "@php vendor/bin/pest --group=feature,unit",
+        "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit"
     }
 }

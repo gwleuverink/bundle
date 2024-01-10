@@ -2,7 +2,7 @@
 
 use Leuverink\Bundle\BundleManager;
 
-it('can find and build scripts', function() {
+it('imports from relative path alias', function() {
     $manager = BundleManager::new();
 
     // Scan the fixtures dir as build path

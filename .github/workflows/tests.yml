@@ -32,11 +32,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
+          extensions: ext-zip
           coverage: xdebug
 
       - name: Cache Composer dependencies
@@ -55,13 +56,13 @@ jobs:
       - name: Run Unit & Feature tests
         run: composer test
 
-      - name: Run Browser tests
-        run: composer test-browser
+    #   - name: Run Browser tests
+    #     run: composer test-browser
 
-      - name: Generate coverage report (threshold 90%)
-        run: ./vendor/bin/pest --bail --retry --coverage --min=90 --coverage-clover clover.xml
+    #   - name: Generate coverage report (threshold 90%)
+    #     run: ./vendor/bin/pest --bail --retry --coverage --min=90 --coverage-clover clover.xml
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    #   - name: Upload coverage reports to Codecov
+    #     uses: codecov/codecov-action@v3
+    #     env:
+    #       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

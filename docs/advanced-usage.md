@@ -59,8 +59,10 @@ If a module supports per method exports, like `lodash` does, it is recomended to
 
 ```html
 <x-bundle import="lodash/filter" as="filter" />
+<!-- 25kb -->
 <!-- as opposed to -->
 <x-bundle import="lodash" as="lodash" />
+<!-- 78kb -->
 ```
 
 ### Artisan commands

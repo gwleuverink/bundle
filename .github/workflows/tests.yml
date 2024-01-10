@@ -54,8 +54,8 @@ jobs:
       - name: Directory Permissions
         run: sudo chown -R $(whoami) vendor/pestphp/pest/.temp vendor/orchestra
 
-      - name: Install Workbench NPM dependencies
-        run: composer setup-bun
+      - name: Install Bun & link Workbench directories
+        run: composer setup-workbench
 
       - name: Run Unit & Feature tests
         run: composer test

@@ -49,10 +49,10 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           php_version: "8.2"
-          php_extensions: ext-zip
+          php_extensions: zip
 
       - name: Directory Permissions
-        run: sudo chown -R $(whoami) skeleton vendor/pestphp/pest/.temp
+        run: sudo chown -R $(whoami) workbench vendor/pestphp/pest/.temp
 
       - name: Run Unit & Feature tests
         run: composer test

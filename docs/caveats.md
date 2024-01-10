@@ -5,7 +5,7 @@ title: Caveats
 
 ## Caveats
 
-A couple of things to be aware of.
+A couple of things to be aware of. 
 
 ### Tree shaking
 

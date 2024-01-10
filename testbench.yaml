@@ -14,14 +14,4 @@ workbench:
   build: []
   assets: []
   sync:
-    # Link Bun binary & packages used in testing
-    - from: ./workbench/node_modules
-      to: ./vendor/orchestra/testbench-core/laravel/node_modules
-
-    # Link local javascript resource dir
-    - from: ./workbench/resources/js
-      to: ./vendor/orchestra/testbench-core/laravel/resources/js
-
-    # Link config - (problematic, swapped for cp in serve script)
-    # - from: ./workbench/jsconfig.json
-    #   to: ./vendor/orchestra/testbench-core/laravel
+    # Setup done via composer script instead: composer setup-workbench

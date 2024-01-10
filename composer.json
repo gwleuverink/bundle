@@ -71,13 +71,16 @@
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
-        "setup-bun": [
-            "cd ./workbench && npm i",
-            "cp ./workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel"
+
+        "setup-workbench": [
+            "cd ./workbench && npm ci",
+            "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel/jsconfig.json",
+            "ln -sf $PWD/workbench/node_modules/ ./vendor/orchestra/testbench-core/laravel/node_modules",
+            "ln -sf $PWD/workbench/resources/js/ ./vendor/orchestra/testbench-core/laravel/resources/js"
         ],
 
         "serve": [
-            "@setup-bun",
+            "@setup-workbench",
             "Composer\\Config::disableProcessTimeout",
             "@build",
             "@php vendor/bin/testbench serve"

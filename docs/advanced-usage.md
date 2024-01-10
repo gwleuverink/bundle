@@ -67,7 +67,7 @@ If a module supports per method exports, like `lodash` does, it is recomended to
 
 There are a couple of commands at your disposal:
 
-#### `artisan bundle:build`
+**`artisan bundle:build`**
 
 Scan all your build_paths configured in `config/bundle.php` & compile all your imports.
 
@@ -79,6 +79,6 @@ You may configure what paths are scanned by publishing the Bundle config file an
 ]
 ```
 
-#### `artisan bundle:clear`
+**`artisan bundle:clear`**
 
 Clear all bundled scripts

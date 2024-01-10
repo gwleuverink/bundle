@@ -33,7 +33,7 @@ class Bun implements Bundler
         ];
 
 
-        Process::run(dd("{$path}bun build {$this->args($options)}"))
+        Process::run("{$path}bun build {$this->args($options)}")
             ->throw(function ($res) use ($inputPath, $fileName): void {
                 $failed = file_get_contents($inputPath.$fileName);
                 throw new BundlingFailedException($res, $failed);

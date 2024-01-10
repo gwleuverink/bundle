@@ -16,6 +16,8 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
     {
         $this->result = $result;
 
+        dump(['error output', $result->errorOutput()]);
+
         $failed = $script ?? $result->command();
 
         parent::__construct(

@@ -34,8 +34,6 @@ class Bundle extends Component
             BundleManager::new()->bundle($js)
         );
 
-        dd($bundle);
-
         // Render script tag with bundled code
         return view('bundle::bundle', [
             'bundle' => $bundle

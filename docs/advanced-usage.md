@@ -7,7 +7,7 @@ title: Advanced usage
 
 The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and inlines it in place inside a script tag.
 
-The script exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` property. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
+The script exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
 If the module you're exporting uses named exports, you may resolve it like this:
 

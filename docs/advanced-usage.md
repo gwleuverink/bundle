@@ -5,9 +5,39 @@ title: Advanced usage
 
 ## How it works
 
-The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and inlines it in place inside a script tag.
+The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and renders a script tag in place.
 
-The script exposes a global js function `_bundle` which you can use to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
+```html
+<x-bundle import="apexcharts" as="ApexCharts" />
+
+<!-- yields the following script -->
+
+<script src="/x-bundle/e52def31336c.min.js" data-bundle="alert"></script>
+```
+
+{: .note }
+
+> You may pass any attributes a script source accepts, like `defer` or `async`.
+
+Furthermore, you can render the bundle inline by using the `inline` prop. This saves an additional request and makes the import available immediately after the tag has rendered.
+
+You should apply this with consideration. You will save up on requests, but doing so will increase the initial page load response size.
+
+```html
+<x-bundle import="apexcharts" as="ApexCharts" inline />
+
+<!-- yields the following script -->
+
+<script data-bundle="alert">
+  // Your minified bundle
+</script>
+```
+
+---
+
+After you use <x-bundle /> somewhere in your template a global function `_bundle` will become available on the window object.
+
+You can use this function to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
 If the module you're exporting uses named exports, you may resolve it like this:
 

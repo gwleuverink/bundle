@@ -48,7 +48,8 @@ jobs:
 
       - uses: php-actions/composer@v6
         with:
-          version: 2.x
+          php_version: "8.2"
+          php_extensions: ext-zip
 
       - name: Directory Permissions
         run: sudo chown -R $(whoami) skeleton vendor/pestphp/pest/.temp

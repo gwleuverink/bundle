@@ -1,0 +1,65 @@
+name: tests
+
+on:
+  pull_request:
+    branches: [development, main]
+
+jobs:
+  skip-duplicates:
+    continue-on-error: true # Uncomment once integration is finished
+    runs-on: ubuntu-latest
+
+    # Map a step output to a job output
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          # All of these options are optional, so you can remove them if you are happy with the defaults
+          cancel_others: "true"
+          concurrent_skipping: "same_content"
+          skip_after_successful_duplicate: "true"
+          paths_ignore: '["**/README.md", "**/docs/**"]'
+
+  workbench-tests:
+    needs: skip-duplicates
+    if: needs.skip-duplicates.outputs.should_skip != 'true'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: xdebug
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - uses: php-actions/composer@v6
+        with:
+          version: 2.x
+
+      - name: Directory Permissions
+        run: sudo chown -R $(whoami) skeleton vendor/pestphp/pest/.temp
+
+      - name: Run Unit & Feature tests
+        run: composer test
+
+      - name: Run Browser tests
+        run: composer test-browser
+
+      - name: Generate coverage report (threshold 90%)
+        run: ./vendor/bin/pest --bail --retry --coverage --min=90 --coverage-clover clover.xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

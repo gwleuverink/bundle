@@ -18,7 +18,7 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
 
         $failed = $script ?? $result->command();
 
-        // TODO: Consider different approach for providing contextural debug info
+        // TODO: Consider different approach for providing contextual debug info
         dump(['error output', $result->errorOutput()]);
 
         parent::__construct(

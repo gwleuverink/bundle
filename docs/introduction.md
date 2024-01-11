@@ -19,19 +19,21 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 
 {: .note }
 
-> You may pass any attributes a script source accepts, like `defer` or `async`
+> `<x-bundle />` Bahaves like a script tag. You may pass any attributes a script tag would accept, like `defer` or `async`
 
 <br />
 
-After you use `<x-bundle />` somewhere in your template a global function `_bundle` will become available on the window object.
+### The `_bundle()` helper function
 
-You can use this function to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
+After you use `<x-bundle />` somewhere in your template a global `_bundle` function will become available on the window object.
+
+You can use this function to fetch the bundled import by the name you've passed to the `as` argument.
 
 ```js
 var module = await _bundle("lodash"); // Resolves the module's default export
 ```
 
-If the module you're exporting uses named exports, you may resolve it like this:
+The `_bundle` function accepts a optional `export` argument which defaults to 'default'. When the module you're exporting uses named exports, you may resolve it like this:
 
 ```js
 var module = await _bundle("lodash", "filter"); // Resolves a named export 'filter'

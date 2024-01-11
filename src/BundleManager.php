@@ -107,7 +107,8 @@ class BundleManager implements BundleManagerContract
             // ->header('Last-Modified', 'TODO');
     }
 
-    private function hash($input, $length = 12) {
+    public function hash($input, $length = 12): string
+    {
         $hash = hash('sha256', $input);
         return substr($hash, 0, $length);
     }

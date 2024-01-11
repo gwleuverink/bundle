@@ -16,6 +16,9 @@ interface BundleManager
     /** Bundles a given script */
     public function bundle(string $script): SplFileInfo;
 
+    /** Get the bundle config */
+    public function config(): RepositoryContract;
+
     /** Get an instance of the temporary disk the bundler reads from */
     public function tempDisk(): Filesystem;
 
@@ -25,9 +28,9 @@ interface BundleManager
     /** Get the contents of a given bundle */
     public function bundleContents($fileName): Response;
 
-    /** Get the bundle config */
-    public function config(): RepositoryContract;
-
     /** Get the contents of a given chunk */
     // public function chunkContents($fileName): Response;
+
+    /** Hashes a given string */
+    public function hash($input, $length = 12): string;
 }

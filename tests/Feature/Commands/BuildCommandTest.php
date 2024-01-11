@@ -2,7 +2,11 @@
 
 use Leuverink\Bundle\BundleManager;
 
-it('imports from relative path alias', function() {
+it('scans glob patterns', function() {
+
+})->todo();
+
+it('generates a bundle', function() {
     $manager = BundleManager::new();
 
     // Scan the fixtures dir as build path

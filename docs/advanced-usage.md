@@ -63,6 +63,12 @@ If a module supports per method exports, like `lodash` does, it is recomended to
 <x-bundle import="lodash" as="lodash" /> <!-- 78kb -->
 ```
 
+## Sourcemaps
+
+Sourcemaps are disabled by default. You may enable this by setting the `BUNDLE_SOURCEMAPS_ENABLED` to true or by publishing and updating the bundle config.
+
+Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
+
 ## Artisan commands
 
 There are a couple of commands at your disposal:

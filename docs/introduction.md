@@ -27,12 +27,24 @@ After you use `<x-bundle />` somewhere in your template a global function `_bund
 
 You can use this function to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
+```js
+var module = await _bundle("lodash"); // Resolves the module's default export
+```
+
 If the module you're exporting uses named exports, you may resolve it like this:
 
 ```js
-var module = await _bundle("~/module", "someNamedExport");
+var module = await _bundle("lodash", "filter"); // Resolves a named export 'filter'
 ```
+
+**_In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](/bundle/advanced-usage.html#per-method-exports)._**
+
+<br />
+
+---
+
+<br />
 
 The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
-Please refer to the [advanced usage examples](/advanced-usage.html) for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.
+Please refer to the [advanced usage examples](/bundle/advanced-usage.html) for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.

@@ -41,8 +41,11 @@ uses(DuskTestCase::class)
 expect()->extend('transpilesTo', function (string $expected = '') {
     // Add newline to passed expectation, this isn't present when passing HEREDOC
     $expected = $expected . PHP_EOL;
+    return expect($this->value)->content()->toBe($expected);
+});
 
-    return expect($this->value)->toBe($expected);
+expect()->extend('content', function (string $expected = '') {
+    return expect($this->value);
 });
 
 /*

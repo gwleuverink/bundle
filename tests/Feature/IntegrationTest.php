@@ -57,6 +57,32 @@ it('supports code splitting for dynamic imports')
         JS
     );
 
+// These two should be browser tests? or can we get the file's hash some other wayy?
+test('generated bundles are reachable over http')->todo();
+test('generated chunks are reachable over http')->skip('Code splitting not implemented');
+
+
+it('generates sourcemaps when enabled')
+    ->defer(
+        fn () => config()->set('bundle.sourcemaps_enabled', true)
+    )
+    ->bundle(
+        <<< JS
+        const filter = await import('lodash/filter')
+        JS
+    )
+    ->content()
+    ->toContain('//# debugId');
+
+it('doesnt generate sourcemaps by default')
+    ->bundle(
+        <<< JS
+        const filter = await import('lodash/filter')
+        JS
+    )
+    ->content()
+    ->not->toContain('//# debugId');
+
 
 it('imports from node_modules are chunked')->todo();
 it('imports from outside node_modules are inlined (due to issue with Bun)')->todo();

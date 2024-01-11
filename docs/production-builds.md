@@ -20,8 +20,7 @@ You may configure what paths are scanned by publishing the Bundle config file an
 <br />
 {: .note }
 
-> In production BUNDLE_CACHING_ENABLED env variable needs to be set to true
-> When the variable is not set Bundle will automatically enable this option in production environments
+> In production BUNDLE_CACHING_ENABLED env variable needs to be set to true <br>When the variable is not set Bundle will automatically enable this option in production environments
 
 <br />
 

@@ -19,7 +19,7 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 
 {: .note }
 
-> You may pass any attributes a script source accepts, like `defer` or `async`.
+> You may pass any attributes a script source accepts, like `defer` or `async`
 
 <br />
 

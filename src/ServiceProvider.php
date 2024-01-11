@@ -45,7 +45,7 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerComponents()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/components', 'bundle');
+        $this->loadViewsFrom(__DIR__.'/Components/views', 'bundle');
         Blade::component('bundle', Bundle::class);
     }
 

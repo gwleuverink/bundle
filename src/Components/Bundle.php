@@ -19,7 +19,7 @@ class Bundle extends Component
         // and assign the import to that object.
         // ---------------------------------------------
         // Then we expose a _bundle function that
-        // can retreive the module as a Promis
+        // can retreive the module as a Promise
         $js = <<< JS
             if(!window._bundle_modules) window._bundle_modules = {}
             window._bundle_modules.$this->as = import('$this->import')

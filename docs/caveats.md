@@ -1,5 +1,5 @@
 ---
-nav_order: 4
+nav_order: 6
 title: Caveats
 ---
 
@@ -32,18 +32,10 @@ This will work perfectly fine during development, but this can't be evaluated wh
 <x-bundle :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
 ```
 
-### Running on a server
-
-Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this, and to catch bundling errors before users hit your page, it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
-
-You may run `php artisan bundle:build` to bundle all your imports beforehand. These will be added to your `storage/app/bundle` directory, make sure to add those to vsc or otherwise build them in CI before deployment.
-
-Furthermore it is reccomended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
-
 ### Prevent Bundle from loading the same import multiple times
 
 Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.
 
-**Run `view:clear` after npm updates**
+### Run `view:clear` after npm updates
 
 The title said it all. Not doing this _may_ result into issues where `<x-bundle>` serves old code.

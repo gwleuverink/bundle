@@ -8,7 +8,8 @@ title: Quickstart
 [![coverage](https://img.shields.io/codecov/c/github/media-code/workspace?token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/media-code/workspace)
 [![core coverage](https://img.shields.io/codecov/c/github/media-code/workspace-core?label=core%20coverage&token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/media-code/workspace-core)
 
-Effortless page specific JavaScript modules in Laravel/Livewire apps {: .fs-6 .fw-300}
+{: .fs-6 .fw-300}
+Effortless page specific JavaScript modules in Laravel/Livewire apps
 
 ## Quickstart
 

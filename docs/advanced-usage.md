@@ -15,9 +15,13 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 <script src="/x-bundle/e52def31336c.min.js" data-bundle="alert"></script>
 ```
 
+<br />
+
 {: .note }
 
 > You may pass any attributes a script source accepts, like `defer` or `async`.
+
+<br />
 
 After you use `<x-bundle />` somewhere in your template a global function `_bundle` will become available on the window object.
 

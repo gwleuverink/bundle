@@ -35,6 +35,6 @@ You may also use the `x-init` directive. But x-init is evaluated async already, 
 
 {: .note }
 
-> _Note that this code serves as an example, you need more to actually integrate this library fully. See [Alpine UI Components](https://alpinejs.dev/component/choices){:target="\_blank"}_
+> _Note that this code serves as an example, you need more to actually integrate this library fully. See [Alpine UI Components](https://alpinejs.dev/component/choices)_
 
 <br />

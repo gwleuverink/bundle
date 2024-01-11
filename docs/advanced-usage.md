@@ -19,23 +19,7 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 
 > You may pass any attributes a script source accepts, like `defer` or `async`.
 
-Furthermore, you can render the bundle inline by using the `inline` option. This saves an additional request and makes the import available immediately after the script has rendered.
-
-You should apply this with consideration. You will save up on requests, but doing so will increase the initial page load response size.
-
-```html
-<x-bundle import="apexcharts" as="ApexCharts" inline />
-
-<!-- yields the following script -->
-
-<script data-bundle="alert">
-  // Your minified bundle
-</script>
-```
-
----
-
-After you use <x-bundle /> somewhere in your template a global function `_bundle` will become available on the window object.
+After you use `<x-bundle />` somewhere in your template a global function `_bundle` will become available on the window object.
 
 You can use this function to fetch the bundled import by the name you've passed to the `as` argument. The `_bundle` function accepts a optional `export` argument which defaults to 'default'.
 
@@ -48,6 +32,22 @@ var module = await _bundle("~/module", "someNamedExport");
 The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
 Please refer to the examples below for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.
+
+## Inline bundles
+
+You can render the bundle inline by using the `inline` option. This saves an additional request and makes the import available immediately after the script has rendered.
+
+You should apply this with consideration. You will save up on requests, but doing so will increase the initial page load response size.
+
+```html
+<x-bundle import="apexcharts" as="ApexCharts" inline />
+
+<!-- yields the following script -->
+
+<script data-bundle="alert">
+  // Your minified bundle
+</script>
+```
 
 ## Path rewriting for local modules
 

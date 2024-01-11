@@ -29,7 +29,7 @@ Due to Bun's path remapping behaviour Bundle is not able to split chunks from mo
 This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment.
 
 ```html
-<x-bundle :import="$foo" as="{{ $bar }}" />
+<x-bundle :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
 ```
 
 ### Running on a server

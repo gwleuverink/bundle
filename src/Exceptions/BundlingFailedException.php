@@ -33,6 +33,7 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
             str_contains($this->result->errorOutput(), 'bun: No such file or directory') => $this->bunNotInstalledSolution(),
             str_contains($this->result->errorOutput(), 'error: Could not resolve') => $this->moduleNotResolvableSolution(),
             str_contains($this->result->errorOutput(), 'tsconfig.json: ENOENT') => $this->missingJsconfigFileSolution(),
+            str_contains($this->result->errorOutput(), 'Cannot find tsconfig') => $this->missingJsconfigFileSolution(),
             default => BaseSolution::create()
                 ->setSolutionTitle('Failed to run the following process:')
                 ->setSolutionDescription($this->result->command())

@@ -17,11 +17,6 @@ You may configure what paths are scanned by publishing the Bundle config file an
 ]
 ```
 
-<br />
-{: .note }
-
-> In production BUNDLE_CACHING_ENABLED env variable needs to be set to true <br>When the variable is not set Bundle will automatically enable this option in production environments
-
-<br />
+In production the ` BUNDLE_CACHING_ENABLED`` env variable needs to be set to  `true`. When the variable is not set Bundle will automatically enable this option in production environments.
 
 Furthermore it is recommended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.

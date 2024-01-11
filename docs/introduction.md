@@ -5,7 +5,7 @@ title: How it works
 
 ## How it works
 
-The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh) and renders a script tag in place.
+The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh){:target="\_blank"} and renders a script tag in place.
 
 ```html
 <x-bundle import="apexcharts" as="ApexCharts" />

@@ -4,11 +4,13 @@ namespace Leuverink\Bundle;
 
 use Throwable;
 use SplFileInfo;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Leuverink\Bundle\Traits\Constructable;
+use Illuminate\Config\Repository as ConfigRepository;
 use Leuverink\Bundle\Contracts\Bundler as BundlerContract;
+use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
-use Illuminate\Http\Response;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 
@@ -41,9 +43,10 @@ class BundleManager implements BundleManagerContract
         // Attempt bundling & cleanup
         try {
             $processed = $this->bundler->build(
+                sourcemaps: $this->config()->get('sourcemaps_enabled'),
                 inputPath: $this->tempDisk()->path(''),
                 outputPath: $this->buildDisk()->path(''),
-                fileName: $file
+                fileName: $file,
             );
         } catch (Throwable $e) {
             $this->cleanup($file);
@@ -59,6 +62,11 @@ class BundleManager implements BundleManagerContract
     //--------------------------------------------------------------------------
     // Helper methods
     //--------------------------------------------------------------------------
+    public function config(): RepositoryContract
+    {
+        return new ConfigRepository(config('bundle'));
+    }
+
     public function tempDisk(): FilesystemContract
     {
         return Storage::build([

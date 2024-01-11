@@ -6,12 +6,26 @@ return [
     | Caching
     |--------------------------------------------------------------------------
     |
-    | Here you may specify wherether Bundle loads already compiled scripts
-    | from disk when previously compiled. Typically you want to enable
-    | this on production & disable this for your local development.
+    | Here you may specify wherether Bundle loads previously compiled
+    | js from disk. Typically you want to enable this on production
+    | and disable this on your local development environment.
     |
     */
     'caching_enabled' => env('BUNDLE_CACHING_ENABLED', app()->isProduction()),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sourcemaps
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify wherether Bundle will generate sourcemaps for
+    | your imports. Sourcemaps are generated as a separate file, so it
+    | won't impact performance when your imports are build for prod.
+    |
+    */
+    'sourcemaps_enabled' => env('BUNDLE_SOURCEMAPS_ENABLED', false),
+
 
     /*
     |--------------------------------------------------------------------------

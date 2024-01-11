@@ -6,6 +6,8 @@ use SplFileInfo;
 use Illuminate\Http\Response;
 use Leuverink\Bundle\Contracts\Bundler;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Contracts\Config\Repository as RepositoryContract;
+
 
 interface BundleManager
 {
@@ -22,6 +24,9 @@ interface BundleManager
 
     /** Get the contents of a given bundle */
     public function bundleContents($fileName): Response;
+
+    /** Get the bundle config */
+    public function config(): RepositoryContract;
 
     /** Get the contents of a given chunk */
     // public function chunkContents($fileName): Response;

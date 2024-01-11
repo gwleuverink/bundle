@@ -14,7 +14,7 @@ class Bun implements Bundler
 
     use Constructable;
 
-    public function build(string $inputPath, string $outputPath, string $fileName): SplFileInfo
+    public function build(string $inputPath, string $outputPath, string $fileName, bool $sourcemaps = false): SplFileInfo
     {
         $path = base_path('node_modules/.bin/');
         $options = [
@@ -26,10 +26,13 @@ class Bun implements Bundler
             '--outdir' => $outputPath,
             '--target' => 'browser',
             '--root' => $inputPath,
-            '--format' => 'esm',
-            // '--sourcemap=external', // Maybe only locally?
             // '--splitting', // Breaks relative paths to imports from resources/js (TODO: Experiment more after writing tests)
-            '--minify' // Only in production?
+            '--format' => 'esm',
+            '--minify', // Only in production?
+
+            $sourcemaps
+                ? '--sourcemap=external'
+                : '--sourcemap=none'
         ];
 
 

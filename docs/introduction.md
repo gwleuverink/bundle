@@ -1,6 +1,6 @@
 ---
 nav_order: 2
-title: Introduction
+title: How it works
 ---
 
 ## How it works
@@ -35,4 +35,4 @@ var module = await _bundle("~/module", "someNamedExport");
 
 The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
-Please refer to the examples below for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.
+Please refer to the [advanced usage examples](/advanced-usage.html) for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.

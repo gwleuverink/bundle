@@ -58,11 +58,9 @@ In order to use this script directly in your blade views, you simply need to imp
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
 
 ```html
-<x-bundle import="lodash/filter" as="filter" />
-<!-- 25kb -->
+<x-bundle import="lodash/filter" as="filter" /> <!-- 25kb -->
 <!-- as opposed to -->
-<x-bundle import="lodash" as="lodash" />
-<!-- 78kb -->
+<x-bundle import="lodash" as="lodash" /> <!-- 78kb -->
 ```
 
 ### Artisan commands

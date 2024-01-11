@@ -39,11 +39,7 @@ var module = await _bundle("lodash", "filter"); // Resolves a named export 'filt
 
 _In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](/bundle/advanced-usage.html#per-method-exports)._
 
-<br />
-
 ---
-
-<br />
 
 The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 

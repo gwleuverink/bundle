@@ -37,7 +37,7 @@ If the module you're exporting uses named exports, you may resolve it like this:
 var module = await _bundle("lodash", "filter"); // Resolves a named export 'filter'
 ```
 
-**_In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](/bundle/advanced-usage.html#per-method-exports)._**
+_In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](/bundle/advanced-usage.html#per-method-exports)._
 
 <br />
 

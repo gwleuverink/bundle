@@ -5,7 +5,7 @@ title: Caveats
 
 ## Caveats
 
-A couple of things to be aware of. 
+A couple of things to be aware of.
 
 ### Tree shaking
 
@@ -20,6 +20,9 @@ This might be improved when chunking dynamic imports support is added. So shared
 Chunking of dynamicly fetched pieces of shared code is currently not supported but definetly possible.
 
 Due to Bun's path remapping behaviour Bundle is not able to split chunks from modules and assets imported from your local `resources` directory. This could definetly work for shared imports from `node_modules` in the future.
+
+<!-- TODO: Add a detailed treeview of chunking vs how it's done now -->
+<!-- NOTE: A workaround where your local scripts also use _bundle() & we preload all dependencies in the blade template is possible. But less than ideal. -->
 
 ### Don't pass dynamic variables to `<x-bundle />`
 

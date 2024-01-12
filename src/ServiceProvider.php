@@ -1,5 +1,7 @@
 <?php
 
+// @codeCoverageIgnoreStart
+
 namespace Leuverink\Bundle;
 
 use Leuverink\Bundle\Bundlers\Bun;

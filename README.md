@@ -1,5 +1,9 @@
 # Bundle
 
+[![codestyle](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml)
+[![tests](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml)
+[![coverage](https://img.shields.io/codecov/c/github/gwleuverink/bundle?token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/gwleuverink/bundle)
+
 Effortless page specific JavaScript modules in Laravel/Livewire apps.
 
 - Explore the docs on **[GitHub Pages »](https://gwleuverink.github.io/bundle/)**

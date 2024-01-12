@@ -1,4 +1,4 @@
-{{-- @codeCoverageIgnoreStart --}}
+<?php // @codeCoverageIgnoreStart ?>
 @once("bundle:$as")
 <!--[BUNDLE: {{ $as }} from '{{ $import }}']-->
 @if ($inline)
@@ -12,4 +12,4 @@
 @else {{-- @once else clause --}}
 <!--[SKIPPED: {{ $as }} from '{{ $import }}']-->
 @endonce
-{{-- @codeCoverageIgnoreEnd --}}
+<?php // @codeCoverageIgnoreEnd ?>

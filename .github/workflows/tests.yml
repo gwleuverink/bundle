@@ -64,7 +64,7 @@ jobs:
         run: composer setup-workbench
 
       - name: Execute tests - coverage threshold 90%
-        run: composer test --coverage --min=90 --coverage-clover clover.xml
+        run: composer test -- --coverage -- --min=90 -- --coverage-clover clover.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3

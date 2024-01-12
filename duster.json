@@ -1,0 +1,18 @@
+{
+    "include": [
+        "src",
+        "tests",
+        "config"
+    ],
+    "scripts": {
+        "lint": {
+            "Larastan": [
+                "./vendor/bin/phpstan",
+                "analyse",
+                "--memory-limit=2G"
+            ]
+        },
+        "fix": {}
+    },
+    "processTimeout": 120
+}

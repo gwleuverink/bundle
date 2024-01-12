@@ -1,0 +1,19 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src/
+
+    excludePaths:
+        - tests/
+
+    # Level 9 is the highest level
+    level: 4
+
+#    ignoreErrors:
+#        - "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+#
+#
+#    checkMissingIterableValueType: false

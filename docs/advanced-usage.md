@@ -88,3 +88,17 @@ You may configure what paths are scanned by publishing the Bundle config file an
 ### `artisan bundle:clear`
 
 Clear all bundled scripts.
+
+## Testing utilities
+
+**This feature is pending**
+
+When writing Unit or Feature tests in your application you don't need Bundle to process & serve your imports.
+
+Simply use the BundleManager fake in your test setup. Perfect for when you're asserting on responses with feature tests.
+
+```php
+BundleManager::fake();
+```
+
+When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.

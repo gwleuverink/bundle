@@ -28,8 +28,8 @@ class NodeModuleTest extends DuskTestCase
                 const filter = await _bundle('lodash', 'filter');
 
                 let data = [
-                    { 'name': 'Hello World!', 'active': true },
-                    { 'name': 'Foo', 'active': false }
+                    { 'name': 'Foo', 'active': false },
+                    { 'name': 'Hello World!', 'active': true }
                 ];
 
                 // Filter only active
@@ -54,8 +54,8 @@ class NodeModuleTest extends DuskTestCase
                 const filter = await _bundle('filter');
 
                 let data = [
-                    { 'name': 'Yello World!', 'active': true },
-                    { 'name': 'Foo', 'active': false }
+                    { 'name': 'Foo', 'active': false },
+                    { 'name': 'Yello World!', 'active': true }
                 ];
 
                 // Filter only active

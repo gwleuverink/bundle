@@ -60,7 +60,7 @@ it('serves bundles over http', function () {
     )->assertOk();
 });
 
-it('serves bundles as application/javascript', function () {
+it('serves bundles as Content-Type: application/javascript', function () {
     $js = <<< 'JS'
     const filter = await import('~/alert')
     JS;
@@ -86,6 +86,22 @@ it('serves bundles with Last-Modified headers', function () {
     $this->get(
         route('x-bundle', $file)
     )->assertHeader('Last-Modified');
+});
+
+it('serves bundles with configurable Cache-Control headers', function () {
+    config()->set('bundle.cache_control_headers', 'foo');
+
+    $js = <<< 'JS'
+    const filter = await import('~/alert')
+    JS;
+
+    $manager = BundleManager::new();
+    $file = $manager->hash($js) . '.min.js';
+    $manager->bundle($js);
+
+    $this->get(
+        route('x-bundle', $file)
+    )->assertHeader('Cache-Control', 'foo, private'); // private is added in laravel's cache-control middleware
 });
 
 it('serves chunks over http')

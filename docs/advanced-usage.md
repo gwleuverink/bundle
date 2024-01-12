@@ -69,6 +69,20 @@ Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURC
 
 Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
 
+## Cache-Control headers
+
+You're free to tweak Cache-Control headers bundles are served with by publishing the config file and updating the `cache_control_headers` value.
+
+Bundle also adds a Last-Modified header in addition to naming the file based on it's hashed contents. This should cover most browser caching needs out of the box.
+
+```
+Request URL: {your-domain}/x-bundle/e52def31336c.min.js
+
+Last-Modified: Fri, 12 Jan 2024, 19:00:00 UTC
+Cache-Control: max-age=31536000, immutable
+Content-Type: application/javascript; charset=utf-8
+```
+
 ## Artisan commands
 
 There are a couple of commands at your disposal:

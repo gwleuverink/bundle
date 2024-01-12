@@ -15,6 +15,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Cache-Control headers
+    |--------------------------------------------------------------------------
+    |
+    | Feel free to tweak Cache-Control headers bundles are served with.
+    | Bundle also adds a Last-Modified header in addition to naming
+    | the file based on it's hashed contents.
+    |
+    */
+    'cache_control_headers' => 'max-age=31536000, immutable',
+
+    /*
+    |--------------------------------------------------------------------------
     | Sourcemaps
     |--------------------------------------------------------------------------
     |

@@ -101,9 +101,9 @@ class BundleManager implements BundleManagerContract
         $contents = file_get_contents($file);
 
         return response($contents)
-            // ->header('Cache-Control', 'max-age=31536000, immutable')
-            ->header('Content-Type', 'application/javascript; charset=utf-8')
-            ->header('Last-Modified', gmdate('Y-m-d H:i:s', $file->getMTime()));
+            ->header('Last-Modified', gmdate('D, d M Y, H:i:s e', $file->getMTime()))
+            ->header('Cache-Control', $this->config()->get('cache_control_headers'))
+            ->header('Content-Type', 'application/javascript; charset=utf-8');
     }
 
     public function hash($input, $length = 12): string

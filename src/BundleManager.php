@@ -96,13 +96,14 @@ class BundleManager implements BundleManagerContract
     {
         $file = $this->fromDisk($fileName);
 
-        abort_unless($file, 404, 'Bundle not found');
+        abort_unless((bool) $file, 404, 'Bundle not found');
 
         $contents = file_get_contents($file);
 
         return response($contents)
-            ->header('Content-Type', 'application/javascript; charset=utf-8');
-        // ->header('Last-Modified', 'TODO');
+            // ->header('Cache-Control', 'max-age=31536000, immutable')
+            ->header('Content-Type', 'application/javascript; charset=utf-8')
+            ->header('Last-Modified', gmdate('Y-m-d H:i:s', $file->getMTime()));
     }
 
     public function hash($input, $length = 12): string

@@ -98,7 +98,8 @@
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
 
         "test": "@php vendor/bin/pest --group=feature,unit",
-        "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit"
+        "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit",
+        "test-all": "@php vendor/bin/pest --bail"
 
     }
 }

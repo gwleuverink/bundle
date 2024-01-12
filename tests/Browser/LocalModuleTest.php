@@ -23,13 +23,13 @@ class LocalModuleTest extends DuskTestCase
     public function it_imports_from_local_resource_directory()
     {
         $this->blade(<<< 'HTML'
-            <x-bundle import="~/alert" as="alert" />
+                <x-bundle import="~/alert" as="alert" />
 
-            <script type="module">
-                var module = await _bundle('alert');
-                module('Hello World!')
-            </script>
-        HTML)
+                <script type="module">
+                    var module = await _bundle('alert');
+                    module('Hello World!')
+                </script>
+            HTML)
             ->assertDialogOpened('Hello World!');
     }
 }

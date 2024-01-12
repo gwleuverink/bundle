@@ -60,6 +60,34 @@ it('serves bundles over http', function () {
     )->assertOk();
 });
 
+it('serves bundles as application/javascript', function () {
+    $js = <<< 'JS'
+    const filter = await import('~/alert')
+    JS;
+
+    $manager = BundleManager::new();
+    $file = $manager->hash($js) . '.min.js';
+    $manager->bundle($js);
+
+    $this->get(
+        route('x-bundle', $file)
+    )->assertHeader('Content-Type', 'application/javascript; charset=utf-8');
+});
+
+it('serves bundles with Last-Modified headers', function () {
+    $js = <<< 'JS'
+    const filter = await import('~/alert')
+    JS;
+
+    $manager = BundleManager::new();
+    $file = $manager->hash($js) . '.min.js';
+    $manager->bundle($js);
+
+    $this->get(
+        route('x-bundle', $file)
+    )->assertHeader('Last-Modified');
+});
+
 it('serves chunks over http')
     ->skip('Code splitting not implemented');
 
@@ -84,10 +112,6 @@ it('doesnt generate sourcemaps by default')
     ->content()
     ->not->toContain('//# debugId');
 
-// Probably not possible. TODO: Create issue in Bun repo
-// it('imports from node_modules are chunked')->todo();
-// it('imports from outside node_modules are inlined (due to issue with Bun)')->todo();
-
 // So the user can import their own js scripts from the resources/js dir
 it('is unable to resolve local scripts by their relative path', function () {
     expect(function () {
@@ -110,8 +134,11 @@ it('is able to resolve local scripts when aliased in jsconfig.json', function ()
     })->not->toThrow(BundlingFailedException::class);
 });
 
-it('creates a single bundle when no imports are used')->skip('Code splitting not implemented');
-it('generates a single chunk when two sourcefiles use the same dependency')->skip('Code splitting not implemented');
+// Probably not possible. TODO: Create issue in Bun repo
+// it('imports from node_modules are chunked')->todo();
+// it('imports from outside node_modules are inlined (due to issue with Bun)')->todo();
+// it('creates a single bundle when no imports are used')->skip('Code splitting not implemented');
+// it('generates a single chunk when two sourcefiles use the same dependency')->skip('Code splitting not implemented');
 
 // it('supports inline synchronous imports')
 //     ->todo()

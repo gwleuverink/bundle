@@ -22,3 +22,5 @@ trait Constructable
         return new self(...func_get_args()); /** @phpstan-ignore-line */
     }
 }
+
+// @codeCoverageIgnoreEnd

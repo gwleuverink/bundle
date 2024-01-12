@@ -1,5 +1,7 @@
 <?php
 
+// @codeCoverageIgnoreStart
+
 namespace Leuverink\Bundle\Exceptions;
 
 use RuntimeException;
@@ -64,3 +66,4 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
             ->setSolutionDescription('A jsconfig file is required in order to define your bundle\'s path mapping. Please create a jsconfig in your project root.');
     }
 }
+// @codeCoverageIgnoreEnd

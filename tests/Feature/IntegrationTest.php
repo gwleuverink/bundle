@@ -40,6 +40,49 @@ it('supports tree shaking for variables')->bundle(
     JS
 );
 
+it('generates sourcemaps when enabled')
+    ->defer(
+        fn () => config()->set('bundle.sourcemaps_enabled', true)
+    )
+    ->bundle(
+        <<< 'JS'
+        const filter = await import('~/alert')
+        JS
+    )
+    ->content()
+    ->toContain('//# debugId');
+
+it('doesnt generate sourcemaps by default')
+    ->bundle(
+        <<< 'JS'
+        const filter = await import('~/alert')
+        JS
+    )
+    ->content()
+    ->not->toContain('//# debugId');
+
+// So the user can import their own js scripts from the resources/js dir
+it('is unable to resolve local scripts by their relative path', function () {
+    expect(function () {
+        bundle(
+            <<< 'JS'
+            const filter = await import('./resources/js/alert')
+            JS
+        );
+    })->toThrow(BundlingFailedException::class);
+});
+
+it('is able to resolve local scripts when aliased in jsconfig.json', function () {
+    expect(function () {
+        // ~/ is aliased in jsconfig.json
+        bundle(
+            <<< 'JS'
+            const filter = await import('~/alert')
+            JS
+        );
+    })->not->toThrow(BundlingFailedException::class);
+});
+
 it('serves bundles over http', function () {
     $js = <<< 'JS'
     const filter = await import('~/alert')
@@ -106,49 +149,6 @@ it('serves bundles with configurable Cache-Control headers', function () {
 
 it('serves chunks over http')
     ->skip('Code splitting not implemented');
-
-it('generates sourcemaps when enabled')
-    ->defer(
-        fn () => config()->set('bundle.sourcemaps_enabled', true)
-    )
-    ->bundle(
-        <<< 'JS'
-        const filter = await import('~/alert')
-        JS
-    )
-    ->content()
-    ->toContain('//# debugId');
-
-it('doesnt generate sourcemaps by default')
-    ->bundle(
-        <<< 'JS'
-        const filter = await import('~/alert')
-        JS
-    )
-    ->content()
-    ->not->toContain('//# debugId');
-
-// So the user can import their own js scripts from the resources/js dir
-it('is unable to resolve local scripts by their relative path', function () {
-    expect(function () {
-        bundle(
-            <<< 'JS'
-            const filter = await import('./resources/js/alert')
-            JS
-        );
-    })->toThrow(BundlingFailedException::class);
-});
-
-it('is able to resolve local scripts when aliased in jsconfig.json', function () {
-    expect(function () {
-        // ~/ is aliased in jsconfig.json
-        bundle(
-            <<< 'JS'
-            const filter = await import('~/alert')
-            JS
-        );
-    })->not->toThrow(BundlingFailedException::class);
-});
 
 // Probably not possible. TODO: Create issue in Bun repo
 // it('imports from node_modules are chunked')->todo();

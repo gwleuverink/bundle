@@ -23,7 +23,7 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
         );
 
         // TODO: Consider different approach for providing contextual debug info
-        if(app()->isLocal()) {
+        if (app()->isLocal()) {
             dump(['error output', $result->errorOutput()]);
         }
     }
@@ -44,8 +44,8 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
     private function bunNotInstalledSolution()
     {
         return BaseSolution::create()
-                ->setSolutionTitle('Bun is not installed.')
-                ->setSolutionDescription("Bun is not installed. Try running `npm install bun --save-dev`");
+            ->setSolutionTitle('Bun is not installed.')
+            ->setSolutionDescription('Bun is not installed. Try running `npm install bun --save-dev`');
     }
 
     private function moduleNotResolvableSolution()
@@ -53,15 +53,14 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
         $module = str($this->result->errorOutput())->after('"')->before('"')->toString();
 
         return BaseSolution::create()
-                ->setSolutionTitle("Unable to resolve module '{$module}'")
-                ->setSolutionDescription("{$module}. Try running `npm install {$module}` or check the path to the import if it's a script in your resources directory.");
+            ->setSolutionTitle("Unable to resolve module '{$module}'")
+            ->setSolutionDescription("{$module}. Try running `npm install {$module}` or check the path to the import if it's a script in your resources directory.");
     }
 
     private function missingJsconfigFileSolution()
     {
         return BaseSolution::create()
-                ->setSolutionTitle("jsconfig.json file missing")
-                ->setSolutionDescription('A jsconfig file is required in order to define your bundle\'s path mapping. Please create a jsconfig in your project root.');
+            ->setSolutionTitle('jsconfig.json file missing')
+            ->setSolutionDescription('A jsconfig file is required in order to define your bundle\'s path mapping. Please create a jsconfig in your project root.');
     }
-
 }

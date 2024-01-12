@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Concerns\WithWorkbench;
-use Orchestra\Testbench\Dusk\TestCase  as BaseTestCase;
+use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 
 class DuskTestCase extends BaseTestCase
 {
@@ -30,19 +30,20 @@ class DuskTestCase extends BaseTestCase
     protected function getBasePath()
     {
         // testbench-core skeleton is leading, due to test setup in testbench.yaml
-        return __DIR__.'/../vendor/orchestra/testbench-core/laravel';
+        return __DIR__ . '/../vendor/orchestra/testbench-core/laravel';
     }
 
     /**
      * Renders a string into blade & navigates the Dusk browser to a temporary route
      * Then it returns the Browser object to continue chaining assertions.
      */
-    public function blade(string $blade) {
+    public function blade(string $blade)
+    {
 
         // Wrap in basic HTML layout (include required js & css in layout if needed)
         $blade = <<< BLADE
         <x-layout>
-            $blade
+            {$blade}
         </x-layout>
         BLADE;
 
@@ -53,7 +54,7 @@ class DuskTestCase extends BaseTestCase
 
         // Create a temporary route
         $this->beforeServingApplication(
-            fn ($app) => $app->make(Route::class)::get('test-blade', fn() => $page)
+            fn ($app) => $app->make(Route::class)::get('test-blade', fn () => $page)
         );
 
         // Point Dusk to the temporary route & return the Browser for chaining

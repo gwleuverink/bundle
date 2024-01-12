@@ -2,7 +2,6 @@
 
 namespace Leuverink\Bundle\Bundlers;
 
-use Exception;
 use SplFileInfo;
 use Illuminate\Support\Facades\Process;
 use Leuverink\Bundle\Contracts\Bundler;
@@ -11,7 +10,6 @@ use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 class Bun implements Bundler
 {
-
     use Constructable;
 
     public function build(string $inputPath, string $outputPath, string $fileName, bool $sourcemaps = false): SplFileInfo
@@ -21,7 +19,7 @@ class Bun implements Bundler
             // '--tsconfig-override' => base_path('jsconfig.json'), // Disable enforcing this. custom config is optional.
             '--chunk-naming' => 'chunks/[name]-[hash].[ext]', // Not in use without --splitting
             '--asset-naming' => 'assets/[name]-[hash].[ext]', // Not in use without --splitting
-            '--entrypoints' => $inputPath.$fileName,
+            '--entrypoints' => $inputPath . $fileName,
             '--public-path' => $outputPath,
             '--outdir' => $outputPath,
             '--target' => 'browser',
@@ -32,17 +30,16 @@ class Bun implements Bundler
 
             $sourcemaps
                 ? '--sourcemap=external'
-                : '--sourcemap=none'
+                : '--sourcemap=none',
         ];
-
 
         Process::run("{$path}bun build {$this->args($options)}")
             ->throw(function ($res) use ($inputPath, $fileName): void {
-                $failed = file_get_contents($inputPath.$fileName);
+                $failed = file_get_contents($inputPath . $fileName);
                 throw new BundlingFailedException($res, $failed);
             });
 
-        return new SplFileInfo($outputPath.$fileName);
+        return new SplFileInfo($outputPath . $fileName);
     }
 
     //--------------------------------------------------------------------------
@@ -50,7 +47,7 @@ class Bun implements Bundler
     //--------------------------------------------------------------------------
     private function args(array $options): string
     {
-        return collect($options)->reduce(function($carry, $option, $key) {
+        return collect($options)->reduce(function ($carry, $option, $key) {
             return str($carry)
                 ->append(is_int($key) ? '' : $key)->append(' ')
                 ->append($option)->append(' ')

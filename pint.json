@@ -30,7 +30,7 @@
             "anonymous_class": false
         },
         "ordered_imports": {
-            "sort_algorithm": "alpha",
+            "sort_algorithm": "length",
             "imports_order": [
                 "const",
                 "class",

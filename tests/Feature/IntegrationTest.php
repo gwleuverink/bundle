@@ -4,18 +4,18 @@ use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 it('transpiles JavaScript')->bundle(
-    <<< JS
+    <<< 'JS'
     const foo = 'bar'
     console.log(foo)
     JS
 )->transpilesTo(
-    <<< JS
+    <<< 'JS'
     console.log("bar");
     JS
 );
 
 it('strips unnessary whitespace')->bundle(
-    <<< JS
+    <<< 'JS'
 
     const foo = 'baz'
     console.log(foo)
@@ -23,27 +23,25 @@ it('strips unnessary whitespace')->bundle(
 
     JS
 )->transpilesTo(
-    <<< JS
+    <<< 'JS'
     console.log("baz");
     JS
 );
 
-
 it('supports tree shaking for variables')->bundle(
-    <<< JS
+    <<< 'JS'
     const foo = 'baz'
     const bar = 'zah'
     console.log(foo)
     JS
 )->transpilesTo(
-    <<< JS
+    <<< 'JS'
     console.log("baz");
     JS
 );
 
-
-it('serves bundles over http', function() {
-    $js = <<< JS
+it('serves bundles over http', function () {
+    $js = <<< 'JS'
     const filter = await import('~/alert')
     JS;
 
@@ -65,13 +63,12 @@ it('serves bundles over http', function() {
 it('serves chunks over http')
     ->skip('Code splitting not implemented');
 
-
 it('generates sourcemaps when enabled')
     ->defer(
         fn () => config()->set('bundle.sourcemaps_enabled', true)
     )
     ->bundle(
-        <<< JS
+        <<< 'JS'
         const filter = await import('~/alert')
         JS
     )
@@ -80,7 +77,7 @@ it('generates sourcemaps when enabled')
 
 it('doesnt generate sourcemaps by default')
     ->bundle(
-        <<< JS
+        <<< 'JS'
         const filter = await import('~/alert')
         JS
     )
@@ -91,33 +88,30 @@ it('doesnt generate sourcemaps by default')
 // it('imports from node_modules are chunked')->todo();
 // it('imports from outside node_modules are inlined (due to issue with Bun)')->todo();
 
-
 // So the user can import their own js scripts from the resources/js dir
-it('is unable to resolve local scripts by their relative path', function() {
-    expect(function() {
+it('is unable to resolve local scripts by their relative path', function () {
+    expect(function () {
         bundle(
-            <<< JS
+            <<< 'JS'
             const filter = await import('./resources/js/alert')
             JS
         );
     })->toThrow(BundlingFailedException::class);
 });
 
-it('is able to resolve local scripts when aliased in jsconfig.json', function() {
-    expect(function() {
+it('is able to resolve local scripts when aliased in jsconfig.json', function () {
+    expect(function () {
         // ~/ is aliased in jsconfig.json
         bundle(
-            <<< JS
+            <<< 'JS'
             const filter = await import('~/alert')
             JS
         );
     })->not->toThrow(BundlingFailedException::class);
 });
 
-
 it('creates a single bundle when no imports are used')->skip('Code splitting not implemented');
 it('generates a single chunk when two sourcefiles use the same dependency')->skip('Code splitting not implemented');
-
 
 // it('supports inline synchronous imports')
 //     ->todo()

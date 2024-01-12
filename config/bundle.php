@@ -13,7 +13,6 @@ return [
     */
     'caching_enabled' => env('BUNDLE_CACHING_ENABLED', app()->isProduction()),
 
-
     /*
     |--------------------------------------------------------------------------
     | Sourcemaps
@@ -26,7 +25,6 @@ return [
     */
     'sourcemaps_enabled' => env('BUNDLE_SOURCEMAPS_ENABLED', false),
 
-
     /*
     |--------------------------------------------------------------------------
     | Build paths (glob patterns)
@@ -38,6 +36,6 @@ return [
     |
     */
     'build_paths' => [
-        resource_path('views/**/*.blade.php')
-    ]
+        resource_path('views/**/*.blade.php'),
+    ],
 ];

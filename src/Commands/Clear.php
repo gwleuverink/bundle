@@ -4,6 +4,7 @@ namespace Leuverink\Bundle\Commands;
 
 use Illuminate\Console\Command;
 use Leuverink\Bundle\Contracts\BundleManager;
+
 use function Laravel\Prompts\info;
 
 class Clear extends Command

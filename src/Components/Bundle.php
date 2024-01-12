@@ -11,7 +11,8 @@ class Bundle extends Component
         public string $import,
         public string $as,
         public bool $inline = false // TODO: Implement this
-    ){ }
+    ) {
+    }
 
     public function render()
     {
@@ -22,7 +23,7 @@ class Bundle extends Component
         // can retreive the module as a Promise
         $js = <<< JS
             if(!window._bundle_modules) window._bundle_modules = {}
-            window._bundle_modules.$this->as = import('$this->import')
+            window._bundle_modules.{$this->as} = import('{$this->import}')
 
             window._bundle = async function(alias, exportName = 'default') {
                 let module = await window._bundle_modules[alias]
@@ -35,7 +36,7 @@ class Bundle extends Component
 
         // Render script tag with bundled code
         return view('bundle::bundle', [
-            'bundle' => $bundle
+            'bundle' => $bundle,
         ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
-use Laravel\Dusk\Browser;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -11,17 +10,19 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 class NodeModuleTest extends DuskTestCase
 {
     /** @test */
-    public function it_injects_import_and_bundle_function_on_the_window_object() {
-        $this->blade(<<< HTML
+    public function it_injects_import_and_bundle_function_on_the_window_object()
+    {
+        $this->blade(<<< 'HTML'
                 <x-bundle import="lodash/filter" as="filter" />
             HTML)
-            ->assertScript("typeof window._bundle", 'function')
+            ->assertScript('typeof window._bundle', 'function')
             ->assertScript('typeof window._bundle_modules', 'object');
     }
 
     /** @test */
-    public function it_imports_from_node_modules() {
-        $this->blade(<<< HTML
+    public function it_imports_from_node_modules()
+    {
+        $this->blade(<<< 'HTML'
             <x-bundle import="lodash" as="lodash" />
 
             <script type="module">
@@ -42,12 +43,13 @@ class NodeModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-        ->assertSeeIn('#output', 'Hello World!');
+            ->assertSeeIn('#output', 'Hello World!');
     }
 
     /** @test */
-    public function it_can_import_modules_per_method() {
-        $this->blade(<<< HTML
+    public function it_can_import_modules_per_method()
+    {
+        $this->blade(<<< 'HTML'
             <x-bundle import="lodash/filter" as="filter" />
 
             <script type="module">
@@ -68,6 +70,6 @@ class NodeModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-        ->assertSeeIn('#output', 'Yello World!');
+            ->assertSeeIn('#output', 'Yello World!');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'playground');
 
-Route::prefix('test')->group(function() {
+Route::prefix('test')->group(function () {
     Route::view('local-import', 'test.local-import');
     Route::view('node-module-named-import', 'test.node-module-named-import');
     Route::view('node-module-per-method-import', 'test.node-module-per-method-import');

@@ -2,16 +2,16 @@
 
 use Leuverink\Bundle\BundleManager;
 
-it('scans glob patterns', function() {
+it('scans glob patterns', function () {
 
 })->todo();
 
-it('generates a bundle', function() {
+it('generates a bundle', function () {
     $manager = BundleManager::new();
 
     // Scan the fixtures dir as build path
     config()->set('bundle.build_paths', [
-        realpath(getcwd().'/tests/Fixtures')
+        realpath(getcwd() . '/tests/Fixtures'),
     ]);
 
     // Make sure all cached scripts are cleared

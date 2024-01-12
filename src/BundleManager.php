@@ -13,7 +13,6 @@ use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
-
 class BundleManager implements BundleManagerContract
 {
     use Constructable;
@@ -58,7 +57,6 @@ class BundleManager implements BundleManagerContract
         return $processed;
     }
 
-
     //--------------------------------------------------------------------------
     // Helper methods
     //--------------------------------------------------------------------------
@@ -85,7 +83,7 @@ class BundleManager implements BundleManagerContract
 
     private function fromDisk(string $fileName): ?SplFileInfo
     {
-        if ( ! $this->buildDisk()->exists($fileName)) {
+        if (! $this->buildDisk()->exists($fileName)) {
             return null;
         }
 
@@ -104,12 +102,13 @@ class BundleManager implements BundleManagerContract
 
         return response($contents)
             ->header('Content-Type', 'application/javascript; charset=utf-8');
-            // ->header('Last-Modified', 'TODO');
+        // ->header('Last-Modified', 'TODO');
     }
 
     public function hash($input, $length = 12): string
     {
         $hash = hash('sha256', $input);
+
         return substr($hash, 0, $length);
     }
 
@@ -117,7 +116,7 @@ class BundleManager implements BundleManagerContract
     {
         $this->tempDisk()->delete($file);
 
-        if(! $this->tempDisk()->files()) {
+        if (! $this->tempDisk()->files()) {
             rmdir($this->tempDisk()->path(''));
         }
     }

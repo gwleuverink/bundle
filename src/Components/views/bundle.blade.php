@@ -1,6 +1,6 @@
 @once("bundle:$as")
 <!--[BUNDLE: {{ $as }} from '{{ $import }}']-->
-@if($inline)
+@if ($inline)
 <script data-bundle="{{ $as }}" {{ $attributes }}>
     {!! file_get_contents($bundle) !!}
 </script>

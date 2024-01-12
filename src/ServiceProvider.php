@@ -45,7 +45,7 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerComponents()
     {
-        $this->loadViewsFrom(__DIR__.'/Components/views', 'bundle');
+        $this->loadViewsFrom(__DIR__ . '/Components/views', 'bundle');
         Blade::component('bundle', Bundle::class);
     }
 
@@ -59,7 +59,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         Route::get(
             'x-bundle/{bundle}',
-            fn($bundle) => resolve(BundleManagerContract::class)->bundleContents($bundle)
+            fn ($bundle) => resolve(BundleManagerContract::class)->bundleContents($bundle)
         )->name('x-bundle');
 
         // TODO: Support code splitting

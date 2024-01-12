@@ -2,7 +2,7 @@
 
 use Leuverink\Bundle\BundleManager;
 
-it('clears temp disk', function() {
+it('clears temp disk', function () {
     $manager = BundleManager::new();
 
     $manager->tempDisk()->put('foo.js', 'bar');
@@ -12,7 +12,7 @@ it('clears temp disk', function() {
     $manager->tempDisk()->assertMissing('foo.js');
 });
 
-it('clears temp disk recursively', function() {
+it('clears temp disk recursively', function () {
     $manager = BundleManager::new();
 
     $manager->tempDisk()->put('foo/bar.js', 'baz');
@@ -22,7 +22,7 @@ it('clears temp disk recursively', function() {
     $manager->tempDisk()->assertMissing('foo/bar.js');
 });
 
-it('clears build disk', function() {
+it('clears build disk', function () {
     $manager = BundleManager::new();
 
     $manager->buildDisk()->put('foo.js', 'bar');
@@ -32,7 +32,7 @@ it('clears build disk', function() {
     $manager->buildDisk()->assertMissing('foo.js');
 });
 
-it('clears build disk recursively', function() {
+it('clears build disk recursively', function () {
     $manager = BundleManager::new();
 
     $manager->buildDisk()->put('foo/bar.js', 'baz');

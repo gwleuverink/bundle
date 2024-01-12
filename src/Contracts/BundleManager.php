@@ -4,10 +4,8 @@ namespace Leuverink\Bundle\Contracts;
 
 use SplFileInfo;
 use Illuminate\Http\Response;
-use Leuverink\Bundle\Contracts\Bundler;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
-
 
 interface BundleManager
 {

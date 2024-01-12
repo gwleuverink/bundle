@@ -10,12 +10,13 @@ trait Constructable
     {
         $interfaces = class_implements(static::class);
 
-        if($interfaces) {
+        if ($interfaces) {
             try {
                 return resolve(head($interfaces), func_get_args());
-            } catch (Throwable $e) {}
+            } catch (Throwable $e) {
+            }
         }
 
-        return new static(...func_get_args());
+        return new self(...func_get_args()); /** @phpstan-ignore-line */
     }
 }

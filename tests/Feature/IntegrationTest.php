@@ -42,8 +42,7 @@ it('supports tree shaking for variables')->bundle(
 );
 
 
-// These two should be browser tests? or can we get the file's hash some other wayy?
-test('generated bundles are reachable over http', function() {
+it('serves bundles over http', function() {
     $js = <<< JS
     const filter = await import('~/alert')
     JS;
@@ -63,7 +62,7 @@ test('generated bundles are reachable over http', function() {
     )->assertOk();
 });
 
-test('generated chunks are reachable over http')
+it('serves chunks over http')
     ->skip('Code splitting not implemented');
 
 

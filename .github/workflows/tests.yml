@@ -1,10 +1,9 @@
 name: tests
 
 on:
-  push:
-    branches: [development, main]
-  pull_request:
-    branches: [development, main]
+  workflow_run:
+    workflows: [codestyle]
+    types: [completed]
 
 jobs:
   skip-duplicates:
@@ -64,16 +63,10 @@ jobs:
       - name: Install Bun & link Workbench directories
         run: composer setup-workbench
 
-      - name: Run Unit & Feature tests
-        run: composer test
+      - name: Execute tests - coverage threshold 90%
+        run: composer test --coverage --min=90 --coverage-clover clover.xml
 
-    #   - name: Run Browser tests
-    #     run: composer test-browser
-
-    #   - name: Generate coverage report (threshold 90%)
-    #     run: ./vendor/bin/pest --bail --retry --coverage --min=90 --coverage-clover clover.xml
-
-    #   - name: Upload coverage reports to Codecov
-    #     uses: codecov/codecov-action@v3
-    #     env:
-    #       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

@@ -69,6 +69,10 @@ Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURC
 
 Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
 
+{: .note }
+
+> If you've previously bundled import you need to run the [bundle:clear](https://gwleuverink.github.io/bundle/advanced-usage.html#artisan-bundleclear)command
+
 ## Cache-Control headers
 
 You're free to tweak Cache-Control headers bundles are served with by publishing the config file and updating the `cache_control_headers` value.

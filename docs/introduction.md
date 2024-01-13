@@ -46,3 +46,11 @@ _In cases like this it might be advantagious to use per-method imports instead. 
 The `_bundle` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
 Please refer to the [advanced usage examples](/bundle/advanced-usage.html) for a more detailed explanation on how the `_bundle` function can be utilized in different scenarios.
+
+<br />
+
+{: .note }
+
+> Bundle will throw exceptions in development, but only raise console errors in a production environment. Read all about running [Bundle in production](https://gwleuverink.github.io/bundle/production-builds.html) environments.
+
+<br />

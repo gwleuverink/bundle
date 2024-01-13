@@ -19,16 +19,20 @@ You can control which paths are scanned by publishing the Bundle config file and
 
 <br />
 
-{: .note }
-
-> In production the `BUNDLE_CACHING_ENABLED` env variable needs to be set to `true`. When the variable is not set Bundle will automatically enable this option in production environments.
-
 Furthermore it is recommended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
 
 <br />
 
 ---
 
+## Failover system
+
 If a import somehow was deleted from storage on your production server, Bundle will try to bundle the script on the fly.
 
-This failover system won't work on environments without a writable storage path (Like Vapor or other serverless setups) since Bun requires us to write a temporary file on the same disk Bun is invoked from.
+For this to work you need to install Bundle on your app server. You may do this by installing it during deployment or checking in your `node_modules/.bin/bun` file.
+
+<br>
+
+{: .warning }
+
+> This failover system won't work on environments without a writable storage path (Like Vapor or other serverless setups) since Bun requires us to write a temporary file on the same disk Bun is invoked from.

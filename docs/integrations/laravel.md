@@ -21,3 +21,15 @@ Please refer to the [Laravel documentation](https://laravel.com/docs/10.x/blade#
 ```
 
 Bundle uses the `@once` directive internally, so there is no need to wrap the component in this directive yourself.
+
+---
+
+After you've used the `<x-bundle>` in your template you can retreive the bundle inside any inline script.
+
+```html
+<script type="module">
+  const ApexCharts = await _bundle("ApexCharts");
+
+  // Create something amazing!
+</script>
+```

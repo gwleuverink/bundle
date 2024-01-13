@@ -9,17 +9,23 @@ A couple of things to be aware of.
 
 ### Tree shaking
 
-Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports. You may retreive those like explained above.
+Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports.
 
-Because of this you may end up with a bunch of unused code inlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
+For example; when bundling lodash all of it's exports will be included in the bundle, regardless of if the export is used later down in your template. This effect can be mitigated by using the per-method import approach.
 
 This might be improved when chunking dynamic imports support is added. So shared code is fetched by a additional request.
 
-### Chunking dynamic imports
+Because of this you may end up with a bunch of unused code inlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
 
-Chunking of dynamicly fetched pieces of shared code is currently not supported but definetly possible.
+### Chunking dynamic imports (code splitting)
 
-Due to Bun's path remapping behaviour Bundle is not able to split chunks from modules and assets imported from your local `resources` directory. This could definetly work for shared imports from `node_modules` in the future.
+Chunking of dynamicly fetched pieces of shared code is currently not supported but might be possible.
+
+This means that if you bundle a script in your resources directory that both require on the same node_module dependency, the dependency will be bundled in both imports.
+
+If we were able to add code splitting we would be able to chunk these shared modules in a separate file, so those chunks can load dynamically over http.
+
+Due to Bun's path remapping behaviour Bundle is not able to split chunks from modules and assets imported from a path below it's internal project root (which is in the storage directory). If Bun fixes this issue this feature might be possible in the future.
 
 <!-- TODO: Add a detailed treeview of chunking vs how it's done now -->
 <!-- NOTE: A workaround where your local scripts also use _bundle() & we preload all dependencies in the blade template is possible. But less than ideal. -->

@@ -71,7 +71,7 @@ Sourcemaps will be generated in a separate file so this won't affect performance
 
 {: .note }
 
-> If you've previously bundled import you need to run the [bundle:clear](https://gwleuverink.github.io/bundle/advanced-usage.html#artisan-bundleclear)command
+> If your project stored previously bundled files you need to run the [bundle:clear](https://gwleuverink.github.io/bundle/advanced-usage.html#artisan-bundleclear) command
 
 ## Cache-Control headers
 

@@ -17,13 +17,16 @@ You can control which paths are scanned by publishing the Bundle config file and
 ]
 ```
 
-<br />
-
 Furthermore it is recommended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
 
 <br />
 
 ---
+
+## Errors & debugging
+
+Bundle will throw exceptions in development, but only raise console errors in a production environment.
+Errors will still be reported so your error tracking will still pick up any issues raised at blade compile time.
 
 ## Failover system
 
@@ -36,7 +39,3 @@ For this to work you need to install Bundle on your app server. You may do this 
 {: .warning }
 
 > This failover system won't work on environments without a writable storage path (Like Vapor or other serverless setups) since Bun requires us to write a temporary file on the same disk Bun is invoked from.
-
-## Errors & debugging
-
-Bundle will throw exceptions in development, but only raise console errors in a production environment.

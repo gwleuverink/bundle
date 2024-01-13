@@ -36,3 +36,7 @@ For this to work you need to install Bundle on your app server. You may do this 
 {: .warning }
 
 > This failover system won't work on environments without a writable storage path (Like Vapor or other serverless setups) since Bun requires us to write a temporary file on the same disk Bun is invoked from.
+
+## Errors & debugging
+
+Bundle will throw exceptions in development, but only raise console errors in a production environment.

@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use Illuminate\View\ViewException;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -69,7 +70,7 @@ class ComponentTest extends DuskTestCase
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="alert"')[0].hasAttribute('src')
             JS, false)
-            // Assert script tag has no content
+            // Assert script tag has content
             ->assertScript(<<< 'JS'
                 typeof document.querySelectorAll('script[data-bundle="alert"')[0].innerHTML
             JS, 'string');
@@ -93,24 +94,42 @@ class ComponentTest extends DuskTestCase
     /** @test */
     public function it_throws_an_error_when_bundle_not_found_in_development()
     {
+        $this->expectException(ViewException::class);
 
-    }
-
-    /** @test */
-    public function it_doesnt_throw_an_error_when_bundle_not_found_in_production()
-    {
-
-    }
-
-    /** @test */
-    public function it_raises_console_error_when_bundle_not_found_in_production()
-    {
-
+        $this->blade(<<< 'HTML'
+            <x-bundle import="~/foo" as="bar" />
+        HTML);
     }
 
     /** @test */
     public function it_doesnt_raise_a_console_error_when_bundle_not_found_in_development()
     {
+        $browser = $this->blade(<<< 'HTML'
+            <x-bundle import="~/foo" as="bar" />
+        HTML);
 
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+    }
+
+    /** @test */
+    public function it_doesnt_throw_an_error_when_bundle_not_found_in_production()
+    {
+        config(['app.environment' => 'production']);
+
+        $this->blade(<<< 'HTML'
+            <x-bundle import="~/foo" as="bar" />
+        HTML);
+    }
+
+    /** @test */
+    public function it_raises_console_error_when_bundle_not_found_in_production()
+    {
+        config(['app.environment' => 'production']);
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-bundle import="~/foo" as="bar" />
+        HTML);
+
+        $this->assertNotEmpty($browser->driver->manage()->getLog('browser'));
     }
 }

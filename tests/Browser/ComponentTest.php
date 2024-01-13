@@ -90,21 +90,25 @@ class ComponentTest extends DuskTestCase
             JS, null);
     }
 
+    /** @test */
     public function it_throws_an_error_when_bundle_not_found_in_development()
     {
 
     }
 
+    /** @test */
     public function it_doesnt_throw_an_error_when_bundle_not_found_in_production()
     {
 
     }
 
+    /** @test */
     public function it_raises_console_error_when_bundle_not_found_in_production()
     {
 
     }
 
+    /** @test */
     public function it_doesnt_raise_a_console_error_when_bundle_not_found_in_development()
     {
 

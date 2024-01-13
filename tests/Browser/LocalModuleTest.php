@@ -32,4 +32,10 @@ class LocalModuleTest extends DuskTestCase
             HTML)
             ->assertDialogOpened('Hello World!');
     }
+
+    /** @test */
+    public function it_can_import_modules_per_method()
+    {
+
+    }
 }

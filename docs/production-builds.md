@@ -26,7 +26,7 @@ Furthermore it is recommended to cache your blade views on the server by running
 ## Error handling
 
 Bundle will throw exceptions in development, but only raise console errors in a production environment.
-Errors will still be reported so your error tracking will still pick up any issues raised at blade compile time.
+Errors will still be reported so your error tracking will pick up any issues raised at blade compile time.
 
 ## Failover system
 

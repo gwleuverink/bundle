@@ -5,7 +5,7 @@ title: Production builds
 
 ## Running on a server
 
-Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this, and to catch bundling errors before users hit your page, it is not reccommended to run on a production server. Code should be compiled before you deploy your app.
+Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on the fly it might slow down your uncached blade renders a bit. Because of this, and to catch bundling errors before users hit your page, it is not recommended to run on a production server. Code should be compiled before you deploy your app.
 
 You may run `php artisan bundle:build` to bundle all your imports beforehand. These will be added to your `storage/app/bundle` directory, make sure to add those to vsc or otherwise build them in CI before deployment.
 
@@ -23,7 +23,7 @@ Furthermore it is recommended to cache your blade views on the server by running
 
 ---
 
-## Errors handling
+## Error handling
 
 Bundle will throw exceptions in development, but only raise console errors in a production environment.
 Errors will still be reported so your error tracking will still pick up any issues raised at blade compile time.

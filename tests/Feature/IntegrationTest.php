@@ -1,6 +1,7 @@
 <?php
 
 use Leuverink\Bundle\BundleManager;
+use Leuverink\Bundle\Components\Bundle;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 it('transpiles JavaScript')->bundle(
@@ -81,6 +82,34 @@ it('is able to resolve local scripts when aliased in jsconfig.json', function ()
             JS
         );
     })->not->toThrow(BundlingFailedException::class);
+});
+
+it('throws a BundlingFailedException when blade component fails bundling', function () {
+    config()->set('app.debug', true);
+    $component = new Bundle('~/foo', 'bar');
+
+    expect(fn () => $component->render())
+        ->toThrow(BundlingFailedException::class);
+});
+
+it('doesnt throw a BundlingFailedException when blade component fails bundling and debug mode is disabled', function () {
+    config()->set('app.debug', false);
+    $component = new Bundle('~/foo', 'bar');
+
+    expect(fn () => $component->render())
+        ->not->toThrow(BundlingFailedException::class);
+});
+
+it('raises console error when blade component fails bundling and debug mode is disabled', function () {
+    config()->set('app.debug', false);
+    $component = new Bundle('~/foo', 'bar');
+
+    expect($component->render())
+        ->toContain(
+            'console.error',
+            'BUNDLING ERROR: import ~/foo as bar'
+        )
+        ->not->toThrow(BundlingFailedException::class);
 });
 
 it('serves bundles over http', function () {

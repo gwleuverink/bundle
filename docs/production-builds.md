@@ -19,7 +19,7 @@ You can control which paths are scanned by publishing the Bundle config file and
 
 Furthermore it is recommended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
 
-Note that Bundle doesn't preccess your imports in production environments. So you don't need to install any npm dependencies on your production machines when you built everything beforehand unless you want to use the [failover system](https://gwleuverink.github.io/bundle/production-builds.html#failover-system).
+Note that Bundle doesn't process your imports in production environments. So you don't need to install any npm dependencies on your production machines when you built everything beforehand unless you want to use the [failover system](https://gwleuverink.github.io/bundle/production-builds.html#failover-system).
 
 <br />
 

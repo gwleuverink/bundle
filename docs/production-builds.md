@@ -34,7 +34,7 @@ Errors will still be reported so your error tracking will pick up any issues rai
 
 If a import somehow was deleted from storage on your production server, Bundle will try to bundle the script on the fly.
 
-For this to work you need to install Bundle on your app server. You may do this by installing it during deployment or checking in your `node_modules/.bin/bun` file (Or the entire node_modules directory if you are importing files from there).
+For this to work you need to install Bun on your app server. You may do this by installing it during deployment or checking in your `node_modules/.bin/bun` file (Or the entire node_modules directory if you are importing files from there).
 
 <br>
 

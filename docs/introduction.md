@@ -51,6 +51,6 @@ Please refer to the [advanced usage examples](/bundle/advanced-usage.html) for a
 
 {: .note }
 
-> Bundle will throw exceptions in development, but only raise console errors in a production environment. Read all about running [Bundle in production](https://gwleuverink.github.io/bundle/production-builds.html) environments.
+> Bundle will throw exceptions when Laravel's debug mode is enabled, but only raise console errors when it's not. Read all about running [Bundle in production](https://gwleuverink.github.io/bundle/production-builds.html) environments.
 
 <br />

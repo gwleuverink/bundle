@@ -27,7 +27,7 @@ Note that Bundle doesn't process your imports in production environments. So you
 
 ## Error handling
 
-Bundle will throw exceptions in development, but only raise console errors in a production environment.
+Bundle will throw exceptions in when Laravel's debug mode is enabled, but only raise console errors when it's not.
 Errors will still be reported so your error tracking will pick up any issues raised at blade compile time.
 
 ## Failover system

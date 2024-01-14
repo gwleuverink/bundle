@@ -39,6 +39,10 @@ class Build extends Command
             ->whenEmpty(fn () => warning('No usages of <x-bundle /> found in your build_paths.'))
             // Start progress bar & render components
             ->whenNotEmpty(function ($components) {
+                // We can't display the task component status when it's invoked from within the progress bar
+                // We can fix that by adding a table below the progress bar. But that's for later.
+                // $components->each(fn($component) => $this->renderComponent($component));
+
                 progress(
                     'Building Bundle imports',
                     $components,
@@ -59,8 +63,9 @@ class Build extends Command
 
     protected function renderComponent(string $component)
     {
+        // Render the component. The Blade compiler invokes the bundler
+        // NOTE: Task component doesn't render from inside a progress component.
         try {
-            // Render the component. The Blade compiler invokes the bundler
             $this->components->task(
                 $component,
                 fn () => Blade::render($component)

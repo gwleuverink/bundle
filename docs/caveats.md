@@ -15,9 +15,7 @@ For example; when bundling lodash all of it's exports will be included in the bu
 
 This might be improved when chunking dynamic imports support is added. So shared code is fetched by a additional request.
 
-Because of this you may end up with a bunch of unused code inlined in your blade template. But since the code is included with the initial render this still is a lot less heavy compared to fetching all code, including unused code, from a CDN. Depending on the size of the initial request.
-
-### Chunking dynamic imports (code splitting)
+### Code splitting
 
 Chunking of dynamicly fetched pieces of shared code is currently not supported but might be possible.
 

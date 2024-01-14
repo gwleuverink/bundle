@@ -19,6 +19,8 @@ You can control which paths are scanned by publishing the Bundle config file and
 
 Furthermore it is recommended to cache your blade views on the server by running `php artisan view:cache` in your deploy script.
 
+Note that Bundle doesn't preccess your imports in production environments. So you don't need to install any npm dependencies on your production machines when you built everything beforehand unless you want to use the [failover system](https://gwleuverink.github.io/bundle/production-builds.html#failover-system).
+
 <br />
 
 ---
@@ -32,7 +34,7 @@ Errors will still be reported so your error tracking will pick up any issues rai
 
 If a import somehow was deleted from storage on your production server, Bundle will try to bundle the script on the fly.
 
-For this to work you need to install Bundle on your app server. You may do this by installing it during deployment or checking in your `node_modules/.bin/bun` file.
+For this to work you need to install Bundle on your app server. You may do this by installing it during deployment or checking in your `node_modules/.bin/bun` file (Or the entire node_modules directory if you are importing files from there).
 
 <br>
 

@@ -48,6 +48,6 @@ return [
     |
     */
     'build_paths' => [
-        resource_path('views/**/*.blade.php'),
+        resource_path('views'),
     ],
 ];

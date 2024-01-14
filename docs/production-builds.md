@@ -9,7 +9,7 @@ Eventhough Bun is very fast, since Bundle transpiles & bundles your imports on t
 
 You may run `php artisan bundle:build` to bundle all your imports beforehand. These will be added to your `storage/app/bundle` directory, make sure to add those to vsc or otherwise build them in CI before deployment.
 
-You can control which paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of glob patterns.
+You can control which paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array paths.
 
 ```php
 'build_paths' => [

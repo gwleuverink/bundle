@@ -95,7 +95,7 @@ There are a couple of commands at your disposal:
 
 Scan all your build_paths configured in `config/bundle.php` & compile all your imports.
 
-You may configure what paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of glob patterns.
+You may configure what paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of paths.
 
 ```php
 'build_paths' => [

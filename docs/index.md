@@ -3,8 +3,9 @@ nav_order: 1
 title: Quickstart
 ---
 
-[![codestyle](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml)
 [![tests](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml)
+[![browser-tests](https://github.com/gwleuverink/bundle/actions/workflows/browser-tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/browser-tests.yml)
+[![codestyle](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml)
 [![coverage](https://img.shields.io/codecov/c/github/gwleuverink/bundle?token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/gwleuverink/bundle)
 
 {: .fs-5 .fw-300}

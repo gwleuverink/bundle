@@ -50,8 +50,6 @@ class DuskTestCase extends BaseTestCase
         // Render the blade
         $page = Blade::render($blade);
 
-        // dump($page);
-
         // Create a temporary route
         $this->beforeServingApplication(
             fn ($app) => $app->make(Route::class)::get('test-blade', fn () => $page)

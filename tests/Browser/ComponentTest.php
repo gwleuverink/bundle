@@ -92,8 +92,12 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_throws_an_error_when_bundle_not_found_in_development()
+    public function it_throws_an_error_when_debug_mode_enabled()
     {
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('app.debug', true);
+        });
+
         $this->expectException(ViewException::class);
 
         $this->blade(<<< 'HTML'
@@ -102,8 +106,14 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_doesnt_raise_a_console_error_when_bundle_not_found_in_development()
+    public function it_doesnt_raise_a_console_error_when_debug_mode_enabled()
     {
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('app.debug', true);
+        });
+
+        $this->expectException(ViewException::class);
+
         $browser = $this->blade(<<< 'HTML'
             <x-bundle import="~/foo" as="bar" />
         HTML);
@@ -112,24 +122,31 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_doesnt_throw_an_error_when_bundle_not_found_in_production()
+    public function it_doesnt_throw_an_error_when_debug_mode_disabled()
     {
-        config(['app.environment' => 'production']);
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('app.debug', false);
+        });
 
         $this->blade(<<< 'HTML'
             <x-bundle import="~/foo" as="bar" />
         HTML);
+
+        $this->assertTrue(true); // No Exceptions raised
     }
 
     /** @test */
-    public function it_raises_console_error_when_bundle_not_found_in_production()
+    public function it_raises_console_error_when_debug_mode_disabled()
     {
-        config(['app.environment' => 'production']);
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('app.debug', false);
+        });
 
         $browser = $this->blade(<<< 'HTML'
-            <x-bundle import="~/foo" as="bar" />
-        HTML);
-
-        $this->assertNotEmpty($browser->driver->manage()->getLog('browser'));
+                <x-bundle import="~/foo" as="bar" />
+            HTML)
+            ->assertScript(<<< 'JS'
+                document.querySelectorAll('script[data-bundle="bar"')[0].innerHTML
+            JS, "console.error('BUNDLING ERROR: import ~/foo as bar')");
     }
 }

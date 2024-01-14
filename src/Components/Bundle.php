@@ -4,6 +4,7 @@ namespace Leuverink\Bundle\Components;
 
 use Illuminate\View\Component;
 use Leuverink\Bundle\BundleManager;
+use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 class Bundle extends Component
 {
@@ -32,6 +33,31 @@ class Bundle extends Component
         JS;
 
         // Bundle it up
+        try {
+            return $this->bundle($js);
+        } catch (BundlingFailedException $e) {
+            return $this->raiseConsoleErrorOrException($e);
+        }
+
+    }
+
+    protected function raiseConsoleErrorOrException(BundlingFailedException $e)
+    {
+        if (app()->hasDebugModeEnabled()) {
+            throw $e;
+        }
+
+        report($e);
+
+        return <<< HTML
+            <!--[BUNDLE: {$this->as} from '{$this->import}']-->
+            <script data-bundle="{$this->as}">console.error('BUNDLING ERROR: import {$this->import} as {$this->as}')</script>
+            <!--[ENDBUNDLE]>-->
+        HTML;
+    }
+
+    protected function bundle(string $js)
+    {
         $bundle = BundleManager::new()->bundle($js);
 
         // Render script tag with bundled code

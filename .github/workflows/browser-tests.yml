@@ -24,7 +24,7 @@ jobs:
           skip_after_successful_duplicate: "true"
           paths_ignore: '["**/README.md", "**/docs/**"]'
 
-  browswe-tests:
+  browser-tests:
     needs: skip-duplicates
     if: needs.skip-duplicates.outputs.should_skip != 'true'
 

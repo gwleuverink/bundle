@@ -1,0 +1,67 @@
+name: browser-tests
+
+on:
+  workflow_run:
+    workflows: [tests]
+    types: [completed]
+
+jobs:
+  skip-duplicates:
+    continue-on-error: true # Uncomment once integration is finished
+    runs-on: ubuntu-latest
+
+    # Map a step output to a job output
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          # All of these options are optional, so you can remove them if you are happy with the defaults
+          cancel_others: "true"
+          concurrent_skipping: "same_content"
+          skip_after_successful_duplicate: "true"
+          paths_ignore: '["**/README.md", "**/docs/**"]'
+
+  browswe-tests:
+    needs: skip-duplicates
+    if: needs.skip-duplicates.outputs.should_skip != 'true'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: zip
+          coverage: xdebug
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Restore Composer Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependecies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Directory Permissions
+        run: sudo chown -R $(whoami) vendor/pestphp/pest/.temp vendor/orchestra
+
+      - name: Install Bun & link Workbench directories
+        run: composer setup-workbench
+
+      - name: Execute tests
+        run: composer test-browser

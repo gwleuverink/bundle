@@ -13,7 +13,7 @@ Effortless page specific JavaScript modules in Laravel/Livewire apps
 ## Quickstart
 
 ```bash
-composer require leuverink/bundle --dev
+composer require leuverink/bundle
 ```
 
 ```bash

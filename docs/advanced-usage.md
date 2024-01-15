@@ -58,9 +58,11 @@ In order to use this script directly in your blade views, you simply need to imp
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
 
 ```html
-<x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
+<x-import module="lodash/filter" as="filter" />
+<!-- 25kb -->
 <!-- as opposed to -->
-<x-import module="lodash" as="lodash" /> <!-- 78kb -->
+<x-import module="lodash" as="lodash" />
+<!-- 78kb -->
 ```
 
 ## Sourcemaps
@@ -80,7 +82,7 @@ You're free to tweak Cache-Control headers bundles are served with by publishing
 Bundle also adds a Last-Modified header in addition to naming the file based on it's hashed contents. This should cover most browser caching needs out of the box.
 
 ```
-Request URL: {your-domain}/x-bundle/e52def31336c.min.js
+Request URL: {your-domain}/x-import/e52def31336c.min.js
 
 Last-Modified: Fri, 12 Jan 2024, 19:00:00 UTC
 Cache-Control: max-age=31536000, immutable

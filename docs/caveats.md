@@ -9,7 +9,7 @@ A couple of things to be aware of.
 
 ### Tree shaking
 
-Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports.
+Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-import` component will inline all of it's exports.
 
 For example; when bundling lodash all of it's exports will be included in the bundle, regardless of if the export is used later down in your template. This effect can be mitigated by using the per-method import approach.
 

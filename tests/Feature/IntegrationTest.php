@@ -122,13 +122,13 @@ it('serves bundles over http', function () {
     $file = $manager->hash($js) . '.min.js';
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertNotFound();
 
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertOk();
 });
 
@@ -142,7 +142,7 @@ it('serves bundles as Content-Type: application/javascript', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Content-Type', 'application/javascript; charset=utf-8');
 });
 
@@ -156,7 +156,7 @@ it('serves bundles with Last-Modified headers', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Last-Modified');
 });
 
@@ -172,7 +172,7 @@ it('serves bundles with configurable Cache-Control headers', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Cache-Control', 'foo, private'); // private is added in laravel's cache-control middleware
 });
 

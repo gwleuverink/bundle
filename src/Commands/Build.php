@@ -29,7 +29,7 @@ class Build extends Command
             ->map(fn ($path) => $finder->in($path)->files()->name('*.blade.*'))
             // Map them to an array
             ->flatMap(fn (Finder $iterator) => iterator_to_array($iterator))
-            // Pregmatch each file for x-bundle components
+            // Pregmatch each file for x-import components
             ->flatMap(fn (SplFileInfo $file) => preg_grep('/<x-import.*?>$/', file($file)))
             // Trim whitespace
             ->map(fn ($component) => trim($component))

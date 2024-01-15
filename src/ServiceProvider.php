@@ -9,7 +9,6 @@ use Leuverink\Bundle\Commands\Build;
 use Leuverink\Bundle\Commands\Clear;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
-use Leuverink\Bundle\Components\Bundle;
 use Leuverink\Bundle\Components\Import;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
@@ -61,13 +60,13 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerRoutes()
     {
         Route::get(
-            'x-bundle/{bundle}',
+            'x-import/{bundle}',
             fn ($bundle) => resolve(BundleManagerContract::class)->bundleContents($bundle)
-        )->name('x-bundle');
+        )->name('bundle:import');
 
         // TODO: Support code splitting
         // Route::get(
-        //     'x-bundle/chunks/{chunk}',
+        //     'x-import/chunks/{chunk}',
         //     fn($chunk) => resolve(BundleManagerContract::class)->chunkContents($chunk)
         // );
     }

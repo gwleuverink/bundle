@@ -14,14 +14,14 @@ Effortless page specific JavaScript modules in Laravel/Livewire apps.
 ## Installation
 
 ```bash
-composer require leuverink/x-import
+composer require leuverink/bundle
 ```
 
 ```bash
 npm install bun --save-dev
 ```
 
-This is all you need to start using x-import!
+This is all you need to start using Bundle!
 
 ## Basic usage
 

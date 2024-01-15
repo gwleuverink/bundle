@@ -87,7 +87,7 @@ This can be used in a variety of creative ways. For example for swapping out Lar
 ```javascript
 import axios from "axios";
 
-export default (async () => {
+export default (() => {
   window.axios = axios;
 
   window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";

@@ -62,7 +62,7 @@ jobs:
       - name: Install Bun & link Workbench directories
         run: composer setup-workbench
 
-      - name: Execute tests - coverage threshold 90%
+      - name: Run tests - coverage threshold 90%
         run: composer test -- --coverage --min=90 --coverage-clover clover.xml
 
       - name: Upload coverage reports to Codecov

@@ -31,7 +31,7 @@ You may bundle any `node_module` or local script from your `resources/js` direct
 <x-import module="apexcharts" as="ApexCharts" />
 
 <script type="module">
-  const ApexCharts = await _bundle("ApexCharts");
+  const ApexCharts = await _import("ApexCharts");
 
   // Create something amazing!
 </script>

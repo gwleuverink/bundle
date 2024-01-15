@@ -3,7 +3,7 @@
     <x-import module="lodash" as="lodash" />
 
     <script type="module">
-        var filter = await _bundle('lodash', 'filter');
+        var filter = await _import('lodash', 'filter');
 
         var users = [
             { 'user': 'barney', 'age': 36, 'active': true },

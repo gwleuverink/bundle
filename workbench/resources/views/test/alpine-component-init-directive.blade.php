@@ -11,7 +11,7 @@
         }"
 
         x-init="
-            const filter = await _bundle('filter');
+            const filter = await _import('filter');
             let filtered = filter(users, o => !o.active)
             $el.innerHTML = JSON.stringify(filtered)
         "

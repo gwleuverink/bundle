@@ -10,13 +10,13 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 class LocalModuleTest extends DuskTestCase
 {
     /** @test */
-    public function it_injects_import_and_bundle_function_on_the_window_object()
+    public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
                 <x-import module="~/alert" as="alert" />
             HTML)
-            ->assertScript('typeof window._bundle', 'function')
-            ->assertScript('typeof window._bundle_modules', 'object');
+            ->assertScript('typeof window._import', 'function')
+            ->assertScript('typeof window._import_modules', 'object');
     }
 
     /** @test */
@@ -26,7 +26,7 @@ class LocalModuleTest extends DuskTestCase
                 <x-import module="~/alert" as="alert" />
 
                 <script type="module">
-                    var module = await _bundle('alert');
+                    var module = await _import('alert');
                     module('Hello World!')
                 </script>
             HTML)

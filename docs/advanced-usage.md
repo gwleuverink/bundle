@@ -47,7 +47,7 @@ In order to use this script directly in your blade views, you simply need to imp
 <x-import module="~/alert" as="alert" />
 
 <script type="module">
-  const module = await _bundle("alert");
+  const module = await _import("alert");
 
   module("Hello World!");
 </script>

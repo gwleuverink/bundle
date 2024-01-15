@@ -28,7 +28,7 @@ After you've used the `<x-import>` in your template you can retreive the bundle 
 
 ```html
 <script type="module">
-  const ApexCharts = await _bundle("ApexCharts");
+  const ApexCharts = await _import("ApexCharts");
 
   // Create something amazing!
 </script>

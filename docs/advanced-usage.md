@@ -63,7 +63,7 @@ In order to use this script directly in your blade views, you simply need to imp
 </script>
 ```
 
-## Self evaluating imports
+## Self evaluating exports
 
 You can use this mechanism to immediatly execute some code or to bootstrap & import other libraries.
 

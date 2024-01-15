@@ -10,7 +10,7 @@ class Import extends Component
 {
     public function __construct(
         public string $module,
-        public string $as,
+        public ?string $as = null,
         public bool $inline = false // TODO: Implement this
     ) {
     }
@@ -50,11 +50,17 @@ class Import extends Component
         // can retreive the module as a Promise
         $js = <<< JS
             if(!window.x_import_modules) window.x_import_modules = {}
-            window.x_import_modules.{$this->as} = import('{$this->module}')
+            '{$this->as}'
+                ? window.x_import_modules['{$this->as}'] = import('{$this->module}') // Assign it under an alias
+                : import('{$this->module}') // Only import it (for IIFE no alias needed)
+
 
             window._import = async function(alias, exportName = 'default') {
                 let module = await window.x_import_modules[alias]
-                return module[exportName]
+
+                return module[exportName] !== undefined
+                    ? module[exportName] // Return export if it exists
+                    : module // Otherwise the entire module
             }
         JS;
 

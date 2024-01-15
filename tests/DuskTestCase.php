@@ -27,6 +27,14 @@ class DuskTestCase extends BaseTestCase
         parent::setUpBeforeClass();
     }
 
+    protected function tearDown(): void
+    {
+        $this->artisan('bundle:clear');
+        $this->artisan('view:clear');
+
+        parent::tearDown();
+    }
+
     protected function getBasePath()
     {
         // testbench-core skeleton is leading, due to test setup in testbench.yaml

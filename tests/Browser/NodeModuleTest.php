@@ -47,7 +47,7 @@ class NodeModuleTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_canx_import_modules_per_method()
+    public function it_can_import_modules_per_method()
     {
         $this->blade(<<< 'HTML'
             <x-import module="lodash/filter" as="filter" />
@@ -71,5 +71,33 @@ class NodeModuleTest extends DuskTestCase
             <div id="output"></div>
         HTML)
             ->assertSeeIn('#output', 'Yello World!');
+    }
+
+    /** @test */
+    public function it_can_use_both_local_and_node_module_together_on_the_same_page()
+    {
+        $this->blade(<<< 'HTML'
+            <x-import module="~/output-to-id" as="output" />
+            <x-import module="lodash/filter" as="filter" />
+
+            <script type="module">
+                const filter = await _import('filter');
+                const output = await _import('output');
+
+                let data = [
+                    { 'name': 'Foo', 'active': false },
+                    { 'name': 'Wello World!', 'active': true }
+                ];
+
+                // Filter only active
+                let filtered = filter(data, o => o.active)
+
+                output('output', filtered[0].name)
+
+            </script>
+
+            <div id="output"></div>
+        HTML)
+            ->assertSeeIn('#output', 'Wello World!');
     }
 }

@@ -13,29 +13,60 @@ class LocalModuleTest extends DuskTestCase
     public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
+                <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript('typeof window._import', 'function')
             ->assertScript('typeof window.x_import_modules', 'object');
     }
 
     /** @test */
-    public function it_imports_from_local_resource_directory()
+    public function it_evaluates_function_expressions()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
-
-                <script type="module">
-                    var module = await _import('alert');
-                    module('Hello World!')
-                </script>
+                <x-import module="~/function-is-evaluated" as="is-evaluated" defer />
             HTML)
-            ->assertDialogOpened('Hello World!');
+            ->assertScript('window.test_evaluated', true);
     }
 
     /** @test */
-    public function it_canx_import_modules_per_method()
+    public function it_can_import_modules_inside_function_expressions()
     {
+        $this->blade(<<< 'HTML'
+                <x-import module="~/function-is-evaluated" as="is-evaluated" defer />
+            HTML)
+            ->assertScript('window.test_evaluated', true);
+    }
 
+    /** @test */
+    public function it_imports_from_local_resource_directory()
+    {
+        $this->blade(<<< 'HTML'
+                <x-import module="~/output-to-id" as="output" />
+
+                <script type="module">
+                    var output = await _import('output');
+                    output('output', 'Yello World!')
+                </script>
+
+                <div id="output"></div>
+            HTML)
+            ->assertSeeIn('#output', 'Yello World!');
+    }
+
+    /** @test */
+    public function it_can_import_named_functions()
+    {
+        $this->blade(<<< 'HTML'
+            <x-import module="~/named-functions" as="helpers" />
+
+            <script type="module">
+                const outputBar = await _import('helpers', 'bar');
+
+                outputBar()
+            </script>
+
+            <div id="output"></div>
+        HTML)
+            ->assertSeeIn('#output', 'Bar');
     }
 }

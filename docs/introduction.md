@@ -5,10 +5,10 @@ title: How it works
 
 ## How it works
 
-The `<x-bundle />` component bundles your import on the fly using [Bun](https://bun.sh){:target="\_blank"} and renders a script tag in place.
+The `<x-import />` component bundles your import on the fly using [Bun](https://bun.sh){:target="\_blank"} and renders a script tag in place.
 
 ```html
-<x-bundle import="apexcharts" as="ApexCharts" />
+<x-import module="apexcharts" as="ApexCharts" />
 
 <!-- yields the following script -->
 
@@ -25,7 +25,7 @@ The `<x-bundle />` component bundles your import on the fly using [Bun](https://
 
 ### The `_bundle()` helper function
 
-After you use `<x-bundle />` somewhere in your template a global `_bundle` function will become available on the window object.
+After you use `<x-import />` somewhere in your template a global `_bundle` function will become available on the window object.
 
 You can use this function to fetch the bundled import by the name you've passed to the `as` argument.
 

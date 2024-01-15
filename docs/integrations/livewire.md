@@ -12,6 +12,6 @@ Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-
 
 ```html
 @script
-<x-bundle import="apexcharts" as="ApexCharts" />
+<x-import module="apexcharts" as="ApexCharts" />
 @endscript
 ```

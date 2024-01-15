@@ -13,7 +13,7 @@ class LocalModuleTest extends DuskTestCase
     public function it_injects_import_and_bundle_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" />
             HTML)
             ->assertScript('typeof window._bundle', 'function')
             ->assertScript('typeof window._bundle_modules', 'object');
@@ -23,7 +23,7 @@ class LocalModuleTest extends DuskTestCase
     public function it_imports_from_local_resource_directory()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" />
 
                 <script type="module">
                     var module = await _bundle('alert');

@@ -1,7 +1,7 @@
 <x-layout>
 
     <script src="//unpkg.com/alpinejs" defer></script>
-    <x-bundle import="lodash/filter" as="filter" />
+    <x-import module="lodash/filter" as="filter" />
 
     <div x-data="{
             users: [

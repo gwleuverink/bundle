@@ -9,7 +9,7 @@ nav_order: 3
 Using Bundle in AlpineJS is as easy as using it in an inline script.
 
 ```html
-<x-bundle import="tippy.js" as="tippy" defer />
+<x-import module="tippy.js" as="tippy" defer />
 
 <button
   x-init="
@@ -26,7 +26,7 @@ Using Bundle in AlpineJS is as easy as using it in an inline script.
 You can also use the `_bundle` function in the `x-data` object. This requires you make the funcion `_bundle` is invoked from async.
 
 ```html
-<x-bundle import="tippy.js" as="tippy" defer />
+<x-import module="tippy.js" as="tippy" defer />
 
 <button
   x-data="{

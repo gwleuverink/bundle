@@ -13,7 +13,7 @@ class NodeModuleTest extends DuskTestCase
     public function it_injects_import_and_bundle_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="lodash/filter" as="filter" />
+                <x-import module="lodash/filter" as="filter" />
             HTML)
             ->assertScript('typeof window._bundle', 'function')
             ->assertScript('typeof window._bundle_modules', 'object');
@@ -23,7 +23,7 @@ class NodeModuleTest extends DuskTestCase
     public function it_imports_from_node_modules()
     {
         $this->blade(<<< 'HTML'
-            <x-bundle import="lodash" as="lodash" />
+            <x-import module="lodash" as="lodash" />
 
             <script type="module">
                 const filter = await _bundle('lodash', 'filter');
@@ -50,7 +50,7 @@ class NodeModuleTest extends DuskTestCase
     public function it_can_import_modules_per_method()
     {
         $this->blade(<<< 'HTML'
-            <x-bundle import="lodash/filter" as="filter" />
+            <x-import module="lodash/filter" as="filter" />
 
             <script type="module">
                 const filter = await _bundle('filter');

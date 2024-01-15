@@ -28,7 +28,7 @@ This is all you need to start using Bundle!
 You may bundle any `node_module` or local script from your `resources/js` directory directly on the page.
 
 ```html
-<x-bundle import="apexcharts" as="ApexCharts" />
+<x-import module="apexcharts" as="ApexCharts" />
 
 <script type="module">
   const ApexCharts = await _bundle("ApexCharts");

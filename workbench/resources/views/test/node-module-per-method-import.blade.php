@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-bundle import="lodash/filter" as="filter" />
+    <x-import module="lodash/filter" as="filter" />
 
     <script type="module">
         var filter = await _bundle('filter');

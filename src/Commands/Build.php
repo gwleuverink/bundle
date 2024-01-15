@@ -30,13 +30,13 @@ class Build extends Command
             // Map them to an array
             ->flatMap(fn (Finder $iterator) => iterator_to_array($iterator))
             // Pregmatch each file for x-bundle components
-            ->flatMap(fn (SplFileInfo $file) => preg_grep('/<x-bundle.*?>$/', file($file)))
+            ->flatMap(fn (SplFileInfo $file) => preg_grep('/<x-import.*?>$/', file($file)))
             // Trim whitespace
             ->map(fn ($component) => trim($component))
             // Filter uniques
             ->unique()
             // Handle no no imports found
-            ->whenEmpty(fn () => warning('No usages of <x-bundle /> found in your build_paths.'))
+            ->whenEmpty(fn () => warning('No usages of <x-import /> found in your build_paths.'))
             // Start progress bar & render components
             ->whenNotEmpty(function ($components) {
                 // We can't display the task component status when it's invoked from within the progress bar

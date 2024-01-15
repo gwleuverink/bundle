@@ -10,7 +10,7 @@ You can render the bundle inline by using the `inline` option. This saves an add
 You should apply this with consideration. You will save up on requests, but doing so will increase the initial page load response size.
 
 ```html
-<x-bundle import="apexcharts" as="ApexCharts" inline />
+<x-import module="apexcharts" as="ApexCharts" inline />
 
 <!-- yields the following script -->
 
@@ -41,10 +41,10 @@ export default function alertProxy(message) {
 }
 ```
 
-In order to use this script directly in your blade views, you simply need to import it using the `<x-bundle />` component.
+In order to use this script directly in your blade views, you simply need to import it using the `<x-import />` component.
 
 ```html
-<x-bundle import="~/alert" as="alert" />
+<x-import module="~/alert" as="alert" />
 
 <script type="module">
   const module = await _bundle("alert");
@@ -58,9 +58,9 @@ In order to use this script directly in your blade views, you simply need to imp
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
 
 ```html
-<x-bundle import="lodash/filter" as="filter" /> <!-- 25kb -->
+<x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
 <!-- as opposed to -->
-<x-bundle import="lodash" as="lodash" /> <!-- 78kb -->
+<x-import module="lodash" as="lodash" /> <!-- 78kb -->
 ```
 
 ## Sourcemaps

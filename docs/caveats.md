@@ -28,12 +28,12 @@ Due to Bun's path remapping behaviour Bundle is not able to split chunks from mo
 <!-- TODO: Add a detailed treeview of chunking vs how it's done now -->
 <!-- NOTE: A workaround where your local scripts also use _bundle() & we preload all dependencies in the blade template is possible. But less than ideal. -->
 
-### Don't pass dynamic variables to `<x-bundle />`
+### Don't pass dynamic variables to `<x-import />`
 
 This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment.
 
 ```html
-<x-bundle :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
+<x-import :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
 ```
 
 ### Prevent Bundle from loading the same import multiple times
@@ -42,4 +42,4 @@ Bundle uses laravel's `@once` direcive internally, so you don't have to worry ab
 
 ### Run `view:clear` after npm updates
 
-The title said it all. Not doing this _may_ result into issues where `<x-bundle>` serves old code.
+The title said it all. Not doing this _may_ result into issues where `<x-import>` serves old code.

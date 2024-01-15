@@ -1,4 +1,4 @@
-# Bundle
+# `x-import`
 
 Effortless page specific JavaScript modules in Laravel/Livewire apps.
 
@@ -14,21 +14,21 @@ Effortless page specific JavaScript modules in Laravel/Livewire apps.
 ## Installation
 
 ```bash
-composer require leuverink/bundle
+composer require leuverink/x-import
 ```
 
 ```bash
 npm install bun --save-dev
 ```
 
-This is all you need to start using Bundle!
+This is all you need to start using x-import!
 
 ## Basic usage
 
 You may bundle any `node_module` or local script from your `resources/js` directory directly on the page.
 
 ```html
-<x-bundle import="apexcharts" as="ApexCharts" />
+<x-import module="apexcharts" as="ApexCharts" />
 
 <script type="module">
   const ApexCharts = await _bundle("ApexCharts");

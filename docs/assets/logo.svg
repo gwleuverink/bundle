@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" color-interpolation-filters="sRGB" style="margin:auto" version="1.0" viewBox="0 0 340 250">
+  <rect width="100%" height="100%" fill="none" class="background"/>
+  <g fill="#333" class="iconlettersvg-g iconlettersvg">
+    <g class="tp-name">
+      <g class="name-imagesvg" transform="translate(28.51 103.02)">
+        <path fill="none" d="M0 0h50.25v43.96H0z" class="image-rect"/>
+        <svg width="50.25" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.74 117.89">
+            <path fill="#9fd931" d="M114.13 0H20.79l-5.25 29.75h118.4l.8-4.53L114.13 0z" opacity=".8"/>
+            <path fill="#00b8ce" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
+            <path fill="#8a6bbc" d="M114.38 0h-10.5L83.09 117.89H98.2l23.6-20.01 12.9-73.12L114.38 0z" opacity=".8"/>
+            <path fill="#ff4b4c" d="M0 117.89h97.99l23.84-20.16 1.69-9.59H5.25L0 117.89z" opacity=".8"/>
+            <path fill="#ffa816" d="m130.62 48.62.76-4.33H12.98l-4.6 26.1h118.4l.64-3.65-.1-.13 3.15-17.87.15-.12z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+      <g class="name-imagesvg" transform="translate(78.76 103.02)">
+        <path fill="none" d="M0 0h48.2v43.96H0z" class="image-rect"/>
+        <svg width="48.2" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.61 118.21">
+            <path fill="#ffa816" d="m0 91.49 21.93 26.72h47.49L8.44 43.61 0 91.49z" opacity=".8"/>
+            <path fill="#8a6bbc" d="M129.61 0H94.29L80.5 78.24l-.08.07-7.04 39.9h8.02l32.29-27.52 8.47-48.06-.08.06L129.61 0z" opacity=".8"/>
+            <path fill="#ff4b4c" d="m81.46 118.21 32.14-27.39 8.44-47.89-88.07 75.28h47.49z" opacity=".8"/>
+            <path fill="#9fd931" d="m0 91.49 21.93 26.72h8.68L51.45 0H16.13L0 91.49z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+      <g class="name-imagesvg" transform="translate(126.97 103.02)">
+        <path fill="none" d="M0 0h55.04v43.96H0z" class="image-rect"/>
+        <svg width="55.04" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.58 117.89">
+            <path fill="#9fd931" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
+            <path fill="#ff4b4c" d="M91.61 117.89h35.19L147.58 0H112.4L91.61 117.89z" opacity=".8"/>
+            <path fill="#8a6bbc" d="m20.79 0-1.81 10.23 73.6 107.66h34.22l1.8-10.23L55 0H20.79z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+      <g class="name-imagesvg" transform="translate(182 103.02)">
+        <path fill="none" d="M0 0h48.47v43.96H0z" class="image-rect"/>
+        <svg width="48.47" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.96 117.89">
+            <path fill="#ff4b4c" d="M129.96 25.22 109.19 0H20.72l-5.24 29.75h113.68l.8-4.53z" opacity=".8"/>
+            <path fill="#ffa816" d="m88.4 117.89 29.66-25.22 8.36-47.39-85.64 72.61H88.4z" opacity=".8"/>
+            <path fill="#8a6bbc" d="M55.97 0H20.79L0 117.89h35.19L55.97 0z" opacity=".8"/>
+            <path fill="#9fd931" d="M129.96 25.22 109.19 0h-47.5l59.85 72.93 8.42-47.71z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+      <g class="name-imagesvg" transform="translate(230.47 103.02)">
+        <path fill="none" d="M0 0h33.68v43.96H0z" class="image-rect"/>
+        <svg width="33.68" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.31 117.89">
+            <path fill="#8a6bbc" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
+            <path fill="#00b8ce" d="M0 117.89h85.07l5.24-29.75H5.25L0 117.89z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+      <g class="name-imagesvg" transform="translate(264.15 103.02)">
+        <path fill="none" d="M0 0h47.34v43.96H0z" class="image-rect"/>
+        <svg width="47.34" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.94 117.89">
+            <path fill="#ff4b4c" d="M126.94 0H20.79l-5.25 29.75h106.15L126.94 0z" opacity=".8"/>
+            <path fill="#8a6bbc" d="M113.01 88.14H5.25L0 117.89h107.77l5.24-29.75z" opacity=".8"/>
+            <path fill="#ffa816" d="M101.15 44.29H12.98l-4.6 26.1h88.16l4.61-26.1z" opacity=".8"/>
+            <path fill="#9fd931" d="M55.97 0H20.79L0 117.89h35.19L55.97 0z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+    </g>
+  </g>
+</svg>

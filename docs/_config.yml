@@ -4,7 +4,7 @@ remote_theme: just-the-docs/just-the-docs
 color_scheme: light
 logo: "/assets/logo.svg"
 
-url: https://gwleuverink.github.io/bundle
+url: https://laravel-bundle.dev
 
 aux_links: # remove if you don't want this link to appear on your pages
   Github: https://github.com/gwleuverink/bundle

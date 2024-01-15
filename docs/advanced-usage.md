@@ -109,7 +109,7 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 
 {: .warning }
 
-> Code splitting is [not supported](https://gwleuverink.github.io/bundle/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
+> Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
 
 ## Sourcemaps
 
@@ -119,7 +119,7 @@ Sourcemaps will be generated in a separate file so this won't affect performance
 
 {: .note }
 
-> If your project stored previously bundled files you need to run the [bundle:clear](https://gwleuverink.github.io/bundle/advanced-usage.html#artisan-bundleclear) command
+> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
 
 ## Cache-Control headers
 

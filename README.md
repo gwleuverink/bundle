@@ -1,5 +1,5 @@
 <p align="center" style="margin-bottom: 2rem">
-    <img width="460" src="https://gwleuverink.github.io/bundle/assets/logo.svg">
+    <img width="460" src="https://laravel-bundle.dev/assets/logo.svg">
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 <br />
 
-Explore the docs on **[GitHub Pages »](https://gwleuverink.github.io/bundle/)**
+Explore the docs on **[GitHub Pages »](https://laravel-bundle.dev/)**
 
 **_In development - not production ready_**
 

@@ -113,7 +113,7 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 
 Please note Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
 
-{: .highlight }
+{: .note }
 
 Bundle is meant as a tool for Blade centric apps, like Livewire, to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a Alpine component.
 

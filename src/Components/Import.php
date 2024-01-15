@@ -61,7 +61,7 @@ class Import extends Component
         $bundle = BundleManager::new()->bundle($js);
 
         // Render script tag with bundled code
-        return view('bundle::bundle', [
+        return view('x-import::import', [
             'bundle' => $bundle,
         ]);
     }

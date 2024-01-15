@@ -10,23 +10,23 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 class NodeModuleTest extends DuskTestCase
 {
     /** @test */
-    public function it_injects_import_and_bundle_function_on_the_window_object()
+    public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="lodash/filter" as="filter" />
+                <x-import module="lodash/filter" as="filter" />
             HTML)
-            ->assertScript('typeof window._bundle', 'function')
-            ->assertScript('typeof window._bundle_modules', 'object');
+            ->assertScript('typeof window._import', 'function')
+            ->assertScript('typeof window.x_import_modules', 'object');
     }
 
     /** @test */
     public function it_imports_from_node_modules()
     {
         $this->blade(<<< 'HTML'
-            <x-bundle import="lodash" as="lodash" />
+            <x-import module="lodash" as="lodash" />
 
             <script type="module">
-                const filter = await _bundle('lodash', 'filter');
+                const filter = await _import('lodash', 'filter');
 
                 let data = [
                     { 'name': 'Foo', 'active': false },
@@ -47,13 +47,13 @@ class NodeModuleTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_import_modules_per_method()
+    public function it_canx_import_modules_per_method()
     {
         $this->blade(<<< 'HTML'
-            <x-bundle import="lodash/filter" as="filter" />
+            <x-import module="lodash/filter" as="filter" />
 
             <script type="module">
-                const filter = await _bundle('filter');
+                const filter = await _import('filter');
 
                 let data = [
                     { 'name': 'Foo', 'active': false },

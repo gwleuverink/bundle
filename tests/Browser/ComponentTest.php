@@ -12,8 +12,8 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 // it('renders the same import only once')
 //     ->blade(<<< HTML
-//         <x-bundle import="~/alert" as="alert" />
-//         <x-bundle import="~/alert" as="alert" />
+//         <x-import module="~/alert" as="alert" />
+//         <x-import module="~/alert" as="alert" />
 //     HTML)
 //     ->assertScript(<<< JS
 //         document.querySelectorAll('script[data-bundle="alert"').length
@@ -25,8 +25,8 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_only_once()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" />
-                <x-bundle import="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" />
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="alert"').length
@@ -37,8 +37,8 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_only_once_when_one_was_inlined()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" />
-                <x-bundle import="~/alert" as="alert" inline />
+                <x-import module="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" inline />
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="alert"').length
@@ -49,8 +49,8 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_under_different_aliases()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="foo" />
-                <x-bundle import="~/alert" as="bar" />
+                <x-import module="~/alert" as="foo" />
+                <x-import module="~/alert" as="bar" />
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="foo"').length
@@ -64,7 +64,7 @@ class ComponentTest extends DuskTestCase
     public function it_renders_script_inline_when_inline_prop_was_passed()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" inline />
+                <x-import module="~/alert" as="alert" inline />
             HTML)
             // Assert it doesn't render src attribute on the script tag
             ->assertScript(<<< 'JS'
@@ -79,7 +79,7 @@ class ComponentTest extends DuskTestCase
     public function it_doesnt_render_script_inline_by_default()
     {
         $this->blade(<<< 'HTML'
-                <x-bundle import="~/alert" as="alert" />
+                <x-import module="~/alert" as="alert" />
             HTML)
             // Assert it renders src attribute on the script tag
             ->assertScript(<<< 'JS'
@@ -101,7 +101,7 @@ class ComponentTest extends DuskTestCase
         $this->expectException(ViewException::class);
 
         $this->blade(<<< 'HTML'
-            <x-bundle import="~/foo" as="bar" />
+            <x-import module="~/foo" as="bar" />
         HTML);
     }
 
@@ -115,7 +115,7 @@ class ComponentTest extends DuskTestCase
         $this->expectException(ViewException::class);
 
         $browser = $this->blade(<<< 'HTML'
-            <x-bundle import="~/foo" as="bar" />
+            <x-import module="~/foo" as="bar" />
         HTML);
 
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
@@ -129,7 +129,7 @@ class ComponentTest extends DuskTestCase
         });
 
         $this->blade(<<< 'HTML'
-            <x-bundle import="~/foo" as="bar" />
+            <x-import module="~/foo" as="bar" />
         HTML);
 
         $this->assertTrue(true); // No Exceptions raised
@@ -143,7 +143,7 @@ class ComponentTest extends DuskTestCase
         });
 
         $browser = $this->blade(<<< 'HTML'
-                <x-bundle import="~/foo" as="bar" />
+                <x-import module="~/foo" as="bar" />
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="bar"')[0].innerHTML

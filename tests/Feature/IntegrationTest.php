@@ -1,7 +1,7 @@
 <?php
 
 use Leuverink\Bundle\BundleManager;
-use Leuverink\Bundle\Components\Bundle;
+use Leuverink\Bundle\Components\Import;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 it('transpiles JavaScript')->bundle(
@@ -86,7 +86,7 @@ it('is able to resolve local scripts when aliased in jsconfig.json', function ()
 
 it('throws a BundlingFailedException when blade component fails bundling', function () {
     config()->set('app.debug', true);
-    $component = new Bundle('~/foo', 'bar');
+    $component = new Import('~/foo', 'bar');
 
     expect(fn () => $component->render())
         ->toThrow(BundlingFailedException::class);
@@ -94,7 +94,7 @@ it('throws a BundlingFailedException when blade component fails bundling', funct
 
 it('doesnt throw a BundlingFailedException when blade component fails bundling and debug mode is disabled', function () {
     config()->set('app.debug', false);
-    $component = new Bundle('~/foo', 'bar');
+    $component = new Import('~/foo', 'bar');
 
     expect(fn () => $component->render())
         ->not->toThrow(BundlingFailedException::class);
@@ -102,7 +102,7 @@ it('doesnt throw a BundlingFailedException when blade component fails bundling a
 
 it('raises console error when blade component fails bundling and debug mode is disabled', function () {
     config()->set('app.debug', false);
-    $component = new Bundle('~/foo', 'bar');
+    $component = new Import('~/foo', 'bar');
 
     expect($component->render())
         ->toContain(
@@ -122,13 +122,13 @@ it('serves bundles over http', function () {
     $file = $manager->hash($js) . '.min.js';
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertNotFound();
 
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertOk();
 });
 
@@ -142,7 +142,7 @@ it('serves bundles as Content-Type: application/javascript', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Content-Type', 'application/javascript; charset=utf-8');
 });
 
@@ -156,7 +156,7 @@ it('serves bundles with Last-Modified headers', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Last-Modified');
 });
 
@@ -172,7 +172,7 @@ it('serves bundles with configurable Cache-Control headers', function () {
     $manager->bundle($js);
 
     $this->get(
-        route('x-bundle', $file)
+        route('bundle:import', $file)
     )->assertHeader('Cache-Control', 'foo, private'); // private is added in laravel's cache-control middleware
 });
 

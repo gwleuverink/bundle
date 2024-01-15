@@ -1,1 +1,1 @@
-<x-bundle import="~/alert" as="alert" />
+<x-import module="~/alert" as="alert" />

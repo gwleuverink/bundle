@@ -65,6 +65,8 @@ In order to use this script directly in your blade views, you simply need to imp
 
 ## Self evaluating exports
 
+**Beta**
+
 You can use this mechanism to immediatly execute some code or to bootstrap & import other libraries.
 
 Consider the following example the following file `resources/js/immediately-invoked.js`

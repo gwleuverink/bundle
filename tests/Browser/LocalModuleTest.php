@@ -16,7 +16,7 @@ class LocalModuleTest extends DuskTestCase
                 <x-import module="~/alert" as="alert" />
             HTML)
             ->assertScript('typeof window._import', 'function')
-            ->assertScript('typeof window._import_modules', 'object');
+            ->assertScript('typeof window.x_import_modules', 'object');
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class LocalModuleTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_import_modules_per_method()
+    public function it_canx_import_modules_per_method()
     {
 
     }

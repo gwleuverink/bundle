@@ -17,17 +17,17 @@ class Import extends Component
 
     public function render()
     {
-        // First make sure window._import_modules exists
+        // First make sure window.x_import_modules exists
         // and assign the import to that object.
         // ---------------------------------------------
         // Then we expose a _import function that
         // can retreive the module as a Promise
         $js = <<< JS
-            if(!window._import_modules) window._import_modules = {}
-            window._import_modules.{$this->as} = import('{$this->module}')
+            if(!window.x_import_modules) window.x_import_modules = {}
+            window.x_import_modules.{$this->as} = import('{$this->module}')
 
             window._import = async function(alias, exportName = 'default') {
-                let module = await window._import_modules[alias]
+                let module = await window.x_import_modules[alias]
                 return module[exportName]
             }
         JS;

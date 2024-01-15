@@ -74,7 +74,7 @@ class NodeModuleTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_both_local_and_node_module_together_on_the_same_page()
+    public function it_can_use_both_local_and_node_module_together_on_the_same_page()
     {
         $this->blade(<<< 'HTML'
             <x-import module="~/output-to-id" as="output" />

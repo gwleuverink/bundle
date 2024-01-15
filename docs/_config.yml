@@ -18,8 +18,6 @@ search.button: true
 
 callouts:
   note:
-    title: note
     color: purple
   warning:
-    title: warning
     color: red

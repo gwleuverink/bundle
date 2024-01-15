@@ -53,5 +53,6 @@ Run `composer serve` to start a local environment to tinker in.
 
 You can run the test suites with the following composer scripts:
 
-- `composer test` to run all tests except browser test
-- `composer test-browser` to run all browser test
+- `composer test` to run all tests except browser tests
+- `composer test-browser` to run all browser tests
+- `composer test-all` to run all tests

@@ -63,7 +63,7 @@ In order to use this script directly in your blade views, you simply need to imp
 </script>
 ```
 
-## Self evaluation functions
+## Self evaluating imports
 
 You can use this mechanism to immediatly execute some code or to bootstrap & import other libraries.
 
@@ -79,7 +79,7 @@ Then in your template you can use the `<x-import />` component to evaluate this 
 
 ```html
 <!-- User will be alerted with 'Hello World' -->
-<x-import module="~/immediately-invoked" as="foo" />
+<x-import module="~/immediately-invoked" />
 ```
 
 This can be used in a variety of creative ways. For example for swapping out Laravel's default `bootstrap.js` to a need-only approach.
@@ -105,7 +105,7 @@ export default (async () => {
 </script>
 ```
 
-Note that your consuming script still needs to be of type="module" otherwise `window.axios` will be undefined
+Note that your consuming script still needs to be of type="module" otherwise `window.axios` will be undefined.
 
 {: .alert }
 

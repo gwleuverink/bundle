@@ -50,7 +50,7 @@ class Import extends Component
         // can retreive the module as a Promise
         $js = <<< JS
             if(!window.x_import_modules) window.x_import_modules = {}
-            window.x_import_modules.{$this->as} = import('{$this->module}')
+            window.x_import_modules['{$this->as}'] = import('{$this->module}')
 
             window._import = async function(alias, exportName = 'default') {
                 let module = await window.x_import_modules[alias]

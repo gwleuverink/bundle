@@ -47,7 +47,7 @@ class NodeModuleTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_canx_import_modules_per_method()
+    public function it_can_import_modules_per_method()
     {
         $this->blade(<<< 'HTML'
             <x-import module="lodash/filter" as="filter" />

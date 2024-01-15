@@ -92,6 +92,12 @@ it('throws a BundlingFailedException when blade component fails bundling', funct
         ->toThrow(BundlingFailedException::class);
 });
 
+it('allows for hyphens in as property', function () {
+    $component = new Import('~/alert', 'foo-bar');
+    $component->render();
+    expect(true)->toBeTrue(); // No exception was thrown
+});
+
 it('doesnt throw a BundlingFailedException when blade component fails bundling and debug mode is disabled', function () {
     config()->set('app.debug', false);
     $component = new Import('~/foo', 'bar');

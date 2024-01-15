@@ -2,7 +2,7 @@ title: Bundle
 description: Effortless page specific JavaScript modules in Laravel/Livewire apps
 remote_theme: just-the-docs/just-the-docs
 color_scheme: light
-logo: "/bundle/assets/logo.svg"
+logo: "/assets/logo.svg"
 
 url: https://gwleuverink.github.io/bundle
 

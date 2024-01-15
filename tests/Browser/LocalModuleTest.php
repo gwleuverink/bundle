@@ -29,6 +29,15 @@ class LocalModuleTest extends DuskTestCase
     }
 
     /** @test */
+    public function it_can_import_modules_inside_function_expressions()
+    {
+        $this->blade(<<< 'HTML'
+                <x-import module="~/function-is-evaluated" as="is-evaluated" defer />
+            HTML)
+            ->assertScript('window.test_evaluated', true);
+    }
+
+    /** @test */
     public function it_imports_from_local_resource_directory()
     {
         $this->blade(<<< 'HTML'

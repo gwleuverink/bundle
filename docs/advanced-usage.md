@@ -19,6 +19,16 @@ You should apply this with consideration. You will save up on requests, but doin
 </script>
 ```
 
+## Per method exports
+
+If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
+
+```html
+<x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
+<!-- as opposed to -->
+<x-import module="lodash" as="lodash" /> <!-- 78kb -->
+```
+
 ## Path rewriting for local modules
 
 If you want to import modules from any other directory than `node_modules`, you may add a `jsconfig.json` file to your project root with all your path aliases.
@@ -33,7 +43,7 @@ If you want to import modules from any other directory than `node_modules`, you 
 }
 ```
 
-Consider the following example script in your `resources/js` directory:
+Consider the following example script `resources/js/alert.js`:
 
 ```javascript
 export default function alertProxy(message) {
@@ -53,15 +63,51 @@ In order to use this script directly in your blade views, you simply need to imp
 </script>
 ```
 
-## Per method exports
+## Self evaluation functions
 
-If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
+You can use this mechanism to immediatly execute some code or to bootstrap & import other libraries.
+
+Consider the following example the following file `resources/js/immediately-invoked.js`
+
+```javascript
+export default (() => {
+  alert('Hello World!)
+})();
+```
+
+Then in your template you can use the `<x-import />` component to evaluate this function. Without the need of calling the `_import()` function. Note this only works with a [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE){:target="\_blank"}
 
 ```html
-<x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
-<!-- as opposed to -->
-<x-import module="lodash" as="lodash" /> <!-- 78kb -->
+<!-- User will be alerted with 'Hello World' -->
+<x-import module="~/immediately-invoked" as="foo" />
 ```
+
+This can be used in a variety of creative ways. For example for swapping out Laravel's default `bootstrap.js` to a need-only approach.
+
+```javascript
+import axios from "axios";
+
+export default (async () => {
+  window.axios = axios;
+
+  window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+})();
+```
+
+```html
+<x-import module="~/bootstrap/axios" as="axios" />
+
+<script>
+  // axios available, since it was attached to the window inside the IIFE
+  axios.get("/user?ID=12345").then(function (response) {
+    console.log(response);
+  });
+</script>
+```
+
+{: .alert }
+
+> Code splitting is [not supported](https://gwleuverink.github.io/bundle/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
 
 ## Sourcemaps
 

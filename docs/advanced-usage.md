@@ -111,6 +111,10 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 
 > Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
 
+Please note Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
+
+Bundle is meant as a tool for Blade centric apps, like Livewire, to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a Alpine component.
+
 ## Sourcemaps
 
 Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.

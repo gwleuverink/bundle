@@ -6,7 +6,7 @@ nav_order: 1
 
 ## Usage in plain Laravel
 
-When using Bundle in your Blade views, you may push/prepend `<x-bundle />` to a stack.
+When using Bundle in your Blade views, you may push/prepend `<x-import />` to a stack.
 
 Please refer to the [Laravel documentation](https://laravel.com/docs/10.x/blade#stacks){:target="\_blank"} for more information about using stacks.
 
@@ -16,7 +16,7 @@ Please refer to the [Laravel documentation](https://laravel.com/docs/10.x/blade#
 <!--  -->
 
 @push('scripts')
-<x-bundle import="apexcharts" as="ApexCharts" />
+<x-import module="apexcharts" as="ApexCharts" />
 @endstack
 ```
 
@@ -24,11 +24,11 @@ Bundle uses the `@once` directive internally, so there is no need to wrap the co
 
 ---
 
-After you've used the `<x-bundle>` in your template you can retreive the bundle inside any inline script.
+After you've used the `<x-import>` in your template you can retreive the bundle inside any inline script.
 
 ```html
 <script type="module">
-  const ApexCharts = await _bundle("ApexCharts");
+  const ApexCharts = await _import("ApexCharts");
 
   // Create something amazing!
 </script>

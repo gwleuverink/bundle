@@ -1,1 +1,1 @@
-<x-bundle import="lodash/filter" as="filter" />
+<x-import module="lodash/filter" as="filter" />

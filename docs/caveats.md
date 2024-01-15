@@ -9,7 +9,7 @@ A couple of things to be aware of.
 
 ### Tree shaking
 
-Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-bundle` component will inline all of it's exports.
+Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-import` component will inline all of it's exports.
 
 For example; when bundling lodash all of it's exports will be included in the bundle, regardless of if the export is used later down in your template. This effect can be mitigated by using the per-method import approach.
 
@@ -26,14 +26,14 @@ If we were able to add code splitting we would be able to chunk these shared mod
 Due to Bun's path remapping behaviour Bundle is not able to split chunks from modules and assets imported from a path below it's internal project root (which is in the storage directory). If Bun fixes this issue this feature might be possible in the future.
 
 <!-- TODO: Add a detailed treeview of chunking vs how it's done now -->
-<!-- NOTE: A workaround where your local scripts also use _bundle() & we preload all dependencies in the blade template is possible. But less than ideal. -->
+<!-- NOTE: A workaround where your local scripts also use _import() & we preload all dependencies in the blade template is possible. But less than ideal. -->
 
-### Don't pass dynamic variables to `<x-bundle />`
+### Don't pass dynamic variables to `<x-import />`
 
 This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment.
 
 ```html
-<x-bundle :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
+<x-import :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
 ```
 
 ### Prevent Bundle from loading the same import multiple times
@@ -42,4 +42,4 @@ Bundle uses laravel's `@once` direcive internally, so you don't have to worry ab
 
 ### Run `view:clear` after npm updates
 
-The title said it all. Not doing this _may_ result into issues where `<x-bundle>` serves old code.
+The title said it all. Not doing this _may_ result into issues where `<x-import>` serves old code.

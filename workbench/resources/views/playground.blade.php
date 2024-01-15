@@ -1,10 +1,10 @@
 <x-layout>
 
-    <x-bundle import="~/alert" as="alert" />
-    {{-- <x-bundle import="~/alert" as="alert" inline /> --}}
+    <x-import module="~/alert" as="alert" />
+    {{-- <x-import module="~/alert" as="alert" inline /> --}}
 
     <script type="module">
-        var module = await _bundle('alert');
+        var module = await _import('alert');
 
         module('Hello World!')
     </script>

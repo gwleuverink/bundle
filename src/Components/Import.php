@@ -17,24 +17,9 @@ class Import extends Component
 
     public function render()
     {
-        // First make sure window.x_import_modules exists
-        // and assign the import to that object.
-        // ---------------------------------------------
-        // Then we expose a _import function that
-        // can retreive the module as a Promise
-        $js = <<< JS
-            if(!window.x_import_modules) window.x_import_modules = {}
-            window.x_import_modules.{$this->as} = import('{$this->module}')
-
-            window._import = async function(alias, exportName = 'default') {
-                let module = await window.x_import_modules[alias]
-                return module[exportName]
-            }
-        JS;
-
         // Bundle it up
         try {
-            return $this->bundle($js);
+            return $this->bundle();
         } catch (BundlingFailedException $e) {
             return $this->raiseConsoleErrorOrException($e);
         }
@@ -56,13 +41,26 @@ class Import extends Component
         HTML;
     }
 
-    protected function bundle(string $js)
+    protected function bundle()
     {
-        $bundle = BundleManager::new()->bundle($js);
+        // First make sure window.x_import_modules exists
+        // and assign the import to that object.
+        // ---------------------------------------------
+        // Then we expose a _import function that
+        // can retreive the module as a Promise
+        $js = <<< JS
+            if(!window.x_import_modules) window.x_import_modules = {}
+            window.x_import_modules.{$this->as} = import('{$this->module}')
+
+            window._import = async function(alias, exportName = 'default') {
+                let module = await window.x_import_modules[alias]
+                return module[exportName]
+            }
+        JS;
 
         // Render script tag with bundled code
         return view('x-import::import', [
-            'bundle' => $bundle,
+            'bundle' => BundleManager::new()->bundle($js),
         ]);
     }
 }

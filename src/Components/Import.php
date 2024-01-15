@@ -6,10 +6,10 @@ use Illuminate\View\Component;
 use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
-class Bundle extends Component
+class Import extends Component
 {
     public function __construct(
-        public string $import,
+        public string $module,
         public string $as,
         public bool $inline = false // TODO: Implement this
     ) {
@@ -24,7 +24,7 @@ class Bundle extends Component
         // can retreive the module as a Promise
         $js = <<< JS
             if(!window._bundle_modules) window._bundle_modules = {}
-            window._bundle_modules.{$this->as} = import('{$this->import}')
+            window._bundle_modules.{$this->as} = import('{$this->module}')
 
             window._bundle = async function(alias, exportName = 'default') {
                 let module = await window._bundle_modules[alias]
@@ -50,8 +50,8 @@ class Bundle extends Component
         report($e);
 
         return <<< HTML
-            <!--[BUNDLE: {$this->as} from '{$this->import}']-->
-            <script data-bundle="{$this->as}">console.error('BUNDLING ERROR: import {$this->import} as {$this->as}')</script>
+            <!--[BUNDLE: {$this->as} from '{$this->module}']-->
+            <script data-bundle="{$this->as}">console.error('BUNDLING ERROR: import {$this->module} as {$this->as}')</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }

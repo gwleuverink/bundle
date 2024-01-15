@@ -1,6 +1,6 @@
 <?php // @codeCoverageIgnoreStart ?>
 @once("bundle:$as")
-<!--[BUNDLE: {{ $as }} from '{{ $import }}']-->
+<!--[BUNDLE: {{ $as }} from '{{ $module }}']-->
 @if ($inline)
 <script data-bundle="{{ $as }}" {{ $attributes }}>
     {!! file_get_contents($bundle) !!}
@@ -10,6 +10,6 @@
 @endif
 <!--[ENDBUNDLE]>-->
 @else {{-- @once else clause --}}
-<!--[SKIPPED: {{ $as }} from '{{ $import }}']-->
+<!--[SKIPPED: {{ $as }} from '{{ $module }}']-->
 @endonce
 <?php // @codeCoverageIgnoreEnd ?>

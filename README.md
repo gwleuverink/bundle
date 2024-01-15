@@ -1,20 +1,27 @@
 <p align="center" style="margin-bottom: 2rem">
-  <img width="460" src="https://gwleuverink.github.io/bundle/assets/logo.svg">
+    <img width="460" src="https://gwleuverink.github.io/bundle/assets/logo.svg">
 </p>
 
 <p align="center">
-Effortless page specific JavaScript modules in Laravel/Livewire apps.
+    Effortless page specific JavaScript modules in Laravel/Livewire apps.
+</p>
+
+<br />
+
+---
+
+<br />
 
 [![tests](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml)
 [![browser-tests](https://github.com/gwleuverink/bundle/actions/workflows/browser-tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/browser-tests.yml)
 [![codestyle](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/codestyle.yml)
 [![coverage](https://img.shields.io/codecov/c/github/gwleuverink/bundle?token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/gwleuverink/bundle)
 
-</p>
-
-- Explore the docs on **[GitHub Pages »](https://gwleuverink.github.io/bundle/)**
+Explore the docs on **[GitHub Pages »](https://gwleuverink.github.io/bundle/)**
 
 **_In development - not production ready_**
+
+<br />
 
 ## Installation
 

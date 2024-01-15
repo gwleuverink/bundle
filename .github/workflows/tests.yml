@@ -1,9 +1,10 @@
 name: tests
 
 on:
-  workflow_run:
-    workflows: [codestyle]
-    types: [completed]
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
 
 jobs:
   skip-duplicates:

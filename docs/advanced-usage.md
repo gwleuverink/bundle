@@ -99,7 +99,7 @@ export default (async () => {
 
 <script type="module">
   // axios available, since it was attached to the window inside the IIFE
-  axios.get("/user?ID=12345").then(function (response) {
+  axios.get("/user/12345").then(function (response) {
     console.log(response);
   });
 </script>

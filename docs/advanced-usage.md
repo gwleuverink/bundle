@@ -109,7 +109,7 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 
 {: .warning }
 
-> Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
+> Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is recommended to place business level code inside your templates instead.
 
 Please note Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
 

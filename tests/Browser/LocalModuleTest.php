@@ -13,7 +13,7 @@ class LocalModuleTest extends DuskTestCase
     public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
+                <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript('typeof window._import', 'function')
             ->assertScript('typeof window.x_import_modules', 'object');
@@ -41,18 +41,32 @@ class LocalModuleTest extends DuskTestCase
     public function it_imports_from_local_resource_directory()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
+                <x-import module="~/output-to-id" as="output" />
 
                 <script type="module">
-                    var module = await _import('alert');
-                    module('Hello World!')
+                    var output = await _import('output');
+                    output('output', 'Yello World!')
                 </script>
+
+                <div id="output"></div>
             HTML)
-            ->assertDialogOpened('Hello World!');
+            ->assertSeeIn('#output', 'Yello World!');
     }
 
     /** @test */
-    public function it_can_import_modules_per_method()
+    public function it_can_import_named_functions()
     {
+        $this->blade(<<< 'HTML'
+            <x-import module="~/named-functions" as="helpers" />
+
+            <script type="module">
+                const outputBar = await _import('helpers', 'bar');
+
+                outputBar()
+            </script>
+
+            <div id="output"></div>
+        HTML)
+            ->assertSeeIn('#output', 'Bar');
     }
 }

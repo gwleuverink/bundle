@@ -47,7 +47,7 @@ it('generates sourcemaps when enabled')
     )
     ->bundle(
         <<< 'JS'
-        const filter = await import('~/alert')
+        const filter = await import('~/output-to-id')
         JS
     )
     ->content()
@@ -56,7 +56,7 @@ it('generates sourcemaps when enabled')
 it('doesnt generate sourcemaps by default')
     ->bundle(
         <<< 'JS'
-        const filter = await import('~/alert')
+        const filter = await import('~/output-to-id')
         JS
     )
     ->content()
@@ -67,7 +67,7 @@ it('is unable to resolve local scripts by their relative path', function () {
     expect(function () {
         bundle(
             <<< 'JS'
-            const filter = await import('./resources/js/alert')
+            const filter = await import('./resources/js/output-to-id')
             JS
         );
     })->toThrow(BundlingFailedException::class);
@@ -78,7 +78,7 @@ it('is able to resolve local scripts when aliased in jsconfig.json', function ()
         // ~/ is aliased in jsconfig.json
         bundle(
             <<< 'JS'
-            const filter = await import('~/alert')
+            const filter = await import('~/output-to-id')
             JS
         );
     })->not->toThrow(BundlingFailedException::class);
@@ -93,7 +93,7 @@ it('throws a BundlingFailedException when blade component fails bundling', funct
 });
 
 it('allows for hyphens in as property', function () {
-    $component = new Import('~/alert', 'foo-bar');
+    $component = new Import('~/output-to-id', 'foo-bar');
     $component->render();
     expect(true)->toBeTrue(); // No exception was thrown
 });
@@ -120,7 +120,7 @@ it('raises console error when blade component fails bundling and debug mode is d
 
 it('serves bundles over http', function () {
     $js = <<< 'JS'
-    const filter = await import('~/alert')
+    const filter = await import('~/output-to-id')
     JS;
 
     $this->artisan('bundle:clear');
@@ -140,7 +140,7 @@ it('serves bundles over http', function () {
 
 it('serves bundles as Content-Type: application/javascript', function () {
     $js = <<< 'JS'
-    const filter = await import('~/alert')
+    const filter = await import('~/output-to-id')
     JS;
 
     $manager = BundleManager::new();
@@ -154,7 +154,7 @@ it('serves bundles as Content-Type: application/javascript', function () {
 
 it('serves bundles with Last-Modified headers', function () {
     $js = <<< 'JS'
-    const filter = await import('~/alert')
+    const filter = await import('~/output-to-id')
     JS;
 
     $manager = BundleManager::new();
@@ -170,7 +170,7 @@ it('serves bundles with configurable Cache-Control headers', function () {
     config()->set('bundle.cache_control_headers', 'foo');
 
     $js = <<< 'JS'
-    const filter = await import('~/alert')
+    const filter = await import('~/output-to-id')
     JS;
 
     $manager = BundleManager::new();

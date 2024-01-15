@@ -97,13 +97,15 @@ export default (async () => {
 ```html
 <x-import module="~/bootstrap/axios" as="axios" />
 
-<script>
+<script type="module">
   // axios available, since it was attached to the window inside the IIFE
   axios.get("/user?ID=12345").then(function (response) {
     console.log(response);
   });
 </script>
 ```
+
+Note that your consuming script still needs to be of type="module" otherwise `window.axios` will be undefined
 
 {: .alert }
 

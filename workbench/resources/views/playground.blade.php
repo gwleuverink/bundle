@@ -1,16 +1,23 @@
 <x-layout>
 
-    {{-- <x-import module="~/alert" as="alert" /> --}}
-    <x-import module="~/function-is-evaluated" />
+    <x-import module="~/output-to-id" as="output" />
+    <x-import module="lodash/filter" as="filter" />
 
-    {{-- <x-import module="~/alert" as="alert" inline /> --}}
+    <script type="module">
+        const filter = await _import('filter');
+        const output = await _import('output');
 
-    {{-- <script type="module">
-        var module = await _import('alert');
+        let data = [
+            { 'name': 'Foo', 'active': false },
+            { 'name': 'Wello World!', 'active': true }
+        ];
 
-        module('Hello World!')
-    </script> --}}
+        // Filter only active
+        let filtered = filter(data, o => o.active)
 
-    Hello World!
+        output('output', filtered[0].name)
+    </script>
+
+    <div id="output"></div>
 
 </x-layout>

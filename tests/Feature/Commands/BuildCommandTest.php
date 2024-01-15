@@ -2,16 +2,12 @@
 
 use Leuverink\Bundle\BundleManager;
 
-it('scans glob patterns', function () {
-
-})->todo();
-
 it('generates a bundle', function () {
     $manager = BundleManager::new();
 
     // Scan the fixtures dir as build path
     config()->set('bundle.build_paths', [
-        realpath(getcwd() . '/tests/Fixtures/build-command-resources'),
+        realpath(getcwd() . '/tests/Fixtures/resources'),
     ]);
 
     // Make sure all cached scripts are cleared
@@ -30,7 +26,7 @@ it('scans paths recursively', function () {
 
     // Scan the fixtures dir as build path
     config()->set('bundle.build_paths', [
-        realpath(getcwd() . '/tests/Fixtures/build-command-resources'),
+        realpath(getcwd() . '/tests/Fixtures/resources'),
     ]);
 
     // Make sure all cached scripts are cleared
@@ -49,7 +45,7 @@ it('scans wildcard blade extentions like both php & md', function () {
 
     // Scan the fixtures dir as build path
     config()->set('bundle.build_paths', [
-        realpath(getcwd() . '/tests/Fixtures/build-command-resources/markdown'),
+        realpath(getcwd() . '/tests/Fixtures/resources/markdown'),
     ]);
 
     // Make sure all cached scripts are cleared
@@ -58,7 +54,5 @@ it('scans wildcard blade extentions like both php & md', function () {
 
     // Execute build command
     $this->artisan('bundle:build');
-
-    // Assert expected scripts are present
     expect($manager->buildDisk()->allFiles())->toHaveCount(1);
 });

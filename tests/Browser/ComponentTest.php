@@ -25,11 +25,11 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_only_once()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
-                <x-import module="~/alert" as="alert" />
+                <x-import module="~/output-to-id" as="output" />
+                <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="alert"').length
+                document.querySelectorAll('script[data-bundle="output"').length
             JS, 1);
     }
 
@@ -37,11 +37,11 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_only_once_when_one_was_inlined()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
-                <x-import module="~/alert" as="alert" inline />
+                <x-import module="~/output-to-id" as="output" />
+                <x-import module="~/output-to-id" as="output" inline />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="alert"').length
+                document.querySelectorAll('script[data-bundle="output"').length
             JS, 1);
     }
 
@@ -49,8 +49,8 @@ class ComponentTest extends DuskTestCase
     public function it_renders_the_same_import_under_different_aliases()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="foo" />
-                <x-import module="~/alert" as="bar" />
+                <x-import module="~/output-to-id" as="foo" />
+                <x-import module="~/output-to-id" as="bar" />
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelectorAll('script[data-bundle="foo"').length
@@ -64,30 +64,30 @@ class ComponentTest extends DuskTestCase
     public function it_renders_script_inline_when_inline_prop_was_passed()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" inline />
+                <x-import module="~/output-to-id" as="output" inline />
             HTML)
             // Assert it doesn't render src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="alert"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-bundle="output"')[0].hasAttribute('src')
             JS, false)
             // Assert script tag has content
             ->assertScript(<<< 'JS'
-                typeof document.querySelectorAll('script[data-bundle="alert"')[0].innerHTML
+                typeof document.querySelectorAll('script[data-bundle="output"')[0].innerHTML
             JS, 'string');
     }
 
     public function it_doesnt_render_script_inline_by_default()
     {
         $this->blade(<<< 'HTML'
-                <x-import module="~/alert" as="alert" />
+                <x-import module="~/output-to-id" as="output" />
             HTML)
             // Assert it renders src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="alert"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-bundle="output"')[0].hasAttribute('src')
             JS, true)
             // Assert script tag has no content
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="alert"')[0].innerHTML
+                document.querySelectorAll('script[data-bundle="output"')[0].innerHTML
             JS, null);
     }
 

@@ -1,6 +1,7 @@
 ---
 nav_order: 1
 title: Quickstart
+description: "Effortless page specific JavaScript modules in Laravel/Livewire apps"
 ---
 
 [![tests](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/gwleuverink/bundle/actions/workflows/tests.yml)

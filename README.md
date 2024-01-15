@@ -13,11 +13,11 @@
     <a href="https://codecov.io/gh/gwleuverink/bundle" rel="nofollow"><img src="https://camo.githubusercontent.com/ba087bb1f5fdb832986038ba182a1627963a82b75907d05cc9c7f23192e8ea6e/68747470733a2f2f696d672e736869656c64732e696f2f636f6465636f762f632f6769746875622f67776c6575766572696e6b2f62756e646c653f746f6b656e3d4f4e344d54593843314226636f6c6f723d34352532433139302532433635" alt="coverage" data-canonical-src="https://img.shields.io/codecov/c/github/gwleuverink/bundle?token=ON4MTY8C1B&amp;color=45%2C190%2C65" style="max-width: 100%;"></a>
 </p>
 
+<br />
+
 Explore the docs on **[GitHub Pages »](https://gwleuverink.github.io/bundle/)**
 
 **_In development - not production ready_**
-
-<br />
 
 ## Installation
 

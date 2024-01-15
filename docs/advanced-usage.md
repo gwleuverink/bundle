@@ -82,7 +82,7 @@ Then in your template you can use the `<x-import />` component to evaluate this 
 <x-import module="~/immediately-invoked" />
 ```
 
-This can be used in a variety of creative ways. For example for swapping out Laravel's default `bootstrap.js` to a need-only approach.
+This can be used in a variety of creative ways. For example for swapping out Laravel's default `bootstrap.js` for an approach where you only pull in a configured library when you need it.
 
 ```javascript
 import axios from "axios";
@@ -105,9 +105,9 @@ export default (async () => {
 </script>
 ```
 
-Note that your consuming script still needs to be of type="module" otherwise `window.axios` will be undefined.
+Note that your consuming script still needs to be of `type="module"` otherwise `window.axios` will be undefined.
 
-{: .alert }
+{: .warning }
 
 > Code splitting is [not supported](https://gwleuverink.github.io/bundle/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is reccomended to place business level code inside your templates instead.
 

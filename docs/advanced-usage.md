@@ -115,7 +115,7 @@ Please note Bundle's primary goal is to get imports inside your Blade template. 
 
 {: .highlight }
 
-> Bundle is meant as a tool for Blade centric apps, like Livewire, to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a Alpine component.
+Bundle is meant as a tool for Blade centric apps, like Livewire, to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a Alpine component.
 
 ## Sourcemaps
 

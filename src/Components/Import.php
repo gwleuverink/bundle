@@ -43,18 +43,16 @@ class Import extends Component
 
     protected function bundle()
     {
-        // First make sure window.x_import_modules exists
-        // and assign the import to that object.
-        // ---------------------------------------------
-        // Then we expose a _import function that
-        // can retreive the module as a Promise
         $js = <<< JS
+            // First make sure window.x_import_modules exists
             if(!window.x_import_modules) window.x_import_modules = {}
+
+            // Assign the import to the window.x_import_modules object (or invoke IIFE)
             '{$this->as}'
                 ? window.x_import_modules['{$this->as}'] = import('{$this->module}') // Assign it under an alias
                 : import('{$this->module}') // Only import it (for IIFE no alias needed)
 
-
+            // Then we expose a _import function that can retreive the module as a Promise
             window._import = async function(alias, exportName = 'default') {
                 let module = await window.x_import_modules[alias]
 
@@ -65,7 +63,7 @@ class Import extends Component
         JS;
 
         // Render script tag with bundled code
-        return view('x-import::import', [
+        return view('x-import::script', [
             'bundle' => BundleManager::new()->bundle($js),
         ]);
     }

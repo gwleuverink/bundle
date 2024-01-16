@@ -15,6 +15,8 @@
         // Filter only active
         let filtered = filter(data, o => o.active)
 
+        console.dir(filtered[0])
+
         output('output', filtered[0].name)
     </script>
 

@@ -44,11 +44,11 @@ div.highlighter-rouge, div.listingblock>div.content, figure.highlight {
     background: transparent;
 }
 
-div.highlighter-rouge:first-child {
-    padding: 1rem;
+div.highlighter-rouge div.highlight {
+    padding: 1.5rem;
 }
 
 .highlight, pre.highlight {
-    background: #1b0a32;
+    background: #261939;
     border-radius: 0.5rem;
 }

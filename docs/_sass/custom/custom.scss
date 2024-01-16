@@ -52,3 +52,17 @@ div.highlighter-rouge div.highlight {
     background: #261939;
     border-radius: 0.5rem;
 }
+
+// Search results
+.search-results {
+    background-color: #1A1227A3;
+    backdrop-filter: blur(6px);
+}
+
+.search-active .search-input {
+    background-color: transparent;
+}
+
+.search-result:hover, .search-result.active {
+    background-color: #0A01159E;
+}

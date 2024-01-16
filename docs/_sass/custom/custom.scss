@@ -2,6 +2,10 @@ html, body, .side-bar, .main-header, .search-input {
     background-color: #0D011E !important;
 }
 
+.site-title:hover, .nav-list .nav-list-item .nav-list-link:hover, .nav-list .nav-list-item .nav-list-link.active {
+    background-image: linear-gradient(-90deg, #1e0c36 0%, rgba(13,1,30,0.8) 80%, rgba(13,1,30,0) 100%);
+}
+
 a {
     // color: #FB70A9; // for dark mode?
     color: #FF3F8E;

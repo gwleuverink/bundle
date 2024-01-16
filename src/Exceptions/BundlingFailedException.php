@@ -27,7 +27,7 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
         );
 
         // TODO: Consider different approach for providing contextual debug info
-        if (app()->isLocal()) {
+        if (app()->isLocal() && config()->get('app.debug')) {
             dump(['error output', $result->errorOutput()]);
         }
     }

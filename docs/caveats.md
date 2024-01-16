@@ -1,6 +1,7 @@
 ---
 nav_order: 6
 title: Caveats
+image: "/assets/social-square.png"
 ---
 
 ## Caveats

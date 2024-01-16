@@ -1,6 +1,7 @@
 ---
 nav_order: 2
 title: How it works
+image: "/assets/social-square.png"
 ---
 
 ## How it works

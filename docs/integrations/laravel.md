@@ -1,7 +1,8 @@
 ---
+nav_order: 1
 title: Laravel
 parent: Integration examples
-nav_order: 1
+image: "/assets/social-square.png"
 ---
 
 ## Usage in plain Laravel

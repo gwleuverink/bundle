@@ -1,6 +1,7 @@
 ---
 nav_order: 3
 title: Advanced usage
+image: "/assets/social-square.png"
 ---
 
 ## Inline bundles

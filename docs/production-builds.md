@@ -1,6 +1,7 @@
 ---
 nav_order: 4
 title: Production builds
+image: "/assets/social-square.png"
 ---
 
 ## Running on a server

@@ -1,7 +1,8 @@
 ---
+nav_order: 3
 title: AlpineJS
 parent: Integration examples
-nav_order: 3
+image: "/assets/social-square.png"
 ---
 
 ## Usage in AlpineJS

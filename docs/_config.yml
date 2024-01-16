@@ -3,8 +3,13 @@ description: Effortless page specific JavaScript modules in Laravel/Livewire app
 
 remote_theme: just-the-docs/just-the-docs
 favicon_ico: "/assets/favicon.svg"
+image: "/assets/logo.svg"
 logo: "/assets/logo.svg"
 color_scheme: dark
+
+twitter:
+  username: gwleuverink
+  card: summary
 
 ga_tracking: G-HRG2CG9KZ7
 ga_tracking_anonymize_ip: true

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" color-interpolation-filters="sRGB" style="margin:0 auto" version="1.0" viewBox="28.51 103.02 50.24 43.96">
+  <rect width="100%" height="100%" fill="none" class="background"/>
+  <g fill="#333" class="iconlettersvg-g iconlettersvg">
+    <g class="tp-name">
+      <g class="name-imagesvg" transform="translate(28.51 103.02)">
+        <path fill="none" d="M0 0h50.25v43.96H0z" class="image-rect"/>
+        <svg width="50.25" height="43.96" class="image-svg-svg primary" overflow="visible">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.74 117.89">
+            <path fill="#9fd931" d="M114.13 0H20.79l-5.25 29.75h118.4l.8-4.53L114.13 0z" opacity=".8"/>
+            <path fill="#00b8ce" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
+            <path fill="#8a6bbc" d="M114.38 0h-10.5L83.09 117.89H98.2l23.6-20.01 12.9-73.12L114.38 0z" opacity=".8"/>
+            <path fill="#ff4b4c" d="M0 117.89h97.99l23.84-20.16 1.69-9.59H5.25L0 117.89z" opacity=".8"/>
+            <path fill="#ffa816" d="m130.62 48.62.76-4.33H12.98l-4.6 26.1h118.4l.64-3.65-.1-.13 3.15-17.87.15-.12z" opacity=".8"/>
+          </svg>
+        </svg>
+      </g>
+    </g>
+  </g>
+</svg>

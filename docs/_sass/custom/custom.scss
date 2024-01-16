@@ -1,15 +1,15 @@
-html, .side-bar, .main-header {
+html, body, .side-bar, .main-header, .search-input {
     background-color: #0D011E !important;
 }
 
 a {
-    color: #FB70A9; // for dark mode?
-    // color: #FF3F8E; // for light mode?
+    // color: #FB70A9; // for dark mode?
+    color: #FF3F8E;
 }
 
 .nav-list .nav-list-item .nav-list-expander {
-    color: #FB70A9; // for dark mode?
-    // color: #FF3F8E; // for light mode?
+    // color: #FB70A9; // for dark mode?
+    color: #FF3F8E;
 }
 
 .nav-list .nav-list-item>.nav-list .nav-list-item .nav-list-link {

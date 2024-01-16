@@ -28,6 +28,7 @@ a {
     color: #FF3F8E;
 }
 
+// Copy button in code block
 div.highlighter-rouge>button, div.listingblock>div.content>button, figure.highlight>button {
     border: 0.75rem solid transparent;
     background-color: transparent;
@@ -41,11 +42,12 @@ div.highlighter-rouge>button, div.listingblock>div.content>button, figure.highli
 // Code blocks
 div.highlighter-rouge, div.listingblock>div.content, figure.highlight {
     background: transparent;
-
-    &:first-child {
-        padding: 1rem;
-    }
 }
+
+div.highlighter-rouge:first-child {
+    padding: 1rem;
+}
+
 .highlight, pre.highlight {
     background: #1b0a32;
     border-radius: 0.5rem;

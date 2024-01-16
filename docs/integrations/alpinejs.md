@@ -6,7 +6,7 @@ nav_order: 3
 
 ## Usage in AlpineJS
 
-Using Bundle in AlpineJS is as easy as using it in an inline script.
+Using Bundle in [AlpineJS](https://alpinejs.dev) is as easy as using it in an inline script.
 
 ```html
 <x-import module="tippy.js" as="tippy" defer />

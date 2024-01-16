@@ -1,7 +1,8 @@
 ---
+nav_order: 2
 title: Livewire
 parent: Integration examples
-nav_order: 2
+image: "/assets/social-square.png"
 ---
 
 ## Usage in Livewire

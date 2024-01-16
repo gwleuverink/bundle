@@ -13,7 +13,7 @@ You can control which paths are scanned by publishing the Bundle config file and
 
 ```php
 'build_paths' => [
-    resource_path('views/**/*.blade.php')
+    resource_path('views'),
 ]
 ```
 

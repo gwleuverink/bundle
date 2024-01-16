@@ -2,7 +2,6 @@ title: Bundle
 description: Effortless page specific JavaScript modules in Laravel/Livewire apps
 
 remote_theme: just-the-docs/just-the-docs
-title_image: "/assets/favicon.svg"
 favicon_ico: "/assets/favicon.svg"
 logo: "/assets/logo.svg"
 color_scheme: dark

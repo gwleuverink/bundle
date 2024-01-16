@@ -1,6 +1,7 @@
 ---
 nav_order: 1
 title: Quickstart
+image: "/assets/favicon.svg"
 description: "Effortless page specific JavaScript modules in Laravel/Livewire apps"
 ---
 

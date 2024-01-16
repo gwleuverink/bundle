@@ -1,7 +1,7 @@
 ---
 nav_order: 5
-title: Integration examples
 has_children: true
+title: Integration examples
 ---
 
 ## Integration examples

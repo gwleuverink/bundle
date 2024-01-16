@@ -55,8 +55,18 @@ div.highlighter-rouge div.highlight {
 
 // Search results
 .search-results {
-    background-color: #1A1227A3;
+    background-color: #2E2A33A3;
     backdrop-filter: blur(6px);
+}
+
+@media (min-width: 50rem) {
+    .search-results {
+        width: 100%;
+    }
+}
+
+#search-results::-webkit-scrollbar {
+    display: none;
 }
 
 .search-active .search-input {

@@ -67,6 +67,7 @@ div.highlighter-rouge div.highlight {
 .search-results {
     background-color: #2E2A33A3;
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 @media (min-width: 50rem) {

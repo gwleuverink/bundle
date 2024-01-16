@@ -23,7 +23,6 @@ class Import extends Component
         } catch (BundlingFailedException $e) {
             return $this->raiseConsoleErrorOrException($e);
         }
-
     }
 
     protected function raiseConsoleErrorOrException(BundlingFailedException $e)

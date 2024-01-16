@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Contracts;
 
 use SplFileInfo;
+use Mockery\MockInterface;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
@@ -31,4 +32,7 @@ interface BundleManager
 
     /** Hashes a given string */
     public function hash($input, $length = 12): string;
+
+    /** Mock for testing */
+    public static function fake(): MockInterface;
 }

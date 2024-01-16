@@ -1,6 +1,7 @@
 <?php
 
 use Leuverink\Bundle\BundleManager;
+use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Components\Import;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
@@ -184,6 +185,12 @@ it('serves bundles with configurable Cache-Control headers', function () {
 
 it('serves chunks over http')
     ->skip('Code splitting not implemented');
+
+it('can be faked', function () {
+    BundleManager::fake();
+
+    Blade::renderComponent(new Import('~/foo', 'bar'));
+});
 
 // Probably not possible. TODO: Create issue in Bun repo
 // it('imports from node_modules are chunked')->todo();

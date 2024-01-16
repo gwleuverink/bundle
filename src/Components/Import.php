@@ -11,13 +11,12 @@ class Import extends Component
     public function __construct(
         public string $module,
         public ?string $as = null,
-        public bool $inline = false // TODO: Implement this
+        public bool $inline = false
     ) {
     }
 
     public function render()
     {
-        // Bundle it up
         try {
             return $this->bundle();
         } catch (BundlingFailedException $e) {

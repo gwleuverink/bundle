@@ -2,8 +2,10 @@
 
 namespace Leuverink\Bundle;
 
+use Mockery;
 use Throwable;
 use SplFileInfo;
+use Mockery\MockInterface;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Leuverink\Bundle\Traits\Constructable;
@@ -49,7 +51,7 @@ class BundleManager implements BundleManagerContract
             );
         } catch (Throwable $e) {
             $this->cleanup($file);
-            throw $e; // TODO: Consider raising a browser console error or whoops in a dialog instead
+            throw $e;
         } finally {
             $this->cleanup($file);
         }
@@ -120,5 +122,17 @@ class BundleManager implements BundleManagerContract
         if (! $this->tempDisk()->files()) {
             rmdir($this->tempDisk()->path(''));
         }
+    }
+
+    public static function fake(): MockInterface
+    {
+        $mock = Mockery::mock(BundleManagerContract::class, fn ($mock) => $mock
+            ->makePartial()
+            ->shouldReceive('bundle')
+            ->andReturn(new SplFileInfo('mock.js'))
+            ->atLeast()->once()
+        );
+
+        return app()->instance(BundleManagerContract::class, $mock);
     }
 }

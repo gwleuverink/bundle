@@ -8,7 +8,7 @@ use Throwable;
 
 trait Constructable
 {
-    public static function new(): self
+    public static function new(): mixed
     {
         $interfaces = class_implements(static::class);
 

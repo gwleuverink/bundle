@@ -52,7 +52,7 @@ class Import extends Component
                 ? window.x_import_modules['{$this->as}'] = import('{$this->module}') // Assign it under an alias
                 : import('{$this->module}') // Only import it (for IIFE no alias needed)
 
-            // Then we expose a _import function that can retreive the module as a Promise
+            // Then we expose a _import function that can retrieve the module as a Promise
             window._import = async function(alias, exportName = 'default') {
                 let module = await window.x_import_modules[alias]
 

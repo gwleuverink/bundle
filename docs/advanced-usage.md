@@ -4,7 +4,7 @@ title: Advanced usage
 image: "/assets/social-square.png"
 ---
 
-## Inline bundles
+## Inline imports
 
 You can render the bundle inline by using the `inline` option. This saves an additional request and makes the import available immediately after the script has rendered.
 
@@ -165,9 +165,7 @@ You may configure what paths are scanned by publishing the Bundle config file an
 
 Clear all bundled scripts.
 
-## Testing utilities
-
-**This feature is pending**
+## Testing fake
 
 When writing Unit or Feature tests in your application you don't need Bundle to process & serve your imports.
 

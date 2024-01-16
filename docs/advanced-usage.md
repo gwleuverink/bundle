@@ -96,11 +96,12 @@ export default (() => {
 })();
 ```
 
+When importing this module you can omit the `as` prop. Axios will be available on the window object since the function is evaluated on import.
+
 ```html
-<x-import module="~/bootstrap/axios" as="axios" />
+<x-import module="~/bootstrap/axios" />
 
 <script type="module">
-  // axios available, since it was attached to the window inside the IIFE
   axios.get("/user/12345").then(function (response) {
     console.log(response);
   });

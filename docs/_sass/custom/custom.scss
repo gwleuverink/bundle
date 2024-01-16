@@ -1,15 +1,15 @@
-html, .side-bar {
-    background-color: rgb(34, 39, 46) !important;
+html, .side-bar, .main-header {
+    background-color: #0D011E !important;
 }
 
 a {
-    // color: #FB70A9; // for dark mode?
-    color: #FF3F8E;
+    color: #FB70A9; // for dark mode?
+    // color: #FF3F8E; // for light mode?
 }
 
 .nav-list .nav-list-item .nav-list-expander {
-    // color: #FB70A9; // for dark mode?
-    color: #FF3F8E;
+    color: #FB70A9; // for dark mode?
+    // color: #FF3F8E; // for light mode?
 }
 
 .nav-list .nav-list-item>.nav-list .nav-list-item .nav-list-link {
@@ -17,7 +17,7 @@ a {
 }
 
 .site-header {
-    margin-top: 0.5rem;
+    // margin-top: 0.5rem;
 }
 
 .site-footer {

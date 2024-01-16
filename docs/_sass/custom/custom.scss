@@ -4,7 +4,11 @@ html, body, .side-bar, .main-header, .search-input {
 }
 
 // Hover & active state
-.site-title:hover, .site-button:hover, .nav-list .nav-list-item .nav-list-link:hover, .nav-list .nav-list-item .nav-list-link.active {
+.site-title:hover,
+.site-button:hover,
+.nav-list .nav-list-item .nav-list-link:hover,
+.nav-list .nav-list-item .nav-list-link.active,
+.nav-list .nav-list-item .nav-list-expander:hover {
     background-image: linear-gradient(-90deg, #1e0c36 0%, rgba(13,1,30,0.8) 80%, rgba(13,1,30,0) 100%);
 }
 

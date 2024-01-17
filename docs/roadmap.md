@@ -13,7 +13,7 @@ Bundle is under active development. If you feel there are features missing or yo
 When importing a local module, the only method to immidiatly invoke some code is by using the [self evaluating export](https://laravel-bundle.dev/advanced-usage.html#self-evaluating-exports) method.
 
 An alternative API is possible that would make it a bit easier to structure your code.
-Consider the following example.
+Consider the following example script in `resources/js/some-module.js`. (needs a jsconfig.json for path remapping)
 
 ```javascript
 export default {
@@ -27,7 +27,7 @@ export default {
 };
 ```
 
-By using `invoke` on the import component you'll instruct Bundle to run that method immidiatly. You don't need a `as` alias in this case.
+By using `init` on the import component you'll instruct Bundle to run that method immidiatly. You don't need a `as` alias in this case.
 
 ```html
 <x-import module="~/some-module" init />
@@ -46,7 +46,7 @@ export default {
   // Some methods here
 };
 
-export function someOtherFunction() {
+export function someFunction() {
   // Do something
 }
 ```
@@ -57,7 +57,7 @@ In this example you do need the `as` prop, since in addition to running the init
 <x-import module="~/some-module" as="foo" init />
 
 <script type="module">
-  const module = await _import("foo", "someOtherFunction");
+  const someFunction = await _import("foo", "someFunction");
 
   //
 </script>

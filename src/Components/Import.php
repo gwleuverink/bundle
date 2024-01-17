@@ -34,7 +34,7 @@ class Import extends Component
 
         return <<< HTML
             <!--[BUNDLE: {$this->as} from '{$this->module}']-->
-            <script data-bundle="{$this->as}">console.error('BUNDLING ERROR: import {$this->module} as {$this->as}')</script>
+            <script data-bundle="{$this->module}">console.error('BUNDLING ERROR: import {$this->module} as {$this->as}')</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }

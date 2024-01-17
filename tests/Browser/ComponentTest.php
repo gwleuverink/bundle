@@ -29,7 +29,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="output"').length
+                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
             JS, 1);
     }
 
@@ -41,7 +41,22 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="output" inline />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="output"').length
+                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+            JS, 1);
+    }
+
+    /** @test */
+    public function it_renders_multiple_imports_when_they_only_use_a_module_property()
+    {
+        $this->blade(<<< 'HTML'
+                <x-import module="~/function-is-evaluated" />
+                <x-import module="~/output-to-id" />
+            HTML)
+            ->assertScript(<<< 'JS'
+                document.querySelectorAll('script[data-bundle="~/function-is-evaluated"').length
+            JS, 1)
+            ->assertScript(<<< 'JS'
+                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
             JS, 1);
     }
 
@@ -53,11 +68,8 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="bar" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="foo"').length
-            JS, 1)
-            ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="bar"').length
-            JS, 1);
+                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+            JS, 2);
     }
 
     /** @test */
@@ -68,11 +80,11 @@ class ComponentTest extends DuskTestCase
             HTML)
             // Assert it doesn't render src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="output"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].hasAttribute('src')
             JS, false)
             // Assert script tag has content
             ->assertScript(<<< 'JS'
-                typeof document.querySelectorAll('script[data-bundle="output"')[0].innerHTML
+                typeof document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].innerHTML
             JS, 'string');
     }
 
@@ -83,11 +95,11 @@ class ComponentTest extends DuskTestCase
             HTML)
             // Assert it renders src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="output"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].hasAttribute('src')
             JS, true)
             // Assert script tag has no content
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="output"')[0].innerHTML
+                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].innerHTML
             JS, null);
     }
 
@@ -143,10 +155,10 @@ class ComponentTest extends DuskTestCase
         });
 
         $browser = $this->blade(<<< 'HTML'
-                <x-import module="~/foo" as="bar" />
+                <x-import module="~/nonexistent-module" as="foo" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="bar"')[0].innerHTML
-            JS, "console.error('BUNDLING ERROR: import ~/foo as bar')");
+                document.querySelectorAll('script[data-bundle="~/nonexistent-module"')[0].innerHTML
+            JS, "console.error('BUNDLING ERROR: import ~/nonexistent-module as foo')");
     }
 }

@@ -24,7 +24,7 @@ The `<x-import />` component bundles your import on the fly using [Bun](https://
 
 <br />
 
-### The `_import()` helper function
+## The `_import()` helper function
 
 After you use `<x-import />` somewhere in your template a global `_import` function will become available on the window object.
 

@@ -4,11 +4,7 @@ title: Caveats
 image: "/assets/social-square.png"
 ---
 
-## Caveats
-
-A couple of things to be aware of.
-
-### Tree shaking
+## Tree shaking
 
 Tree shaking is currently not supported. Keep this in mind. When a module uses named exports the `x-import` component will inline all of it's exports.
 
@@ -16,7 +12,7 @@ For example; when bundling lodash all of it's exports will be included in the bu
 
 This might be improved when chunking dynamic imports support is added. So shared code is fetched by a additional request.
 
-### Code splitting
+## Code splitting
 
 Chunking of dynamicly fetched pieces of shared code is currently not supported but might be possible.
 
@@ -29,7 +25,7 @@ Due to Bun's path remapping behaviour Bundle is not able to split chunks from mo
 <!-- TODO: Add a detailed treeview of chunking vs how it's done now -->
 <!-- NOTE: A workaround where your local scripts also use _import() & we preload all dependencies in the blade template is possible. But less than ideal. -->
 
-### Don't pass dynamic variables to `<x-import />`
+## Don't pass dynamic variables to `<x-import />`
 
 This will work perfectly fine during development, but this can't be evaluated when compiling all your code for your production environment.
 
@@ -37,10 +33,10 @@ This will work perfectly fine during development, but this can't be evaluated wh
 <x-import :import="$foo" as="{% raw %}{{ $bar }}{% endraw %}" />
 ```
 
-### Prevent Bundle from loading the same import multiple times
+## Prevent Bundle from loading the same import multiple times
 
 Bundle uses laravel's `@once` direcive internally, so you don't have to worry about loading the same import more than once.
 
-### Run `view:clear` after npm updates
+## Run `view:clear` after npm updates
 
 The title said it all. Not doing this _may_ result into issues where `<x-import>` serves old code.

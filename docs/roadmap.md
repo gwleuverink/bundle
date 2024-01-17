@@ -65,4 +65,4 @@ In this example you do need the `as` prop, since in addition to running the init
 
 ### Better exception messages
 
-We need better exception messages & add more problem solutions
+We need better exception messages & add more problem solutions. There are a lot of different scenarios to account for and we need your help! If you think we should provide a Ignition solution for a specific error please reach out via [GitHub](https://github.com/gwleuverink/bundle).

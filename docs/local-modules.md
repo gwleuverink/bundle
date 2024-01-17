@@ -4,6 +4,10 @@ title: Local modules
 image: "/assets/social-square.png"
 ---
 
+{: .note }
+
+> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
+
 ## Path rewriting for local modules
 
 If you want to import modules from any other directory than `node_modules`, you may add a `jsconfig.json` file to your project root with all your path aliases.
@@ -27,10 +31,6 @@ export default function alertProxy(message) {
 ```
 
 In order to use this script directly in your blade views, you simply need to import it using the `<x-import />` component.
-
-{: .note }
-
-> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
 
 ```html
 <x-import module="~/alert" as="alert" />

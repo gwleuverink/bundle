@@ -57,7 +57,7 @@ In this example you do need the `as` prop, since in addition to running the init
 <x-import module="~/some-module" as="foo" init />
 
 <script type="module">
-  const module = await _import("foo");
+  const module = await _import("foo", "someOtherFunction");
 
   //
 </script>

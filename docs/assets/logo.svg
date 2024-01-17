@@ -1,71 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" color-interpolation-filters="sRGB" style="margin: 0 auto" version="1.0" viewBox="28.51 103.02 282.97 43.96">
-  <rect width="100%" height="100%" fill="none" class="background"/>
-  <g fill="#333" class="iconlettersvg-g iconlettersvg">
-    <g class="tp-name">
-      <g class="name-imagesvg" transform="translate(28.51 103.02)">
-        <path fill="none" d="M0 0h50.25v43.96H0z" class="image-rect"/>
-        <svg width="50.25" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 134.74 117.89">
-            <path fill="#9fd931" d="M114.13 0H20.79l-5.25 29.75h118.4l.8-4.53L114.13 0z" opacity=".8"/>
-            <path fill="#00b8ce" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
-            <path fill="#8a6bbc" d="M114.38 0h-10.5L83.09 117.89H98.2l23.6-20.01 12.9-73.12L114.38 0z" opacity=".8"/>
-            <path fill="#ff4b4c" d="M0 117.89h97.99l23.84-20.16 1.69-9.59H5.25L0 117.89z" opacity=".8"/>
-            <path fill="#ffa816" d="m130.62 48.62.76-4.33H12.98l-4.6 26.1h118.4l.64-3.65-.1-.13 3.15-17.87.15-.12z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-      <g class="name-imagesvg" transform="translate(78.76 103.02)">
-        <path fill="none" d="M0 0h48.2v43.96H0z" class="image-rect"/>
-        <svg width="48.2" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.61 118.21">
-            <path fill="#ffa816" d="m0 91.49 21.93 26.72h47.49L8.44 43.61 0 91.49z" opacity=".8"/>
-            <path fill="#8a6bbc" d="M129.61 0H94.29L80.5 78.24l-.08.07-7.04 39.9h8.02l32.29-27.52 8.47-48.06-.08.06L129.61 0z" opacity=".8"/>
-            <path fill="#ff4b4c" d="m81.46 118.21 32.14-27.39 8.44-47.89-88.07 75.28h47.49z" opacity=".8"/>
-            <path fill="#9fd931" d="m0 91.49 21.93 26.72h8.68L51.45 0H16.13L0 91.49z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-      <g class="name-imagesvg" transform="translate(126.97 103.02)">
-        <path fill="none" d="M0 0h55.04v43.96H0z" class="image-rect"/>
-        <svg width="55.04" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.58 117.89">
-            <path fill="#9fd931" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
-            <path fill="#ff4b4c" d="M91.61 117.89h35.19L147.58 0H112.4L91.61 117.89z" opacity=".8"/>
-            <path fill="#8a6bbc" d="m20.79 0-1.81 10.23 73.6 107.66h34.22l1.8-10.23L55 0H20.79z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-      <g class="name-imagesvg" transform="translate(182 103.02)">
-        <path fill="none" d="M0 0h48.47v43.96H0z" class="image-rect"/>
-        <svg width="48.47" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.96 117.89">
-            <path fill="#ff4b4c" d="M129.96 25.22 109.19 0H20.72l-5.24 29.75h113.68l.8-4.53z" opacity=".8"/>
-            <path fill="#ffa816" d="m88.4 117.89 29.66-25.22 8.36-47.39-85.64 72.61H88.4z" opacity=".8"/>
-            <path fill="#8a6bbc" d="M55.97 0H20.79L0 117.89h35.19L55.97 0z" opacity=".8"/>
-            <path fill="#9fd931" d="M129.96 25.22 109.19 0h-47.5l59.85 72.93 8.42-47.71z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-      <g class="name-imagesvg" transform="translate(230.47 103.02)">
-        <path fill="none" d="M0 0h33.68v43.96H0z" class="image-rect"/>
-        <svg width="33.68" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.31 117.89">
-            <path fill="#8a6bbc" d="M0 117.89h35.19L55.97 0H20.79L0 117.89z" opacity=".8"/>
-            <path fill="#00b8ce" d="M0 117.89h85.07l5.24-29.75H5.25L0 117.89z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-      <g class="name-imagesvg" transform="translate(264.15 103.02)">
-        <path fill="none" d="M0 0h47.34v43.96H0z" class="image-rect"/>
-        <svg width="47.34" height="43.96" class="image-svg-svg primary" overflow="visible">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.94 117.89">
-            <path fill="#ff4b4c" d="M126.94 0H20.79l-5.25 29.75h106.15L126.94 0z" opacity=".8"/>
-            <path fill="#8a6bbc" d="M113.01 88.14H5.25L0 117.89h107.77l5.24-29.75z" opacity=".8"/>
-            <path fill="#ffa816" d="M101.15 44.29H12.98l-4.6 26.1h88.16l4.61-26.1z" opacity=".8"/>
-            <path fill="#9fd931" d="M55.97 0H20.79L0 117.89h35.19L55.97 0z" opacity=".8"/>
-          </svg>
-        </svg>
-      </g>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 280.2 44">
+  <style>
+    .st0{fill:none}.st1{fill:#9fd931}.st1,.st2,.st3,.st4,.st5{opacity:.8;enable-background:new}.st2{fill:#00b8ce}.st3{fill:#8a6bbc}.st4{fill:#ff4b4c}.st5{fill:#ffa816}
+  </style>
+  <path d="M-28.5-103h283v44h-283z" class="st0"/>
+  <path d="M-28.5-103h50.2v44h-50.2v-44z" class="st0" transform="translate(28.51 103.02)"/>
+  <path d="M14.1-103h-34.8l-2 11.1h44.2l.3-1.7-7.7-9.4z" class="st1" transform="translate(28.51 103.02)"/>
+  <path d="M-28.5-59.1h13.1l7.7-44h-13.1l-7.7 44z" class="st2" transform="translate(28.51 103.02)"/>
+  <path d="M14.1-103h-3.9L2.4-59H8l8.8-7.5 4.8-27.3-7.5-9.2z" class="st3" transform="translate(28.51 103.02)"/>
+  <path d="M-28.5-59.1H8l8.9-7.5.6-3.6h-44.1l-1.9 11.1z" class="st4" transform="translate(28.51 103.02)"/>
+  <path d="m20.2-84.9.3-1.6h-44.2l-1.7 9.7h44.2l.2-1.4 1.2-6.7z" class="st5" transform="translate(28.51 103.02)"/>
+  <path d="M-27.7-103h48.2v44h-48.2v-44z" class="st0" transform="translate(78.76 103.02)"/>
+  <path d="m-27.7-69 8.2 9.9h17.7l-22.7-27.7-3.2 17.8z" class="st5" transform="translate(78.76 103.02)"/>
+  <path d="M20.5-103H7.4L2.2-73.9-.4-59.1h3l12-10.2 3.1-17.9 2.8-15.8z" class="st3" transform="translate(78.76 103.02)"/>
+  <path d="m2.6-59.1 12-10.2 3.1-17.8-32.8 28H2.6z" class="st4" transform="translate(78.76 103.02)"/>
+  <path d="m-27.7-69 8.2 9.9h3.2l7.7-44h-13.1l-6 34.1z" class="st1" transform="translate(78.76 103.02)"/>
+  <path d="M-30.5-103h55v44h-55v-44z" class="st0" transform="translate(126.97 103.02)"/>
+  <path d="M-30.5-59.1h13.1l7.7-44h-13.1l-7.7 44z" class="st1" transform="translate(126.97 103.02)"/>
+  <path d="M3.7-59.1h13.1l7.7-44H11.4l-7.7 44z" class="st4" transform="translate(126.97 103.02)"/>
+  <path d="m-22.8-103-.7 3.8L4-59.1h12.8l.7-3.8L-10-103h-12.8z" class="st3" transform="translate(126.97 103.02)"/>
+  <path d="M-33.3-103h48.5v44h-48.5v-44z" class="st0" transform="translate(182 103.02)"/>
+  <path d="M15.2-93.6 7.5-103h-33l-2 11.1h42.4l.3-1.7z" class="st4" transform="translate(182 103.02)"/>
+  <path d="m-.3-59.1 11.1-9.4 3.1-17.7L-18-59.1H-.3z" class="st5" transform="translate(182 103.02)"/>
+  <path d="M-12.4-103h-13.1l-7.8 44h13.1l7.8-44z" class="st3" transform="translate(182 103.02)"/>
+  <path d="M15.2-93.6 7.5-103h-17.7l22.3 27.2 3.1-17.8z" class="st1" transform="translate(182 103.02)"/>
+  <path d="M-36.3-103h33.7v44h-33.7v-44z" class="st0" transform="translate(230.47 103.02)"/>
+  <path d="M-34.3-59.1h13.1l7.7-44h-13.1l-7.7 44z" class="st3" transform="translate(230.47 103.02)"/>
+  <path d="M-34.3-59.1h31.7l2-11.1h-31.7l-2 11.1z" class="st2" transform="translate(230.47 103.02)"/>
+  <path d="M-31.3-103H16v44h-47.3v-44z" class="st0" transform="translate(264.15 103.02)"/>
+  <path d="M16-103h-39.6l-2 11.1H14l2-11.1z" class="st4" transform="translate(264.15 103.02)"/>
+  <path d="M10.8-70.2h-40.2l-2 11.1H8.9l1.9-11.1z" class="st3" transform="translate(264.15 103.02)"/>
+  <path d="M6.4-86.5h-32.9l-1.7 9.7H4.7l1.7-9.7z" class="st5" transform="translate(264.15 103.02)"/>
+  <path d="M-10.4-103h-13.1l-7.8 44h13.1l7.8-44z" class="st1" transform="translate(264.15 103.02)"/>
 </svg>

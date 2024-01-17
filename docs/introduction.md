@@ -46,7 +46,7 @@ _In cases like this it might be advantagious to use per-method imports instead. 
 
 The `_import` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
-Please refer to the [advanced usage examples](/bundle/advanced-usage.html) for a more detailed explanation on how the `_import` function can be utilized in different scenarios.
+Refer to the [advanced usage examples](/bundle/advanced-usage.html) for a more detailed explanation on how the `_import` function can be utilized in different scenarios.
 
 <br />
 

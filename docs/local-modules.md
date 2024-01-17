@@ -28,6 +28,10 @@ export default function alertProxy(message) {
 
 In order to use this script directly in your blade views, you simply need to import it using the `<x-import />` component.
 
+{: .note }
+
+> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
+
 ```html
 <x-import module="~/alert" as="alert" />
 
@@ -38,11 +42,11 @@ In order to use this script directly in your blade views, you simply need to imp
 </script>
 ```
 
-## Self evaluating exports
+## Self invoked exports
 
 **Beta**
 
-You can use this mechanism to immediatly execute some code or to bootstrap & import other libraries.
+You can use this mechanism to immediatly execute some code to, for example, bootstrap & import other libraries.
 
 Consider the following example the following file `resources/js/immediately-invoked.js`
 
@@ -90,10 +94,6 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 > Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is recommended to place business level code inside your templates instead.
 
 Please note Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
-
-{: .note }
-
-> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
 
 ## Initable exports / components
 

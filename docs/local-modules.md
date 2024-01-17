@@ -42,13 +42,15 @@ In order to use this script directly in your blade views, you simply need to imp
 </script>
 ```
 
-## Self invoked exports
+## IIFE exports
 
 **Beta**
 
 You can use this mechanism to immediatly execute some code to, for example, bootstrap & import other libraries.
 
-Consider the following example the following file `resources/js/immediately-invoked.js`
+Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
+
+Consider the following example file `resources/js/immediately-invoked.js`:
 
 ```javascript
 export default (() => {
@@ -92,8 +94,6 @@ Note that your consuming script still needs to be of `type="module"` otherwise `
 {: .warning }
 
 > Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is recommended to place business level code inside your templates instead.
-
-Please note Bundle's primary goal is to get imports inside your Blade template. While the IIFE strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
 
 ## Initable exports / components
 

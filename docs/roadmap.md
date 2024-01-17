@@ -8,7 +8,7 @@ image: "/assets/social-square.png"
 
 Bundle is under active development. If you feel there are features missing or you've got a great idea that's not on on the roadmap please [open a discussion](https://github.com/gwleuverink/bundle/discussions/categories/ideas){:target="\_blank"} on GitHub.
 
-## Initable exports
+### Initable exports
 
 When importing a local module, the only method to immidiatly invoke some code is by using the [self evaluating export](https://laravel-bundle.dev/advanced-usage.html#self-evaluating-exports) method.
 
@@ -63,6 +63,6 @@ In this example you do need the `as` prop, since in addition to running the init
 </script>
 ```
 
-## Better exception messages
+### Better exception messages
 
 We need better exception messages & add more problem solutions

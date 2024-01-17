@@ -1,5 +1,5 @@
 ---
-nav_order: 4
+nav_order: 3
 title: Local modules
 image: "/assets/social-square.png"
 ---
@@ -94,3 +94,9 @@ Please note Bundle's primary goal is to get imports inside your Blade template. 
 {: .note }
 
 > Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
+
+## Initable exports / components
+
+An alternative API is possible that would make it a bit easier to structure your code in case you need IIFE behaviour in object exports. This would be done by use of a `init` option on the `<x-import/>` component.
+
+Check out [the roadmap](https://laravel-bundle.dev/roadmap.html) to see what we've got planned for Bundle!

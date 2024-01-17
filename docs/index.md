@@ -13,6 +13,14 @@ description: "Effortless page specific JavaScript modules in Laravel/Livewire ap
 {: .fs-5 .fw-300}
 Effortless page specific JavaScript modules in Laravel/Livewire apps
 
+{: .note }
+
+> **Bundle is in open beta! 👀**
+>
+> We need your help get this package production ready 🚀 Check out the [discussion board](https://github.com/gwleuverink/bundle/discussions) or [report a bug](https://github.com/gwleuverink/bundle/issues/new/choose). We appreciate your feedback!
+
+<br />
+
 ## Quickstart
 
 ```bash
@@ -38,11 +46,3 @@ You may bundle any `node_module` or local script from your `resources/js` direct
   // Create something amazing!
 </script>
 ```
-
-<br />
-
-{: .note }
-
-> **Bundle is in open beta! 👀**
->
-> We need your help get this package production ready 🚀 Check out the [discussion board](https://github.com/gwleuverink/bundle/discussions) or [report a bug](https://github.com/gwleuverink/bundle/issues/new/choose). We appreciate your feedback!

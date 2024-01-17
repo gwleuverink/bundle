@@ -36,6 +36,7 @@ You can also use the `_import` function in the `x-data` object. This requires yo
   x-data="{
     async init() {
         let tippy = await _import('tippy')
+
         tippy($el, {
             content: 'Hello World!',
         });

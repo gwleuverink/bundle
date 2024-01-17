@@ -39,7 +39,10 @@ You may bundle any `node_module` or local script from your `resources/js` direct
 </script>
 ```
 
+<br />
+
 {: .note }
-> Bundle is in open beta! 👀
+
+> **Bundle is in open beta! 👀**
 >
 > We need your help get this package production ready 🚀 Check out the [discussion board](https://github.com/gwleuverink/bundle/discussions) or [report a bug](https://github.com/gwleuverink/bundle/issues/new/choose). We appreciate your feedback!

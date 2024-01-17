@@ -1,5 +1,5 @@
 ---
-nav_order: 3
+nav_order: 4
 title: Advanced usage
 image: "/assets/social-square.png"
 ---
@@ -25,9 +25,11 @@ You should apply this with consideration. You will save up on requests, but doin
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
 
 ```html
-<x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
+<x-import module="lodash/filter" as="filter" />
+<!-- 25kb -->
 <!-- as opposed to -->
-<x-import module="lodash" as="lodash" /> <!-- 78kb -->
+<x-import module="lodash" as="lodash" />
+<!-- 78kb -->
 ```
 
 ## Sourcemaps

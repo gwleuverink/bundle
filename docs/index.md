@@ -19,8 +19,6 @@ Effortless page specific JavaScript modules in Laravel/Livewire apps
 >
 > We need your help get this package production ready 🚀 Check out the [discussion board](https://github.com/gwleuverink/bundle/discussions) or [report a bug](https://github.com/gwleuverink/bundle/issues/new/choose). We appreciate your feedback!
 
-<br />
-
 ## Quickstart
 
 ```bash

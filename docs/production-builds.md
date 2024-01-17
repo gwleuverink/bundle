@@ -31,6 +31,8 @@ Note that Bundle doesn't process your imports in production environments. So you
 Bundle will throw exceptions in when Laravel's debug mode is enabled, but only raise console errors when it's not.
 Errors will still be reported so your error tracking will pick up any issues raised at blade compile time.
 
+We'd love to add more readable error messages & comprehensive Ignition solutions. There are a lot of different scenarios to account for and we need your help! If you think we should provide a Ignition solution for a specific error please reach out via [GitHub](https://github.com/gwleuverink/bundle).
+
 ## Failover system
 
 If a import somehow was deleted from storage on your production server, Bundle will try to process the script on the fly.

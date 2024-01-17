@@ -9,7 +9,6 @@ color_scheme: dark
 twitter:
   username: gwleuverink
   card: summary
-  # card: summary_large_image
 
 ga_tracking: G-HRG2CG9KZ7
 ga_tracking_anonymize_ip: true
@@ -29,7 +28,7 @@ search.button: true
 
 callouts:
   note:
-    title: note
+    title:
     color: purple
   warning:
     title: warning

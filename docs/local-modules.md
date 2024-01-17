@@ -4,8 +4,8 @@ title: Local modules
 image: "/assets/social-square.png"
 ---
 
-{: .note }
 
+{: .note }
 > Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk of custom code should live inline in a script tag or in a [Alpine](<(https://alpinejs.dev)>) component.
 
 ## Path rewriting for local modules

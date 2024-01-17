@@ -10,7 +10,7 @@ Bundle is under active development. If you feel there are features missing or yo
 
 ### Initable exports
 
-When importing a local module, the only method to immidiatly invoke some code is by using the [self evaluating export](https://laravel-bundle.dev/advanced-usage.html#self-evaluating-exports) method.
+When importing a local module, the only method to immidiatly invoke some code is by using the [IIFE export](https://laravel-bundle.dev/local-modules.html#iife-exports) method.
 
 An alternative API is possible that would make it a bit easier to structure your code.
 Consider the following example script in `resources/js/some-module.js`. (needs a jsconfig.json for path remapping)

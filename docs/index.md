@@ -11,7 +11,7 @@ description: "Effortless page specific JavaScript modules in Laravel/Livewire ap
 [![coverage](https://img.shields.io/codecov/c/github/gwleuverink/bundle?token=ON4MTY8C1B&color=45%2C190%2C65)](https://codecov.io/gh/gwleuverink/bundle)
 
 {: .fs-5 .fw-300}
-Laravel Blade with JavaScript Superpowers! 🚀 Effortless page specific JavaScript modules in Laravel/Livewire apps
+Laravel Blade with JavaScript Superpowers! 🚀 <br /> Effortless page specific JavaScript modules in Laravel/Livewire apps
 
 {: .note }
 

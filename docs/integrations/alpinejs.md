@@ -7,7 +7,7 @@ image: "/assets/social-square.png"
 
 ## Bootstrapping Alpine via Bundle 🤝
 
-Alpine can be bootstrapped with ease using a [local module](https://laravel-bundle.dev/local-modules.html)
+Alpine can be bootstrapped with ease using a [local module](https://laravel-bundle.dev/local-modules.html).
 
 First make sure you have [path rewritig](https://laravel-bundle.dev/local-modules.html) set up. Then install Alpine.
 

@@ -2,7 +2,7 @@
 nav_order: 2
 title: AlpineJS
 parent: Integration examples
-image: "/assets/social-square.png"
+image: "/assets/social-square-alpine.png"
 ---
 
 ## Bootstrapping Alpine via Bundle 🤝

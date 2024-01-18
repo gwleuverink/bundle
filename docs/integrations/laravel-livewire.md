@@ -2,7 +2,7 @@
 nav_order: 1
 title: Laravel/Livewire
 parent: Integration examples
-image: "/assets/social-square.png"
+image: "/assets/social-square-livewire.png"
 ---
 
 ## Usage in plain Laravel

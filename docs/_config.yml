@@ -16,8 +16,8 @@ ga_tracking_anonymize_ip: true
 url: https://laravel-bundle.dev
 
 aux_links_new_tab: true
-aux_links:
-  GitHub: https://github.com/gwleuverink/bundle
+# aux_links:
+#   GitHub: https://github.com/gwleuverink/bundle
 
 enable_copy_code_button: true
 

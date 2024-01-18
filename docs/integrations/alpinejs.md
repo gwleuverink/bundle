@@ -1,5 +1,5 @@
 ---
-nav_order: 3
+nav_order: 2
 title: AlpineJS
 parent: Integration examples
 image: "/assets/social-square.png"
@@ -83,7 +83,7 @@ Since the `@once` directive is added internally you are safe to use these import
 
 Because of this you are able to create composable Alpine/Blade components. For example, a calendar input may include imports for both Alpine & fullcalendar.js, regardless if those are used elsewhere on the page.
 
-This opens up a whole new dimension to fully portable Blade components!
+This opens up a whole new dimension to fully portable Blade components! But use with care. Shared dependencies [are not chunked](https://laravel-bundle.dev/caveats.html#code-splitting).
 
 ## Plugins
 

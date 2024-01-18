@@ -25,7 +25,7 @@ Bundle uses the `@once` directive internally, so there is no need to wrap the co
 
 ---
 
-After you've used the `<x-import>` in your template you can retreive the bundle inside any inline script.
+After you've used the `<x-import>` in your template you can retrieve the bundle inside any inline script.
 
 ```html
 <script type="module">

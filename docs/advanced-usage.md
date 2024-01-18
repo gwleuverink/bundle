@@ -78,7 +78,9 @@ Since Bundle's core is included with the first `<x-import />` that you load you 
 
 > We like to explore ways to inject Bundle's core on every page. This way the `_import()` function does not have to be wrapped in a `DOMContentLoaded` listener. Check out our [roadmap](https://laravel-bundle.dev/roadmap.html#roadmap) to see what else we're cooking up.
 
-The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`
+## Import resolution timeout
+
+The \_import() function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`.
 
 ## Minification
 
@@ -93,8 +95,6 @@ Sourcemaps will be generated in a separate file so this won't affect performance
 {: .note }
 
 > If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
-
-## `_import` resolution timeout
 
 ## Cache-Control headers
 

@@ -6,7 +6,7 @@
     {!! file_get_contents($bundle) !!}
 </script>
 @else
-<script src="{{ route('bundle:import', $bundle->getFilename(), false) }}" data-bundle="{{ $module }}" type="module" {{ $attributes }}></script>
+<script src="{{ route('bundle:import', $bundle->getFilename(), false) }}" data-bundle="{{ $module }}" {{ $attributes }}></script>
 @endif
 <!--[ENDBUNDLE]>-->
 @else {{-- @once else clause --}}

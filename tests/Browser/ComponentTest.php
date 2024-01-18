@@ -104,6 +104,27 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
+    public function it_works_when_a_iife_is_combined_with_at_least_two_other_imports()
+    {
+        $browser = $this->blade(<<< 'HTML'
+                <x-import module="~/function-is-evaluated" />
+                <x-import module="~/named-functions" as="helpers" />
+                <x-import module="~/alert" as="alert" />
+
+                <script type="module">
+                    let foo = await _import('helpers', 'foo')
+                    let alertProxy = await _import('alert')
+                </script>
+            HTML);
+
+        // IIFE was invoked
+        $browser->assertScript('window.test_evaluated', true);
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+    }
+
+    /** @test */
     public function it_throws_an_error_when_debug_mode_enabled()
     {
         $this->beforeServingApplication(function ($app, $config) {

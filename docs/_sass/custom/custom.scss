@@ -67,6 +67,14 @@ div.highlighter-rouge div.highlight {
     border-radius: 0.5rem;
 }
 
+// Inline code
+:not(pre,figure)>code {
+    padding: 0.2em 0.4em;
+    display: inline-block;
+    background-color: #261939;
+    border: 1px solid #413257;
+}
+
 // Search results
 .search-results {
     background-color: #2E2A33A3;

@@ -40,13 +40,13 @@ The `_import` function accepts a optional `export` argument which defaults to 'd
 var module = await _import("lodash", "filter"); // Resolves a named export 'filter'
 ```
 
-_In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](/bundle/advanced-usage.html#per-method-exports)._
+_In cases like this it might be advantagious to use per-method imports instead. Please refer to the [advanced usage example](https://laravel-bundle.dev/advanced-usage.html#per-method-exports)._
 
 ---
 
 The `_import` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
 
-Refer to the [advanced usage examples](/bundle/advanced-usage.html) for a more detailed explanation on how the `_import` function can be utilized in different scenarios.
+Refer to the [local modules](https://laravel-bundle.dev/local-modules.html) docs for a more detailed explanation on how the `_import` function can be utilized in different scenarios.
 
 <br />
 

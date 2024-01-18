@@ -104,7 +104,7 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_works_when_a_iife_is_combined_with_at_least_two_other_imports()
+    public function it_works_when_a_iife_is_combined_with_multiple_aliased_imports()
     {
         $browser = $this->blade(<<< 'HTML'
                 <x-import module="~/function-is-evaluated" />

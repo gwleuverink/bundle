@@ -61,11 +61,11 @@ class AlpineIntegrationTest extends DuskTestCase
             <div
                 id="component"
                 x-init="
-                    const filter = await _import('lodash', 'filter');
+                    const filter = await _import('filter');
 
                     let data = [
                         { 'name': 'Foo', 'active': false },
-                        { 'name': 'Hello World!', 'active': true }
+                        { 'name': 'Fello World!', 'active': true }
                     ];
 
                     // Filter only active
@@ -79,7 +79,7 @@ class AlpineIntegrationTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Hello World!');
+        $browser->assertSee('Fello World!');
 
     }
 
@@ -87,18 +87,18 @@ class AlpineIntegrationTest extends DuskTestCase
     public function it_can_use_other_imports_inside_x_data_directive()
     {
         $browser = $this->blade(<<< 'HTML'
+
             <x-import module="~/bootstrap/alpine" />
             <x-import module="lodash/filter" as="filter" />
 
             <div
-                id="component"
-                x-data="
-                    async init() {
-                        const filter = await _import('lodash', 'filter');
+                x-data="{
+                     async init() {
+                        const filter = await _import('filter');
 
                         let data = [
                             { 'name': 'Foo', 'active': false },
-                            { 'name': 'Hello World!', 'active': true }
+                            { 'name': 'Gello World!', 'active': true }
                         ];
 
                         // Filter only active
@@ -106,13 +106,13 @@ class AlpineIntegrationTest extends DuskTestCase
 
                         $el.innerHTML = filtered[0].name
                     }
-                "
+                }"
             ></div>
         HTML);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Hello World!');
+        $browser->assertSee('Gello World!');
     }
 }

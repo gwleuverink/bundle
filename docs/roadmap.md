@@ -63,6 +63,9 @@ In this example you do need the `as` prop, since in addition to running the init
 </script>
 ```
 
+### Injecting Bundle's core on every page
+This will reduce every import's size slightly. And more importantly; it will remove the need to wrap `_import()` calls inside script tags without `type="module"`, making things easier for the developer and greatly decrease the chance of unexpected behaviour caused by race conditions due to slow network speeds when a `DOMContentLoaded` listener was forgotten.
+
 ### Better exception messages
 
 We need better exception messages & add more problem solutions. There are a lot of different scenarios to account for and we need your help! If you think we should provide a Ignition solution for a specific error please reach out via [GitHub](https://github.com/gwleuverink/bundle).

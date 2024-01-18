@@ -116,4 +116,27 @@ class AlpineIntegrationTest extends DuskTestCase
 
         $browser->assertSeeIn('#component', 'Gello World!');
     }
+
+    /** @test */
+    public function it_supports_backed_components_via_alpine_data()
+    {
+        $this->markTestSkipped('not implemented');
+
+        $browser = $this->blade(<<< 'HTML'
+
+            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/components/hello-world" />
+
+            <div
+                x-data="hello-world"
+                x-text="message"
+                id="component"
+            ></div>
+        HTML)->pause(20);
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+
+        $browser->assertSeeIn('#component', 'Hello backed component!');
+    }
 }

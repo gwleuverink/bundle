@@ -63,7 +63,37 @@ In this example you do need the `as` prop, since in addition to running the init
 </script>
 ```
 
+### Backed Alpine components
+
+This would be a nice feature, but impossible at this time. I would like to implement something like this at some point, if even possible.
+
+Consider the following simple toggle component in `resources/components/toggle`.
+
+```javascript
+export default {
+  open: false,
+
+  toggle() {
+    this.open = !this.open;
+  },
+};
+```
+
+It would be incredible if this object could be forwarded to Alpine directly like so.
+
+```html
+<x-import module="~/bootstrap/alpine" />
+<x-import module="~/components/toggle" as="alpine:toggle" />
+
+<div x-data="await _import('alpine:toggle')">
+  <button x-on:click="toggle()">Expand</button>
+
+  <div x-show="open">Content...</div>
+</div>
+```
+
 ### Injecting Bundle's core on every page
+
 This will reduce every import's size slightly. And more importantly; it will remove the need to wrap `_import()` calls inside script tags without `type="module"`, making things easier for the developer and greatly decrease the chance of unexpected behaviour caused by race conditions due to slow network speeds when a `DOMContentLoaded` listener was forgotten.
 
 ### Better exception messages

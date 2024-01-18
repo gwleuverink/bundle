@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Components\Import;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
+it('can be faked', function () {
+    BundleManager::fake();
+
+    Blade::renderComponent(new Import('~/foo', 'bar'));
+});
+
 it('transpiles JavaScript')->bundle(
     <<< 'JS'
     const foo = 'bar'
@@ -119,6 +125,20 @@ it('raises console error when blade component fails bundling and debug mode is d
         ->not->toThrow(BundlingFailedException::class);
 });
 
+it('renders scripts with type=module', function () {
+    BundleManager::fake();
+
+    expect(Blade::renderComponent(new Import('~/foo', 'bar')))
+        ->toContain('type="module"');
+});
+
+it('renders inline scripts with type=module', function () {
+    BundleManager::fake();
+
+    expect(Blade::renderComponent(new Import('~/foo', 'bar', inline: true)))
+        ->toContain('type="module"');
+});
+
 it('serves bundles over http', function () {
     $js = <<< 'JS'
     const filter = await import('~/output-to-id')
@@ -185,12 +205,6 @@ it('serves bundles with configurable Cache-Control headers', function () {
 
 it('serves chunks over http')
     ->skip('Code splitting not implemented');
-
-it('can be faked', function () {
-    BundleManager::fake();
-
-    Blade::renderComponent(new Import('~/foo', 'bar'));
-});
 
 // Probably not possible. TODO: Create issue in Bun repo
 // it('imports from node_modules are chunked')->todo();

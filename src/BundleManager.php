@@ -129,7 +129,7 @@ class BundleManager implements BundleManagerContract
         $mock = Mockery::mock(BundleManagerContract::class, fn ($mock) => $mock
             ->makePartial()
             ->shouldReceive('bundle')
-            ->andReturn(new SplFileInfo('mock.js'))
+            ->andReturn(new SplFileInfo(base_path('composer.json'))) // Just a file we know exists. It won't be touched
             ->atLeast()->once()
         );
 

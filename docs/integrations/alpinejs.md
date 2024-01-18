@@ -39,7 +39,7 @@ That's it! 🤟
 
 Since the `@once` directive is added internally you are safe to use these imports in multiple blade components. Only the first one will be rendered.
 
-Because of this you are able to create composable Alpine/Blade components. For example, a calendar input may include imports for both Alpine & fullcalendar.js, regardless if those are used elsewhere on the page.
+Because of this you are able to create Alpine/Blade components with composable JS dependencies. For example, a calendar input may include imports for both Alpine & fullcalendar.js, regardless if those are used elsewhere on the page.
 
 This opens up a whole new dimension to fully portable Blade components! But use with care. Shared dependencies [are not chunked](https://laravel-bundle.dev/caveats.html#code-splitting).
 

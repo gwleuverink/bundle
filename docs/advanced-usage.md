@@ -52,6 +52,36 @@ export function bar() {
 </script>
 ```
 
+## Using `_import()` in a script tag without `type="module"`
+
+All previous examples have used the `_import()` function within a script tag with `type='module'`. This instructs the browser to treat the containing code as a module. Practically this means that code gets it's own namespace & you can't reach for variables outside the scope of the script tag.
+
+A script tag with `type="module"` makes your script `defer` by default, so they are loaded in parallel & executed in order. Because of this the `_import()` function has your requested module available immediately. (Since they are loaded in the same order they appeared in the DOM)
+
+This is not the case however when you use a script tag without `type="module"`. A import might still be loading while the page encounters the `_invoke()` function.
+
+Bundle takes care of this problem by checking the internal import map by use of a non-blocking polling mechanism. So you can safely use `_import()` anywhere you want.
+
+Since Bundle's core is included with the first `<x-import />` that you load you do have to either wrap the import inside a `DOMContentLoaded` listener or make the import inline.
+
+```html
+<x-import module="lodash/filter" as="filter" />
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    let filter = await _import("filter");
+  });
+</script>
+```
+
+{: .note }
+
+> We like to explore ways to inject Bundle's core on every page. This way the `_import()` function does not have to be wrapped in a `DOMContentLoaded` listener. Check out our [roadmap](https://laravel-bundle.dev/roadmap.html#roadmap) to see what else we're cooking up.
+
+## Minification
+
+<!-- TODO -->
+
 ## Sourcemaps
 
 Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.
@@ -61,6 +91,8 @@ Sourcemaps will be generated in a separate file so this won't affect performance
 {: .note }
 
 > If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
+
+## `_import` resolution timeout
 
 ## Cache-Control headers
 

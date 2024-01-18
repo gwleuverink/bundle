@@ -8,11 +8,14 @@ use Leuverink\Bundle\Exceptions\BundlingFailedException;
 
 class Import extends Component
 {
+    public BundleManager $manager;
+
     public function __construct(
         public string $module,
         public ?string $as = null,
         public bool $inline = false
     ) {
+        $this->manager = BundleManager::new();
     }
 
     public function render()
@@ -45,12 +48,14 @@ class Import extends Component
 
         // Render script tag with bundled code
         return view('x-import::script', [
-            'bundle' => BundleManager::new()->bundle($js),
+            'bundle' => $this->manager->bundle($js),
         ]);
     }
 
     protected function core(): string
     {
+        $timeout = $this->manager->config()->get('import_resolution_timeout');
+
         return <<< JS
             // First make sure window.x_import_modules exists
             if(!window.x_import_modules) window.x_import_modules = {}
@@ -68,8 +73,7 @@ class Import extends Component
                 // Wait for module to become available (Needed for Alpine support)
                 const module = await poll(
                     () => window.x_import_modules[alias],
-                    1000,
-                    5
+                    {$timeout}, 5
                 )
 
                 if(module === undefined) {
@@ -86,7 +90,7 @@ class Import extends Component
 
 
             // Import polling helper
-            async function poll(success, maxDuration, interval) {
+            async function poll(success, timeout, interval) {
                 const startTime = new Date().getTime();
 
                 while (true) {
@@ -96,7 +100,7 @@ class Import extends Component
 
                     // Check if maxDuration has elapsed
                     const elapsedTime = new Date().getTime() - startTime;
-                    if (elapsedTime >= maxDuration) {
+                    if (elapsedTime >= timeout) {
                         console.info(`Unable to resolve '\${alias}'. Operation timed out.`)
                         throw `BUNDLE TIMEOUT: '\${alias}' could not be resolved`;
                     }

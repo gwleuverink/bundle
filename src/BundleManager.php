@@ -34,7 +34,7 @@ class BundleManager implements BundleManagerContract
         $file = "{$this->hash($script)}.min.js";
 
         // Return cached file if available
-        if (config('bundle.caching_enabled') && $cached = $this->fromDisk($file)) {
+        if ($this->config()->get('caching_enabled') && $cached = $this->fromDisk($file)) {
             return $cached;
         }
 

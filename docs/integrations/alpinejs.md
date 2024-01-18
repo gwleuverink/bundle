@@ -102,30 +102,6 @@ You can also use the `_import` function in the `x-data` object. This requires yo
 </button>
 ```
 
-## Backed components
+## Roadmap
 
-It's possible to ship larger Alpine components using [Alpine.data](https://alpinejs.dev/globals/alpine-data). Simply export an [IIFE](https://laravel-bundle.dev/local-modules.html#iife-exports) containing a Alpine data definition.
-
-```javascript
-export default (() => {
-  Alpine.data("dropdown", () => ({
-    open: false,
-
-    toggle() {
-      this.open = !this.open;
-    },
-  }));
-})();
-```
-
-```html
-<x-import module="~/components/hello-world" />
-
-<div x-data="dropdown">
-  <button x-on:click="toggle">Open</button>
-
-  <div x-show="open">...</div>
-</div>
-```
-
-A nicer API for this would be to be able to simply feed an object to `x-data` as a default export via `_import()`, but this isn't possible at this time.
+There are a couple of cool ideas in the pipe. One of them is [backed Alpine components](https://laravel-bundle.dev/roadmap.html#backed-alpine-components). It would be incredible if this feature is possible in the future 🤞

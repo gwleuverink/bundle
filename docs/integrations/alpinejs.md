@@ -123,7 +123,7 @@ export default (() => {
 <x-import module="~/components/hello-world" />
 
 <div x-data="dropdown">
-  <button @click="toggle">Open</button>
+  <button x-on:click="toggle">Open</button>
 
   <div x-show="open">...</div>
 </div>

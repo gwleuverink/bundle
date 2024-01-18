@@ -5,48 +5,6 @@ parent: Integration examples
 image: "/assets/social-square.png"
 ---
 
-## Using modules in AlpineJS
-
-A perfect pairing! Using Bundle in [AlpineJS](https://alpinejs.dev) is as easy as using it in an inline script.
-
-Since Alpine's `x-init` directive is [async by default](https://alpinejs.dev/advanced/async) Alpine & Bundle work seamlessly together.
-
-```html
-<x-import module="tippy.js" as="tippy" defer />
-
-<button
-  x-init="
-    let tippy = await _import('tippy')
-
-    tippy($el, {
-        content: 'Hello World!',
-    });
-  "
->
-  Show tooltip
-</button>
-```
-
-You can also use the `_import` function in the `x-data` object. This requires you make the funcion `_import` is invoked from async.
-
-```html
-<x-import module="tippy.js" as="tippy" defer />
-
-<button
-  x-data="{
-    async init() {
-        let tippy = await _import('tippy')
-
-        tippy($el, {
-            content: 'Hello World!',
-        });
-    }
-}"
->
-  Show tooltip
-</button>
-```
-
 ## Bootstrapping Alpine via Bundle 🤝
 
 Alpine can be bootstrapped with ease using a [local module](https://laravel-bundle.dev/local-modules.html)
@@ -102,6 +60,48 @@ export default (() => {
 })();
 ```
 
+## Using modules in AlpineJS
+
+A perfect pairing! Using Bundle in [AlpineJS](https://alpinejs.dev) is as easy as using it in an inline script.
+
+Since Alpine's `x-init` directive is [async by default](https://alpinejs.dev/advanced/async) Alpine & Bundle work seamlessly together.
+
+```html
+<x-import module="tippy.js" as="tippy" defer />
+
+<button
+  x-init="
+    let tippy = await _import('tippy')
+
+    tippy($el, {
+        content: 'Hello World!',
+    });
+  "
+>
+  Show tooltip
+</button>
+```
+
+You can also use the `_import` function in the `x-data` object. This requires you make the funcion `_import` is invoked from async.
+
+```html
+<x-import module="tippy.js" as="tippy" defer />
+
+<button
+  x-data="{
+    async init() {
+        let tippy = await _import('tippy')
+
+        tippy($el, {
+            content: 'Hello World!',
+        });
+    }
+}"
+>
+  Show tooltip
+</button>
+```
+
 ## Backed components
 
 It's possible to ship larger Alpine components using [Alpine.data](https://alpinejs.dev/globals/alpine-data). Simply export an [IIFE](https://laravel-bundle.dev/local-modules.html#iife-exports) containing a Alpine data definition.
@@ -119,7 +119,6 @@ export default (() => {
 ```
 
 ```html
-<x-import module="~/bootstrap/alpine" />
 <x-import module="~/components/hello-world" />
 
 <div x-data="dropdown">

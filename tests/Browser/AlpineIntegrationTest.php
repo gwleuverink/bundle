@@ -10,7 +10,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 class AlpineIntegrationTest extends DuskTestCase
 {
     /** @test */
-    public function it_can_bootstrap_alpine_via_import()
+    public function it_can_bootstrap_alpine_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -31,7 +31,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_bootstrap_plugins_via_import()
+    public function it_can_bootstrap_plugins_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -74,12 +74,12 @@ class AlpineIntegrationTest extends DuskTestCase
                     $el.innerHTML = filtered[0].name
                 "
             ></div>
-        HTML);
+        HTML)->pause(20);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSee('Fello World!');
+        $browser->assertSeeIn('#component', 'Fello World!');
 
     }
 
@@ -92,6 +92,7 @@ class AlpineIntegrationTest extends DuskTestCase
             <x-import module="lodash/filter" as="filter" />
 
             <div
+                id="component"
                 x-data="{
                      async init() {
                         const filter = await _import('filter');
@@ -108,11 +109,11 @@ class AlpineIntegrationTest extends DuskTestCase
                     }
                 }"
             ></div>
-        HTML);
+        HTML)->pause(20);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSee('Gello World!');
+        $browser->assertSeeIn('#component', 'Gello World!');
     }
 }

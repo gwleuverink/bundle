@@ -5,17 +5,15 @@ namespace Leuverink\Bundle\Components;
 use Illuminate\View\Component;
 use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
+use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 class Import extends Component
 {
-    public BundleManager $manager;
-
     public function __construct(
         public string $module,
         public ?string $as = null,
         public bool $inline = false
     ) {
-        $this->manager = BundleManager::new();
     }
 
     public function render()
@@ -27,6 +25,24 @@ class Import extends Component
         }
     }
 
+    /** Builds the core JavaScript & packages it up in a bundle */
+    protected function bundle()
+    {
+        $js = $this->core();
+
+        // Render script tag with bundled code
+        return view('x-import::script', [
+            'bundle' => $this->manager()->bundle($js),
+        ]);
+    }
+
+    /** Get an instance of the BundleManager */
+    protected function manager(): BundleManagerContract
+    {
+        return BundleManager::new();
+    }
+
+    /** Determines wherether to raise a console error or throw a PHP exception */
     protected function raiseConsoleErrorOrException(BundlingFailedException $e)
     {
         if (app()->hasDebugModeEnabled()) {
@@ -42,19 +58,10 @@ class Import extends Component
         HTML;
     }
 
-    protected function bundle()
-    {
-        $js = $this->core();
-
-        // Render script tag with bundled code
-        return view('x-import::script', [
-            'bundle' => $this->manager->bundle($js),
-        ]);
-    }
-
+    /** Builds Bundle's core JavaScript */
     protected function core(): string
     {
-        $timeout = $this->manager->config()->get('import_resolution_timeout');
+        $timeout = $this->manager()->config()->get('import_resolution_timeout');
 
         return <<< JS
             // First make sure window.x_import_modules exists

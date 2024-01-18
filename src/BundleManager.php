@@ -45,6 +45,7 @@ class BundleManager implements BundleManagerContract
         try {
             $processed = $this->bundler->build(
                 sourcemaps: $this->config()->get('sourcemaps_enabled'),
+                minify: $this->config()->get('minify'),
                 inputPath: $this->tempDisk()->path(''),
                 outputPath: $this->buildDisk()->path(''),
                 fileName: $file,
@@ -128,6 +129,9 @@ class BundleManager implements BundleManagerContract
     {
         $mock = Mockery::mock(BundleManagerContract::class, fn ($mock) => $mock
             ->makePartial()
+            ->shouldReceive('config')
+            ->andReturn(new ConfigRepository([]))
+
             ->shouldReceive('bundle')
             ->andReturn(new SplFileInfo(base_path('composer.json'))) // Just a file we know exists. It won't be touched
             ->atLeast()->once()

@@ -139,6 +139,28 @@ it('renders inline scripts with type=module', function () {
         ->toContain('type="module"');
 });
 
+// Easiest way to verify minification is to check if the line count is below a certain threshold
+it('minifies code when minification enabled', function () {
+    $lineThreshold = 10;
+    config()->set('bundle.minify', true);
+
+    $script = Blade::renderComponent(new Import('~/output-to-id', 'foo', inline: true));
+
+    expect(substr_count($script, "\n"))
+        ->toBeLessThan($lineThreshold);
+});
+
+// Easiest way to verify minification is to check if the line count is above a certain threshold
+it('doesnt minify code when minification disabled', function () {
+    $lineThreshold = 10;
+    config()->set('bundle.minify', false);
+
+    $script = Blade::renderComponent(new Import('~/output-to-id', 'foo', inline: true));
+
+    expect(substr_count($script, "\n"))
+        ->toBeGreaterThan($lineThreshold);
+});
+
 it('serves bundles over http', function () {
     $js = <<< 'JS'
     const filter = await import('~/output-to-id')

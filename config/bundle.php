@@ -23,7 +23,7 @@ return [
     | loading. Here you can tweak it's internal timout in ms.
     |
     */
-    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMOUT', 500),
+    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMEOUT', 500),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +48,18 @@ return [
     |
     */
     'sourcemaps_enabled' => env('BUNDLE_SOURCEMAPS_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Minification
+    |--------------------------------------------------------------------------
+    |
+    | All code is minified by default. This can make issues harder to debug.
+    | Using sourcemaps should relieve this issue. But in case you need it;
+    | Simply disable the minification option to below to stop minifing.
+    |
+    */
+    'minify' => env('BUNDLE_MINIFY', true),
 
     /*
     |--------------------------------------------------------------------------

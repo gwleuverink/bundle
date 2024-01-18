@@ -12,11 +12,17 @@ class Bun implements Bundler
 {
     use Constructable;
 
-    public function build(string $inputPath, string $outputPath, string $fileName, bool $sourcemaps = false): SplFileInfo
-    {
+    public function build(
+        string $inputPath,
+        string $outputPath,
+        string $fileName,
+        bool $sourcemaps = false,
+        bool $minify = true
+    ): SplFileInfo {
+
         $path = base_path('node_modules/.bin/');
         $options = [
-            // '--tsconfig-override' => base_path('jsconfig.json'), // Disable enforcing this. custom config is optional.
+            // '--splitting', // Breaks relative paths to imports from resources/js (TODO: Experiment more after writing tests)
             '--chunk-naming' => 'chunks/[name]-[hash].[ext]', // Not in use without --splitting
             '--asset-naming' => 'assets/[name]-[hash].[ext]', // Not in use without --splitting
             '--entrypoints' => $inputPath . $fileName,
@@ -24,13 +30,15 @@ class Bun implements Bundler
             '--outdir' => $outputPath,
             '--target' => 'browser',
             '--root' => $inputPath,
-            // '--splitting', // Breaks relative paths to imports from resources/js (TODO: Experiment more after writing tests)
             '--format' => 'esm',
-            '--minify', // Only in production?
 
             $sourcemaps
                 ? '--sourcemap=external'
                 : '--sourcemap=none',
+
+            $minify
+                ? '--minify'
+                : '',
         ];
 
         Process::run("{$path}bun build {$this->args($options)}")

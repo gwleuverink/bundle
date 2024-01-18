@@ -58,7 +58,7 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
 
         return BaseSolution::create()
             ->setSolutionTitle("Unable to resolve module '{$module}'")
-            ->setSolutionDescription("{$module}. Try running `npm install {$module}` or check the path to the import if it's a script in your resources directory.");
+            ->setSolutionDescription("{$module}. Try running `npm install {$module}` or check or make sure you have a `jsconfig.json` in case you are importing a local module.");
     }
 
     private function missingJsconfigFileSolution()

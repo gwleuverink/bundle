@@ -67,7 +67,7 @@ A perfect pairing! Using Bundle in [AlpineJS](https://alpinejs.dev) is as easy a
 Since Alpine's `x-init` directive is [async by default](https://alpinejs.dev/advanced/async) Alpine & Bundle work seamlessly together.
 
 ```html
-<x-import module="tippy.js" as="tippy" defer />
+<x-import module="tippy.js" as="tippy" />
 
 <button
   x-init="
@@ -85,7 +85,7 @@ Since Alpine's `x-init` directive is [async by default](https://alpinejs.dev/adv
 You can also use the `_import` function in the `x-data` object. This requires you make the funcion `_import` is invoked from async.
 
 ```html
-<x-import module="tippy.js" as="tippy" defer />
+<x-import module="tippy.js" as="tippy" />
 
 <button
   x-data="{

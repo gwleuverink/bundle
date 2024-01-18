@@ -80,11 +80,11 @@ Since Bundle's core is included with the first `<x-import />` that you load you 
 
 ## Import resolution timeout
 
-The \_import() function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import()` function should wait untill a module is loaded.
+The `_import()` function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import()` function should wait untill a module is loaded.
 
 ## Minification
 
-All code is minified by default. This can make issues harder to debug at times. Using sourcemaps should relieve this issue. But in case you need it you can disable minification by updating the config file or via an env variable `BUNDLE_MINIFICATION`.
+All code is minified by default. This can make issues harder to debug at times. Using sourcemaps should relieve this issue. But in case you need it you can disable minification by updating the config file or via an env variable `BUNDLE_MINIFy`.
 
 ## Sourcemaps
 

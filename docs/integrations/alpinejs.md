@@ -129,4 +129,4 @@ export default (() => {
 </div>
 ```
 
-Preferably we would be able to simply feed an object to `x-data` as a default export, but this isn't possible at this time.
+A nicer API for this would be to be able to simply feed an object to `x-data` as a default export via `_import()`, but this isn't possible at this time.

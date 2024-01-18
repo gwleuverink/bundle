@@ -30,6 +30,28 @@ If a module supports per method exports, like `lodash` does, it is recomended to
 <x-import module="lodash" as="lodash" /> <!-- 78kb -->
 ```
 
+## Global helper functions
+
+```javascript
+export function foo() {
+  //
+}
+
+export function bar() {
+  //
+}
+```
+
+```html
+<x-import module="~/named-functions" as="helpers" />
+
+<script type="module">
+  const foo = await _import("helpers", "foo");
+
+  foo();
+</script>
+```
+
 ## Sourcemaps
 
 Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.

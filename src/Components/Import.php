@@ -70,6 +70,29 @@ class Import extends Component
             if(!window.x_import_modules) window.x_import_modules = {};
 
             //--------------------------------------------------------------------------
+            // Expose _import function (as soon as possible)
+            //--------------------------------------------------------------------------
+            window._import = async function(alias, exportName = 'default') {
+
+                // Wait for module to become available (Needed for Alpine support)
+                const module = await poll(
+                    () => window.x_import_modules[alias],
+                    {$timeout}, 5, alias
+                )
+
+                if(module === undefined) {
+                    console.info('When invoking _import() from a script tag make sure it has type="module"')
+                    throw `BUNDLE ERROR: '\${alias}' not found`;
+                }
+
+                return module[exportName] !== undefined
+                    // Return export if it exists
+                    ? module[exportName]
+                    // Otherwise the entire module
+                    : module
+            };
+
+            //--------------------------------------------------------------------------
             // Import the module & push to x_import_modules
             // Invoke IIFE so we can break out of execution when needed
             //--------------------------------------------------------------------------
@@ -92,31 +115,7 @@ class Import extends Component
                     ? window.x_import_modules['{$this->as}'] = import('{$this->module}')
                     // Only import it (for IIFE no alias needed)
                     : import('{$this->module}')
-            })()
-
-
-            //--------------------------------------------------------------------------
-            // Expose _import function
-            //--------------------------------------------------------------------------
-            window._import = async function(alias, exportName = 'default') {
-
-                // Wait for module to become available (Needed for Alpine support)
-                const module = await poll(
-                    () => window.x_import_modules[alias],
-                    {$timeout}, 5, alias
-                )
-
-                if(module === undefined) {
-                    console.info('When invoking _import() from a script tag make sure it has type="module"')
-                    throw `BUNDLE ERROR: '\${alias}' not found`;
-                }
-
-                return module[exportName] !== undefined
-                    // Return export if it exists
-                    ? module[exportName]
-                    // Otherwise the entire module
-                    : module
-            }
+            })();
 
 
             //--------------------------------------------------------------------------
@@ -139,7 +138,7 @@ class Import extends Component
                     // Wait for a set interval
                     await new Promise(resolve => setTimeout(resolve, interval));
                 }
-            }
+            };
         JS;
     }
 }

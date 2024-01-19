@@ -59,7 +59,7 @@ export default (() => {
 })();
 ```
 
-Then in your template you can use the `<x-import />` component to evaluate this function. Without the need of calling the `_import()` function. Note this only works with a [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE){:target="\_blank"}
+Then in your template you can use the `<x-import />` component to evaluate this function. Without the need of calling the `_import` function. Note this only works with a [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE){:target="\_blank"}
 
 ```html
 <!-- User will be alerted with 'Hello World' -->

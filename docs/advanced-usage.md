@@ -52,15 +52,15 @@ export function bar() {
 </script>
 ```
 
-## Using `_import()` in a script tag without `type="module"`
+## Using `_import` in a script tag without `type="module"`
 
-All previous examples have used the `_import()` function within a script tag with `type='module'`. This instructs the browser to treat the containing code as a module. Practically this means that code gets it's own namespace & you can't reach for variables outside the scope of the script tag.
+All previous examples have used the `_import` function within a script tag with `type='module'`. This instructs the browser to treat the containing code as a module. Practically this means that code gets it's own namespace & you can't reach for variables outside the scope of the script tag.
 
-A script tag with `type="module"` makes your script `defer` by default, so they are loaded in parallel & executed in order. Because of this the `_import()` function has your requested module available immediately. (Since they are loaded in the same order they appeared in the DOM)
+A script tag with `type="module"` makes your script `defer` by default, so they are loaded in parallel & executed in order. Because of this the `_import` function has your requested module available immediately. (Since they are loaded in the same order they appeared in the DOM)
 
 This is not the case however when you use a script tag without `type="module"`. A import might still be loading while the page encounters the `_invoke()` function.
 
-Bundle takes care of this problem by checking the internal import map by use of a non-blocking polling mechanism. So you can safely use `_import()` anywhere you want.
+Bundle takes care of this problem by checking the internal import map by use of a non-blocking polling mechanism. So you can safely use `_import` anywhere you want.
 
 Since Bundle's core is included with the first `<x-import />` that you load you do have to either wrap the import inside a `DOMContentLoaded` listener or make the import inline.
 
@@ -76,11 +76,11 @@ Since Bundle's core is included with the first `<x-import />` that you load you 
 
 {: .note }
 
-> We like to explore ways to inject Bundle's core on every page. This way the `_import()` function does not have to be wrapped in a `DOMContentLoaded` listener. Check out our [roadmap](https://laravel-bundle.dev/roadmap.html#roadmap) to see what else we're cooking up.
+> We like to explore ways to inject Bundle's core on every page. This way the `_import` function does not have to be wrapped in a `DOMContentLoaded` listener. Check out our [roadmap](https://laravel-bundle.dev/roadmap.html#roadmap) to see what else we're cooking up.
 
 ## Import resolution timeout
 
-The `_import()` function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import()` function should wait untill a module is loaded.
+The `_import` function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import` function should wait untill a module is loaded.
 
 ## Minification
 

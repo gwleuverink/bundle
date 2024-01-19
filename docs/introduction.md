@@ -13,10 +13,7 @@ The `<x-import />` component bundles your import on the fly using [Bun](https://
 
 <!-- yields the following script -->
 
-<script
-  src="/x-import/e52def31336c.min.js"
-  type="module"
-  data-module="alert"
+<script src="/x-import/e52def31336c.min.js" type="module" data-module="alert" data-alias="ApexCharts"
 ></script>
 ```
 
@@ -24,11 +21,11 @@ The `<x-import />` component bundles your import on the fly using [Bun](https://
 
 {: .note }
 
-> You may pass any attributes a script tag would accept, like `defer` or `async`
+> You may pass any attributes a script tag would accept, like `defer` or `async`. Note that scripts with `type="module"` are deferred by default.
 
 <br />
 
-## The `_import()` helper function
+## The `_import` helper function
 
 After you use `<x-import />` somewhere in your template a global `_import` function will become available on the window object.
 
@@ -49,6 +46,8 @@ _In cases like this it might be advantagious to use per-method imports instead. 
 ---
 
 The `_import` function is async & returns a Promise. In order to use this in inline scripts you need to wrap it in a async function, or make the script tag you are using it in of `type="module"`.
+
+It's recommended to use a inline script of type `module`. This makes it deferred by default & instructs the browser to run those tags sequentially. If you use a script without the `module` type you can still use Bundle, but with some extra boilerplate. [Check here](https://laravel-bundle.dev/advanced-usage.html#using-_import-in-a-script-tag-without-typemodule) if you'd like to learn more
 
 Refer to the [local modules](https://laravel-bundle.dev/local-modules.html) docs for a more detailed explanation on how the `_import` function can be utilized in different scenarios.
 

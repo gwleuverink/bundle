@@ -125,7 +125,22 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_throws_an_error_when_debug_mode_enabled()
+    public function it_logs_console_error_when_a_module_is_imported_using_a_different_alias()
+    {
+        $this->markTestSkipped("can't inspect console for thrown errors");
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="~/output-to-id" as="foo" />
+            <x-import module="~/output-to-id" as="bar" />
+        HTML);
+
+        // Raises console errors
+        dd($browser->driver->manage()->getLog('browser'));
+        $this->assertNotEmpty($browser->driver->manage()->getLog('browser'));
+    }
+
+    /** @test */
+    public function it_thows_exception_when_debug_mode_enabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
             $config->set('app.debug', true);
@@ -139,7 +154,7 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_doesnt_raise_a_console_error_when_debug_mode_enabled()
+    public function it_throws_exception_when_debug_mode_enabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
             $config->set('app.debug', true);
@@ -155,7 +170,7 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_doesnt_throw_an_error_when_debug_mode_disabled()
+    public function it_doesnt_throw_exceptions_when_debug_mode_disabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
             $config->set('app.debug', false);
@@ -169,7 +184,7 @@ class ComponentTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_raises_console_error_when_debug_mode_disabled()
+    public function it_logs_console_errors_when_debug_mode_disabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
             $config->set('app.debug', false);
@@ -179,7 +194,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/nonexistent-module" as="foo" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/nonexistent-module"')[0].innerHTML
+                document.querySelector('script[data-bundle="~/nonexistent-module"').innerHTML
             JS, "console.error('BUNDLING ERROR: import ~/nonexistent-module as foo')");
     }
 }

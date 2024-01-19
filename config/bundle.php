@@ -18,12 +18,12 @@ return [
     | Import resolution timeout
     |--------------------------------------------------------------------------
     |
-    | The _import() function uses a built-in non blocking polling
-    | mechanism in order to account for async & deferred script
-    | loading. Here you can tweak it's internal timout in ms.
+    | The _import() function uses a built-in non blocking polling mechanism in
+    | order to account for script tags that are not processed sequentially
+    | and Alpine support. Here you can tweak it's internal timout in ms.
     |
     */
-    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMEOUT', 500),
+    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMEOUT', 800),
 
     /*
     |--------------------------------------------------------------------------

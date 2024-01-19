@@ -42,7 +42,7 @@ class Import extends Component
         return BundleManager::new();
     }
 
-    /** Determines wherether to raise a console error or throw a PHP exception */
+    /** Determines wherether to raise a console error or throw a PHP exception when the BundleManager throws an Exception */
     protected function raiseConsoleErrorOrException(BundlingFailedException $e)
     {
         if (app()->hasDebugModeEnabled()) {

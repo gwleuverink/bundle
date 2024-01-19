@@ -195,6 +195,6 @@ class ComponentTest extends DuskTestCase
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelector('script[data-bundle="~/nonexistent-module"').innerHTML
-            JS, "throw 'BUNDLING ERROR: import ~/nonexistent-module as foo'");
+            JS, 'throw "BUNDLING ERROR: No module found at path \'~/nonexistent-module\'"');
     }
 }

@@ -53,7 +53,7 @@ class Import extends Component
 
         return <<< HTML
             <!--[BUNDLE: {$this->as} from '{$this->module}']-->
-            <script data-bundle="{$this->module}">throw 'BUNDLING ERROR: import {$this->module} as {$this->as}'</script>
+            <script data-bundle="{$this->module}">throw "BUNDLING ERROR: No module found at path '{$this->module}'"</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }

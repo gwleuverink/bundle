@@ -113,13 +113,13 @@ it('doesnt throw a BundlingFailedException when blade component fails bundling a
         ->not->toThrow(BundlingFailedException::class);
 });
 
-it('raises console error when blade component fails bundling and debug mode is disabled', function () {
+it('logs console error when blade component fails bundling and debug mode is disabled', function () {
     config()->set('app.debug', false);
     $component = new Import('~/foo', 'bar');
 
     expect($component->render())
         ->toContain(
-            'console.error',
+            'throw',
             'BUNDLING ERROR: import ~/foo as bar'
         )
         ->not->toThrow(BundlingFailedException::class);

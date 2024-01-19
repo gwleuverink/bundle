@@ -64,10 +64,15 @@ class Import extends Component
         $timeout = $this->manager()->config()->get('import_resolution_timeout');
 
         return <<< JS
-            // First make sure window.x_import_modules exists
+            //--------------------------------------------------------------------------
+            // Expose x_import_modules map
+            //--------------------------------------------------------------------------
             if(!window.x_import_modules) window.x_import_modules = {};
 
+            //--------------------------------------------------------------------------
+            // Import the module & push to x_import_modules
             // Invoke IIFE so we can break out of execution when needed
+            //--------------------------------------------------------------------------
             (() => {
 
                 // Check if module is already loaded under a different alias
@@ -90,7 +95,9 @@ class Import extends Component
             })()
 
 
-            // Expose _import function as soon as possible
+            //--------------------------------------------------------------------------
+            // Expose _import function
+            //--------------------------------------------------------------------------
             window._import = async function(alias, exportName = 'default') {
 
                 // Wait for module to become available (Needed for Alpine support)
@@ -112,7 +119,9 @@ class Import extends Component
             }
 
 
-            // Import polling helper
+            //--------------------------------------------------------------------------
+            // Non-blocking polling mechanism
+            //--------------------------------------------------------------------------
             async function poll(success, timeout, interval, ref) {
                 const startTime = new Date().getTime();
 

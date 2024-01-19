@@ -16,7 +16,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 //         <x-import module="~/alert" as="alert" />
 //     HTML)
 //     ->assertScript(<<< JS
-//         document.querySelectorAll('script[data-bundle="alert"').length
+//         document.querySelectorAll('script[data-module="alert"').length
 //     JS, 1);
 
 class ComponentTest extends DuskTestCase
@@ -29,7 +29,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+                document.querySelectorAll('script[data-module="~/output-to-id"').length
             JS, 1);
     }
 
@@ -41,7 +41,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="output" inline />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+                document.querySelectorAll('script[data-module="~/output-to-id"').length
             JS, 1);
     }
 
@@ -53,10 +53,10 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/function-is-evaluated"').length
+                document.querySelectorAll('script[data-module="~/function-is-evaluated"').length
             JS, 1)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+                document.querySelectorAll('script[data-module="~/output-to-id"').length
             JS, 1);
     }
 
@@ -68,7 +68,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/output-to-id" as="bar" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"').length
+                document.querySelectorAll('script[data-module="~/output-to-id"').length
             JS, 2);
     }
 
@@ -80,11 +80,11 @@ class ComponentTest extends DuskTestCase
             HTML)
             // Assert it doesn't render src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-module="~/output-to-id"')[0].hasAttribute('src')
             JS, false)
             // Assert script tag has content
             ->assertScript(<<< 'JS'
-                typeof document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].innerHTML
+                typeof document.querySelectorAll('script[data-module="~/output-to-id"')[0].innerHTML
             JS, 'string');
     }
 
@@ -95,11 +95,11 @@ class ComponentTest extends DuskTestCase
             HTML)
             // Assert it renders src attribute on the script tag
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].hasAttribute('src')
+                document.querySelectorAll('script[data-module="~/output-to-id"')[0].hasAttribute('src')
             JS, true)
             // Assert script tag has no content
             ->assertScript(<<< 'JS'
-                document.querySelectorAll('script[data-bundle="~/output-to-id"')[0].innerHTML
+                document.querySelectorAll('script[data-module="~/output-to-id"')[0].innerHTML
             JS, null);
     }
 
@@ -194,7 +194,7 @@ class ComponentTest extends DuskTestCase
                 <x-import module="~/nonexistent-module" as="foo" />
             HTML)
             ->assertScript(<<< 'JS'
-                document.querySelector('script[data-bundle="~/nonexistent-module"').innerHTML
+                document.querySelector('script[data-module="~/nonexistent-module"').innerHTML
             JS, 'throw "BUNDLING ERROR: No module found at path \'~/nonexistent-module\'"');
     }
 }

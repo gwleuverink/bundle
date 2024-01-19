@@ -15,7 +15,7 @@ You should apply this with consideration. You will save up on requests, but doin
 
 <!-- yields the following script -->
 
-<script data-bundle="alert">
+<script data-module="apexcharts">
   // Your minified bundle
 </script>
 ```

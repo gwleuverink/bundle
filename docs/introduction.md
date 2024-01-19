@@ -13,7 +13,11 @@ The `<x-import />` component bundles your import on the fly using [Bun](https://
 
 <!-- yields the following script -->
 
-<script src="/x-import/e52def31336c.min.js" type="module" data-bundle="alert"></script>
+<script
+  src="/x-import/e52def31336c.min.js"
+  type="module"
+  data-module="alert"
+></script>
 ```
 
 <br />

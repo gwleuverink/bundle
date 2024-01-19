@@ -53,7 +53,7 @@ class Import extends Component
 
         return <<< HTML
             <!--[BUNDLE: {$this->as} from '{$this->module}']-->
-            <script data-bundle="{$this->module}">throw "BUNDLING ERROR: No module found at path '{$this->module}'"</script>
+            <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: No module found at path '{$this->module}'"</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }
@@ -99,7 +99,7 @@ class Import extends Component
             (() => {
 
                 // Check if module is already loaded under a different alias
-                const previous = document.querySelector(`script[data-bundle="{$this->module}"`)
+                const previous = document.querySelector(`script[data-module="{$this->module}"`)
 
                 // Was previously loaded & needs to be pushed to import map
                 if(previous && '{$this->as}') {

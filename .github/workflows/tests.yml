@@ -3,6 +3,9 @@ name: tests
 on:
   pull_request:
     branches: [development, main]
+  workflow_run:
+    workflows: [codestyle]
+    types: [completed]
 
 jobs:
   skip-duplicates:

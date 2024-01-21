@@ -104,6 +104,21 @@ You can also use the `_import` function in the `x-data` object. This requires yo
 </button>
 ```
 
+You can also import a module right inside a Alpine listener. This involves making the listener expression async. For example:
+
+```html
+<x-import module="sweetalert" as="swal" />
+
+<button
+  x-on:click="async () => {
+        let swal = await _import('swal')
+        swal('Hello world!');
+    }"
+>
+  Trigger Sweetalert dialog
+</button>
+```
+
 ## Roadmap
 
 There are a couple of cool ideas in the pipe. One of them is [backed Alpine components](https://laravel-bundle.dev/roadmap.html#backed-alpine-components). It would be incredible if this feature is possible in the future 🤞

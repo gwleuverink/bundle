@@ -32,8 +32,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^10",
-        "illuminate/support": "^10",
-        "spatie/laravel-ignition": "^2.3"
+        "illuminate/support": "^10"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.30",
@@ -43,6 +42,7 @@
         "tightenco/duster": "^2.4",
         "tightenco/tlint": "^9.1",
         "pestphp/pest": "^2.30",
+        "spatie/laravel-ignition": "^2.3",
         "symfony/thanks": "^1.2",
         "orchestra/testbench": "^8.19",
         "orchestra/testbench-dusk": "^8.19"

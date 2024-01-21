@@ -43,6 +43,8 @@ Because of this you are able to create Alpine/Blade components with composable J
 
 This opens up a whole new dimension to fully portable Blade components! But use with care. Shared dependencies [are not chunked](https://laravel-bundle.dev/caveats.html#code-splitting).
 
+## Usage in Livewire
+
 You may use Bundle in conjunction with Livewire's `@assets` directive. This serves a similar purpose as using stacks in plain Laravel, but evaluates scripts even when it was appended on the page after the initial load.
 
 Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#loading-assets){:target="\_blank"} for more information on why you'd might need this.

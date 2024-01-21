@@ -143,13 +143,14 @@ class AlpineIntegrationTest extends DuskTestCase
             >Click to change text</button>
         HTML)->pause(20);
 
-        // Doesn't raise console errors
-        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
-
         $browser
             ->assertSeeIn('#component', 'Click to change text')
             ->press('#component')
             ->assertSeeIn('#component', 'Cello World!');
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+
     }
 
     /** @test */

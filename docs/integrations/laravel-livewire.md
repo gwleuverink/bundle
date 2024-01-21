@@ -69,7 +69,7 @@ public function submit()
 {
     // Run some long task
 
-    $this->js(<<< 'JAVASCRIPT'
+    $this->js(<<< JAVASCRIPT
         let swal = await _import('swal')
         swal('Task finished!');
     JAVASCRIPT);

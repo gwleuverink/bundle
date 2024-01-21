@@ -118,6 +118,41 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
+    public function it_can_use_other_imports_inside_x_click_directive()
+    {
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="~/bootstrap/alpine" />
+            <x-import module="lodash/filter" as="filter" />
+
+            <button
+                id="component"
+                x-data
+                x-on:click="
+                    const filter = await _import('filter');
+
+                    let data = [
+                        { 'name': 'Foo', 'active': false },
+                        { 'name': 'Cello World!', 'active': true }
+                    ];
+
+                    // Filter only active
+                    let filtered = filter(data, o => o.active)
+
+                    $el.innerHTML = filtered[0].name
+                "
+            >Click to change text</button>
+        HTML)->pause(20);
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+
+        $browser
+            ->assertSeeIn('#component', 'Click to change text')
+            ->press('#component')
+            ->assertSeeIn('#component', 'Cello World!');
+    }
+
+    /** @test */
     public function it_supports_backed_components_via_alpine_data()
     {
         $this->markTestSkipped('not implemented');

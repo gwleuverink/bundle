@@ -104,16 +104,16 @@ You can also use the `_import` function in the `x-data` object. This requires yo
 </button>
 ```
 
-You can also import a module right inside a Alpine listener. This involves making the listener expression async. For example:
+You can also import a module right inside a Alpine listener. For example:
 
 ```html
 <x-import module="sweetalert" as="swal" />
 
 <button
-  x-on:click="async () => {
-        let swal = await _import('swal')
-        swal('Hello world!');
-    }"
+  x-on:click="
+    let swal = await _import('swal')
+    swal('Hello world!');
+"
 >
   Trigger Sweetalert dialog
 </button>

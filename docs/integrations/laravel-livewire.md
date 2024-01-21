@@ -54,7 +54,7 @@ In Livewire context the page can consist of pieces of template that are conditio
 
 We know this is a huge shortcoming. We hope to add full `@script` support as soon as possible! Untill then you can use Bundle from your top level component safely.
 
-## Invoking Bundle from Livewire method calls 🤯
+## Invoking Bundle from Livewire actions 🤯
 
 Bundle works with Livewire's [one-off JavaScript expressions](https://livewire.laravel.com/docs/actions#evaluating-one-off-javascript-expressions). This sweet feature can be combined with Bundle imports to for example, show a sweetalert after a longer running action finished.
 

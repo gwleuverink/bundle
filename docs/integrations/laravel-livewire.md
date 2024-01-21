@@ -5,6 +5,9 @@ parent: Integration examples
 image: "/assets/social-square-livewire.png"
 ---
 
+{: .note }
+[Important note](https://laravel-bundle.dev/integrations/laravel-livewire.html#usage-in-livewire) about Liveiwre's `@script` directive.
+
 ## Usage in plain Laravel
 
 When using Bundle in your Blade views, you may push/prepend `<x-import />` to a stack.
@@ -35,18 +38,6 @@ After you've used the `<x-import>` in your template you can retrieve the bundle 
 </script>
 ```
 
-## Usage in Livewire
-
-You may use Bundle in conjunction with Livewire's `@script` directive. This serves a similar purpose as using stacks in plain Laravel, but evaluates scripts even when it was appended on the page after the initial load.
-
-Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-javascript-in-livewire-components){:target="\_blank"} for more information on why you'd might need this.
-
-```html
-@script
-<x-import module="apexcharts" as="ApexCharts" />
-@endscript
-```
-
 ## Component composability
 
 Since the `@once` directive is added internally you are safe to use these imports in multiple blade components. Only the first one will be rendered.
@@ -54,3 +45,11 @@ Since the `@once` directive is added internally you are safe to use these import
 Because of this you are able to create Alpine/Blade components with composable JS dependencies. For example, a calendar input may include imports for both Alpine plugins & fullcalendar.js, regardless if those are used elsewhere on the page.
 
 This opens up a whole new dimension to fully portable Blade components! But use with care. Shared dependencies [are not chunked](https://laravel-bundle.dev/caveats.html#code-splitting).
+
+## Usage in Livewire
+
+At this time `<x-import />` does not work with Livewire's `@script` directive. You may safely use Bundle's import component inside a top level page component that is loaded at first render. It is not safe to use inside elements that are conditionally rendered.
+
+In Livewire context the page can consist of pieces of template that are conditionally rendered by Livewire. We wan't any script tags inside the conditional to be evaluated when it becomes visible after the initial page load. Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-javascript-in-livewire-components){:target="\_blank"} for more information on why you'd might need this.
+
+We know this is a huge shortcoming. We hope to add full `@script` support as soon as possible! Untill then you can use Bundle from your top level component safely.

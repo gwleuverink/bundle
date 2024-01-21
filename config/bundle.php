@@ -63,7 +63,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Build paths (glob patterns)
+    | Build paths
     |--------------------------------------------------------------------------
     |
     | Here you may specify which directories will be scanned when running the

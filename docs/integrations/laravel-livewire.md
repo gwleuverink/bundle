@@ -47,7 +47,7 @@ This opens up a whole new dimension to fully portable Blade components! But use 
 
 You may use Bundle in conjunction with Livewire's `@assets` directive. This serves a similar purpose as using stacks in plain Laravel, but evaluates scripts even when it was appended on the page after the initial load.
 
-When your import is not wrapped in a `@assets` directive it will not be evaluated in case it lives inside a conditional piece of template that is not rendered on the first page load. Because of this it is recommended to always use Bundle together with `@assets` when using Livewire.
+When your import is not wrapped in a `@assets` directive chances are high it will not be evaluated in case it lives inside a conditional piece of template. Because of this it is recommended to always use Bundle together with `@assets` when using Livewire.
 
 Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#loading-assets){:target="\_blank"} for more information on why you'd might need this.
 
@@ -82,3 +82,7 @@ public function submit()
 ```
 
 Honest to god this one blew my mind for a minute.
+
+## Using Bundle within Alpine
+
+When you use Livewire, Alpine is included. There is no need to bootstrap Alpine via Bundle. Though you can if you want. Refer to the [Alpine integration](https://laravel-bundle.dev/integrations/alpinejs.html) section of the docs for examples on how to use imports in Alpine

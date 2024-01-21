@@ -58,7 +58,7 @@ class Import extends Component
         HTML;
     }
 
-    /** Buildsb Bundle's core JavaScript */
+    /** Builds Bundle's core JavaScript */
     protected function core(): string
     {
         $timeout = $this->manager()->config()->get('import_resolution_timeout');

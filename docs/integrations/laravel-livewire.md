@@ -5,9 +5,6 @@ parent: Integration examples
 image: "/assets/social-square-livewire.png"
 ---
 
-{: .note }
-[Important note](https://laravel-bundle.dev/integrations/laravel-livewire.html#usage-in-livewire) about Liveiwre's `@script` directive.
-
 ## Usage in plain Laravel
 
 When using Bundle in your Blade views, you may push/prepend `<x-import />` to a stack.
@@ -46,20 +43,24 @@ Because of this you are able to create Alpine/Blade components with composable J
 
 This opens up a whole new dimension to fully portable Blade components! But use with care. Shared dependencies [are not chunked](https://laravel-bundle.dev/caveats.html#code-splitting).
 
-## Usage in Livewire
+You may use Bundle in conjunction with Livewire's `@assets` directive. This serves a similar purpose as using stacks in plain Laravel, but evaluates scripts even when it was appended on the page after the initial load.
 
-At this time `<x-import />` does not work with Livewire's `@script` directive. You may safely use Bundle's import component inside a top level page component that is loaded at first render. It is not safe to use inside elements that are conditionally rendered.
+Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#loading-assets){:target="\_blank"} for more information on why you'd might need this.
 
-In Livewire context the page can consist of pieces of template that are conditionally rendered by Livewire. We wan't any script tags inside the conditional to be evaluated when it becomes visible after the initial page load. Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-javascript-in-livewire-components){:target="\_blank"} for more information on why you'd might need this.
-
-We know this is a huge shortcoming. We hope to add full `@script` support as soon as possible! Untill then you can use Bundle from your top level component safely.
+```html
+@assets
+<x-import module="apexcharts" as="ApexCharts" />
+@endassets
+```
 
 ## Invoking Bundle from Livewire actions 🤯
 
 Bundle works with Livewire's [one-off JavaScript expressions](https://livewire.laravel.com/docs/actions#evaluating-one-off-javascript-expressions). This sweet feature can be combined with Bundle imports to for example, show a sweetalert after a longer running action finished.
 
 ```html
+@assets
 <x-import module="sweetalert" as="swal" />
+@endassets
 
 <button wire:click="submit">Go!</button>
 ```

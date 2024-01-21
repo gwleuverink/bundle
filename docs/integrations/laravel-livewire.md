@@ -53,3 +53,27 @@ At this time `<x-import />` does not work with Livewire's `@script` directive. Y
 In Livewire context the page can consist of pieces of template that are conditionally rendered by Livewire. We wan't any script tags inside the conditional to be evaluated when it becomes visible after the initial page load. Refer to the [Livewire docs](https://livewire.laravel.com/docs/javascript#using-javascript-in-livewire-components){:target="\_blank"} for more information on why you'd might need this.
 
 We know this is a huge shortcoming. We hope to add full `@script` support as soon as possible! Untill then you can use Bundle from your top level component safely.
+
+## Invoking Bundle from Livewire method calls 🤯
+
+Bundle works with Livewire's [backend one-off JavaScript expressions](https://livewire.laravel.com/docs/actions#evaluating-one-off-javascript-expressions). This sweet feature can be combined with Bundle imports to for example, show a sweetalert after a longer running action finished.
+
+```html
+<x-import module="sweetalert" as="swal" />
+
+<button wire:click="submit">Go!</button>
+```
+
+```php
+public function submit()
+{
+    // Run some long task
+
+    $this->js(<<< 'JAVASCRIPT'
+        let swal = await _import('swal')
+        swal('Task finished!');
+    JAVASCRIPT);
+}
+```
+
+Honest to god this one blew my mind for a minute.

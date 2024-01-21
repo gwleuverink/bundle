@@ -56,7 +56,7 @@ We know this is a huge shortcoming. We hope to add full `@script` support as soo
 
 ## Invoking Bundle from Livewire method calls 🤯
 
-Bundle works with Livewire's [backend one-off JavaScript expressions](https://livewire.laravel.com/docs/actions#evaluating-one-off-javascript-expressions). This sweet feature can be combined with Bundle imports to for example, show a sweetalert after a longer running action finished.
+Bundle works with Livewire's [one-off JavaScript expressions](https://livewire.laravel.com/docs/actions#evaluating-one-off-javascript-expressions). This sweet feature can be combined with Bundle imports to for example, show a sweetalert after a longer running action finished.
 
 ```html
 <x-import module="sweetalert" as="swal" />

@@ -84,7 +84,7 @@ The `_import` function uses a built-in non blocking polling mechanism in order t
 
 ## Minification
 
-All code is minified by default. This can make issues harder to debug at times. Using sourcemaps should relieve this issue. But in case you need it you can disable minification by updating the config file or via an env variable `BUNDLE_MINIFy`.
+All code is minified by default. This can make issues harder to debug at times. Using sourcemaps should relieve this issue. But in case you need it you can disable minification by updating the config file or via an env variable `BUNDLE_MINIFY`.
 
 ## Sourcemaps
 

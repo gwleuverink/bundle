@@ -8,31 +8,32 @@ image: "/assets/social-square.png"
 
 Bundle facilitates JavaScript imports inside Blade using [Bun](https://bun.sh){:target="\_blank"}.
 
-Bun does all the heavy lifting. Bundle provides the glue between Blade and Bun and injects your imports on the client side.
+Bun does all the heavy lifting and Bundle provides the glue between Blade and injects your imports on the client side.
 
-The <x-import /> component bundles your import on the fly and renders a script tag in place.
+The <x-import /> component processes your import on the fly and renders a script tag in place.
 
 ```html
 <x-import module="apexcharts" as="ApexCharts" />
 
 <!-- yields the following script -->
 
-<script src="/x-import/e52def31336c.min.js" type="module" data-module="apexcharts" data-alias="ApexCharts"></script>
+<script src="/x-import/e52def31336c.min.js" type="module" data-module="apexcharts" data-alias="ApexCharts"
+></script>
 ```
 
 ### A bit more in depth
 
-In contrary to how an entire JavaScript app would be bundled, this package creates tiny bundles usually only consisting of one module each, depending on the props you pass to the `<x-import />` component.
+{: .note }
 
-Bun treats these bundles as being separate builds. This normally would cause collisions with reused tokens inside the window scope.
+> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript.
 
-This is countered by loading those bundles via a script tag with `type="module"`. Which constraints the code to it's own module scope.
+In contrary to how a JavaScript app would be bundled, this package creates tiny bundles usually only consisting of one module each. Depending on the props you pass to the `<x-import />` component.
 
-A script tag with `type="module"` makes your script `defer` by default, so they are loaded in parallel & executed in order.
+Bun treats these bundles as being separate builds. This would cause collisions with reused tokens inside the window scope, but since Bundle loads your imports via a script tag with `type="module"` the code is constrained to it's own module scope.
 
-When you use the `<x-import />` component Bundle constructs a small JS script that imports the desired module and exposes it on the page, along with the `_import` helper function. It then bundles the entire thing up and caches it in the `storage/bundle` directory. This is then either served over http or rendered inline.
+A script tag with `type="module"` also makes it `defer` by default, so they are loaded in parallel & executed in order.
 
-Being this constrained and relying on Bun for al the heavy lifting allows Bundle's code to be extremely thin and surprisingly well testable.
+When you use the `<x-import />` component Bundle constructs a small JS script that imports the desired module and exposes it on the page, along with the `_import` helper function. It then bundles it up and caches it in the `storage/app/bundle` directory. This is then either served over http or rendered inline.
 
 <br />
 

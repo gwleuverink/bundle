@@ -8,6 +8,16 @@ image: "/assets/social-square.png"
 
 Bundle is under active development. If you feel there are features missing or you've got a great idea that's not on on the roadmap please [open a discussion](https://github.com/gwleuverink/bundle/discussions/categories/ideas){:target="\_blank"} on GitHub.
 
+## CSS loader
+
+Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
+
+Plugin support is a feature we'd like to experiment with. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.
+
+## Bun plugin support
+
+We'd like to add 3rd party plugin support and, in the spirit of making things even more meta than they already are, also try to support custom plugins right from inside your `resources` directory.
+
 ## Initable exports
 
 When importing a local module, the only method to immidiatly invoke some code is by using the [IIFE export](https://laravel-bundle.dev/local-modules.html#iife-exports) method.

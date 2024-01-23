@@ -6,22 +6,34 @@ image: "/assets/social-square.png"
 
 ## How it works
 
-The `<x-import />` component bundles your import on the fly using [Bun](https://bun.sh){:target="\_blank"} and renders a script tag in place.
+Bundle facilitates JavaScript imports inside Blade using [Bun](https://bun.sh){:target="\_blank"}. Bun does all the heavy lifting, Bundle provides the glue between Blade and injects your imports on the client side.
+
+The <x-import /> component bundles your import on the fly using Bun and renders a script tag in place.
 
 ```html
 <x-import module="apexcharts" as="ApexCharts" />
 
 <!-- yields the following script -->
 
-<script src="/x-import/e52def31336c.min.js" type="module" data-module="alert" data-alias="ApexCharts"
-></script>
+<script src="/x-import/e52def31336c.min.js" type="module" data-module="alert" data-alias="ApexCharts"></script>
 ```
+
+### In depth
+
+In contrary to how an entire JavaScript app would be bundled at once, this package creates tiny bundles based on the props you pass to the `<x-import />` component.
+
+Bun treats these bundles as being separate builds. This normally would cause collisions with reused tokens inside the window scope but this is countered by loading those bundles via a script tag with `type="module"`. This constraints the code to it's own scope and makes the script be deferred automatically.
+
+When you use the `<x-import />` component Bundle constructs a small JS script containing your desired module & a tiny bit of code to expose the module on the page. It then bundles the entire thing up and caches it in the `storage/bundle` directory. This is then either served over http or rendered inline.
+
+Being this constrained and relying on Bun for al the heavy lifting allows Bundle's code to be extremely thin.
 
 <br />
 
+<!--
 {: .note }
-
 > You may pass any attributes a script tag would accept, like `defer` or `async`. Note that scripts with `type="module"` are deferred by default.
+-->
 
 <br />
 

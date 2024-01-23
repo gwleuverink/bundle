@@ -15,7 +15,7 @@ You should apply this with consideration. You will save up on requests, but doin
 
 <!-- yields the following script -->
 
-<script data-module="apexcharts">
+<script type="module" data-module="apexcharts" data-alias="ApexCharts">
   // Your minified bundle
 </script>
 ```
@@ -141,3 +141,9 @@ BundleManager::fake();
 ```
 
 When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
+
+## CSS Loader
+
+Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
+
+We'd like to experiment with Bun plugin support soon. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.

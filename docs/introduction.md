@@ -6,9 +6,11 @@ image: "/assets/social-square.png"
 
 ## How it works
 
-Bundle facilitates JavaScript imports inside Blade using [Bun](https://bun.sh){:target="\_blank"}. Bun does all the heavy lifting, Bundle provides the glue between Blade and injects your imports on the client side.
+Bundle facilitates JavaScript imports inside Blade using [Bun](https://bun.sh){:target="\_blank"}. 
 
-The <x-import /> component bundles your import on the fly using Bun and renders a script tag in place.
+Bun does all the heavy lifting. Bundle provides the glue between Blade and Bun and injects your imports on the client side.
+
+The <x-import /> component bundles your import on the fly and renders a script tag in place.
 
 ```html
 <x-import module="apexcharts" as="ApexCharts" />

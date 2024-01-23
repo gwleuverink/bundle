@@ -17,7 +17,7 @@ The <x-import /> component bundles your import on the fly and renders a script t
 
 <!-- yields the following script -->
 
-<script src="/x-import/e52def31336c.min.js" type="module" data-module="alert" data-alias="ApexCharts"></script>
+<script src="/x-import/e52def31336c.min.js" type="module" data-module="apexcharts" data-alias="ApexCharts"></script>
 ```
 
 ### A bit more in depth

@@ -7,7 +7,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 // Pest & Workbench Dusk don't play nicely together
 // We need to fall back to PHPUnit syntax.
 
-class AlpineIntegrationTest extends DuskTestCase
+class AlpineInteropTest extends DuskTestCase
 {
     /** @test */
     public function it_can_bootstrap_alpine_via_iife_import()
@@ -52,7 +52,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_init_directive()
+    public function it_can_use_imports_inside_x_init_directive()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -84,7 +84,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_data_directive()
+    public function it_can_use_imports_inside_x_data_directive()
     {
         $browser = $this->blade(<<< 'HTML'
 
@@ -118,7 +118,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_click_directive()
+    public function it_can_use_imports_inside_x_click_directive()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -154,7 +154,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_supports_backed_components_via_alpine_data()
+    public function it_supports_backed_components_with_alpine_data()
     {
         $this->markTestSkipped('not implemented');
 

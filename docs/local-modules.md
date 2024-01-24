@@ -5,7 +5,7 @@ image: "/assets/social-square.png"
 ---
 
 {: .note }
-> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable code colocation with page specific JavaScript. Preferably the bulk your code should live inline in a script tag or in a [Alpine](https://alpinejs.dev) component.
+> Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable colocation of page specific JavaScript inside Blade. Preferably the bulk your code should live inline in a script tag or in a [Alpine](https://alpinejs.dev) component.
 >
 > Local modules are a place to put boilerplate code. Like importing a single module & doing some setup, loading plugins etc. Writing complex code in here is discouraged. You should put that a inline script within the same component/partial that consumes it instead.
 

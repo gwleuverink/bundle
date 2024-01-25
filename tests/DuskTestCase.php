@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;

@@ -7,7 +7,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 // Pest & Workbench Dusk don't play nicely together
 // We need to fall back to PHPUnit syntax.
 
-class AlpineIntegrationTest extends DuskTestCase
+class AlpineInteropTest extends DuskTestCase
 {
     /** @test */
     public function it_can_bootstrap_alpine_via_iife_import()
@@ -52,7 +52,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_init_directive()
+    public function it_can_use_imports_from_x_init()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -74,7 +74,7 @@ class AlpineIntegrationTest extends DuskTestCase
                     $el.innerHTML = filtered[0].name
                 "
             ></div>
-        HTML)->pause(20);
+        HTML);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
@@ -84,7 +84,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_data_directive()
+    public function it_can_use_imports_from_x_data()
     {
         $browser = $this->blade(<<< 'HTML'
 
@@ -109,7 +109,7 @@ class AlpineIntegrationTest extends DuskTestCase
                     }
                 }"
             ></div>
-        HTML)->pause(20);
+        HTML);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
@@ -118,7 +118,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_can_use_other_imports_inside_x_click_directive()
+    public function it_can_use_imports_from_x_click_listener()
     {
         $browser = $this->blade(<<< 'HTML'
             <x-import module="~/bootstrap/alpine" />
@@ -141,7 +141,7 @@ class AlpineIntegrationTest extends DuskTestCase
                     $el.innerHTML = filtered[0].name
                 "
             >Click to change text</button>
-        HTML)->pause(20);
+        HTML);
 
         $browser
             ->assertSeeIn('#component', 'Click to change text')
@@ -154,7 +154,7 @@ class AlpineIntegrationTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_supports_backed_components_via_alpine_data()
+    public function it_supports_backed_components_with_alpine_data()
     {
         $this->markTestSkipped('not implemented');
 
@@ -168,7 +168,7 @@ class AlpineIntegrationTest extends DuskTestCase
                 x-text="message"
                 id="component"
             ></div>
-        HTML)->pause(20);
+        HTML);
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));

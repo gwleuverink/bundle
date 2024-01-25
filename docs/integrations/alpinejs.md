@@ -113,7 +113,7 @@ You can also import a module right inside a Alpine listener. For example:
   x-on:click="
     let swal = await _import('swal')
     swal('Hello world!');
-"
+  "
 >
   Trigger Sweetalert dialog
 </button>

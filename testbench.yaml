@@ -1,6 +1,7 @@
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
   - Leuverink\Bundle\ServiceProvider
+  - Livewire\LivewireServiceProvider
 
 workbench:
   start: "/"

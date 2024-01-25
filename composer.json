@@ -45,7 +45,8 @@
         "spatie/laravel-ignition": "^2.3",
         "symfony/thanks": "^1.2",
         "orchestra/testbench": "^8.19",
-        "orchestra/testbench-dusk": "^8.19"
+        "orchestra/testbench-dusk": "^8.19",
+        "livewire/livewire": "^3.4"
     },
     "config": {
         "allow-plugins": {

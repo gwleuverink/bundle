@@ -35,14 +35,11 @@ A script tag with `type="module"` also makes it `defer` by default, so they are 
 
 When you use the `<x-import />` component Bundle constructs a small JS script that imports the desired module and exposes it on the page, along with the `_import` helper function. It then bundles it up and caches it in the `storage/app/bundle` directory. This is then either served over http or rendered inline.
 
-<br />
-
 <!--
 {: .note }
 > You may pass any attributes a script tag would accept, like `defer` or `async`. Note that scripts with `type="module"` are deferred by default.
--->
-
 <br />
+-->
 
 ## The `_import` helper function
 

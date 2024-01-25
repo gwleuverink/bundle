@@ -24,7 +24,7 @@ class DuskTestCase extends BaseTestCase
 
     public static function setUpBeforeClass(): void
     {
-        // Options::withoutUI();
+        Options::withoutUI();
         parent::setUpBeforeClass();
     }
 

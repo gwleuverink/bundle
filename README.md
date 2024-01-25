@@ -36,7 +36,7 @@ This is all you need to start using Bundle!
 
 ## Basic usage
 
-You may bundle any `node_module` or local script from your `resources/js` directory directly on the page.
+You may import any `node_module` or local module from your `resources/js` directory directly on the page.
 
 ```html
 <x-import module="apexcharts" as="ApexCharts" />

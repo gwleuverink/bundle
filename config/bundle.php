@@ -23,7 +23,7 @@ return [
     | and Alpine support. Here you can tweak it's internal timout in ms.
     |
     */
-    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMEOUT', 800),
+    'import_resolution_timeout' => env('BUNDLE_IMPORT_RESOLUTION_TIMEOUT', 100),
 
     /*
     |--------------------------------------------------------------------------

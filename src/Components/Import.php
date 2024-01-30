@@ -74,7 +74,7 @@ class Import extends Component
             //--------------------------------------------------------------------------
             window._import = async function(alias, exportName = 'default') {
 
-                // Wait for module to become available (Needed for Alpine support)
+                // Wait for module to become available (account for invoking from non-deferred script)
                 const module = await poll(
                     () => window.x_import_modules[alias],
                     {$timeout}, 5, alias

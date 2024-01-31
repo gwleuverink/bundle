@@ -38,7 +38,7 @@ When you use the `<x-import />` component Bundle constructs a small JS script th
 
 Bundle's core, which containst `_import` helper function and internal import map, is automatically injected on every page.
 
-You can use this function to fetch the bundled import by the name you've passed to the `as` argument.
+The `_import` function may be used to fetch the bundled import by the name you've passed to the `as` argument.
 
 ```js
 var module = await _import("lodash"); // Resolves the module's default export

@@ -48,6 +48,12 @@ class InjectCore
         );
     }
 
+    /** Get an instance of the BundleManager */
+    protected function manager(): BundleManagerContract
+    {
+        return BundleManager::new();
+    }
+
     /** Injects Bundle's core into given html string (taken from Livewire's injection mechanism) */
     protected function injectAssets(string $html, string $core): string
     {
@@ -135,11 +141,5 @@ class InjectCore
             };
 
         JS;
-    }
-
-    /** Get an instance of the BundleManager */
-    protected function manager(): BundleManagerContract
-    {
-        return BundleManager::new();
     }
 }

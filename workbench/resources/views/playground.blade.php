@@ -1,23 +1,14 @@
 <x-layout>
 
-    <x-import module="~/output-to-id" as="output" />
-    <x-import module="lodash/filter" as="filter" />
+    <x-import module="~/bootstrap/alpine" />
+    <x-import module="~/invokes-callable" as="invoke" />
 
     <script type="module">
-        const filter = await _import('filter');
-        const output = await _import('output');
+        const invoke = await _import('invoke');
 
-        let data = [
-            { 'name': 'Foo', 'active': false },
-            { 'name': 'Wello World!', 'active': true }
-        ];
-
-        // Filter only active
-        let filtered = filter(data, o => o.active)
-
-        console.dir(filtered[0])
-
-        output('output', filtered[0].name)
+        invoke(
+            () => document.getElementById('output').innerHTML = 'Hello World!'
+        )
     </script>
 
     <div id="output"></div>

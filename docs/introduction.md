@@ -17,8 +17,7 @@ The <x-import /> component processes your import on the fly and renders a script
 
 <!-- yields the following script -->
 
-<script src="/x-import/e52def31336c.min.js" type="module" data-module="apexcharts" data-alias="ApexCharts"
-></script>
+<script src="/x-import/e52def31336c.min.js" type="module" data-module="apexcharts" data-alias="ApexCharts"></script>
 ```
 
 ### A bit more in depth
@@ -33,17 +32,11 @@ Bun treats these bundles as being separate builds. This would cause collisions w
 
 A script tag with `type="module"` also makes it `defer` by default, so they are loaded in parallel & executed in order.
 
-When you use the `<x-import />` component Bundle constructs a small JS script that imports the desired module and exposes it on the page, along with the `_import` helper function. It then bundles it up and caches it in the `storage/app/bundle` directory. This is then either served over http or rendered inline.
-
-<!--
-{: .note }
-> You may pass any attributes a script tag would accept, like `defer` or `async`. Note that scripts with `type="module"` are deferred by default.
-<br />
--->
+When you use the `<x-import />` component Bundle constructs a small JS script that imports the desired module and exposes it on the page. It then bundles it up and caches it in the `storage/app/bundle` directory. This is then either served over http or rendered inline.
 
 ## The `_import` helper function
 
-After you use `<x-import />` somewhere in your template a global `_import` function will become available on the window object.
+Bundle's core, which containst `_import` helper function and internal import map, is automatically injected on every page.
 
 You can use this function to fetch the bundled import by the name you've passed to the `as` argument.
 

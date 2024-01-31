@@ -102,9 +102,11 @@ It would be incredible if this object could be forwarded to Alpine directly like
 </div>
 ```
 
-## Injecting Bundle's core on every page
+## ✅ Injecting Bundle's core on every page
 
-This will reduce every import's size slightly. And more importantly; it will remove the need to wrap `_import` calls inside script tags without `type="module"`, making things easier for the developer and greatly decrease the chance of unexpected behaviour caused by race conditions due to slow network speeds when a `DOMContentLoaded` listener was forgotten.
+**_Added in [v0.1.3](https://github.com/gwleuverink/bundle/releases/tag/v0.1.3)_**
+
+This will reduce every import's size slightly. But more importantly; it will greatly decrease the chance of unexpected behaviour caused by race conditions, since the Bundle's core is available on pageload.
 
 ## Optionally assigning a import to the window scope
 

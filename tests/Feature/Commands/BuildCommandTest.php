@@ -18,7 +18,7 @@ it('generates a bundle', function () {
     $this->artisan('bundle:build');
 
     // Assert expected scripts are present
-    expect($manager->buildDisk()->allFiles())->toBeGreaterThanOrEqual(1);
+    expect($manager->buildDisk()->allFiles())->toBeGreaterThanOrEqual(2); // core + import
 });
 
 it('scans paths recursively', function () {
@@ -37,7 +37,7 @@ it('scans paths recursively', function () {
     $this->artisan('bundle:build');
 
     // Assert expected scripts are present
-    expect($manager->buildDisk()->allFiles())->toBeGreaterThanOrEqual(2);
+    expect($manager->buildDisk()->allFiles())->toBeGreaterThanOrEqual(3); // core + 2 imports
 });
 
 it('scans wildcard blade extentions like both php & md', function () {
@@ -54,7 +54,7 @@ it('scans wildcard blade extentions like both php & md', function () {
 
     // Execute build command
     $this->artisan('bundle:build');
-    expect($manager->buildDisk()->allFiles())->toHaveCount(1);
+    expect($manager->buildDisk()->allFiles())->toHaveCount(2); // core + markdown file
 });
 
 it('includes Bundle core', function () {

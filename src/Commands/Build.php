@@ -4,6 +4,7 @@ namespace Leuverink\Bundle\Commands;
 
 use Throwable;
 use Illuminate\Console\Command;
+use Leuverink\Bundle\InjectCore;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Support\Facades\Blade;
 use Symfony\Component\Finder\SplFileInfo;
@@ -22,6 +23,9 @@ class Build extends Command
     public function handle(Finder $finder): int
     {
         $this->callSilent('bundle:clear');
+
+        // Bundle the core
+        InjectCore::new()->bundle();
 
         // Find and bundle all components
         collect(config('bundle.build_paths'))

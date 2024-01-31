@@ -2,11 +2,16 @@
 
 namespace Leuverink\Bundle;
 
+use SplFileInfo;
+use Leuverink\Bundle\Traits\Constructable;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
 class InjectCore
 {
+    use Constructable;
+
+    /** Injects a inline script tag containing Bundle's core inside every full-page response */
     public function __invoke(RequestHandled $handled)
     {
         $html = $handled->response->getContent();
@@ -21,13 +26,9 @@ class InjectCore
             return;
         }
 
-        // Bundle up the core JS
-        $core = $this->manager()->bundle(
-            $this->core()
-        );
-
+        // Bundle it up & wrap in script tag
         $script = $this->wrapInScriptTag(
-            file_get_contents($core)
+            file_get_contents($this->bundle())
         );
 
         // Inject into response
@@ -40,8 +41,15 @@ class InjectCore
         $handled->response->original = $originalContent;
     }
 
+    public function bundle(): SplFileInfo
+    {
+        return $this->manager()->bundle(
+            $this->core()
+        );
+    }
+
     /** Injects Bundle's core into given html string (taken from Livewire's injection mechanism) */
-    public function injectAssets(string $html, string $core): string
+    protected function injectAssets(string $html, string $core): string
     {
         $html = str($html);
 
@@ -56,6 +64,7 @@ class InjectCore
             ->toString();
     }
 
+    /** Wrap the contents in a inline script tag */
     protected function wrapInScriptTag($contents): string
     {
         return <<< HTML

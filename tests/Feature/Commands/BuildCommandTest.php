@@ -56,3 +56,32 @@ it('scans wildcard blade extentions like both php & md', function () {
     $this->artisan('bundle:build');
     expect($manager->buildDisk()->allFiles())->toHaveCount(1);
 });
+
+it('includes Bundle core', function () {
+    $manager = BundleManager::new();
+
+    // Scan empty dir
+    config()->set('bundle.build_paths', [
+        realpath(getcwd() . '/tests/Fixtures/resources/empty'),
+    ]);
+
+    // Make sure all cached scripts are cleared
+    $this->artisan('bundle:clear');
+    $manager->buildDisk()->assertDirectoryEmpty('');
+
+    // Execute build command
+    $this->artisan('bundle:build');
+
+    // Expect it to at lease have 1 bundle. This is the core,
+    // since the scan path contains no other usages of x-import.
+    expect($manager->buildDisk()->allFiles())->toHaveCount(1);
+
+    // For good measure, make sure it contains the expected code. (kinda flaky)
+    $file = $manager->buildDisk()->path(
+        head($manager->buildDisk()->files())
+    );
+
+    expect(file_get_contents($file))
+        ->toContain('window.x_import_modules={}')
+        ->toContain('window._import=async function');
+});

@@ -60,9 +60,9 @@ A script tag with `type="module"` makes your script `defer` by default, so they 
 
 This is not the case however when you use a script tag without `type="module"`. A import might still be loading while the page encounters the `_invoke()` function.
 
-Bundle takes care of this problem by checking the internal import map by use of a non-blocking polling mechanism. So you can safely use `_import` anywhere you want.
+Bundle takes care of this problem by checking the internal import map by use of a non-blocking polling mechanism. So you can safely use `_import` anywhere you want. But since the importy utility is async you need to wrap the execution logic inside a async function.
 
-Since Bundle's core is included with the first `<x-import />` that you load you do have to either wrap the import inside a `DOMContentLoaded` listener or make the import inline.
+It's good practice to use that async function as a listener for the `DOMContentLoaded` or window `onload` events, so all deferred scripts are loaded & executed before your callback is invoked.
 
 ```html
 <x-import module="lodash/filter" as="filter" />
@@ -74,9 +74,9 @@ Since Bundle's core is included with the first `<x-import />` that you load you 
 </script>
 ```
 
-{: .note }
+{: .warning }
 
-> We like to explore ways to inject Bundle's core on every page. This way the `_import` function does not have to be wrapped in a `DOMContentLoaded` listener. Check out our [roadmap](https://laravel-bundle.dev/roadmap.html#roadmap) to see what else we're cooking up.
+> If you reassign the `window.onload` callback directly your browser will only fire the last one, since the callback is overwriten. If you want to use the `onload` event you should use a listener instead: `window.addEventListener('load', () => { /**/ })`
 
 ## Import resolution timeout
 

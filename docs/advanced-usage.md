@@ -37,6 +37,8 @@ If a module supports per method exports, like `lodash` does, it is recomended to
 
 ## Global helper functions
 
+You can import helper functions on a per-method basis or simply retreive all of them so they are available whenever you might use them. See this example for pulling in your own helper functions.
+
 ```javascript
 export function foo() {
   //
@@ -48,7 +50,7 @@ export function bar() {
 ```
 
 ```html
-<x-import module="~/named-functions" as="helpers" />
+<x-import module="~/helpers" as="helpers" />
 
 <script type="module">
   const foo = await _import("helpers", "foo");

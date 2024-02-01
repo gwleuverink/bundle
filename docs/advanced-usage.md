@@ -22,11 +22,16 @@ You should apply this with consideration. You will save up on requests, but doin
 
 ## Per method exports
 
+Because there is no way to analyze the JS codepaths on your page, Bundle cannot treeshake unused exports. 
+You should always account for this and only import modules your really need to minimize any unused code loaded via `x-import`.
+
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
 
 ```html
 <x-import module="lodash/filter" as="filter" /> <!-- 25kb -->
+
 <!-- as opposed to -->
+
 <x-import module="lodash" as="lodash" /> <!-- 78kb -->
 ```
 

@@ -119,3 +119,11 @@ It could be convenient to provide an api to assign imports to a window variable 
 ## Better exception messages
 
 We need better exception messages & add more problem solutions. There are a lot of different scenarios to account for and we need your help! If you think we should provide a Ignition solution for a specific error please reach out via [GitHub](https://github.com/gwleuverink/bundle).
+
+## CSP
+
+Add documentation for implementing CSP using Bundle. In most cases configuring appropiate headers should do the trick.
+
+In order to support 'unsafe-inline' a small update needs to be made so a nonce is injected when Bundle's core is loaded on your page.
+
+We might add a feature to enable CSP for Bundle's core & auto injecting nonces on rendered script tags for you. Though this is not high on the list of priorities at the moment. Contributions are welcome!

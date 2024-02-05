@@ -22,7 +22,7 @@ You should apply this with consideration. You will save up on requests, but doin
 
 ## Per method exports
 
-Because there is no way to analyze the JS codepaths on your page, Bundle cannot treeshake unused exports. 
+Because there is no way to analyze the JS codepaths on your page, Bundle cannot treeshake unused exports.
 You should always account for this and only import modules your really need to minimize any unused code loaded via `x-import`.
 
 If a module supports per method exports, like `lodash` does, it is recomended to import the single method instead of the whole module & only retrieving the desired export later.
@@ -121,9 +121,9 @@ Content-Type: application/javascript; charset=utf-8
 
 There are a couple of commands at your disposal:
 
-### `artisan bundle:build`
+### bundle:build
 
-Scan all your build_paths configured in `config/bundle.php` & compile all your imports.
+`artisan bundle:build` Scan all your build_paths configured in `config/bundle.php` & compile all your imports.
 
 You may configure what paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of paths.
 
@@ -133,9 +133,9 @@ You may configure what paths are scanned by publishing the Bundle config file an
 ]
 ```
 
-### `artisan bundle:clear`
+### bundle:clear
 
-Clear all bundled scripts.
+`artisan bundle:clear` Clear all bundled scripts.
 
 ## Testing fake
 

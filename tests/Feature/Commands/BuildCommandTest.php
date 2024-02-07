@@ -72,7 +72,7 @@ it('includes Bundle core', function () {
     // Execute build command
     $this->artisan('bundle:build');
 
-    // Expect it to at lease have 1 bundle. This is the core,
+    // Expect it to at least have 1 bundle. This is the core,
     // since the scan path contains no other usages of x-import.
     expect($manager->buildDisk()->allFiles())->toHaveCount(1);
 

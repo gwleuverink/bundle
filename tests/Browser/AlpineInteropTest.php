@@ -27,7 +27,7 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Hello World!');
+        $browser->waitForTextIn('#component', 'Hello World!');
     }
 
     /** @test */
@@ -48,7 +48,7 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Hello World!');
+        $browser->waitForTextIn('#component', 'Hello World!');
     }
 
     /** @test */
@@ -79,7 +79,7 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Fello World!');
+        $browser->waitForTextIn('#component', 'Fello World!');
 
     }
 
@@ -114,7 +114,7 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Gello World!');
+        $browser->waitForTextIn('#component', 'Gello World!');
     }
 
     /** @test */
@@ -144,9 +144,9 @@ class AlpineInteropTest extends DuskTestCase
         HTML);
 
         $browser
-            ->assertSeeIn('#component', 'Click to change text')
+            ->waitForTextIn('#component', 'Click to change text')
             ->press('#component')
-            ->assertSeeIn('#component', 'Cello World!');
+            ->waitForTextIn('#component', 'Cello World!');
 
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
@@ -173,6 +173,6 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->assertSeeIn('#component', 'Hello backed component!');
+        $browser->waitForTextIn('#component', 'Hello backed component!');
     }
 }

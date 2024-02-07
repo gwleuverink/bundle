@@ -44,7 +44,7 @@ class LivewireInteropTest extends DuskTestCase
     {
         $browser = $this->serveLivewire(CanUseImportsFromXInit::class);
 
-        $browser->assertSeeIn('#component', 'Hello from x-init!');
+        $browser->waitForTextIn('#component', 'Hello from x-init!');
     }
 
     /** @test */
@@ -52,7 +52,7 @@ class LivewireInteropTest extends DuskTestCase
     {
         $browser = $this->serveLivewire(CanUseImportsFromXData::class);
 
-        $browser->assertSeeIn('#component', 'Hello from x-data!');
+        $browser->waitForTextIn('#component', 'Hello from x-data!');
     }
 
     /** @test */
@@ -61,9 +61,9 @@ class LivewireInteropTest extends DuskTestCase
         $browser = $this->serveLivewire(CanUseImportsFromClickListener::class);
 
         $browser
-            ->assertSeeIn('#component', 'Click to change text')
+            ->waitForTextIn('#component', 'Click to change text')
             ->press('#component')
-            ->assertSeeIn('#component', 'Hello from x-on:click!');
+            ->waitForTextIn('#component', 'Hello from x-on:click!');
     }
 
     /** @test */
@@ -72,9 +72,9 @@ class LivewireInteropTest extends DuskTestCase
         $browser = $this->serveLivewire(CanUseImportsFromAction::class);
 
         $browser
-            ->assertSeeIn('#component', 'Text changes when the Livewire action is invoked')
+            ->waitForTextIn('#component', 'Text changes when the Livewire action is invoked')
             ->waitForLivewire()->click('@action')
-            ->assertSeeIn('#component', 'Hello from wire action!');
+            ->waitForTextIn('#component', 'Hello from wire action!');
     }
 }
 

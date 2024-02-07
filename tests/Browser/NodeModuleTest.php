@@ -43,7 +43,7 @@ class NodeModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-            ->assertSeeIn('#output', 'Hello World!');
+            ->waitForTextIn('#output', 'Hello World!');
     }
 
     /** @test */
@@ -70,7 +70,7 @@ class NodeModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-            ->assertSeeIn('#output', 'Yello World!');
+            ->waitForTextIn('#output', 'Yello World!');
     }
 
     /** @test */
@@ -98,6 +98,6 @@ class NodeModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-            ->assertSeeIn('#output', 'Wello World!');
+            ->waitForTextIn('#output', 'Wello World!');
     }
 }

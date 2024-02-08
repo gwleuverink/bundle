@@ -3,16 +3,15 @@ name: tests
 on:
   pull_request:
     branches: [development, main]
-  workflow_run:
-    workflows: [codestyle]
-    types: [completed]
+#   workflow_run:
+#     workflows: [codestyle]
+#     types: [completed]
 
 jobs:
   skip-duplicates:
     continue-on-error: true # Uncomment once integration is finished
     runs-on: ubuntu-latest
 
-    # Map a step output to a job output
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
 
@@ -20,7 +19,6 @@ jobs:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
         with:
-          # All of these options are optional, so you can remove them if you are happy with the defaults
           cancel_others: "true"
           concurrent_skipping: "same_content"
           skip_after_successful_duplicate: "true"

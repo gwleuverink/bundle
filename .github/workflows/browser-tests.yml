@@ -8,6 +8,22 @@ on:
 #     types: [completed]
 
 jobs:
+  skip-duplicates:
+    continue-on-error: true # Uncomment once integration is finished
+    runs-on: ubuntu-latest
+
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: "true"
+          concurrent_skipping: "same_content"
+          skip_after_successful_duplicate: "true"
+          paths_ignore: '["**/README.md", "**/docs/**"]'
+
   browser-tests:
     runs-on: ubuntu-latest
 

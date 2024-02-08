@@ -30,9 +30,9 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^8.0",
-        "illuminate/contracts": "^10",
-        "illuminate/support": "^10"
+        "php": "^8.1",
+        "illuminate/contracts": "^10|^11",
+        "illuminate/support": "^10|^11"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.30",
@@ -44,8 +44,8 @@
         "pestphp/pest": "^2.30",
         "spatie/laravel-ignition": "^2.3",
         "symfony/thanks": "^1.2",
-        "orchestra/testbench": "^8.19",
-        "orchestra/testbench-dusk": "^8.19",
+        "orchestra/testbench": "^8",
+        "orchestra/testbench-dusk": "^8",
         "livewire/livewire": "^3.4"
     },
     "config": {

@@ -25,8 +25,6 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: zip
-          coverage: xdebug
-
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
@@ -41,7 +39,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install Composer dependecies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --optimize-autoloader --${{ matrix.dependency-version }}
 
       - name: Directory Permissions
         run: sudo chown -R $(whoami) vendor/pestphp/pest/.temp vendor/orchestra

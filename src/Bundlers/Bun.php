@@ -20,28 +20,17 @@ class Bun implements Bundler
         bool $minify = true
     ): SplFileInfo {
 
-        $path = base_path('node_modules/.bin/');
+        $bun = base_path('node_modules/.bin/bun');
+        $buildScript = __DIR__ . '/bin/bun.js';
         $options = [
-            // '--splitting', // Breaks relative paths to imports from resources/js (TODO: Experiment more after writing tests)
-            '--chunk-naming' => 'chunks/[name]-[hash].[ext]', // Not in use without --splitting
-            '--asset-naming' => 'assets/[name]-[hash].[ext]', // Not in use without --splitting
-            '--entrypoints' => $inputPath . $fileName,
-            '--public-path' => $outputPath,
-            '--outdir' => $outputPath,
-            '--target' => 'browser',
-            '--root' => $inputPath,
-            '--format' => 'esm',
-
-            $sourcemaps
-                ? '--sourcemap=external'
-                : '--sourcemap=none',
-
-            $minify
-                ? '--minify'
-                : '',
+            '--entrypoint' => $inputPath . $fileName,
+            '--inputPath' => $inputPath,
+            '--outputPath' => $outputPath,
+            ...[$sourcemaps ? '--sourcemaps' : ''],
+            ...[$minify ? '--minify' : ''],
         ];
 
-        Process::run("{$path}bun build {$this->args($options)}")
+        Process::run("{$bun} {$buildScript} {$this->args($options)}")
             ->throw(function ($res) use ($inputPath, $fileName): void {
                 $failed = file_get_contents($inputPath . $fileName);
                 throw new BundlingFailedException($res, $failed);

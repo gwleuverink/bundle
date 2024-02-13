@@ -50,7 +50,7 @@ class LocalModuleTest extends DuskTestCase
 
                 <div id="output"></div>
             HTML)
-            ->assertSeeIn('#output', 'Yello World!');
+            ->waitForTextIn('#output', 'Yello World!');
     }
 
     /** @test */
@@ -67,6 +67,6 @@ class LocalModuleTest extends DuskTestCase
 
             <div id="output"></div>
         HTML)
-            ->assertSeeIn('#output', 'Bar');
+            ->waitForTextIn('#output', 'Bar');
     }
 }

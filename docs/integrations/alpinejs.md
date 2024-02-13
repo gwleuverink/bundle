@@ -11,7 +11,7 @@ Alpine can be bootstrapped with ease using a [local module](https://laravel-bund
 
 **_Note that if you are trying out Bundle in a project that already uses Alpine there is no need for this. You can start using imports inside your components immediately, with zero config_**
 
-First make sure you have [path rewritig](https://laravel-bundle.dev/local-modules.html) set up. Then install Alpine.
+First make sure you have [path rewriting](https://laravel-bundle.dev/local-modules.html) set up. Then install Alpine.
 
 ```bash
 npm install alpinejs

@@ -10,17 +10,13 @@ Bundle is under active development. If you feel there are features missing or yo
 
 ## CSS loader
 
-Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
+Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support CSS loading out-of-the-box as soon as Bun does!
 
 Plugin support is a feature we'd like to experiment with. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.
 
-## Bun plugin support
-
-We'd like to add 3rd party plugin support and, in the spirit of making things even more meta than they already are, also try to support custom plugins right from inside your `resources` directory.
-
 ## Initable exports
 
-When importing a local module, the only method to immidiatly invoke some code is by using the [IIFE export](https://laravel-bundle.dev/local-modules.html#iife-exports) method.
+When importing a local module, the only method to immediately invoke some code is by using the [IIFE export](https://laravel-bundle.dev/local-modules.html#iife-exports) method.
 
 An alternative API is possible that would make it a bit easier to structure your code.
 Consider the following example script in `resources/js/some-module.js`. (needs a jsconfig.json for path remapping)

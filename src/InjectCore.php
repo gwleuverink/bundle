@@ -148,7 +148,7 @@ class InjectCore
                     return;
                 }
 
-                // TODO: Add CSP nonce in style tags too when whe get implementing it
+                // TODO: Add CSP nonce when adding CSP support
                 const style = document.createElement('style');
                 style.dataset['module'] = scriptTag.dataset['module'];
                 style.innerHTML = css;

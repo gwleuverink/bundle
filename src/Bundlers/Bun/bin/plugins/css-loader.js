@@ -1,91 +1,65 @@
-const [css, sass, fs] = await Promise.all([
-    import("lightningcss-wasm"),
-    import("sass"),
-    import("fs")
-]);
+import { transform, browserslistToTargets } from "lightningcss-wasm";
+import { readFile } from "fs/promises";
 
 const defaultOptions = {
-  targets: [],
+    targets: [],
+    minify: true
 };
 
 export default function (options = {}) {
-  const opts = { ...defaultOptions, ...options };
 
-  return {
-    name: "Bundle CSS loader",
-    async setup(build) {
+    return {
+        name: "css-loader",
+        async setup(build) {
 
-      // Build plain css
-      build.onLoad({ filter: /\.css$/ }, (args) => {
+            build.onLoad({ filter: /\.css$|\.scss$/ }, async (args) => {
 
-        const contents = fs.readFileSync(args.path, "utf8");
+                const css = await compile(args, { ...defaultOptions, ...options })
 
-        return compile(contents, args.path, {
-          targets: opts.targets,
-        });
-      });
-
-      // Build sass
-      build.onLoad({ filter: /\.scss$/ }, (args) => {
-
-        if(!sass) {
-            throw `BUNDLING ERROR: You need to install sass in order to support sass loading`
+                return {
+                    contents: `export default ${css};`,
+                    loader: "js",
+                }
+            })
         }
-
-        const result = sass.compile(args.path);
-
-        return compile(result.css, args.path, {
-          targets: opts.targets,
-        });
-      });
-    },
-  };
+    }
 }
 
-async function compile(content, path, options = {}) {
-
-    if(!css) {
-      throw `BUNDLING ERROR: You need to install lightning CSS in order to support CSS loading`
-    }
+const compile = async function (args, opts) {
 
     const imports = [];
-    const targets = options.targets?.length
-      ? css.browserslistToTargets(options.targets)
-      : undefined;
+    const source = await readFile(args.path, "utf8");
+    const targets = opts.targets?.length
+        ? browserslistToTargets(opts.targets)
+        : undefined;
 
-    const { code, exports } = css.transform({
-      filename: path,
-      code: Buffer.from(content),
-      cssModules: Boolean(options.cssModules),
-      minify: true,
-      targets,
-      visitor: {
-        Rule: {
-          import(rule) {
-            imports.push(rule.value.url);
-            return [];
-          },
+    const { code } = transform({
+        code: Buffer.from(source),
+        filename: args.path,
+
+        minify: opts.minify,
+        sourceMap: opts.sourcemaps,
+        targets,
+        visitor: {
+            Rule: {
+                import(rule) {
+                    imports.push(rule.value.url);
+                    return [];
+                },
+            },
         },
-      },
     });
 
+    const css = JSON.stringify(code.toString())
 
-    if (imports.length === 0) {
-      return {
-        contents: `export default ${JSON.stringify(code.toString())};`,
-        loader: "js",
-      };
+    if (!imports.length) {
+        return css
     }
 
     const imported = imports
-      .map((url, i) => `import _css${i} from "${url}";`)
-      .join("\n");
+        .map((url, i) => `import _css${i} from "${url}";`)
+        .join("\n");
     const exported = imports.map((_, i) => `_css${i}`).join(" + ");
 
-    return {
-      contents: `${imported}\nexport default ${exported} + ${JSON.stringify(
-        code.toString()
-      )};`,
-      loader: "js",
-    };
-  }
+    return `${imported}\nexport default ${exported} + ${css};`
+}

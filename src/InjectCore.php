@@ -140,6 +140,23 @@ class InjectCore
                 }
             };
 
+            //--------------------------------------------------------------------------
+            // Inject styles
+            //--------------------------------------------------------------------------
+            window.x_inject_styles = function (css, scriptTag) {
+                if (typeof document === 'undefined') {
+                    return;
+                }
+
+                // TODO: Add CSP nonce in style tags too when whe get implementing it
+                const style = document.createElement('style');
+                style.dataset['module'] = scriptTag.dataset['module'];
+                style.innerHTML = css;
+
+                // Inject the style tag after the script that invoked this function
+                scriptTag.parentNode.insertBefore(style, scriptTag.nextSibling);
+            }
+
         JS;
     }
 }

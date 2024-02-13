@@ -1,4 +1,5 @@
 import { parseArgs } from "util";
+import cssLoader from "./plugins/css-loader";
 
 const options = parseArgs({
   args: Bun.argv,
@@ -45,6 +46,10 @@ const result = await Bun.build({
 
   target: "browser",
   format: "esm",
+
+  plugins: [
+    cssLoader()
+  ]
 });
 
 if (!result.success) {

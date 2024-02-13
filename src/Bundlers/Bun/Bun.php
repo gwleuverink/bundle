@@ -1,6 +1,6 @@
 <?php
 
-namespace Leuverink\Bundle\Bundlers;
+namespace Leuverink\Bundle\Bundlers\Bun;
 
 use SplFileInfo;
 use Illuminate\Support\Facades\Process;

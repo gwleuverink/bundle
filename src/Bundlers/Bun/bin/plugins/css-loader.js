@@ -47,7 +47,7 @@ const compile = async function (args, opts) {
             Rule: {
                 import(rule) {
                     imports.push(rule.value.url);
-                    return [];
+                    return []; // Can't be removed
                 },
             },
         },

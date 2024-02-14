@@ -40,7 +40,8 @@ const compile = async function (args, opts) {
         code: Buffer.from(source),
 
         minify: opts.minify,
-        sourceMap: opts.sourcemaps,
+        // sourceMap: opts.sourcemaps,
+        sourceMap: false, // Files not generated. must handle artifacts manually. disable for now
 
         visitor: {
             Rule: {

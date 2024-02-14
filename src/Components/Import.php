@@ -87,7 +87,6 @@ class Import extends Component
                 // Handle CSS injection & return early (no need to add css to import map)
                 if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
                     return import('{$this->module}').then(result => {
-                        console.dir(result.default)
                         window.x_inject_styles(result.default, previous)
                     })
                 }

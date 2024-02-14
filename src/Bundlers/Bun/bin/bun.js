@@ -49,8 +49,8 @@ const result = await Bun.build({
 
     plugins: [
         cssLoader({
-            minify: options.minify,
-            sourcemaps: options.sourcemaps
+            minify: Boolean(options.minify),
+            sourcemaps: Boolean(options.sourcemaps)
         })
     ]
 });

@@ -3,7 +3,8 @@ import { readFile } from "fs/promises";
 
 const defaultOptions = {
     targets: [],
-    minify: true
+    minify: true,
+    sourcemaps: false
 };
 
 export default function (options = {}) {
@@ -14,10 +15,10 @@ export default function (options = {}) {
 
             build.onLoad({ filter: /\.css$|\.scss$/ }, async (args) => {
 
-                const css = await compile(args, { ...defaultOptions, ...options })
+                const expression = await compile(args, { ...defaultOptions, ...options })
 
                 return {
-                    contents: `export default ${css};`,
+                    contents: expression,
                     loader: "js",
                 }
             })
@@ -34,12 +35,13 @@ const compile = async function (args, opts) {
         : undefined;
 
     const { code } = transform({
-        code: Buffer.from(source),
+        targets,
         filename: args.path,
+        code: Buffer.from(source),
 
         minify: opts.minify,
         sourceMap: opts.sourcemaps,
-        targets,
+
         visitor: {
             Rule: {
                 import(rule) {
@@ -51,15 +53,14 @@ const compile = async function (args, opts) {
     });
 
     const css = JSON.stringify(code.toString())
-
-    if (!imports.length) {
-        return css
-    }
-
-    const imported = imports
-        .map((url, i) => `import _css${i} from "${url}";`)
-        .join("\n");
+    const imported = imports.map((url, i) => `import _css${i} from "${url}";`).join("\n");
     const exported = imports.map((_, i) => `_css${i}`).join(" + ");
 
-    return `${imported}\nexport default ${exported} + ${css};`
+    // No CSS imports. Return processed file
+    if (!imports.length) {
+        return `export default ${css}`
+    }
+
+    // Has both imports & CSS rules in processed file
+    return `${imported}\nexport default ${exported} + ${css}`;
 }

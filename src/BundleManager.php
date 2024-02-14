@@ -31,7 +31,11 @@ class BundleManager implements BundleManagerContract
 
     public function bundle(string $script): SplFileInfo
     {
-        $file = "{$this->hash($script)}.min.js";
+        $min = $this->config()->get('minify')
+            ? '.min'
+            : '';
+
+        $file = "{$this->hash($script)}{$min}.js";
 
         // Return cached file if available
         if ($this->config()->get('caching') && $cached = $this->fromDisk($file)) {

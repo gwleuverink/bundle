@@ -74,7 +74,7 @@ class Import extends Component
             (() => {
 
                 // Check if module is already loaded under a different alias
-                const previous = document.querySelector(`script[data-module="{$this->module}"`)
+                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
 
                 // Was previously loaded & needs to be pushed to import map
                 if(previous && '{$this->as}') {
@@ -87,6 +87,7 @@ class Import extends Component
                 // Handle CSS injection & return early (no need to add css to import map)
                 if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
                     return import('{$this->module}').then(result => {
+                        console.dir(result.default)
                         window.x_inject_styles(result.default, previous)
                     })
                 }

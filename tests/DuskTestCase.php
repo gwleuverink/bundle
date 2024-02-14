@@ -15,18 +15,18 @@ class DuskTestCase extends BaseTestCase
 {
     use WithWorkbench;
 
+    public static function setUpBeforeClass(): void
+    {
+        Options::withoutUI();
+        parent::setUpBeforeClass();
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->artisan('view:clear');
         $this->artisan('bundle:clear');
-    }
-
-    public static function setUpBeforeClass(): void
-    {
-        Options::withoutUI();
-        parent::setUpBeforeClass();
     }
 
     protected function tearDown(): void

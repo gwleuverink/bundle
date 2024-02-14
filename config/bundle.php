@@ -11,7 +11,7 @@ return [
     | and disable this on your local development environment.
     |
     */
-    'caching_enabled' => env('BUNDLE_CACHING_ENABLED', app()->isProduction()),
+    'caching' => env('BUNDLE_CACHING', app()->isProduction()),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     | won't impact performance when your imports are build for prod.
     |
     */
-    'sourcemaps_enabled' => env('BUNDLE_SOURCEMAPS_ENABLED', false),
+    'sourcemaps' => env('BUNDLE_SOURCEMAPS', false),
 
     /*
     |--------------------------------------------------------------------------

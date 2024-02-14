@@ -50,7 +50,7 @@ it('supports tree shaking for variables')->bundle(
 
 it('generates sourcemaps when enabled')
     ->defer(
-        fn () => config()->set('bundle.sourcemaps_enabled', true)
+        fn () => config()->set('bundle.sourcemaps', true)
     )
     ->bundle(
         <<< 'JS'

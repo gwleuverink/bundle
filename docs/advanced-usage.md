@@ -95,7 +95,7 @@ All code is minified by default. This can make issues harder to debug at times. 
 
 ## Sourcemaps
 
-Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.
+Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS` to true in your env file or by publishing and updating the bundle config.
 
 Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
 

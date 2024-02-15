@@ -149,8 +149,39 @@ BundleManager::fake();
 
 When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
 
-## CSS Loader
+## CSS Loading
 
-Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
+**Beta**
 
-We'd like to experiment with Bun plugin support soon. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.
+Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. 
+
+We provide a custom CSS loader plugin that just works™. You only need to install [Lightning CSS](https://lightningcss.dev/), the rest is taken care of.
+
+``` bash
+npm install lightningcss --save-dev
+```
+
+Now you can import `css` & `scss` files. Bundle transpiles them and injects it on your page with zero effort.
+
+``` html
+<x-import module="tippy.js" as="tippy" />
+<x-import module="tippy.js/dist/tippy.css" />
+```
+
+### CSS browser targeting
+
+Bundle automatically compiles many modern CSS syntax features to more compatible output that is supported in your target browsers.
+
+You can define what browsers to target using your `package.json` file:
+
+``` json
+{
+	"browserslist": [
+        "last 2 versions",
+        ">= 1%",
+        "IE 11"
+    ]
+}
+```
+
+Note that this option only affects CSS transpilation. Bun does not support this at this time.

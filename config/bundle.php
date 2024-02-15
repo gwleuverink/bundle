@@ -11,7 +11,7 @@ return [
     | and disable this on your local development environment.
     |
     */
-    'caching' => env('BUNDLE_CACHING', app()->isProduction()),
+    'caching' => env('BUNDLE_CACHING', true),
 
     /*
     |--------------------------------------------------------------------------

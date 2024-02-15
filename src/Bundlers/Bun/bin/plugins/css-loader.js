@@ -1,8 +1,9 @@
 import { transform, browserslistToTargets } from "lightningcss-wasm";
-import { readFile } from "fs/promises";
+import { readFile, exists } from "fs/promises";
+import path from "path";
 
 const defaultOptions = {
-    targets: [],
+    browserslist: [],
     minify: true,
     sourcemaps: false
 };
@@ -30,9 +31,7 @@ const compile = async function (args, opts) {
 
     const imports = [];
     const source = await readFile(args.path, "utf8");
-    const targets = opts.targets?.length
-        ? browserslistToTargets(opts.targets)
-        : undefined;
+    const targets = await determineTargets(opts.browserslist);
 
     const { code } = transform({
         targets,
@@ -64,4 +63,70 @@ const compile = async function (args, opts) {
 
     // Has both imports & CSS rules in processed file
     return `${imported}\nexport default ${exported} + ${css}`;
+}
+
+
+//--------------------------------------------------------------------------
+// Utilities
+//--------------------------------------------------------------------------
+
+/**
+ * Use targets from config or when none given try
+ * to detect browserslist from package.json
+ */
+const determineTargets = async function (browserslist) {
+
+    if (browserslist?.length) {
+        return browserslistToTargets(browserslist)
+    }
+
+    // read from package.json
+    const pkg = await packageJson()
+    browserslist = pkg.browserslist || []
+
+    if (browserslist?.length) {
+        return browserslistToTargets(browserslist)
+    }
+
+    return undefined
+}
+
+/**
+ * Get contents of nearest package.json
+ */
+const packageJson = async function () {
+
+    try {
+        const path = await findNearestPackageJson();
+        const content = await readFile(path, 'utf8');
+        return JSON.parse(content);
+    } catch (error) {
+        console.error('Error reading browserslist from package.json:', error.message);
+        return [];
+    }
+
+}
+
+/**
+ * Get path of nearest package.json
+ */
+const findNearestPackageJson = async function () {
+
+    let currentDir = process.cwd();
+
+    while (true) {
+
+        const packageJsonPath = path.join(currentDir, 'package.json');
+
+        if (await exists(packageJsonPath)) {
+            return packageJsonPath;
+        }
+
+        // package.json file could not be found.
+        if (currentDir === path.dirname(currentDir)) {
+            return null;
+        }
+
+        currentDir = path.dirname(currentDir);
+    }
 }

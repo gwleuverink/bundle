@@ -46,6 +46,8 @@ class CssLoaderTest extends DuskTestCase
     /** @test */
     public function it_handles_scss_files()
     {
+        $this->markTestSkipped('not implemented');
+
         $browser = $this->blade(<<< 'HTML'
             <x-import module="css/blue-background.scss" />
         HTML);

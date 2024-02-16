@@ -12,8 +12,10 @@ export default function (options = {}) {
     return {
         name: "css-loader",
         async setup(build) {
-            build.onLoad({ filter: /\.css$|\.scss$/ }, async (args) => {
-                const expression = await compile(args, {
+            build.onLoad({ filter: /\.css$/ }, async (args) => {
+                const source = await readFile(args.path, "utf8");
+
+                const expression = await compile(source, args.path, {
                     ...defaultOptions,
                     ...options,
                 });
@@ -27,14 +29,14 @@ export default function (options = {}) {
     };
 }
 
-const compile = async function (args, opts) {
+const compile = async function (source, filename, opts) {
     const imports = [];
-    const source = await readFile(args.path, "utf8");
+
     const targets = await determineTargets(opts.browserslist);
 
     const { code } = transform({
         targets,
-        filename: args.path,
+        filename,
         code: Buffer.from(source),
 
         minify: opts.minify,

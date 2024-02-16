@@ -1,4 +1,4 @@
-import dd from "./../utils/dd";
+import { dd, error } from "./../utils/dump";
 import determineTargets from "./../utils/browser-targets";
 import { readFile } from "fs/promises";
 
@@ -31,8 +31,7 @@ export default function (options = {}) {
             // Compile sass pass output through Lightning CSS
             build.onLoad({ filter: /\.scss$/ }, async (args) => {
                 const sass = await import('sass').catch(error => {
-                    console.error('bundle:sass-not-installed')
-                    process.exit(1)
+                    error('sass-not-installed')
                 })
 
                 const source = sass.compile(args.path)
@@ -54,8 +53,7 @@ export default function (options = {}) {
 const compile = async function (source, filename, opts) {
 
     const lightningcss = await import("lightningcss-wasm").catch(error => {
-        console.error('bundle:lightningcss-not-installed')
-        process.exit(1)
+        error('lightningcss-not-installed')
     })
 
     const imports = [];

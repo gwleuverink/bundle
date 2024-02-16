@@ -1,5 +1,5 @@
-import { dd, error } from "./../utils/dump";
 import determineTargets from "./../utils/browser-targets";
+import { error } from "./../utils/dump";
 import { readFile } from "fs/promises";
 
 const defaultOptions = {
@@ -12,7 +12,6 @@ export default function (options = {}) {
     return {
         name: "css-loader",
         async setup(build) {
-
             // Compile plain css with Lightning CSS
             build.onLoad({ filter: /\.css$/ }, async (args) => {
                 const source = await readFile(args.path, "utf8");
@@ -30,11 +29,11 @@ export default function (options = {}) {
 
             // Compile sass pass output through Lightning CSS
             build.onLoad({ filter: /\.scss$/ }, async (args) => {
-                const sass = await import('sass').catch(error => {
-                    error('sass-not-installed')
-                })
+                const sass = await import("sass").catch((error) => {
+                    error("sass-not-installed");
+                });
 
-                const source = sass.compile(args.path)
+                const source = sass.compile(args.path);
 
                 const expression = await compile(source.css, args.path, {
                     ...defaultOptions,
@@ -51,10 +50,9 @@ export default function (options = {}) {
 }
 
 const compile = async function (source, filename, opts) {
-
-    const lightningcss = await import("lightningcss-wasm").catch(error => {
-        error('lightningcss-not-installed')
-    })
+    const lightningcss = await import("lightningcss-wasm").catch((error) => {
+        error("lightningcss-not-installed");
+    });
 
     const imports = [];
     const targets = await determineTargets(opts.browserslist);
@@ -90,8 +88,7 @@ const compile = async function (source, filename, opts) {
         .map((url, i) => `import _css${i} from "${url}";`)
         .join("\n");
 
-    const exported = imports.map((_, i) => `_css${i}`)
-        .join(" + ");
+    const exported = imports.map((_, i) => `_css${i}`).join(" + ");
 
     return `${imported}\nexport default ${exported} + ${css}`;
 };

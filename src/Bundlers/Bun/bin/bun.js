@@ -1,4 +1,7 @@
+// NOTE: we don't have to check if Bun is installed sinsce this script is invoked with the Bun runtime
+
 import { parseArgs } from "util";
+import { error } from "./utils/dump";
 import cssLoader from "./plugins/css-loader";
 
 const options = parseArgs({
@@ -39,7 +42,7 @@ const result = await Bun.build({
     sourcemap: options.sourcemaps ? "external" : "none",
 
     naming: {
-        entry: '[dir]/[name].[ext]',
+        entry: "[dir]/[name].[ext]",
         chunk: "chunks/[name]-[hash].[ext]", // Not in use without --splitting
         asset: "assets/[name]-[hash].[ext]", // Not in use without --splitting
     },
@@ -50,15 +53,16 @@ const result = await Bun.build({
     plugins: [
         cssLoader({
             minify: Boolean(options.minify),
-            sourcemaps: Boolean(options.sourcemaps)
-        })
-    ]
+            sourcemaps: Boolean(options.sourcemaps),
+        }),
+    ],
 });
 
 if (!result.success) {
-    console.error("Build failed");
-    for (const message of result.logs) {
-        console.error(message);
-    }
-    process.exit(1); // Exit with an error code
+    // for (const message of result.logs) {
+    //     console.error(message);
+    // }
+    // process.exit(1);
+
+    error('build-failed', '', result.logs.map(log => log.message))
 }

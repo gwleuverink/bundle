@@ -3,11 +3,15 @@ export function dd(output) {
     process.exit(1);
 }
 
-export function error(id, output = '') {
-    console.error({
-        id: 'bundle:' + id,
-        output
-    });
+/** Outputs a object to be caught by BundlingFailedException */
+export function error(id, message = "", output = "") {
+    console.error(
+        JSON.stringify({
+            id: "bundle:" + id,
+            message,
+            output,
+        })
+    );
 
     process.exit(1);
 }

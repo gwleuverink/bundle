@@ -120,7 +120,7 @@ it('logs console error when blade component fails bundling and debug mode is dis
     expect($component->render())
         ->toContain(
             'throw',
-            "BUNDLING ERROR: No module found at path '~/foo'"
+            'BUNDLING ERROR: Could not resolve: "~/foo". Maybe you need to "bun install"?'
         )
         ->not->toThrow(BundlingFailedException::class);
 });

@@ -44,10 +44,8 @@ class CssLoaderTest extends DuskTestCase
     }
 
     /** @test */
-    public function it_handles_scss_files()
+    public function it_supports_sass()
     {
-        $this->markTestSkipped('not implemented');
-
         $browser = $this->blade(<<< 'HTML'
             <x-import module="css/blue-background.scss" />
         HTML);
@@ -55,7 +53,7 @@ class CssLoaderTest extends DuskTestCase
         // Expect CSS rendered on page
         $browser->assertScript(
             'document.querySelector(`style[data-module="css/blue-background.scss"]`).innerHTML',
-            'html{& body{background:#00f}}'
+            'html body{background:#00f}'
         );
 
         // Doesn't raise console errors

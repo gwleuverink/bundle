@@ -1,7 +1,7 @@
 // NOTE: we don't have to check if Bun is installed sinsce this script is invoked with the Bun runtime
 
 import { parseArgs } from "util";
-import { error } from "./utils/dump";
+import { exit } from "./utils/dump";
 import cssLoader from "./plugins/css-loader";
 
 const options = parseArgs({
@@ -64,5 +64,6 @@ if (!result.success) {
     // }
     // process.exit(1);
 
-    error('build-failed', '', result.logs.map(log => log.message))
+    // TODO: needs to be reworked
+    exit('build-failed', '', result.logs.map(log => log.message))
 }

@@ -4,7 +4,7 @@ export function dd(output) {
 }
 
 /** Outputs a object to be caught by BundlingFailedException */
-export function error(id, message = "", output = "") {
+export function exit(id, message = "", output = "") {
     console.error(
         JSON.stringify({
             id: "bundle:" + id,

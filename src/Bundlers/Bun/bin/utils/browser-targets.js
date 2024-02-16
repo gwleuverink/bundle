@@ -45,7 +45,12 @@ async function packageJson() {
  * Get path of nearest package.json
  */
 async function findNearestPackageJson() {
+
     let currentDir = process.cwd();
+
+    if(process.env['APP_ENV'] === 'testing') {
+        currentDir += '/workbench';
+    }
 
     while (true) {
         const packageJsonPath = path.join(currentDir, "package.json");

@@ -135,4 +135,16 @@ class CssLoaderTest extends DuskTestCase
     {
         $this->markTestSkipped('not implemented');
     }
+
+    /** @test */
+    public function it_generates_scss_sourcemaps_when_enabled()
+    {
+        $this->markTestSkipped('not implemented');
+    }
+
+    /** @test */
+    public function it_doesnt_generate_scss_sourcemaps_by_default()
+    {
+        $this->markTestSkipped('not implemented');
+    }
 }

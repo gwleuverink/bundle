@@ -1,5 +1,6 @@
 import determineTargets from "./../utils/browser-targets";
 import { exit, dd } from "./../utils/dump";
+
 const defaultOptions = {
     browserslist: [],
     minify: true,
@@ -45,16 +46,22 @@ const compileCss = async function (filename, opts) {
     });
 
     const targets = await determineTargets(opts.browserslist);
-    const { code } = lightningcss.bundle({
+    let { code, map } = lightningcss.bundle({
         targets,
         filename,
 
         minify: opts.minify,
-        // sourceMap: opts.sourcemaps,
-        sourceMap: false, // Files not generated. must handle artifacts manually. disable for now
+        sourceMap: opts.sourcemaps,
+        errorRecovery: true,
     });
 
-    return JSON.stringify(code.toString());
+    let css = code.toString();
+    if (map) {
+        map = rewriteSourcemapPaths(map);
+        css = `${css}\n/*# sourceMappingURL=data:application/json;base64,${btoa(JSON.stringify(map))} */`
+    }
+
+    return JSON.stringify(css);
 };
 
 const compileSass = async function (filename, opts) {
@@ -68,14 +75,29 @@ const compileSass = async function (filename, opts) {
 
     const source = sass.compile(filename);
     const targets = await determineTargets(opts.browserslist);
-    const { code } = lightningcss.transform({
+    const { code, map } = lightningcss.transform({
         targets,
         code: Buffer.from(source.css),
 
         minify: opts.minify,
-        // sourceMap: opts.sourcemaps,
-        sourceMap: false, // Files not generated. must handle artifacts manually. disable for now
+        sourceMap: opts.sourcemaps,
+        errorRecovery: true,
+        // sourceMap: false, // Files not generated. must handle artifacts manually. disable for now
     });
 
     return JSON.stringify(code.toString());
+};
+
+const rewriteSourcemapPaths = function (map) {
+    const replace =
+        process.env["APP_ENV"] === "testing"
+            ? process.cwd().replace(/^\/+|\/+$/g, "") + "/workbench"
+            : process.cwd().replace(/^\/+|\/public+$/g, "");
+
+    map = JSON.parse(map);
+    map.sources = map.sources.map((path) => {
+        return path.replace(replace, "..");
+    });
+
+    return map;
 };

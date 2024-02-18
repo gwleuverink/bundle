@@ -127,24 +127,86 @@ class CssLoaderTest extends DuskTestCase
     /** @test */
     public function it_generates_sourcemaps_when_enabled()
     {
-        $this->markTestSkipped('not implemented');
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('bundle.minify', true);
+            $config->set('bundle.sourcemaps', true);
+        });
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="css/red-background.css" />
+        HTML);
+
+        // Assert output contains encoded sourcemap (flaky. asserting on encoded sting)
+        $browser->assertScript(
+            'document.querySelector(`style[data-module="css/red-background.css"]`).innerHTML.startsWith("html{background:red}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjpudWxsLCJtYXBwaW5ncyI6IkFBQUEi")',
+            true
+        );
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 
     /** @test */
     public function it_doesnt_generate_sourcemaps_by_default()
     {
-        $this->markTestSkipped('not implemented');
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('bundle.minify', true);
+            $config->set('bundle.sourcemaps', false);
+        });
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="css/red-background.css" />
+        HTML);
+
+        $browser->assertScript(
+            'document.querySelector(`style[data-module="css/red-background.css"]`).innerHTML',
+            'html{background:red}'
+        );
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 
     /** @test */
     public function it_generates_scss_sourcemaps_when_enabled()
     {
-        $this->markTestSkipped('not implemented');
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('bundle.minify', true);
+            $config->set('bundle.sourcemaps', true);
+        });
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="css/blue-background.scss" />
+        HTML);
+
+        // Assert output contains encoded sourcemap (flaky. asserting on encoded sting)
+        $browser->assertScript(
+            'document.querySelector(`style[data-module="css/blue-background.scss"]`).innerHTML.startsWith("html body{background:#00f}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290Ij")',
+            true
+        );
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 
     /** @test */
     public function it_doesnt_generate_scss_sourcemaps_by_default()
     {
-        $this->markTestSkipped('not implemented');
+        $this->beforeServingApplication(function ($app, $config) {
+            $config->set('bundle.minify', true);
+            $config->set('bundle.sourcemaps', false);
+        });
+
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="css/blue-background.scss" />
+        HTML);
+
+        $browser->assertScript(
+            'document.querySelector(`style[data-module="css/blue-background.scss"]`).innerHTML',
+            'html body{background:#00f}'
+        );
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 }

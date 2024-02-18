@@ -50,9 +50,9 @@ const compileCss = async function (filename, opts) {
         targets,
         filename,
 
+        errorRecovery: true,
         minify: opts.minify,
         sourceMap: opts.sourcemaps,
-        errorRecovery: true,
     });
 
     let css = code.toString();
@@ -73,30 +73,47 @@ const compileSass = async function (filename, opts) {
         exit("sass-not-installed");
     });
 
-    const source = sass.compile(filename);
     const targets = await determineTargets(opts.browserslist);
-    const { code, map } = lightningcss.transform({
-        targets,
-        code: Buffer.from(source.css),
 
-        minify: opts.minify,
+    // NOTE: we could use a custom importer to remap sourcemap url's here. But might be able to reuse The one we use for the CSS loader
+    const source = await sass.compileAsync(filename, {
         sourceMap: opts.sourcemaps,
-        errorRecovery: true,
-        // sourceMap: false, // Files not generated. must handle artifacts manually. disable for now
+        sourceMapIncludeSources: opts.sourcemaps // inlines source countent. refactor when adding extenral sourcemaps
     });
 
-    return JSON.stringify(code.toString());
+    let { code, map } = lightningcss.transform({
+        targets,
+        code: Buffer.from(source.css),
+        filename: opts.sourcemaps
+            ? filename
+            : null,
+
+        errorRecovery: true,
+        minify: opts.minify,
+        sourceMap: opts.sourcemaps,
+        inputSourceMap: JSON.stringify(source.sourceMap),
+    });
+
+    let css = code.toString();
+
+    if (map) {
+        map = rewriteSourcemapPaths(map);
+        css = `${css}\n/*# sourceMappingURL=data:application/json;base64,${btoa(JSON.stringify(map))} */`
+    }
+
+    return JSON.stringify(css);
 };
 
 const rewriteSourcemapPaths = function (map) {
-    const replace =
-        process.env["APP_ENV"] === "testing"
-            ? process.cwd().replace(/^\/+|\/+$/g, "") + "/workbench"
-            : process.cwd().replace(/^\/+|\/public+$/g, "");
+
+    const replacePath = process.env["APP_ENV"] === "testing"
+        ? process.cwd().replace(/^\/+|\/+$/g, "") + "/workbench"
+        : process.cwd().replace(/^\/+|\/public+$/g, "");
 
     map = JSON.parse(map);
+
     map.sources = map.sources.map((path) => {
-        return path.replace(replace, "..");
+        return path.replace(replacePath, "..")
     });
 
     return map;

@@ -1,6 +1,8 @@
 name: browser-tests
 
 on:
+  pull_request:
+    branches: [development, main]
   workflow_run:
     workflows: [tests]
     types: [completed]

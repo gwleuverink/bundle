@@ -1,5 +1,5 @@
 ---
-nav_order: 8
+nav_order: 9
 title: Roadmap
 image: "/assets/social-square.png"
 ---
@@ -8,7 +8,15 @@ image: "/assets/social-square.png"
 
 Bundle is under active development. If you feel there are features missing or you've got a great idea that's not on on the roadmap please [open a discussion](https://github.com/gwleuverink/bundle/discussions/categories/ideas){:target="\_blank"} on GitHub.
 
-## CSS loader
+## ✅ Injecting Bundle's core on every page
+
+**_Added in [v0.1.3](https://github.com/gwleuverink/bundle/releases/tag/v0.1.3)_**
+
+This will reduce every import's size slightly. But more importantly; it will greatly decrease the chance of unexpected behaviour caused by race conditions, since the Bundle's core is available on pageload.
+
+## ✅ CSS loader
+
+**_Added in [v0.1.4](https://github.com/gwleuverink/bundle/releases/tag/v0.1.4)_**
 
 Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support CSS loading out-of-the-box as soon as Bun does!
 
@@ -97,12 +105,6 @@ It would be incredible if this object could be forwarded to Alpine directly like
   <div x-show="open">Content...</div>
 </div>
 ```
-
-## ✅ Injecting Bundle's core on every page
-
-**_Added in [v0.1.3](https://github.com/gwleuverink/bundle/releases/tag/v0.1.3)_**
-
-This will reduce every import's size slightly. But more importantly; it will greatly decrease the chance of unexpected behaviour caused by race conditions, since the Bundle's core is available on pageload.
 
 ## Optionally assigning a import to the window scope
 

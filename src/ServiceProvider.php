@@ -4,12 +4,12 @@
 
 namespace Leuverink\Bundle;
 
-use Leuverink\Bundle\Bundlers\Bun;
 use Leuverink\Bundle\Commands\Build;
 use Leuverink\Bundle\Commands\Clear;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
+use Leuverink\Bundle\Bundlers\Bun\Bun;
 use Leuverink\Bundle\Components\Import;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;

@@ -4,11 +4,18 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
+    <php>
+        <env name="BUNDLE_MINIFY" value="true" />
+        <env name="BUNDLE_CACHING" value="false" />
+        <env name="BUNDLE_SOURCEMAPS" value="false" />
+    </php>
+
     <testsuites>
         <testsuite name="Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
+
     <source>
         <include>
             <directory suffix=".php">./app</directory>

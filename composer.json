@@ -78,7 +78,8 @@
             "cd ./workbench && npm ci",
             "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
             "ln -sf $PWD/workbench/node_modules/ ./vendor/orchestra/testbench-core/laravel",
-            "ln -sf $PWD/workbench/resources/js/ ./vendor/orchestra/testbench-core/laravel/resources"
+            "ln -sf $PWD/workbench/resources/js/ ./vendor/orchestra/testbench-core/laravel/resources",
+            "ln -sf $PWD/workbench/resources/css/ ./vendor/orchestra/testbench-core/laravel/resources"
         ],
 
         "serve": [

@@ -50,7 +50,7 @@ it('supports tree shaking for variables')->bundle(
 
 it('generates sourcemaps when enabled')
     ->defer(
-        fn () => config()->set('bundle.sourcemaps_enabled', true)
+        fn () => config()->set('bundle.sourcemaps', true)
     )
     ->bundle(
         <<< 'JS'
@@ -120,7 +120,7 @@ it('logs console error when blade component fails bundling and debug mode is dis
     expect($component->render())
         ->toContain(
             'throw',
-            "BUNDLING ERROR: No module found at path '~/foo'"
+            'BUNDLING ERROR: Could not resolve: "~/foo". Maybe you need to "bun install"?'
         )
         ->not->toThrow(BundlingFailedException::class);
 });

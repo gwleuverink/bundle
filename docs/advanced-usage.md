@@ -95,13 +95,13 @@ All code is minified by default. This can make issues harder to debug at times. 
 
 ## Sourcemaps
 
-Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.
+Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS` to true in your env file or by publishing and updating the bundle config.
 
 Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
 
 {: .note }
 
-> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
+> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command after enabling/disabling this feature.
 
 ## Cache-Control headers
 
@@ -148,9 +148,3 @@ BundleManager::fake();
 ```
 
 When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
-
-## CSS Loader
-
-Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
-
-We'd like to experiment with Bun plugin support soon. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.

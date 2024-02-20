@@ -10,18 +10,30 @@ image: "/assets/social-square.png"
 
 Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time.
 
-We provide a custom CSS loader plugin that just works™. You only need to install [Lightning CSS](https://lightningcss.dev/), the rest is taken care of.
-
-```bash
-npm install lightningcss --save-dev
-```
-
-Now you can import `css` files. Bundle transpiles them and injects it on your page with zero effort.
+We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/). Just use the `x-import` directive to load a css file directly. Bundle transpiles them and injects it on your page with zero effort.
 
 ```html
 <x-import module="tippy.js" as="tippy" />
 <x-import module="tippy.js/dist/tippy.css" />
 ```
+
+Because we use Bun as a runtime when processing your files there is no need to install Lightning CSS as a dependency. When Bun encounters a import that is not installed it will fall back to it's on internal [module resolution algorithm](https://bun.sh/docs/runtime/autoimport) & install the dependency on the fly.
+
+That being said; We do recommend installing Lightning CSS in your project.
+
+```bash
+npm install lightningcss --save-dev
+```
+
+### Sass
+
+[Sass](https://sass-lang.com/) is supported out of the box. Just like with Lightning CSS you don't have to install Sass as a dependency, but it is recommended.
+
+```bash
+npm install lightningcss --save-dev
+```
+
+Note that compiled Sass is processed with LightningCSS afterwards, so if you plan on only processing scss files it is recommended to install both Lightning CSS & Sass.
 
 ### Local CSS loading
 
@@ -55,12 +67,8 @@ You can define what browsers to target using your `package.json` file:
 }
 ```
 
-### Sass
+<br/>
 
-In order to load `scss` files you need to install [Sass](https://sass-lang.com/) as a dependency.
+{: .note }
 
-```bash
-npm install lightningcss --save-dev
-```
-
-Bundle will detect Sass is installed and enable bundling scss files with zero configuration.
+> Bundle currently only supports browserslist using your `package.json` file. A dedicated `.browserslistrc` is not suppported at this time.

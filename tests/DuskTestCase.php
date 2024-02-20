@@ -63,6 +63,8 @@ class DuskTestCase extends BaseTestCase
         // Create a temporary route
         $this->beforeServingApplication(function ($app, $config) use ($page) {
             $config->set('app.debug', true);
+            $config->set('bundle.cache_control_headers', 'no-cache, no-store, must-revalidate');
+
             $app->make(Route::class)::get('test-blade', fn () => $page);
         });
 
@@ -87,6 +89,7 @@ class DuskTestCase extends BaseTestCase
         $this->beforeServingApplication(function ($app, $config) use (&$component) {
             $config->set('app.debug', true);
             $config->set('app.key', 'base64:q1fQla64BmAKJBOnRKuXvfddVoqEuSLv1eOEEO91uGI=');
+            $config->set('bundle.cache_control_headers', 'no-cache, no-store, must-revalidate');
 
             // Needs to register so component is findable in update calls
             Livewire::component($component);

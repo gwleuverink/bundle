@@ -101,7 +101,7 @@ Sourcemaps will be generated in a separate file so this won't affect performance
 
 {: .note }
 
-> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
+> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command after enabling/disabling this feature.
 
 ## Cache-Control headers
 
@@ -148,4 +148,3 @@ BundleManager::fake();
 ```
 
 When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
-

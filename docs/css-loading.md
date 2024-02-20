@@ -33,7 +33,7 @@ npm install lightningcss --save-dev
 npm install sass --save-dev
 ```
 
-Note that compiled Sass is processed with LightningCSS afterwards, so if you plan on only processing scss files it is recommended to install both Lightning CSS & Sass.
+Note that compiled Sass is processed with Lightning CSS afterwards, so if you plan on only processing scss files it is recommended to install both Lightning CSS & Sass.
 
 ### Local CSS loading
 

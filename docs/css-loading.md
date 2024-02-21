@@ -10,7 +10,7 @@ image: "/assets/social-square.png"
 
 Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time.
 
-We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/). Just use the `x-import` directive to load a css file directly. Bundle transpiles them and injects it on your page with zero effort.
+We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/). Just use `x-import` to load a css file directly. Bundle transpiles it and injects it on your page with zero effort.
 
 ```html
 <x-import module="tippy.js" as="tippy" />
@@ -27,7 +27,7 @@ npm install lightningcss --save-dev
 
 ### Sass
 
-[Sass](https://sass-lang.com/) is supported out of the box. Just like with Lightning CSS you don't have to install Sass as a dependency, but it is recommended.
+[Sass](https://sass-lang.com/) is supported out of the box. Just like Lightning CSS you don't have to install Sass as a dependency, but it is recommended.
 
 ```bash
 npm install sass --save-dev
@@ -37,7 +37,7 @@ Note that compiled Sass is processed with Lightning CSS afterwards, so if you pl
 
 ### Local CSS loading
 
-This works similar to [local modules](https://laravel-bundle.dev/local-modules.html). Simply add a new path alias to your `jsconfig.json` file.
+This works similarly to [local modules](https://laravel-bundle.dev/local-modules.html). Simply add a new path alias to your `jsconfig.json` file.
 
 ```json
 {

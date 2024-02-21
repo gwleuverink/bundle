@@ -61,7 +61,7 @@ class InjectCore
 
         if ($html->test('/<\s*\/\s*head\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $core . '$1')
+                ->replaceMatches('/(<\s*\\s*head\s*>)/i', '$1' . $core)
                 ->toString();
         }
 

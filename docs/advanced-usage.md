@@ -59,6 +59,47 @@ export function bar() {
 </script>
 ```
 
+## Reusable options
+
+It can come in handy to share configuration options for npm packages between blade components. Adding another layer of composability for your ui components.
+
+Assuming [path rewriting](https://laravel-bundle.dev/local-modules.html) is set up. Say you have a configuration object you want to pull in to a component in `resources/js/charts/bar-chart-options.js`.
+
+```javascript
+export default {
+  chart: {
+    height: 350,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      borderRadius: 10,
+      dataLabels: {
+        position: "top",
+      },
+    },
+  },
+};
+```
+
+Then pull it in inside your component. Using AlpineJS & ApexCharts as an example.
+
+```html
+<x-import module="apexcharts" as="ApexCharts" />
+<x-import module="~/charts/bar-chart-options" as="chart-options" inline />
+
+<div
+  x-init="
+    const ApexCharts = await _import('ApexCharts')
+    const options = await _import('chart-options')
+
+    var chart = new ApexCharts($el, options);
+    chart.render();
+"
+  class="w-full xl:w-2/3"
+></div>
+```
+
 ## Using `_import` in a script tag without `type="module"`
 
 All previous examples have used the `_import` function within a script tag with `type='module'`. This instructs the browser to treat the containing code as a module. Practically this means that code gets it's own namespace & you can't reach for variables outside the scope of the script tag.
@@ -84,10 +125,6 @@ It's good practice to use that async function as a listener for the `DOMContentL
 {: .warning }
 
 > If you reassign the `window.onload` callback directly your browser will only fire the last one, since the callback is overwriten. If you want to use the `onload` event you should use a listener instead: `window.addEventListener('load', () => { /**/ })`
-
-## Import resolution timeout
-
-The `_import` function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import` function should wait untill a module is loaded.
 
 ## Minification
 

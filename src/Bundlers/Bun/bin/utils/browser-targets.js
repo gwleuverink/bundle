@@ -1,4 +1,3 @@
-import { browserslistToTargets } from "lightningcss-wasm";
 import { readFile, exists } from "fs/promises";
 import path from "path";
 
@@ -7,9 +6,13 @@ import path from "path";
  * to detect browserslist from package.json
  */
 export default async function (browserslist) {
+    const lightningcss = await import("lightningcss").catch((error) => {
+        exit("lightningcss-not-installed");
+    });
+
     // If config was given, return browserlist immediately
     if (browserslist?.length) {
-        return browserslistToTargets(browserslist);
+        return lightningcss.browserslistToTargets(browserslist);
     }
 
     // Otherwise read from package.json
@@ -17,7 +20,7 @@ export default async function (browserslist) {
     browserslist = pkg.browserslist || [];
 
     if (browserslist?.length) {
-        return browserslistToTargets(browserslist);
+        return lightningcss.browserslistToTargets(browserslist);
     }
 
     // If no package.json found or browserslist was not defined

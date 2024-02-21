@@ -41,7 +41,7 @@ export default function (options = {}) {
 }
 
 const compileCss = async function (filename, opts) {
-    const lightningcss = await import("lightningcss-wasm").catch((error) => {
+    const lightningcss = await import("lightningcss").catch((error) => {
         exit("lightningcss-not-installed");
     });
 
@@ -65,7 +65,7 @@ const compileCss = async function (filename, opts) {
 };
 
 const compileSass = async function (filename, opts) {
-    const lightningcss = await import("lightningcss-wasm").catch((error) => {
+    const lightningcss = await import("lightningcss").catch((error) => {
         exit("lightningcss-not-installed");
     });
 

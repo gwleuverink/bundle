@@ -17,21 +17,19 @@ class BundlingFailedException extends RuntimeException implements ProvidesSoluti
 
     // TODO: needs to be reworked. It's getting too big & handles too many JS error cases
     // Maybe split it up & devise a system that maps JS errors raised by Bun to appropriate Exception classes
-    public function __construct(ProcessResult $result, $script = null)
+    public function __construct(ProcessResult $result)
     {
         $this->result = $result;
-        $failed = $script ?? $result->command();
-
-        // dd($this->output());
+        $output = $this->output();
 
         parent::__construct(
-            "Bundling failed: {$failed}",
+            $output->message ?? $output->id ?? $output->output ?? $this->output(),
             $result->exitCode() ?? 1,
         );
 
         // TODO: Consider different approach for providing contextual debug info
         if (app()->isLocal() && config()->get('app.debug')) {
-            dump(['error output', $result->output()]);
+            dump($output->output ?? $result->output());
         }
     }
 

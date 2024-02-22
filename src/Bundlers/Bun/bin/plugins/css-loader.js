@@ -42,7 +42,7 @@ export default function (options = {}) {
 
 const compileCss = async function (filename, opts) {
     const lightningcss = await import("lightningcss").catch((error) => {
-        exit("lightningcss-not-installed");
+        exit("lightningcss-not-installed", "Lightning CSS is not installed.", error);
     });
 
     const targets = await determineTargets(opts.browserslist);
@@ -66,11 +66,11 @@ const compileCss = async function (filename, opts) {
 
 const compileSass = async function (filename, opts) {
     const lightningcss = await import("lightningcss").catch((error) => {
-        exit("lightningcss-not-installed");
+        exit("lightningcss-not-installed", "Lightning CSS is not installed.", error);
     });
 
     const sass = await import("sass").catch((error) => {
-        exit("sass-not-installed");
+        exit("sass-not-installed", "Sass is not installed", error);
     });
 
     const targets = await determineTargets(opts.browserslist);

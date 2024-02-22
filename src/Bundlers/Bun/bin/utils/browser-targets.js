@@ -7,7 +7,7 @@ import path from "path";
  */
 export default async function (browserslist) {
     const lightningcss = await import("lightningcss").catch((error) => {
-        exit("lightningcss-not-installed");
+        exit("lightningcss-not-installed", "Lightning CSS is not installed.", error);
     });
 
     // If config was given, return browserlist immediately

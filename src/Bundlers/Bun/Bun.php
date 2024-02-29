@@ -30,7 +30,7 @@ class Bun implements Bundler
             ...[$minify ? '--minify' : ''],
         ];
 
-        Process::run("{$bun} {$buildScript} {$this->args($options)}")
+        Process::run("{$bun} --install=fallback run {$buildScript} {$this->args($options)}")
             ->throw(fn ($res) => throw new BundlingFailedException($res));
 
         return new SplFileInfo($outputPath . $fileName);

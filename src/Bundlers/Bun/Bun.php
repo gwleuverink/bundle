@@ -1,6 +1,6 @@
 <?php
 
-namespace Leuverink\Bundle\Bundlers;
+namespace Leuverink\Bundle\Bundlers\Bun;
 
 use SplFileInfo;
 use Illuminate\Support\Facades\Process;
@@ -31,10 +31,7 @@ class Bun implements Bundler
         ];
 
         Process::run("{$bun} {$buildScript} {$this->args($options)}")
-            ->throw(function ($res) use ($inputPath, $fileName): void {
-                $failed = file_get_contents($inputPath . $fileName);
-                throw new BundlingFailedException($res, $failed);
-            });
+            ->throw(fn ($res) => throw new BundlingFailedException($res));
 
         return new SplFileInfo($outputPath . $fileName);
     }

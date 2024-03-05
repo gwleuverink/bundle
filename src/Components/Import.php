@@ -25,10 +25,10 @@ class Import extends Component
         }
     }
 
-    /** Builds the core JavaScript & packages it up in a bundle */
+    /** Builds the imported JavaScript & packages it up in a bundle */
     protected function bundle()
     {
-        $js = $this->core();
+        $js = $this->import();
 
         // Render script tag with bundled code
         return view('x-import::script', [
@@ -53,13 +53,13 @@ class Import extends Component
 
         return <<< HTML
             <!--[BUNDLE: {$this->as} from '{$this->module}']-->
-            <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: No module found at path '{$this->module}'"</script>
+            <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: {$e->consoleOutput()}"</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }
 
-    /** Builds Bundle's core JavaScript */
-    protected function core(): string
+    /** Builds a bundle for the JavaScript import */
+    protected function import(): string
     {
         return <<< JS
             //--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ class Import extends Component
             (() => {
 
                 // Check if module is already loaded under a different alias
-                const previous = document.querySelector(`script[data-module="{$this->module}"`)
+                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
 
                 // Was previously loaded & needs to be pushed to import map
                 if(previous && '{$this->as}') {
@@ -82,6 +82,13 @@ class Import extends Component
                     if(previous.dataset.alias !== '{$this->as}') {
                         throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
                     }
+                }
+
+                // Handle CSS injection & return early (no need to add css to import map)
+                if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
+                    return import('{$this->module}').then(result => {
+                        window.x_inject_styles(result.default, previous)
+                    })
                 }
 
                 // Assign the import to the window.x_import_modules object (or invoke IIFE)

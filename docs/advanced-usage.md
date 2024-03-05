@@ -59,6 +59,47 @@ export function bar() {
 </script>
 ```
 
+## Reusable options
+
+It can come in handy to share configuration options for npm packages between blade components. Adding another layer of composability for your ui components.
+
+Assuming [path rewriting](https://laravel-bundle.dev/local-modules.html) is set up. Say you have a configuration object you want to pull in to a component in `resources/js/charts/bar-chart-options.js`.
+
+```javascript
+export default {
+  chart: {
+    height: 350,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      borderRadius: 10,
+      dataLabels: {
+        position: "top",
+      },
+    },
+  },
+};
+```
+
+Then pull it in inside your component. Using AlpineJS & ApexCharts as an example.
+
+```html
+<x-import module="apexcharts" as="ApexCharts" />
+<x-import module="~/charts/bar-chart-options" as="chart-options" inline />
+
+<div
+  x-init="
+    const ApexCharts = await _import('ApexCharts')
+    const options = await _import('chart-options')
+
+    var chart = new ApexCharts($el, options);
+    chart.render();
+"
+  class="w-full xl:w-2/3"
+></div>
+```
+
 ## Using `_import` in a script tag without `type="module"`
 
 All previous examples have used the `_import` function within a script tag with `type='module'`. This instructs the browser to treat the containing code as a module. Practically this means that code gets it's own namespace & you can't reach for variables outside the scope of the script tag.
@@ -85,23 +126,19 @@ It's good practice to use that async function as a listener for the `DOMContentL
 
 > If you reassign the `window.onload` callback directly your browser will only fire the last one, since the callback is overwriten. If you want to use the `onload` event you should use a listener instead: `window.addEventListener('load', () => { /**/ })`
 
-## Import resolution timeout
-
-The `_import` function uses a built-in non blocking polling mechanism in order to account for async & deferred script loading. The import resolution time may be configured milliseconds by updating the config file or via an env variable `BUNDLE_IMPORT_RESOLUTION_TIMEOUT`. This will instruct Bundle how long the `_import` function should wait untill a module is loaded.
-
 ## Minification
 
 All code is minified by default. This can make issues harder to debug at times. Using sourcemaps should relieve this issue. But in case you need it you can disable minification by updating the config file or via an env variable `BUNDLE_MINIFY`.
 
 ## Sourcemaps
 
-Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS_ENABLED` to true in your env file or by publishing and updating the bundle config.
+Sourcemaps are disabled by default. You may enable this by setting `BUNDLE_SOURCEMAPS` to true in your env file or by publishing and updating the bundle config.
 
 Sourcemaps will be generated in a separate file so this won't affect performance for the end user.
 
 {: .note }
 
-> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command
+> If your project stored previously bundled files you need to run the [bundle:clear](https://laravel-bundle.dev/advanced-usage.html#artisan-bundleclear) command after enabling/disabling this feature.
 
 ## Cache-Control headers
 
@@ -148,9 +185,3 @@ BundleManager::fake();
 ```
 
 When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
-
-## CSS Loader
-
-Bun doesn't ship with a css loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time. We plan to support css loading out-of-the-box as soon as Bun does!
-
-We'd like to experiment with Bun plugin support soon. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.

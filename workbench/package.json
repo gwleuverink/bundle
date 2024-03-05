@@ -1,4 +1,9 @@
 {
+  "browserslist": [
+    "last 2 versions",
+    ">= 1%",
+    "IE 11"
+  ],
   "devDependencies": {
     "bun": "^1.0.21",
     "lodash": "^4.17.21",

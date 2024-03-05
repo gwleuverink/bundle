@@ -31,10 +31,14 @@ class BundleManager implements BundleManagerContract
 
     public function bundle(string $script): SplFileInfo
     {
-        $file = "{$this->hash($script)}.min.js";
+        $min = $this->config()->get('minify')
+            ? '.min'
+            : '';
+
+        $file = "{$this->hash($script)}{$min}.js";
 
         // Return cached file if available
-        if ($this->config()->get('caching_enabled') && $cached = $this->fromDisk($file)) {
+        if ($this->config()->get('caching') && $cached = $this->fromDisk($file)) {
             return $cached;
         }
 
@@ -44,7 +48,7 @@ class BundleManager implements BundleManagerContract
         // Attempt bundling & cleanup
         try {
             $processed = $this->bundler->build(
-                sourcemaps: $this->config()->get('sourcemaps_enabled'),
+                sourcemaps: $this->config()->get('sourcemaps'),
                 minify: $this->config()->get('minify'),
                 inputPath: $this->tempDisk()->path(''),
                 outputPath: $this->buildDisk()->path(''),

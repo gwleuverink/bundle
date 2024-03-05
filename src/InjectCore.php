@@ -61,7 +61,7 @@ class InjectCore
 
         if ($html->test('/<\s*\/\s*head\s*>/i')) {
             return $html
-                ->replaceMatches('/(<\s*\/\s*head\s*>)/i', $core . '$1')
+                ->replaceMatches('/(<\s*\\s*head\s*>)/i', '$1' . $core)
                 ->toString();
         }
 
@@ -139,6 +139,23 @@ class InjectCore
                     await new Promise(resolve => setTimeout(resolve, interval));
                 }
             };
+
+            //--------------------------------------------------------------------------
+            // Inject styles
+            //--------------------------------------------------------------------------
+            window.x_inject_styles = function (css, scriptTag) {
+                if (typeof document === 'undefined') {
+                    return;
+                }
+
+                // TODO: Add CSP nonce when adding CSP support
+                const style = document.createElement('style');
+                style.dataset['module'] = scriptTag.dataset['module'];
+                style.innerHTML = css;
+
+                // Inject the style tag after the script that invoked this function
+                scriptTag.parentNode.insertBefore(style, scriptTag.nextSibling);
+            }
 
         JS;
     }

@@ -10,13 +10,26 @@ image: "/assets/social-square.png"
 
 Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time.
 
-We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/). Just use `x-import` to load a css file directly. Bundle transpiles it and injects it on your page with zero effort.
+We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/).
+You'll need to install Lightning CSS as a dependency.
+
+```bash
+npm install lightningcss --save-dev
+```
+
+Afterwards you may use `x-import` to load css files directly. Bundle transpiles it and injects it on your page with zero effort.
 
 ```html
 <x-import module="tippy.js" as="tippy" />
 <x-import module="tippy.js/dist/tippy.css" />
 ```
 
+<!--
+BUN AUTO-INSTALL BROKEN!
+This works in testing env, due to symlinking vendor directory. But in a real scenario, Bun encounters a node_modules dir up it's path and disable the auto install feature. Due to a ongoing issue this cannot be changed with any cli option
+https://github.com/oven-sh/bun/issues/5783
+
+Old documentation. Bring back when Bun fixes this issue
 Because we use Bun as a runtime when processing your files there is no need to install Lightning CSS as a dependency. When Bun encounters a import that is not installed it will fall back to it's on internal [module resolution algorithm](https://bun.sh/docs/runtime/autoimport) & install the dependency on the fly.
 
 That being said; We do recommend installing Lightning CSS in your project.
@@ -24,16 +37,19 @@ That being said; We do recommend installing Lightning CSS in your project.
 ```bash
 npm install lightningcss --save-dev
 ```
+-->
 
 ### Sass
 
-[Sass](https://sass-lang.com/) is supported out of the box. Just like Lightning CSS you don't have to install Sass as a dependency, but it is recommended.
+You can use Bundle to compile [Sass](https://sass-lang.com/) on the fly. You'll need to install both Sass & Lightning CSS in your project. Bundle takes care of the rest.
 
 ```bash
-npm install sass --save-dev
+npm install sass lightningcss --save-dev
 ```
 
-Note that compiled Sass is processed with Lightning CSS afterwards, so if you plan on only processing scss files it is recommended to install both Lightning CSS & Sass.
+{: .note }
+
+> Due to a unresolved issue Bun is not able to auto-install LightningCSS & Sass on the fly. When this issue is fixed you won't have to install these dependencies yourself. Bun will automatically install them when needed 💅
 
 ### Local CSS loading
 

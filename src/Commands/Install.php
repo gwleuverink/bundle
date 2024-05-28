@@ -10,6 +10,7 @@ use function Laravel\Prompts\intro;
 use function Laravel\Prompts\outro;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\warning;
 use function Laravel\Prompts\progress;
 
 class Install extends Command
@@ -92,6 +93,12 @@ class Install extends Command
 
     protected function install()
     {
+        if (empty($this->installCommands)) {
+            warning('Nothing to install.');
+
+            return;
+        }
+
         progress(
             label: 'Installing dependencies.',
             steps: $this->installCommands,

@@ -14,8 +14,10 @@ We provide a custom CSS loader plugin that just works™. Built on top of [Light
 You'll need to install Lightning CSS as a dependency.
 
 ```bash
-npm install lightningcss --save-dev
+php artisan bundle:install
 ```
+
+You will be prompted to select a CSS loading method. Choose `CSS`.
 
 Afterwards you may use `x-import` to load css files directly. Bundle transpiles it and injects it on your page with zero effort.
 
@@ -44,8 +46,10 @@ npm install lightningcss --save-dev
 You can use Bundle to compile [Sass](https://sass-lang.com/) on the fly. You'll need to install both Sass & Lightning CSS in your project. Bundle takes care of the rest.
 
 ```bash
-npm install sass lightningcss --save-dev
+php artisan bundle:install
 ```
+
+You will be prompted to select a CSS loading method. Choose `Sass`.
 
 {: .note }
 

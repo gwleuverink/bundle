@@ -5,8 +5,6 @@ namespace Leuverink\Bundle\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
 
-use function Laravel\Prompts\table;
-
 class Version extends Command
 {
     protected $signature = 'bundle:version';
@@ -14,12 +12,16 @@ class Version extends Command
 
     public function handle(): int
     {
-        table([], rows: [
-            ['Bundle:', $this->composerPackageVersion('leuverink/bundle')],
-            ['Bun:', $this->npmPackageVersion('bun')],
-            ['LightningCSS:', $this->npmPackageVersion('lightningcss')],
-            ['Sass:', $this->npmPackageVersion('sass')],
-        ]);
+        $this->components->twoColumnDetail('  <fg=green;options=bold>Back-end</>');
+        $this->components->twoColumnDetail('Bundle', $this->composerPackageVersion('leuverink/bundle'));
+        $this->components->twoColumnDetail('Laravel', phpversion());
+        $this->components->twoColumnDetail('PHP', $this->laravel->version());
+
+        $this->newLine();
+        $this->components->twoColumnDetail('  <fg=green;options=bold>Front-end</>');
+        $this->components->twoColumnDetail('Bun', $this->npmPackageVersion('bun'));
+        $this->components->twoColumnDetail('LightningCSS', $this->npmPackageVersion('lightningcss'));
+        $this->components->twoColumnDetail('Sass', $this->npmPackageVersion('sass'));
 
         return static::SUCCESS;
     }
@@ -35,6 +37,7 @@ class Version extends Command
     protected function npmPackageVersion(string $name): string
     {
         $packageInfo = json_decode(Process::run("npm list {$name} --json")->output());
+
         return data_get($packageInfo, "dependencies.{$name}.version", 'Not installed');
     }
 }

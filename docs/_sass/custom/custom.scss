@@ -17,6 +17,10 @@ html, body, .side-bar, .main-header, .search-input {
     border-color: #44434D8C;
 }
 
+.side-bar+.main .main-header {
+    background: inherit;
+}
+
 // Anchor links
 a {
     // color: #FB70A9; // for dark mode?

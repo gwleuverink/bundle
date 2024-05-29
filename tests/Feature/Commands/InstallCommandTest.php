@@ -37,7 +37,7 @@ it('installs LightningCSS when selected', function () {
         ->expectsQuestion('Would you like to use CSS loading?', 'css')
         ->assertSuccessful();
 
-    Process::assertRan('npm install lightningcss --save-dev');
+    Process::assertRan('npm install lightningcss@^1 --save-dev');
 });
 
 it('doesnt install LightningCSS when not selected', function () {
@@ -46,7 +46,7 @@ it('doesnt install LightningCSS when not selected', function () {
         ->expectsQuestion('Would you like to use CSS loading?', 'none')
         ->assertSuccessful();
 
-    Process::assertDidntRun('npm install lightningcss --save-dev');
+    Process::assertDidntRun('npm install lightningcss@^1 --save-dev');
 });
 
 it('installs Sass when selected', function () {
@@ -55,8 +55,8 @@ it('installs Sass when selected', function () {
         ->expectsQuestion('Would you like to use CSS loading?', 'sass')
         ->assertSuccessful();
 
-    Process::assertRan('npm install lightningcss --save-dev');
-    Process::assertRan('npm install sass --save-dev');
+    Process::assertRan('npm install lightningcss@^1 --save-dev');
+    Process::assertRan('npm install sass@^1 --save-dev');
 });
 
 it('doesnt install Sass when not selected', function () {
@@ -65,8 +65,8 @@ it('doesnt install Sass when not selected', function () {
         ->expectsQuestion('Would you like to use CSS loading?', 'none')
         ->assertSuccessful();
 
-    Process::assertDidntRun('npm install lightningcss --save-dev');
-    Process::assertDidntRun('npm install sass --save-dev');
+    Process::assertDidntRun('npm install lightningcss@^1 --save-dev');
+    Process::assertDidntRun('npm install sass@^1 --save-dev');
 });
 
 it('doesnt install anything when nothing selected', function () {

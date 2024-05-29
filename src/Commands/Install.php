@@ -26,10 +26,8 @@ class Install extends Command
 
         $this->printAscii();
         $this->printIntro();
-
         $this->promptToInstallBun();
         $this->promptToInstallCssLoading();
-
         $this->install();
 
         $this->call('bundle:version');
@@ -47,8 +45,9 @@ class Install extends Command
             / __  |/ / / //  |/ // / / // /    / __/
            / /_/ // /_/ // /|  // /_/ // /___ / /___
           /_____/ \____//_/ |_//_____//_____//_____/
-
         TEXT);
+
+        $this->newLine();
     }
 
     protected function printIntro()
@@ -82,10 +81,12 @@ class Install extends Command
         );
 
         match ($choice) {
-            'css' => $this->installCommands[] = 'npm install lightningcss --save-dev',
+            'css' => $this->installCommands = array_merge($this->installCommands, [
+                'npm install lightningcss@^1 --save-dev',
+            ]),
             'sass' => $this->installCommands = array_merge($this->installCommands, [
-                'npm install lightningcss --save-dev',
-                'npm install sass --save-dev',
+                'npm install lightningcss@^1 --save-dev',
+                'npm install sass@^1 --save-dev',
             ]),
             default => null,
         };

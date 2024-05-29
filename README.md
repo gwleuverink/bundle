@@ -29,7 +29,7 @@ composer require leuverink/bundle
 ```
 
 ```bash
-npm install bun --save-dev
+php artisan bundle:install
 ```
 
 This is all you need to start using Bundle!

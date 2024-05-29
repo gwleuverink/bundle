@@ -13,9 +13,7 @@ Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github
 We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/).
 You'll need to install Lightning CSS as a dependency.
 
-```bash
-php artisan bundle:install
-```
+Simply run `php artisan bundle:install` in your terminal. You will be prompted to select a CSS loading method. Choose `CSS`.
 
 You will be prompted to select a CSS loading method. Choose `CSS`.
 
@@ -45,9 +43,7 @@ npm install lightningcss --save-dev
 
 You can use Bundle to compile [Sass](https://sass-lang.com/) on the fly. You'll need to install both Sass & Lightning CSS in your project. Bundle takes care of the rest.
 
-```bash
-php artisan bundle:install
-```
+Simply run `php artisan bundle:install` in your terminal. You will be prompted to select a CSS loading method. Choose `Sass`.
 
 You will be prompted to select a CSS loading method. Choose `Sass`.
 
@@ -72,7 +68,7 @@ This works similarly to [local modules](https://laravel-bundle.dev/local-modules
 Now you can load css from your resources directory.
 
 ```html
-<x-import module="css/foo-bar.css" />
+<x-import module="~/css/foo-bar.css" />
 ```
 
 ### Browser targeting

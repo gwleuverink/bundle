@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Leuverink\Bundle\Bundlers\Bun\Bun;
+use Leuverink\Bundle\Commands\Install;
+use Leuverink\Bundle\Commands\Version;
 use Leuverink\Bundle\Components\Import;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -64,6 +66,8 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function registerCommands()
     {
+        $this->commands(Install::class);
+        $this->commands(Version::class);
         $this->commands(Build::class);
         $this->commands(Clear::class);
     }

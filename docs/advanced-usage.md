@@ -174,6 +174,14 @@ You may configure what paths are scanned by publishing the Bundle config file an
 
 `artisan bundle:clear` Clear all bundled scripts.
 
+### bundle:version
+
+`artisan bundle:version` Dumps Bundle's version & it's dependencies (Bun & optionally LightningCSS & Sass).
+
+### bundle:install
+
+`artisan bundle:install` Prompts you through installing Bun & optional CSS loader dependencies.
+
 ## Testing fake
 
 When writing Unit or Feature tests in your application you don't need Bundle to process & serve your imports.

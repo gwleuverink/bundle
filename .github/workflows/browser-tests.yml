@@ -1,6 +1,7 @@
 name: browser-tests
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [development, main]
   workflow_run:

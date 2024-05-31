@@ -33,7 +33,9 @@ class Import extends Component
 
         // Render script tag with bundled code
         return view('x-import::script', [
-            'bundle' => $this->manager()->bundle($js),
+            'bundle' => $this->manager()->bundle($js, [
+                'init' => $this->init,
+            ]),
         ]);
     }
 

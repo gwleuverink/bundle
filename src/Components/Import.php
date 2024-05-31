@@ -12,7 +12,8 @@ class Import extends Component
     public function __construct(
         public string $module,
         public ?string $as = null,
-        public bool $inline = false
+        public bool $inline = false,
+        public bool $init = false
     ) {
     }
 
@@ -78,13 +79,30 @@ class Import extends Component
 
                 // Was previously loaded & needs to be pushed to import map
                 if(previous && '{$this->as}') {
-                    // Throw error improve debugging experience
+                    // Throw error when previously imported under different alias. Otherwise continue
                     if(previous.dataset.alias !== '{$this->as}') {
                         throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
                     }
                 }
 
-                // Handle CSS injection & return early (no need to add css to import map)
+                // Import was marked as invokable
+                if('{$this->init}') {
+
+                    return import('{$this->module}')
+                        .then(invokable => {
+                            if(typeof invokable.default !== 'function') {
+                                throw `BUNDLING ERROR: '{$this->module}' not invokable - default export is not a function`
+                            }
+
+                            try {
+                                invokable.default()
+                            } catch(e) {
+                                throw `BUNDLING ERROR: unable to invoke '{$this->module}' - '\${e}'`
+                            }
+                        })
+                }
+
+                // Handle CSS injection
                 if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
                     return import('{$this->module}').then(result => {
                         window.x_inject_styles(result.default, previous)

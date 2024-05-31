@@ -26,4 +26,21 @@ class InitableImportsTest extends DuskTestCase
             HTML)
             ->assertScript('window.test_evaluated', null);
     }
+
+    /** @test */
+    public function it_raises_a_console_error_when_invokable_import_is_not_a_function()
+    {
+        $this->markTestIncomplete('Not implemented.');
+
+        // $this->blade(<<< 'HTML'
+        //         <x-import module="~/default-object" />
+        //     HTML)
+        //     ->assertScript('window.test_evaluated', null);
+    }
+
+    /** @test */
+    public function it_raises_a_console_error_when_invokable_import_is_not_javascript_file()
+    {
+        $this->markTestIncomplete('Not implemented.');
+    }
 }

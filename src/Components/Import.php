@@ -4,6 +4,7 @@ namespace Leuverink\Bundle\Components;
 
 use Illuminate\View\Component;
 use Leuverink\Bundle\BundleManager;
+use Illuminate\Support\Facades\Blade;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
 
@@ -64,61 +65,10 @@ class Import extends Component
     /** Builds a bundle for the JavaScript import */
     protected function import(): string
     {
-        return <<< JS
-            //--------------------------------------------------------------------------
-            // Expose x_import_modules map
-            //--------------------------------------------------------------------------
-            if(!window.x_import_modules) window.x_import_modules = {};
-
-            //--------------------------------------------------------------------------
-            // Import the module & push to x_import_modules
-            // Invoke IIFE so we can break out of execution when needed
-            //--------------------------------------------------------------------------
-            (() => {
-
-                // Check if module is already loaded under a different alias
-                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
-
-                // Was previously loaded & needs to be pushed to import map
-                if(previous && '{$this->as}') {
-                    // Throw error when previously imported under different alias. Otherwise continue
-                    if(previous.dataset.alias !== '{$this->as}') {
-                        throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
-                    }
-                }
-
-                // Import was marked as invokable
-                if('{$this->init}') {
-
-                    return import('{$this->module}')
-                        .then(invokable => {
-                            if(typeof invokable.default !== 'function') {
-                                throw `BUNDLING ERROR: '{$this->module}' not invokable - default export is not a function`
-                            }
-
-                            try {
-                                invokable.default()
-                            } catch(e) {
-                                throw `BUNDLING ERROR: unable to invoke '{$this->module}' - '\${e}'`
-                            }
-                        })
-                }
-
-                // Handle CSS injection
-                if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
-                    return import('{$this->module}').then(result => {
-                        window.x_inject_styles(result.default, previous)
-                    })
-                }
-
-                // Assign the import to the window.x_import_modules object (or invoke IIFE)
-                '{$this->as}'
-                    // Assign it under an alias
-                    ? window.x_import_modules['{$this->as}'] = import('{$this->module}')
-                    // Only import it (for IIFE no alias needed)
-                    : import('{$this->module}')
-            })();
-
-        JS;
+        return Blade::render(file_get_contents(__DIR__ . '/views/import.blade.js'), [
+            'module' => $this->module,
+            'as' => $this->as,
+            'init' => $this->init,
+        ]);
     }
 }

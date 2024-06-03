@@ -15,8 +15,6 @@ You'll need to install Lightning CSS as a dependency.
 
 Simply run `php artisan bundle:install` in your terminal. You will be prompted to select a CSS loading method. Choose `CSS`.
 
-You will be prompted to select a CSS loading method. Choose `CSS`.
-
 Afterwards you may use `x-import` to load css files directly. Bundle transpiles it and injects it on your page with zero effort.
 
 ```html
@@ -44,8 +42,6 @@ npm install lightningcss --save-dev
 You can use Bundle to compile [Sass](https://sass-lang.com/) on the fly. You'll need to install both Sass & Lightning CSS in your project. Bundle takes care of the rest.
 
 Simply run `php artisan bundle:install` in your terminal. You will be prompted to select a CSS loading method. Choose `Sass`.
-
-You will be prompted to select a CSS loading method. Choose `Sass`.
 
 {: .note }
 

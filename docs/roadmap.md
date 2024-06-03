@@ -22,7 +22,9 @@ Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github
 
 Plugin support is a feature we'd like to experiment with. If that is released before Bun's builtin css loader does, it might be possible to write your own plugin to achieve this.
 
-## Initable exports
+## ✅ Initable exports
+
+**_Added in [v0.5](https://github.com/gwleuverink/bundle/releases/tag/v0.5.0)_**
 
 When importing a local module, the only method to immediately invoke some code is by using the [IIFE export](https://laravel-bundle.dev/local-modules.html#iife-exports) method.
 
@@ -30,18 +32,12 @@ An alternative API is possible that would make it a bit easier to structure your
 Consider the following example script in `resources/js/some-module.js`. (needs a jsconfig.json for path remapping)
 
 ```javascript
-export default {
-  // Some properties here
-
-  init: function () {
-    // What will be executed immediately
-  },
-
-  // Some methods here
+export default () => {
+  // Some bootstrapping code that needs to be invoked immediately
 };
 ```
 
-By using `init` on the import component you'll instruct Bundle to run that method immidiatly. You don't need a `as` alias in this case.
+By using `init` on the import component you'll instruct Bundle to run that function immidiatly. You don't need a `as` alias in this case.
 
 ```html
 <x-import module="~/some-module" init />
@@ -50,14 +46,8 @@ By using `init` on the import component you'll instruct Bundle to run that metho
 This approach will also make it possible to use named exports in combination with a init function.
 
 ```javascript
-export default {
-  // Some properties here
-
-  init: function () {
-    // What will be executed immediately
-  },
-
-  // Some methods here
+export default () => {
+  // Some bootstrapping code that needs to be invoked immediately
 };
 
 export function someFunction() {

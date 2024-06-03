@@ -76,21 +76,10 @@ class Import extends Component
             //--------------------------------------------------------------------------
             (() => {
 
-                // Check if module is already loaded under a different alias
-                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
-
-                // Was previously loaded & needs to be pushed to import map
-                if(previous && '{$this->as}') {
-                    // Throw error when previously imported under different alias. Otherwise continue
-                    if(previous.dataset.alias !== '{$this->as}') {
-                        throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
-                    }
-                }
-
                 // Import was marked as invokable
                 if('{$this->init}') {
-
-                    return import('{$this->module}')
+                    // Note: don't return, since we might need to still register the module
+                    import('{$this->module}')
                         .then(invokable => {
                             if(typeof invokable.default !== 'function') {
                                 throw `BUNDLING ERROR: '{$this->module}' not invokable - default export is not a function`
@@ -102,6 +91,17 @@ class Import extends Component
                                 throw `BUNDLING ERROR: unable to invoke '{$this->module}' - '\${e}'`
                             }
                         })
+                }
+
+                // Check if module is already loaded under a different alias
+                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
+
+                // Was previously loaded & needs to be pushed to import map
+                if(previous && '{$this->as}') {
+                    // Throw error when previously imported under different alias. Otherwise continue
+                    if(previous.dataset.alias !== '{$this->as}') {
+                        throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
+                    }
                 }
 
                 // Handle CSS injection

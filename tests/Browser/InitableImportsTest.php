@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -28,15 +29,29 @@ class InitableImportsTest extends DuskTestCase
     }
 
     /** @test */
+    public function it_still_registers_an_aliased_module_when_the_default_export_is_invoked()
+    {
+        $this->markTestIncomplete('TODO: Priority!');
+    }
+
+    /** @test */
     public function it_appends_init_to_the_bundle_filename_when_import_is_invoked()
     {
-        $this->markTestIncomplete('TODO');
+        $bundle = BundleManager::new()->bundle(<<< 'JS'
+            alert('Hello World!')
+        JS, ['init' => true]);
+
+        expect($bundle)->getFilename()->toContain('init');
     }
 
     /** @test */
     public function it_doesnt_append_init_to_the_bundle_filename_when_import_is_not_invoked()
     {
-        $this->markTestIncomplete('TODO');
+        $bundle = BundleManager::new()->bundle(<<< 'JS'
+            alert('Hello World!')
+        JS);
+
+        expect($bundle)->getFilename()->not->toContain('init');
     }
 
     /** @test */

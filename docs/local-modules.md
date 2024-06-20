@@ -120,3 +120,5 @@ Can be used like this:
   example();
 </script>
 ```
+
+Head over to the [advanced usage section](https://laravel-bundle.dev/advanced-usage.html) for more examples on how you can leverage local modules.

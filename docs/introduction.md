@@ -26,7 +26,7 @@ The `<x-import />` component processes your JavaScript on the fly and renders a 
 
 > Bundle is meant as a tool for Blade centric apps, like [Livewire](https://livewire.laravel.com), to enable colocation of page specific JavaScript inside Blade.
 
-In contrary to how a JavaScript app would be bundled, this package creates tiny bundles usually only consisting of one module each. Depending on the props you pass to the `<x-import />` component.
+Contrary to how a JavaScript app would be bundled, this package creates tiny bundles usually only consisting of one module each. Depending on the props you pass to the `<x-import />` component.
 
 Bun treats these bundles as being separate builds. This would cause collisions with reused tokens inside the window scope, but since Bundle loads your imports via a script tag with `type="module"` the code is constrained to it's own module scope.
 

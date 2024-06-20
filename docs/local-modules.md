@@ -48,8 +48,6 @@ In order to use this script directly in your blade views, you simply need to imp
 
 You can use this mechanism to immediatly execute some code to, for example, bootstrap & import other libraries.
 
-Bundle's primary goal is to get imports inside your Blade template. While this strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
-
 Consider the following example file `resources/js/hello-world.js`:
 
 ```javascript
@@ -91,6 +89,8 @@ When importing this module you can omit the `as` prop. Axios will be available o
 ```
 
 Note that your consuming script still needs to be of `type="module"` otherwise `window.axios` will be undefined.
+
+It is also good to note that Bundle's primary goal is to get imports inside your Blade template. While the init strategy can be very powerful, it is not the place to put a lot of business code since can be a lot harder to debug.
 
 {: .warning }
 

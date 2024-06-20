@@ -115,7 +115,7 @@ Can be used like this:
 <!-- The default function will invoke immediately & alert 'Hello World!' -->
 <x-import module="~/hello-world" as="hello-world" init />
 
-<!-- But other exports may still be imported -->
+<!-- Other exports may still be imported -->
 <script type="module">
   const example = await _import("hello-world", "example");
 

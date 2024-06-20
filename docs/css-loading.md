@@ -6,16 +6,12 @@ image: "/assets/social-square.png"
 
 ## CSS Loading
 
-**Beta**
-
-Bun doesn't ship with a CSS loader. They have it on [the roadmap](https://github.com/oven-sh/bun/issues/159){:target="\_blank"} but no release date is known at this time.
-
-We provide a custom CSS loader plugin that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/).
+Bundle provides a custom CSS loader plugin for Bun that just works™. Built on top of [Lightning CSS](https://lightningcss.dev/).
 You'll need to install Lightning CSS as a dependency.
 
 Simply run `php artisan bundle:install` in your terminal. You will be prompted to select a CSS loading method. Choose `CSS`.
 
-Afterwards you may use `x-import` to load css files directly. Bundle transpiles it and injects it on your page with zero effort.
+Afterwards you may use `x-import` to load css files directly. Bundle transpiles it and injects it on your page 🚀
 
 ```html
 <x-import module="tippy.js" as="tippy" />
@@ -69,7 +65,7 @@ Now you can load css from your resources directory.
 
 ### Browser targeting
 
-Bundle automatically compiles many modern CSS syntax features to more compatible output that is supported in your target browsers. This includes some features that are not supported by browsers yet, like nested selectors & media queries, without using a preprocessor like Sass. [Check here](https://lightningcss.dev/transpilation.html#syntax-lowering) for the list of the many cool new syntaxes Lightning CSS supports.
+Bundle automatically compiles many modern CSS syntax features to more compatible output that is supported in your target browsers. This includes some features that are not supported by browsers yet, like nested selectors, custom media queries, high gamut color spaces e.t.c. Without using a preprocessor like Sass. [Check here](https://lightningcss.dev/transpilation.html#syntax-lowering) for the list of the many cool new syntaxes Lightning CSS supports.
 
 You can define what browsers to target using your `package.json` file:
 

@@ -94,4 +94,4 @@ It is also good to note that Bundle's primary goal is to get imports inside your
 
 {: .warning }
 
-> Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to be used as a method to allow setup of more complex libraries. It is recommended to place business level code inside your templates instead.
+> Code splitting is [not supported](https://laravel-bundle.dev/caveats.html#code-splitting). Be careful when importing modules in your local scripts like this. When two script rely on the same dependency, it will be included in both bundles. This approach is meant to allow setup of more complex libraries. It is recommended to add complex code inside your templates instead and only use Bundle for importing libraries.

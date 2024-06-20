@@ -10,7 +10,7 @@ Bundle facilitates JavaScript imports inside Blade using [Bun](https://bun.sh){:
 
 Bun does all the heavy lifting and Bundle provides the glue between Blade and injects your imports on the client side.
 
-The <x-import /> component processes your import on the fly and renders a script tag in place.
+The `<x-import />` component processes your JavaScript on the fly and renders a script tag in place.
 
 ```html
 <x-import module="apexcharts" as="ApexCharts" />

@@ -1,16 +1,15 @@
 <x-layout>
 
-    <x-import module="~/bootstrap/alpine" />
-    <x-import module="~/invokes-callable" as="invoke" />
+    <x-import module="~/bootstrap/alpine-iife-with-plugin" />
 
-    <script type="module">
-        const invoke = await _import('invoke');
-
-        invoke(
-            () => document.getElementById('output').innerHTML = 'Hello World!'
-        )
-    </script>
-
-    <div id="output"></div>
+    <h1
+        id="component"
+        x-text="message"
+        x-data="{
+            message: typeof Alpine.persist === 'function'
+                ? 'Plugin loaded!'
+                : 'Test failed'
+        }"
+    ></h1>
 
 </x-layout>

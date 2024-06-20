@@ -29,16 +29,22 @@ class BundleManager implements BundleManagerContract
         $this->bundler = $bundler;
     }
 
-    public function bundle(string $script): SplFileInfo
+    public function bundle(string $script, array $config = []): SplFileInfo
     {
-        $min = $this->config()->get('minify')
+        $config = $this->mergeConfig($config);
+
+        $init = $config->get('init')
+            ? '-init'
+            : '';
+
+        $min = $config->get('minify')
             ? '.min'
             : '';
 
-        $file = "{$this->hash($script)}{$min}.js";
+        $file = "{$this->hash($script)}{$init}{$min}.js";
 
         // Return cached file if available
-        if ($this->config()->get('caching') && $cached = $this->fromDisk($file)) {
+        if ($config->get('caching') && $cached = $this->fromDisk($file)) {
             return $cached;
         }
 
@@ -48,8 +54,8 @@ class BundleManager implements BundleManagerContract
         // Attempt bundling & cleanup
         try {
             $processed = $this->bundler->build(
-                sourcemaps: $this->config()->get('sourcemaps'),
-                minify: $this->config()->get('minify'),
+                sourcemaps: $config->get('sourcemaps'),
+                minify: $config->get('minify'),
                 inputPath: $this->tempDisk()->path(''),
                 outputPath: $this->buildDisk()->path(''),
                 fileName: $file,
@@ -70,6 +76,13 @@ class BundleManager implements BundleManagerContract
     public function config(): RepositoryContract
     {
         return new ConfigRepository(config('bundle'));
+    }
+
+    public function mergeConfig(array $config = []): RepositoryContract
+    {
+        return new ConfigRepository(
+            array_merge($this->config()->all(), $config)
+        );
     }
 
     public function tempDisk(): FilesystemContract

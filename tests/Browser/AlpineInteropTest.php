@@ -13,13 +13,13 @@ class AlpineInteropTest extends DuskTestCase
     public function it_can_bootstrap_alpine_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-iife" />
 
             <div
                 id="component"
                 x-text="message"
                 x-data="{
-                    message: 'Hello World!'
+                    message: 'Alpine loaded!'
                 }"
             ></div>
         HTML);
@@ -27,20 +27,22 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->waitForTextIn('#component', 'Hello World!');
+        $browser->waitForTextIn('#component', 'Alpine loaded!');
     }
 
     /** @test */
     public function it_can_bootstrap_plugins_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-iife-with-plugin" />
 
             <div
                 id="component"
                 x-text="message"
                 x-data="{
-                    message: 'Hello World!'
+                    message: typeof Alpine.persist === 'function'
+                        ? 'Plugin loaded!'
+                        : false
                 }"
             ></div>
         HTML);
@@ -48,14 +50,58 @@ class AlpineInteropTest extends DuskTestCase
         // Doesn't raise console errors
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
 
-        $browser->waitForTextIn('#component', 'Hello World!');
+        $browser->waitForTextIn('#component', 'Plugin loaded!');
+    }
+
+    /** @test */
+    public function it_can_bootstrap_alpine_via_initable_import()
+    {
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="~/bootstrap/alpine-init" init />
+
+            <div
+                id="component"
+                x-text="message"
+                x-data="{
+                    message: 'Alpine loaded!'
+                }"
+            ></div>
+        HTML);
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+
+        $browser->waitForTextIn('#component', 'Alpine loaded!');
+    }
+
+    /** @test */
+    public function it_can_bootstrap_plugins_via_initable_import()
+    {
+        $browser = $this->blade(<<< 'HTML'
+            <x-import module="~/bootstrap/alpine-init-with-plugin" init />
+
+            <div
+                id="component"
+                x-text="message"
+                x-data="{
+                    message: typeof Alpine.persist === 'function'
+                        ? 'Plugin loaded!'
+                        : false
+                }"
+            ></div>
+        HTML);
+
+        // Doesn't raise console errors
+        $this->assertEmpty($browser->driver->manage()->getLog('browser'));
+
+        $browser->waitForTextIn('#component', 'Plugin loaded!');
     }
 
     /** @test */
     public function it_can_use_imports_from_x_init()
     {
         $browser = $this->blade(<<< 'HTML'
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
 
             <div
@@ -88,7 +134,7 @@ class AlpineInteropTest extends DuskTestCase
     {
         $browser = $this->blade(<<< 'HTML'
 
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
 
             <div
@@ -121,7 +167,7 @@ class AlpineInteropTest extends DuskTestCase
     public function it_can_use_imports_from_x_click_listener()
     {
         $browser = $this->blade(<<< 'HTML'
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
 
             <button
@@ -160,7 +206,7 @@ class AlpineInteropTest extends DuskTestCase
 
         $browser = $this->blade(<<< 'HTML'
 
-            <x-import module="~/bootstrap/alpine" />
+            <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="~/components/hello-world" />
 
             <div

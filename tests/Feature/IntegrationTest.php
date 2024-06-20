@@ -161,6 +161,25 @@ it('doesnt minify code when minification disabled', function () {
         ->toBeGreaterThan($lineThreshold);
 });
 
+it('can override package config', function () {
+
+    // First, expect the bundle not to be minified
+    config()->set('bundle.minify', false);
+
+    $bundle = BundleManager::new()->bundle(<<< 'JS'
+        alert('Hello World!')
+    JS);
+
+    expect($bundle)->getFilename()->not->toContain('.min.js');
+
+    // Then override the config to minify the bundle and expect it to be minified
+    $bundle = BundleManager::new()->bundle(<<< 'JS'
+            alert('Hello World!')
+        JS, ['minify' => true]);
+
+    expect($bundle)->getFilename()->toContain('.min.js');
+});
+
 it('serves bundles over http', function () {
     $js = <<< 'JS'
     const filter = await import('~/output-to-id')

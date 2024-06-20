@@ -26,8 +26,8 @@ jobs:
           paths_ignore: '["**/README.md", "**/docs/**"]'
 
   workbench-tests:
-    needs: skip-duplicates
-    if: needs.skip-duplicates.outputs.should_skip != 'true'
+    # needs: skip-duplicates
+    # if: needs.skip-duplicates.outputs.should_skip != 'true'
 
     runs-on: ubuntu-latest
 

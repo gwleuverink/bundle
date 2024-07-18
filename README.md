@@ -18,6 +18,7 @@
 
 Explore the docs on **[GitHub Pages »](https://laravel-bundle.dev/)**
 
+> [!NOTE]
 > **Bundle is in open beta! 👀**
 >
 > We need your help get this package production ready 🚀 Check out the [discussion board](https://github.com/gwleuverink/bundle/discussions) or [report a bug](https://github.com/gwleuverink/bundle/issues/new/choose). We appreciate your feedback!

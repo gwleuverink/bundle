@@ -75,6 +75,7 @@
         ],
 
         "setup-workbench": [
+            "./vendor/bin/testbench dusk:chrome-driver",
             "cd ./workbench && npm ci",
             "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
             "ln -sf $PWD/workbench/node_modules/ ./vendor/orchestra/testbench-core/laravel",

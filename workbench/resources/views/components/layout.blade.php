@@ -6,8 +6,9 @@
     <title>Document</title>
 
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="p-4">
 
 {{ $slot }}
 

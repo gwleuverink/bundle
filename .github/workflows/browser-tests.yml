@@ -33,6 +33,7 @@ jobs:
       matrix:
         php: [8.2, 8.3]
         laravel: [^10, ^11]
+        dependency-version: [prefer-stable]
         # dependency-version: [prefer-lowest, prefer-stable]
 
     steps:
@@ -58,7 +59,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install Composer dependecies
-        run: composer update --no-progress --optimize-autoloader
+        run: composer update --no-progress --optimize-autoloader --${{ matrix.dependency-version }}
 
       - name: Directory Permissions
         run: sudo chown -R $(whoami) vendor/pestphp/pest/.temp vendor/orchestra

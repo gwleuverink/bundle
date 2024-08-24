@@ -7,6 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Dusk\Options;
+use Illuminate\Contracts\Config\Repository;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;
@@ -21,17 +22,20 @@ class DuskTestCase extends BaseTestCase
         parent::setUpBeforeClass();
     }
 
+    protected function defineEnvironment($app)
+    {
+        // Workaround Testbench Dusk issue dropping registered config (since v9)
+        tap($app['config'], function (Repository $config) {
+            $config->set('bundle', require __DIR__ . '/../config/bundle.php');
+        });
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->artisan('view:clear');
         $this->artisan('bundle:clear');
-
-        // Workaround Testbench Dusk issue dropping registered config (since v9)
-        config([
-            'bundle' => require __DIR__ . '/../config/bundle.php',
-        ]);
     }
 
     protected function tearDown(): void

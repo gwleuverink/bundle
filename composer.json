@@ -74,6 +74,7 @@
             "@dusk:install-chromedriver"
         ],
         "setup-workbench": [
+            "./vendor/bin/testbench dusk:chrome-driver",
             "./vendor/bin/dusk-updater detect --auto-update",
             "cd ./workbench && npm ci",
             "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",

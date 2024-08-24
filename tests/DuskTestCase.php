@@ -27,6 +27,11 @@ class DuskTestCase extends BaseTestCase
 
         $this->artisan('view:clear');
         $this->artisan('bundle:clear');
+
+        // Workaround Testbench Dusk issue dropping registered config (since v9)
+        config([
+            'bundle' => require __DIR__ . '/../config/bundle.php',
+        ]);
     }
 
     protected function tearDown(): void

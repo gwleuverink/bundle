@@ -50,13 +50,13 @@ jobs:
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - name: Restore Composer Cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+      #   - name: Restore Composer Cache
+      #     uses: actions/cache@v4
+      #     with:
+      #       path: ${{ steps.composer-cache.outputs.dir }}
+      #       key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+      #       restore-keys: |
+      #         ${{ runner.os }}-composer-
 
       - name: Install Composer dependecies
         run: composer update --no-progress --optimize-autoloader --${{ matrix.dependency-version }}

@@ -58,7 +58,6 @@ class DuskTestCase extends BaseTestCase
      */
     public function blade(string $blade)
     {
-
         // Wrap in basic HTML layout (include required js & css in layout if needed)
         $blade = <<< BLADE
         <x-layout>

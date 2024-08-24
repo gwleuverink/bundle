@@ -14,8 +14,7 @@ class Import extends Component
         public ?string $as = null,
         public bool $inline = false,
         public bool $init = false
-    ) {
-    }
+    ) {}
 
     public function render()
     {

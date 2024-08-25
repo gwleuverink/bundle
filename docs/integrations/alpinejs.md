@@ -32,7 +32,7 @@ export default (() => {
 That's it! 🤟
 
 ```html
-<x-import module="~/bootstrap/alpine" />
+<x-import module="~/bootstrap/alpine" init />
 
 <div x-data="{ message: 'Hello World!' }">
   <h1 x-text="message"></h1>

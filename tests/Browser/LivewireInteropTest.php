@@ -73,7 +73,8 @@ class LivewireInteropTest extends DuskTestCase
 
         $browser
             ->waitForTextIn('#component', 'Text changes when the Livewire action is invoked')
-            ->waitForLivewire()->click('@action')
+            // ->waitForLivewire()
+            ->click('@action')
             ->waitForTextIn('#component', 'Hello from wire action!');
     }
 }

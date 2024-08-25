@@ -23,6 +23,14 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
 
+        // Only when using locally
+        if (! $this->app->environment(['local', 'testing'])) {
+
+            $this->publishes([
+                __DIR__ . '/../config/bundle.php' => config_path('bundle.php'),
+            ], 'bundle');
+        }
+
         $this->registerComponents();
         $this->registerCommands();
         $this->injectCore();
@@ -30,16 +38,10 @@ class ServiceProvider extends BaseServiceProvider
 
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
+
         $this->registerBundleManager();
         $this->registerRoutes();
-
-        // Only when using locally
-        if (! $this->app->environment(['local', 'testing'])) {
-
-            $this->publishes([
-                __DIR__ . '/../config/bundle.php' => base_path('config/bundle.php'),
-            ], 'bundle');
-        }
     }
 
     protected function registerBundleManager()

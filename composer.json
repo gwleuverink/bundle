@@ -35,18 +35,18 @@
         "illuminate/support": "^10|^11"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.30",
-        "laravel/pint": "^1.13",
-        "larastan/larastan": "^2.8",
-        "squizlabs/php_codesniffer": "^3.7",
-        "tightenco/duster": "^2.4",
-        "tightenco/tlint": "^9.1",
-        "pestphp/pest": "^2.30",
-        "spatie/laravel-ignition": "^2.3",
-        "symfony/thanks": "^1.2",
-        "orchestra/testbench": "^8",
-        "orchestra/testbench-dusk": "^8",
-        "livewire/livewire": "^3.4"
+        "friendsofphp/php-cs-fixer": "^3.60",
+        "laravel/pint": "^1.17",
+        "larastan/larastan": "^2.9",
+        "squizlabs/php_codesniffer": "^3.10",
+        "tightenco/duster": "^3.0",
+        "tightenco/tlint": "^9.3",
+        "pestphp/pest": "^2.35",
+        "spatie/laravel-ignition": "^2.8",
+        "symfony/thanks": "^1.3",
+        "orchestra/testbench": "^9",
+        "orchestra/testbench-dusk": "^9",
+        "livewire/livewire": "^3.5"
     },
     "config": {
         "allow-plugins": {
@@ -73,36 +73,29 @@
             "@prepare",
             "@dusk:install-chromedriver"
         ],
-
         "setup-workbench": [
-            "./vendor/bin/testbench dusk:chrome-driver",
+            "./vendor/bin/dusk-updater detect --auto-update",
             "cd ./workbench && npm ci",
             "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
             "ln -sf $PWD/workbench/node_modules/ ./vendor/orchestra/testbench-core/laravel",
             "ln -sf $PWD/workbench/resources/js/ ./vendor/orchestra/testbench-core/laravel/resources",
             "ln -sf $PWD/workbench/resources/css/ ./vendor/orchestra/testbench-core/laravel/resources"
         ],
-
         "serve": [
-            "@setup-workbench",
             "Composer\\Config::disableProcessTimeout",
             "@build",
-            "@php vendor/bin/testbench serve"
+            "@php vendor/bin/testbench serve --ansi"
         ],
-
         "lint": "vendor/bin/duster lint",
         "fix": "vendor/bin/duster fix",
         "analyze": "vendor/bin/phpstan analyse",
         "baseline": "vendor/bin/phpstan analyse --generate-baseline",
-
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
-
         "test": "@php vendor/bin/pest --group=feature,unit",
         "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit",
         "test-all": "@php vendor/bin/pest --bail"
-
     }
 }

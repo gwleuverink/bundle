@@ -7,6 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Dusk\Options;
+use Illuminate\Contracts\Config\Repository;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;
@@ -19,6 +20,14 @@ class DuskTestCase extends BaseTestCase
     {
         Options::withoutUI();
         parent::setUpBeforeClass();
+    }
+
+    protected function defineEnvironment($app)
+    {
+        // Workaround Testbench Dusk issue dropping registered config (since v9)
+        tap($app['config'], function (Repository $config) {
+            $config->set('bundle', require __DIR__ . '/../config/bundle.php');
+        });
     }
 
     protected function setUp(): void
@@ -49,7 +58,6 @@ class DuskTestCase extends BaseTestCase
      */
     public function blade(string $blade)
     {
-
         // Wrap in basic HTML layout (include required js & css in layout if needed)
         $blade = <<< BLADE
         <x-layout>

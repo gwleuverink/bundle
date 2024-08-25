@@ -73,7 +73,7 @@ class LivewireInteropTest extends DuskTestCase
 
         $browser
             ->waitForTextIn('#component', 'Text changes when the Livewire action is invoked')
-            // ->waitForLivewire()
+            // ->waitForLivewire() // throws error in CI but seems to work without?
             ->click('@action')
             ->waitForTextIn('#component', 'Hello from wire action!');
     }

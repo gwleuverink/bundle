@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Tests\Browser;
 
 use Leuverink\Bundle\BundleManager;
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -10,7 +11,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class InitableImportsTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_invokes_imports_with_init_prop()
     {
         $this->blade(<<< 'HTML'
@@ -19,7 +20,7 @@ class InitableImportsTest extends DuskTestCase
             ->assertScript('window.test_evaluated', true);
     }
 
-    /** @test */
+    #[Test]
     public function it_doesnt_invoke_imports_without_init_prop()
     {
         $this->blade(<<< 'HTML'
@@ -28,13 +29,13 @@ class InitableImportsTest extends DuskTestCase
             ->assertScript('window.test_evaluated', null);
     }
 
-    /** @test */
+    #[Test]
     public function it_still_registers_an_aliased_module_when_the_default_export_is_invoked()
     {
         $this->markTestIncomplete('TODO: Priority!');
     }
 
-    /** @test */
+    #[Test]
     public function it_appends_init_to_the_bundle_filename_when_import_is_invoked()
     {
         $bundle = BundleManager::new()->bundle(<<< 'JS'
@@ -44,7 +45,7 @@ class InitableImportsTest extends DuskTestCase
         expect($bundle)->getFilename()->toContain('init');
     }
 
-    /** @test */
+    #[Test]
     public function it_doesnt_append_init_to_the_bundle_filename_when_import_is_not_invoked()
     {
         $bundle = BundleManager::new()->bundle(<<< 'JS'
@@ -54,7 +55,7 @@ class InitableImportsTest extends DuskTestCase
         expect($bundle)->getFilename()->not->toContain('init');
     }
 
-    /** @test */
+    #[Test]
     public function it_raises_a_console_error_when_invokable_import_is_not_a_function()
     {
         $this->markTestIncomplete("can't inspect console for thrown errors");
@@ -65,7 +66,7 @@ class InitableImportsTest extends DuskTestCase
         //     ->assertScript('window.test_evaluated', null);
     }
 
-    /** @test */
+    #[Test]
     public function it_raises_a_console_error_when_invokable_import_is_not_javascript_file()
     {
         $this->markTestIncomplete("can't inspect console for thrown errors");

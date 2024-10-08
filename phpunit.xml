@@ -8,6 +8,7 @@
         <env name="BUNDLE_MINIFY" value="true" />
         <env name="BUNDLE_CACHING" value="false" />
         <env name="BUNDLE_SOURCEMAPS" value="false" />
+        <env name="RAY_ENABLED" value="false" />
     </php>
 
     <testsuites>

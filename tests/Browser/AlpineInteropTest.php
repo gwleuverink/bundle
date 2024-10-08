@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -9,7 +10,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class AlpineInteropTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_bootstrap_alpine_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -30,7 +31,7 @@ class AlpineInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Alpine loaded!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_bootstrap_plugins_via_iife_import()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -53,7 +54,7 @@ class AlpineInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Plugin loaded!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_bootstrap_alpine_via_initable_import()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -74,7 +75,7 @@ class AlpineInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Alpine loaded!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_bootstrap_plugins_via_initable_import()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -97,7 +98,7 @@ class AlpineInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Plugin loaded!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_init()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -129,7 +130,7 @@ class AlpineInteropTest extends DuskTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_data()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -163,7 +164,7 @@ class AlpineInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Gello World!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_click_listener()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -199,7 +200,7 @@ class AlpineInteropTest extends DuskTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function it_supports_backed_components_with_alpine_data()
     {
         $this->markTestSkipped('not implemented');

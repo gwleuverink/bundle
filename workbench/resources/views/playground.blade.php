@@ -22,7 +22,7 @@
         {{ $filePath }}
     </code>
 
-    <div class="text-xs max-w-2xl my-8 p-4 rounded bg-slate-100 overflow-x-scroll">
+    <div class="text-xs max-w-6xl my-8 p-4 rounded bg-slate-100 overflow-x-scroll">
         <code class="whitespace-pre-wrap w-[1000%]">{{ file_get_contents($filePath) }}</code>
     </div>
 

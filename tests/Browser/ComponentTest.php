@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Tests\Browser;
 
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -21,7 +22,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class ComponentTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_renders_the_same_import_only_once()
     {
         $this->blade(<<< 'HTML'
@@ -33,7 +34,7 @@ class ComponentTest extends DuskTestCase
             JS, 1);
     }
 
-    /** @test */
+    #[Test]
     public function it_renders_the_same_import_only_once_when_one_was_inlined()
     {
         $this->blade(<<< 'HTML'
@@ -45,7 +46,7 @@ class ComponentTest extends DuskTestCase
             JS, 1);
     }
 
-    /** @test */
+    #[Test]
     public function it_renders_multiple_imports_when_they_only_use_a_module_property()
     {
         $this->blade(<<< 'HTML'
@@ -60,7 +61,7 @@ class ComponentTest extends DuskTestCase
             JS, 1);
     }
 
-    /** @test */
+    #[Test]
     public function it_renders_the_same_import_under_different_aliases()
     {
         $this->blade(<<< 'HTML'
@@ -72,7 +73,7 @@ class ComponentTest extends DuskTestCase
             JS, 2);
     }
 
-    /** @test */
+    #[Test]
     public function it_renders_script_inline_when_inline_prop_was_passed()
     {
         $this->blade(<<< 'HTML'
@@ -103,7 +104,7 @@ class ComponentTest extends DuskTestCase
             JS, null);
     }
 
-    /** @test */
+    #[Test]
     public function it_works_when_a_iife_is_combined_with_multiple_aliased_imports()
     {
         $browser = $this->blade(<<< 'HTML'
@@ -124,7 +125,7 @@ class ComponentTest extends DuskTestCase
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 
-    /** @test */
+    #[Test]
     public function it_logs_console_error_when_a_module_is_imported_using_a_different_alias()
     {
         $this->markTestSkipped("can't inspect console for thrown errors");
@@ -139,7 +140,7 @@ class ComponentTest extends DuskTestCase
         $this->assertNotEmpty($browser->driver->manage()->getLog('browser'));
     }
 
-    /** @test */
+    #[Test]
     public function it_thows_exception_when_debug_mode_enabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
@@ -153,7 +154,7 @@ class ComponentTest extends DuskTestCase
         HTML);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_exception_when_debug_mode_enabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
@@ -169,7 +170,7 @@ class ComponentTest extends DuskTestCase
         $this->assertEmpty($browser->driver->manage()->getLog('browser'));
     }
 
-    /** @test */
+    #[Test]
     public function it_doesnt_throw_exceptions_when_debug_mode_disabled()
     {
         $this->beforeServingApplication(function ($app, $config) {
@@ -183,7 +184,7 @@ class ComponentTest extends DuskTestCase
         $this->assertTrue(true); // No Exceptions raised
     }
 
-    /** @test */
+    #[Test]
     public function it_logs_console_errors_when_debug_mode_disabled()
     {
         $this->beforeServingApplication(function ($app, $config) {

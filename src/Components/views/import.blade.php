@@ -1,4 +1,4 @@
-{{-- @codeCoverageIgnoreStart --}}
+// @codeCoverageIgnoreStart
 
 //--------------------------------------------------------------------------
 // Expose x_import_modules map
@@ -39,9 +39,9 @@ if (!window.x_import_modules) window.x_import_modules = {};
         }
     }
 
-    // Handle CSS injection
     @if (str_ends_with($module, '.css') || str_ends_with($module, '.scss'))
 
+        // Handle CSS injection
         return import('{{ $module }}').then(result => {
             window.x_inject_styles(result.default, previous)
         })
@@ -61,4 +61,4 @@ if (!window.x_import_modules) window.x_import_modules = {};
     @endif
 })();
 
-{{-- @codeCoverageIgnoreEnd --}}
+// @codeCoverageIgnoreEnd

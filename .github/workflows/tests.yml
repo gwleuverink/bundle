@@ -65,6 +65,9 @@ jobs:
       - name: Install Composer dependecies
         run: composer update --no-progress --optimize-autoloader --${{ matrix.dependency-version }}
 
+      - name: Install Laravel
+        run: composer require illuminate/support@${{ matrix.laravel }} illuminate/contracts@${{ matrix.laravel }} --no-progress
+
       - name: Directory Permissions
         run: sudo chown -R $(whoami) vendor/pestphp/pest/.temp vendor/orchestra
 

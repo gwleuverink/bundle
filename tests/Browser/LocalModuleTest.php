@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -9,7 +10,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class LocalModuleTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
@@ -19,7 +20,7 @@ class LocalModuleTest extends DuskTestCase
             ->assertScript('typeof window.x_import_modules', 'object');
     }
 
-    /** @test */
+    #[Test]
     public function it_evaluates_function_expressions()
     {
         $this->blade(<<< 'HTML'
@@ -28,7 +29,7 @@ class LocalModuleTest extends DuskTestCase
             ->assertScript('window.test_evaluated', true);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_import_modules_inside_function_expressions()
     {
         $this->blade(<<< 'HTML'
@@ -37,7 +38,7 @@ class LocalModuleTest extends DuskTestCase
             ->assertScript('window.test_evaluated', true);
     }
 
-    /** @test */
+    #[Test]
     public function it_imports_from_local_resource_directory()
     {
         $this->blade(<<< 'HTML'
@@ -53,7 +54,7 @@ class LocalModuleTest extends DuskTestCase
             ->waitForTextIn('#output', 'Yello World!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_import_named_functions()
     {
         $this->blade(<<< 'HTML'

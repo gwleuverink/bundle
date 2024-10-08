@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -9,7 +10,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class InjectsCoreTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_injects_import_and_import_function_on_the_window_object_without_using_the_import_component()
     {
         $this->blade('')

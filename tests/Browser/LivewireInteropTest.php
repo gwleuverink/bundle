@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Tests\Browser;
 
 use Livewire\Component;
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -10,7 +11,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class LivewireInteropTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_injects_import_and_import_function_on_the_window_object()
     {
         $browser = $this->serveLivewire(ImportsLodashFilter::class);
@@ -20,7 +21,7 @@ class LivewireInteropTest extends DuskTestCase
             ->assertScript('typeof window.x_import_modules', 'object');
     }
 
-    /** @test */
+    #[Test]
     public function it_imports_from_node_modules()
     {
         $browser = $this->serveLivewire(ImportsLodashFilter::class);
@@ -28,7 +29,7 @@ class LivewireInteropTest extends DuskTestCase
         $browser->assertScript('typeof window.x_import_modules.filter', 'object');
     }
 
-    /** @test */
+    #[Test]
     public function it_imports_modules_inside_assets_directive()
     {
         $browser = $this->serveLivewire(ImportsLodashFilterInsideAssetsDirective::class);
@@ -39,7 +40,7 @@ class LivewireInteropTest extends DuskTestCase
             ->assertScript('typeof window.x_import_modules.filter', 'object');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_init()
     {
         $browser = $this->serveLivewire(CanUseImportsFromXInit::class);
@@ -47,7 +48,7 @@ class LivewireInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Hello from x-init!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_data()
     {
         $browser = $this->serveLivewire(CanUseImportsFromXData::class);
@@ -55,7 +56,7 @@ class LivewireInteropTest extends DuskTestCase
         $browser->waitForTextIn('#component', 'Hello from x-data!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_from_x_click_listener()
     {
         $browser = $this->serveLivewire(CanUseImportsFromClickListener::class);
@@ -66,7 +67,7 @@ class LivewireInteropTest extends DuskTestCase
             ->waitForTextIn('#component', 'Hello from x-on:click!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_imports_in_actions_using_one_time_js_expressions()
     {
         $browser = $this->serveLivewire(CanUseImportsFromAction::class);

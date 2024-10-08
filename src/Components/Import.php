@@ -28,12 +28,7 @@ class Import extends Component
     /** Builds the imported JavaScript & packages it up in a bundle */
     protected function bundle()
     {
-        // Wraps import with execution logic
-        $js = view('x-import::import', [
-            'module' => $this->module,
-            'init' => $this->init,
-            'as' => $this->as,
-        ]);
+        $js = $this->import();
 
         // Render script tag with bundled code
         return view('x-import::script', [
@@ -63,5 +58,66 @@ class Import extends Component
             <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: {$e->consoleOutput()}"</script>
             <!--[ENDBUNDLE]>-->
         HTML;
+    }
+
+    /** Builds a bundle for the JavaScript import */
+    protected function import(): string
+    {
+        return <<< JS
+            //--------------------------------------------------------------------------
+            // Expose x_import_modules map
+            //--------------------------------------------------------------------------
+            if(!window.x_import_modules) window.x_import_modules = {};
+
+            //--------------------------------------------------------------------------
+            // Import the module & push to x_import_modules
+            // Invoke IIFE so we can break out of execution when needed
+            //--------------------------------------------------------------------------
+            (() => {
+
+                // Import was marked as invokable
+                if('{$this->init}') {
+                    // Note: don't return, since we might need to still register the module
+                    import('{$this->module}')
+                        .then(invokable => {
+                            if(typeof invokable.default !== 'function') {
+                                throw `BUNDLING ERROR: '{$this->module}' not invokable - default export is not a function`
+                            }
+
+                            try {
+                                invokable.default()
+                            } catch(e) {
+                                throw `BUNDLING ERROR: unable to invoke '{$this->module}' - '\${e}'`
+                            }
+                        })
+                }
+
+                // Check if module is already loaded under a different alias
+                const previous = document.querySelector(`script[data-module="{$this->module}"]`)
+
+                // Was previously loaded & needs to be pushed to import map
+                if(previous && '{$this->as}') {
+                    // Throw error when previously imported under different alias. Otherwise continue
+                    if(previous.dataset.alias !== '{$this->as}') {
+                        throw `BUNDLING ERROR: '{$this->as}' already imported as '\${previous.dataset.alias}'`
+                    }
+                }
+
+                // Handle CSS injection
+                if('{$this->module}'.endsWith('.css') || '{$this->module}'.endsWith('.scss')) {
+                    return import('{$this->module}').then(result => {
+                        window.x_inject_styles(result.default, previous)
+                    })
+                }
+
+                // Assign the import to the window.x_import_modules object (or invoke IIFE)
+                '{$this->as}'
+                    // Assign it under an alias
+                    ? window.x_import_modules['{$this->as}'] = import('{$this->module}')
+                    // Only import it (for IIFE no alias needed)
+                    : import('{$this->module}')
+            })();
+
+        JS;
     }
 }

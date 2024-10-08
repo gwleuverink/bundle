@@ -90,9 +90,11 @@
         "fix": "vendor/bin/duster fix",
         "analyze": "vendor/bin/phpstan analyse",
         "baseline": "vendor/bin/phpstan analyse --generate-baseline",
+
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
+
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "test": "@php vendor/bin/pest --group=feature,unit",
         "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit",

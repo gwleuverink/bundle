@@ -1,4 +1,4 @@
-// @codeCoverageIgnoreStart
+<?php // @codeCoverageIgnoreStart?>
 
 //--------------------------------------------------------------------------
 // Expose x_import_modules map
@@ -61,4 +61,4 @@ if (!window.x_import_modules) window.x_import_modules = {};
     @endif
 })();
 
-// @codeCoverageIgnoreEnd
+<?php // @codeCoverageIgnoreEnd?>

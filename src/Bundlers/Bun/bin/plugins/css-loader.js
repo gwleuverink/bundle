@@ -78,8 +78,9 @@ const compileSass = async function (filename, opts) {
     // NOTE: we could use a custom importer to remap sourcemap url's here. But might be able to reuse The one we use for the CSS loader
     const source = await sass.compileAsync(filename, {
         sourceMap: opts.sourcemaps,
-        sourceMapIncludeSources: opts.sourcemaps // inlines source countent. refactor when adding extenral sourcemaps
+        sourceMapIncludeSources: opts.sourcemaps // inlines source content. refactor when adding external sourcemaps
     });
+
 
     let { code, map } = lightningcss.transform({
         targets,

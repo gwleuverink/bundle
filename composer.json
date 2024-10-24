@@ -41,11 +41,11 @@
         "squizlabs/php_codesniffer": "^3.10",
         "tightenco/duster": "^3.0",
         "tightenco/tlint": "^9.3",
-        "pestphp/pest": "^2.35",
+        "pestphp/pest": "^3.0",
         "spatie/laravel-ignition": "^2.8",
         "symfony/thanks": "^1.3",
         "orchestra/testbench": "^9",
-        "orchestra/testbench-dusk": "^9",
+        "orchestra/testbench-dusk": "^9.8",
         "livewire/livewire": "^3.5"
     },
     "config": {
@@ -78,6 +78,7 @@
             "cd ./workbench && npm ci",
             "ln -sf $PWD/workbench/jsconfig.json ./vendor/orchestra/testbench-core/laravel",
             "ln -sf $PWD/workbench/node_modules/ ./vendor/orchestra/testbench-core/laravel",
+            "ln -sf $PWD/config/bundle.php ./vendor/orchestra/testbench-core/laravel/config",
             "ln -sf $PWD/workbench/resources/js/ ./vendor/orchestra/testbench-core/laravel/resources",
             "ln -sf $PWD/workbench/resources/css/ ./vendor/orchestra/testbench-core/laravel/resources"
         ],
@@ -90,12 +91,14 @@
         "fix": "vendor/bin/duster fix",
         "analyze": "vendor/bin/phpstan analyse",
         "baseline": "vendor/bin/phpstan analyse --generate-baseline",
+
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
+
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
-        "test": "@php vendor/bin/pest --group=feature,unit",
-        "test-browser": "@php vendor/bin/pest --exclude-group=feature,unit",
-        "test-all": "@php vendor/bin/pest --bail"
+        "test": "@php vendor/bin/testbench package:test --group=feature --group=unit",
+        "test-browser": "@php vendor/bin/testbench package:test --exclude-group=feature --exclude-group=unit",
+        "test-all": "@php vendor/bin/testbench package:test --bail"
     }
 }

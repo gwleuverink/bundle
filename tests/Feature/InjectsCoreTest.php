@@ -1,6 +1,7 @@
 <?php
 
-/** @test */
+use Illuminate\Support\Facades\Route;
+
 it('injects core into head tag', function () {
     Route::get('test-inject-in-response', fn () => '<html><head></head></html>');
 
@@ -10,7 +11,6 @@ it('injects core into head tag', function () {
         ->assertSee('<!--[BUNDLE-CORE]-->', false);
 });
 
-/** @test */
 it('injects core into html body when no head tag is present', function () {
     Route::get('test-inject-in-response', fn () => '<html></html>');
 
@@ -20,7 +20,6 @@ it('injects core into html body when no head tag is present', function () {
         ->assertSee('<!--[BUNDLE-CORE]-->', false);
 });
 
-/** @test */
 it('doesnt inject core into responses without a closing html tag', function () {
     Route::get('test-inject-in-response', fn () => 'OK');
 

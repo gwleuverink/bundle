@@ -2,6 +2,7 @@
 
 namespace Leuverink\Bundle\Tests\Browser;
 
+use PHPUnit\Framework\Attributes\Test;
 use Leuverink\Bundle\Tests\DuskTestCase;
 
 // Pest & Workbench Dusk don't play nicely together
@@ -9,7 +10,7 @@ use Leuverink\Bundle\Tests\DuskTestCase;
 
 class NodeModuleTest extends DuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_injects_import_and_import_function_on_the_window_object()
     {
         $this->blade(<<< 'HTML'
@@ -19,7 +20,7 @@ class NodeModuleTest extends DuskTestCase
             ->assertScript('typeof window.x_import_modules', 'object');
     }
 
-    /** @test */
+    #[Test]
     public function it_imports_from_node_modules()
     {
         $this->blade(<<< 'HTML'
@@ -46,7 +47,7 @@ class NodeModuleTest extends DuskTestCase
             ->waitForTextIn('#output', 'Hello World!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_import_modules_per_method()
     {
         $this->blade(<<< 'HTML'
@@ -73,7 +74,7 @@ class NodeModuleTest extends DuskTestCase
             ->waitForTextIn('#output', 'Yello World!');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_both_local_and_node_module_together_on_the_same_page()
     {
         $this->blade(<<< 'HTML'

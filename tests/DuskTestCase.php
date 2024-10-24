@@ -2,53 +2,90 @@
 
 namespace Leuverink\Bundle\Tests;
 
+use Override;
 use Livewire\Livewire;
 use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\Dusk\Options;
-use Illuminate\Contracts\Config\Repository;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
 use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;
 
 class DuskTestCase extends BaseTestCase
 {
+    const CLEAR_AFTER_TEST = true;
+    const WITHOUT_UI = true;
+
     use WithWorkbench;
 
+    // protected function defineEnvironment($app)
+    // {
+    //     // Workaround Testbench Dusk issue dropping registered config (since v9)
+    //     tap($app['config'], function (Repository $config) {
+    //         $config->set('bundle', require __DIR__ . '/../config/bundle.php');
+    //     });
+    // }
+
+    #[Override]
     public static function setUpBeforeClass(): void
     {
-        Options::withoutUI();
+        if (static::WITHOUT_UI) {
+            Options::withoutUI();
+        }
+
         parent::setUpBeforeClass();
     }
 
-    protected function defineEnvironment($app)
-    {
-        // Workaround Testbench Dusk issue dropping registered config (since v9)
-        tap($app['config'], function (Repository $config) {
-            $config->set('bundle', require __DIR__ . '/../config/bundle.php');
-        });
-    }
-
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->artisan('view:clear');
-        $this->artisan('bundle:clear');
+        if (static::CLEAR_AFTER_TEST) {
+            $this->artisan('view:clear');
+            $this->artisan('bundle:clear');
+        }
 
         // Workaround Testbench Dusk issue dropping registered config (since v9)
-        config([
-            'bundle' => require __DIR__ . '/../config/bundle.php',
-        ]);
+        // config([
+        //     'bundle' => require __DIR__ . '/../config/bundle.php',
+        // ]);
     }
 
+    #[Override]
     protected function tearDown(): void
     {
-        $this->artisan('bundle:clear');
-        $this->artisan('view:clear');
+        if (static::CLEAR_AFTER_TEST) {
+            $this->artisan('view:clear');
+            $this->artisan('bundle:clear');
+        }
 
         parent::tearDown();
+    }
+
+    #[Override]
+    public static function tearDownAfterClass(): void
+    {
+        // SOMEHOW FIXES THE ISSUE INSTEAD OF WORKAROUND BELOW
+        // Can  be anything that reaches the container, like dump
+        // Annoying to debug, since the problem doesn't exist when dumping
+        config('bundle');
+
+        // TEMPORARY WORKAROUND
+        // Original teardownAfterClass hangs because chromedriver cannot be killed?
+        // Fringe error. It exits the current process suddenly without exceptions.
+        // The chrome driver & server stay alive, so additional test classes can't run
+        // $serverPort = static::$baseServePort;
+        // $pid = Process::run("kill (lsof -t -i :{$serverPort})")->throw()->output();
+        // Process::run("kill {$pid}")->throw();
+
+        // $chromeDriverPort = static::$chromeDriverPort;
+        // $pid = Process::run("kill (lsof -t -i :{$chromeDriverPort})")->throw()->output();
+        // Process::run("kill {$pid}")->throw();
+        // END TEMPORARY WORKAROUND
+
+        parent::tearDownAfterClass();
     }
 
     protected function getBasePath()
@@ -108,8 +145,8 @@ class DuskTestCase extends BaseTestCase
             Livewire::component($component);
 
             // Disable CSRF check from update route
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/livewire/update', $handle)->withoutMiddleware(VerifyCsrfToken::class);
+            Livewire::setUpdateRoute(function ($handle) use ($app) {
+                return $app->make(Route::class)::post('/livewire/update', $handle)->withoutMiddleware(VerifyCsrfToken::class);
             });
 
             // Register temporary Livewire route

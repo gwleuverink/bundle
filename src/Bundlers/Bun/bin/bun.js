@@ -59,11 +59,16 @@ const result = await Bun.build({
 });
 
 if (!result.success) {
+    // console.error(result)
     // for (const message of result.logs) {
     //     console.error(message);
     // }
     // process.exit(1);
 
     // TODO: needs to be reworked
-    exit('build-failed', '', result.logs.map(log => log.message))
+    let output = result.logs.map(log => log.message)
+        .filter(val => val)
+        .concat(options.entrypoint)
+
+    exit('build-failed', '', output)
 }

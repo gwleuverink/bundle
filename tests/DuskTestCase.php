@@ -14,6 +14,9 @@ use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;
 
 class DuskTestCase extends BaseTestCase
 {
+    const CLEAR_AFTER_TEST = true;
+    const WITHOUT_UI = true;
+
     use WithWorkbench;
 
     // protected function defineEnvironment($app)
@@ -27,7 +30,10 @@ class DuskTestCase extends BaseTestCase
     #[Override]
     public static function setUpBeforeClass(): void
     {
-        Options::withoutUI();
+        if (static::WITHOUT_UI) {
+            Options::withoutUI();
+        }
+
         parent::setUpBeforeClass();
     }
 
@@ -36,8 +42,10 @@ class DuskTestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->artisan('view:clear');
-        $this->artisan('bundle:clear');
+        if (static::CLEAR_AFTER_TEST) {
+            $this->artisan('view:clear');
+            $this->artisan('bundle:clear');
+        }
 
         // Workaround Testbench Dusk issue dropping registered config (since v9)
         // config([
@@ -48,8 +56,10 @@ class DuskTestCase extends BaseTestCase
     #[Override]
     protected function tearDown(): void
     {
-        $this->artisan('view:clear');
-        $this->artisan('bundle:clear');
+        if (static::CLEAR_AFTER_TEST) {
+            $this->artisan('view:clear');
+            $this->artisan('bundle:clear');
+        }
 
         parent::tearDown();
     }

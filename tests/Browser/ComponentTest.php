@@ -136,7 +136,6 @@ class ComponentTest extends DuskTestCase
         HTML);
 
         // Raises console errors
-        dd($browser->driver->manage()->getLog('browser'));
         $this->assertNotEmpty($browser->driver->manage()->getLog('browser'));
     }
 

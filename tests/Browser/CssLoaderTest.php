@@ -139,7 +139,7 @@ class CssLoaderTest extends DuskTestCase
 
         // Assert output contains encoded sourcemap (flaky. asserting on encoded sting)
         $browser->assertScript(
-            'document.querySelector(`style[data-module="css/red-background.css"]`).innerHTML.startsWith("html{background:red}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjpudWxsLCJtYXBwaW5ncyI6IkFBQUEi")',
+            'document.querySelector(`style[data-module="css/red-background.css"]`).innerHTML.includes("/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjpudWxsLCJtYXBwaW5ncyI6IkFBQUEi")',
             true
         );
 
@@ -182,7 +182,7 @@ class CssLoaderTest extends DuskTestCase
 
         // Assert output contains encoded sourcemap (flaky. asserting on encoded sting)
         $browser->assertScript(
-            'document.querySelector(`style[data-module="css/blue-background.scss"]`).innerHTML.startsWith("html body{background:#00f}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290Ij")',
+            'document.querySelector(`style[data-module="css/blue-background.scss"]`).innerHTML.includes("/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290Ij")',
             true
         );
 

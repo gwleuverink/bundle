@@ -29,7 +29,7 @@ class Import extends Component
     protected function bundle()
     {
         // Wraps import with execution logic
-        $js = view('x-import::import', [
+        $js = (string) view('x-import::import', [
             'module' => $this->module,
             'init' => $this->init,
             'as' => $this->as,

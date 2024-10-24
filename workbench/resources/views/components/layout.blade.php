@@ -7,7 +7,7 @@
 
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 
-    @unless(app()->runningInConsole())
+    @unless (app()->runningInConsole())
     <script src="https://cdn.tailwindcss.com"></script>
     @endunless
 </head>

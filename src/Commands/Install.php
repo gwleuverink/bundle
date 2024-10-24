@@ -15,6 +15,8 @@ use function Laravel\Prompts\progress;
 
 class Install extends Command
 {
+    const MIN_BUN_VERSION = '1.1.33';
+
     protected $signature = 'bundle:install';
     protected $description = 'Installs Bun, LightningCSS & Sass';
 
@@ -64,7 +66,7 @@ class Install extends Command
         );
 
         if ($confirmed) {
-            $this->installCommands[] = 'npm install bun@^1 --save-dev';
+            $this->installCommands[] = sprintf('npm install bun@^%s --save-dev', static::MIN_BUN_VERSION);
         }
     }
 

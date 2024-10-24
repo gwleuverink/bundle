@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Process\PendingProcess;
+use Leuverink\Bundle\Commands\Install;
 use Illuminate\Support\Facades\Process;
 
 beforeEach(function () {
@@ -19,7 +20,9 @@ it('installs Bun when selected', function () {
         ->expectsQuestion('Would you like to use CSS loading?', 'none')
         ->assertSuccessful();
 
-    Process::assertRan('npm install bun@^1 --save-dev');
+    Process::assertRan(
+        sprintf('npm install bun@^%s --save-dev', Install::MIN_BUN_VERSION)
+    );
 });
 
 it('doesnt install Bun when not selected', function () {

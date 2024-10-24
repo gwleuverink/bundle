@@ -162,7 +162,7 @@ There are a couple of commands at your disposal:
 
 `artisan bundle:build` Scan all your build_paths configured in `config/bundle.php` & compile all your imports.
 
-You may configure what paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of paths.
+You can configure what paths are scanned by publishing the Bundle config file and updating the `build_paths` array. Note this config option accepts an array of paths.
 
 ```php
 'build_paths' => [
@@ -184,12 +184,10 @@ You may configure what paths are scanned by publishing the Bundle config file an
 
 ## Testing fake
 
-When writing Unit or Feature tests in your application you don't need Bundle to process & serve your imports.
-
-Simply use the BundleManager fake in your test setup. Perfect for when you're asserting on responses with feature tests.
+When writing Unit or Feature tests in your application you don't need Bundle to process & serve your imports. You may use the BundleManager fake in your test setup. When testing responses your imports won't be bundled.
 
 ```php
 BundleManager::fake();
 ```
 
-When you'd like to use Dusk for browser testing you need to run Bundle in order for your tests not to blow up. Simply don't fake the BundleManager in your DuskTestCase.
+If you'd like to use Dusk for browser testing you probably need do to run Bundle. You can assert on any script that depends on a Bundle import. In fact, that's how most of Bundle itself is tested internally.

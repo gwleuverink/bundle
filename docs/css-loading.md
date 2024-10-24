@@ -51,7 +51,7 @@ This works similarly to [local modules](https://laravel-bundle.dev/local-modules
 {
   "compilerOptions": {
     "paths": {
-      "~/css": ["./resources/css/*"]
+      "~/css/*": ["./resources/css/*"]
     }
   }
 }

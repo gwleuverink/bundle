@@ -21,8 +21,6 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/bundle.php', 'bundle');
-
         // Only when using locally
         if (! $this->app->environment(['local', 'testing'])) {
 

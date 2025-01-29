@@ -3,6 +3,7 @@
 namespace Leuverink\Bundle\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Stringable;
 use Leuverink\Bundle\BundleManager;
 use Leuverink\Bundle\Exceptions\BundlingFailedException;
 use Leuverink\Bundle\Contracts\BundleManager as BundleManagerContract;
@@ -58,9 +59,14 @@ class Import extends Component
 
         report($e);
 
+        $output = str()
+            ->of($e->consoleOutput())
+            ->whenContains('error:', fn (Stringable $string) => $string->after('error:'))
+            ->trim();
+
         return <<< HTML
             <!--[BUNDLE: {$this->as} from '{$this->module}']-->
-            <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: {$e->consoleOutput()}"</script>
+            <script data-module="{$this->module}" data-alias="{$this->as}">throw "BUNDLING ERROR: {$output}"</script>
             <!--[ENDBUNDLE]>-->
         HTML;
     }

@@ -5,7 +5,7 @@
     "IE 11"
   ],
   "devDependencies": {
-    "bun": "^1.1.30",
+    "bun": "^1.2",
     "lodash": "^4.17",
     "alpinejs": "^3.14",
     "@alpinejs/persist": "^3.14"

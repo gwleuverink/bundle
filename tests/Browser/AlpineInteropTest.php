@@ -13,7 +13,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_bootstrap_alpine_via_iife_import()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-iife" />
 
             <div
@@ -34,7 +34,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_bootstrap_plugins_via_iife_import()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-iife-with-plugin" />
 
             <div
@@ -57,7 +57,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_bootstrap_alpine_via_initable_import()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-init" init />
 
             <div
@@ -78,7 +78,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_bootstrap_plugins_via_initable_import()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-init-with-plugin" init />
 
             <div
@@ -101,7 +101,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_use_imports_from_x_init()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
 
@@ -133,7 +133,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_use_imports_from_x_data()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
 
             <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
@@ -167,7 +167,7 @@ class AlpineInteropTest extends DuskTestCase
     #[Test]
     public function it_can_use_imports_from_x_click_listener()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="lodash/filter" as="filter" />
 
@@ -205,7 +205,7 @@ class AlpineInteropTest extends DuskTestCase
     {
         $this->markTestSkipped('not implemented');
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
 
             <x-import module="~/bootstrap/alpine-init" init />
             <x-import module="~/components/hello-world" />

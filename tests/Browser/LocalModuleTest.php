@@ -13,7 +13,7 @@ class LocalModuleTest extends DuskTestCase
     #[Test]
     public function it_injects_import_and_import_function_on_the_window_object()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/output-to-id" as="output" />
             HTML)
             ->assertScript('typeof window._import', 'function')
@@ -23,7 +23,7 @@ class LocalModuleTest extends DuskTestCase
     #[Test]
     public function it_evaluates_function_expressions()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/function-is-evaluated" as="is-evaluated" defer />
             HTML)
             ->assertScript('window.test_evaluated', true);
@@ -32,7 +32,7 @@ class LocalModuleTest extends DuskTestCase
     #[Test]
     public function it_can_import_modules_inside_function_expressions()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/function-is-evaluated" as="is-evaluated" defer />
             HTML)
             ->assertScript('window.test_evaluated', true);
@@ -41,7 +41,7 @@ class LocalModuleTest extends DuskTestCase
     #[Test]
     public function it_imports_from_local_resource_directory()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/output-to-id" as="output" />
 
                 <script type="module">
@@ -57,7 +57,7 @@ class LocalModuleTest extends DuskTestCase
     #[Test]
     public function it_can_import_named_functions()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
             <x-import module="~/named-functions" as="helpers" />
 
             <script type="module">

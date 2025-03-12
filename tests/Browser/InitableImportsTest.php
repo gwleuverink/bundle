@@ -14,7 +14,7 @@ class InitableImportsTest extends DuskTestCase
     #[Test]
     public function it_invokes_imports_with_init_prop()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/default-function" init />
             HTML)
             ->assertScript('window.test_evaluated', true);
@@ -23,7 +23,7 @@ class InitableImportsTest extends DuskTestCase
     #[Test]
     public function it_doesnt_invoke_imports_without_init_prop()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="~/default-function" />
             HTML)
             ->assertScript('window.test_evaluated', null);
@@ -60,7 +60,7 @@ class InitableImportsTest extends DuskTestCase
     {
         $this->markTestIncomplete("can't inspect console for thrown errors");
 
-        // $this->blade(<<< 'HTML'
+        // $this->bladeString(<<< 'HTML'
         //         <x-import module="~/default-object" />
         //     HTML)
         //     ->assertScript('window.test_evaluated', null);

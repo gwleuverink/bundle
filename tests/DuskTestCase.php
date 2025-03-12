@@ -98,7 +98,7 @@ class DuskTestCase extends BaseTestCase
      * Renders a string into blade & navigates the Dusk browser to a temporary route
      * Then it returns the Browser object to continue chaining assertions.
      */
-    public function blade(string $blade)
+    public function bladeString(string $blade)
     {
         // Wrap in basic HTML layout (include required js & css in layout if needed)
         $blade = <<< BLADE

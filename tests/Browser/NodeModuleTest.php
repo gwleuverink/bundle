@@ -13,7 +13,7 @@ class NodeModuleTest extends DuskTestCase
     #[Test]
     public function it_injects_import_and_import_function_on_the_window_object()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
                 <x-import module="lodash/filter" as="filter" />
             HTML)
             ->assertScript('typeof window._import', 'function')
@@ -23,7 +23,7 @@ class NodeModuleTest extends DuskTestCase
     #[Test]
     public function it_imports_from_node_modules()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
             <x-import module="lodash" as="lodash" />
 
             <script type="module">
@@ -50,7 +50,7 @@ class NodeModuleTest extends DuskTestCase
     #[Test]
     public function it_can_import_modules_per_method()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
             <x-import module="lodash/filter" as="filter" />
 
             <script type="module">
@@ -77,7 +77,7 @@ class NodeModuleTest extends DuskTestCase
     #[Test]
     public function it_can_use_both_local_and_node_module_together_on_the_same_page()
     {
-        $this->blade(<<< 'HTML'
+        $this->bladeString(<<< 'HTML'
             <x-import module="~/output-to-id" as="output" />
             <x-import module="lodash/filter" as="filter" />
 

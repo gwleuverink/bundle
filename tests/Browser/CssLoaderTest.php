@@ -13,7 +13,7 @@ class CssLoaderTest extends DuskTestCase
     #[Test]
     public function it_injects_a_style_tag_on_the_page()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -30,7 +30,7 @@ class CssLoaderTest extends DuskTestCase
     #[Test]
     public function it_handles_css_files()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -47,7 +47,7 @@ class CssLoaderTest extends DuskTestCase
     #[Test]
     public function it_supports_sass()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/blue-background.scss" />
         HTML);
 
@@ -64,7 +64,7 @@ class CssLoaderTest extends DuskTestCase
     #[Test]
     public function it_processes_css_imports()
     {
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/imported-red-background.css" />
         HTML);
 
@@ -85,7 +85,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.minify', true);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -106,7 +106,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.minify', false);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -133,7 +133,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.sourcemaps', true);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -155,7 +155,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.sourcemaps', false);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/red-background.css" />
         HTML);
 
@@ -176,7 +176,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.sourcemaps', true);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/blue-background.scss" />
         HTML);
 
@@ -198,7 +198,7 @@ class CssLoaderTest extends DuskTestCase
             $config->set('bundle.sourcemaps', false);
         });
 
-        $browser = $this->blade(<<< 'HTML'
+        $browser = $this->bladeString(<<< 'HTML'
             <x-import module="css/blue-background.scss" />
         HTML);
 

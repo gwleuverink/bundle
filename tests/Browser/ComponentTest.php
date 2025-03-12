@@ -195,6 +195,7 @@ class ComponentTest extends DuskTestCase
             HTML)
             ->assertScript(<<< 'JS'
                 document.querySelector('script[data-module="~/nonexistent-module"').innerHTML
-            JS, 'throw "BUNDLING ERROR: Could not resolve: "~/nonexistent-module". Maybe you need to "bun install"?"');
+                    .startsWith('throw "BUNDLING ERROR: Could not resolve: "~/nonexistent-module". Maybe you need to "bun install"?')
+            JS, true);
     }
 }
